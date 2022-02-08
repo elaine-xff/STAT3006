@@ -170,4 +170,18 @@ logitreg(alpha_0, beta_0, tolerance, LogitRegData)
 
 ### Question 4: EM - ALGORITHM
 
+# Read Salary Data
+SalaryData = read.delim("/Users/elainexfff_/Documents/STAT3006/Assignment 1/Coding_assignment_1/SalaryData.txt", 
+                          header = TRUE, sep = " ")
+
+
+
+
+
+
+
+
+
+
+
 

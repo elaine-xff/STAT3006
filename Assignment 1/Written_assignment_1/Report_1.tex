@@ -75,7 +75,9 @@ STEP 1: Solve $\mathbf{F'}(\mathbf{x^{(n)}}) \mathbf{\triangle x^{(n)}} = - \mat
 
 STEP 2: Update by $\mathbf{x^{(n+1)}} = \mathbf{x^{(n)}} + \mathbf{\triangle x^{(n)}}$.
 
-\part{3} \algorithm{Newton's Method code in the R file.}
+\part{3} 
+
+\algorithm{Newton's Method code in the R file.}
 
 \result{$\alpha = 1.503533$, $\beta = 1.052351$, and $\gamma = 1.957396$.}
 
@@ -118,15 +120,66 @@ STEP 1: Solve $\mathbf{F'}(\mathbf{x^{(n)}}) \mathbf{\triangle x^{(n)}} = - \mat
 
 STEP 2: Update by $\mathbf{x^{(n+1)}} = \mathbf{x^{(n)}} + \mathbf{\triangle x^{(n)}}$.
 
-\part{3}\algorithm{Newton's Method code in the R file.}
+\part{3}
+
+\algorithm{Newton's Method code in the R file.}
 
 \result{$\alpha = 1.564284$ and $beta = 1.771093$.}
 
 \question{4}{EM Algorithm (30\%)}
 
-\part{1} 
+\part{1} Observed data: $Y_i$ for $i = 1$, $2, \dots$, $8000$; Missing data: $Z_i$ for $i = 1$, $2, \dots$, $8000$., where $Z_i = 1$, 2, or 3 for low, middle, and high income respectively.
 
-\part{2}
+Since $Y_i \big\rvert (Z_i=k) \sim N(\mu_k, \sigma_k^2)$, with proportion $\pi_k$ ($\pi_3 = 1 - (\pi_1 + \pi_2)$), we can formulate 
+
+the $\mathbf{complete-data}$ $\mathbf{Likelihhod}$ $\mathbf{function}$ as:
+\begin{flalign*}
+    &L(\pi_1, \pi_2, \mu_1, \mu_2, \mu_3, \sigma_1, \sigma_2, \sigma_3 | \mathbf{Y}, \mathbf{Z})\\
+   =&\prod_{i=1}^{n} \Biggl[\pi_1 \frac{1}{\sqrt{2\pi}\sigma_1}e^{-\frac{(y_i-\mu_1)^2}{2\sigma_1^2}}\Biggr]^{I(Z_i = 1)} \Biggl[\pi_2 \frac{1}{\sqrt{2\pi}\sigma_2}e^{-\frac{(y_i-\mu_2)^2}{2\sigma_2^2}}\Biggr]^{I(Z_i = 2)} \Biggl[(1-\pi_1-\pi_2) \frac{1}{\sqrt{2\pi}\sigma_3}e^{-\frac{(y_i-\mu_3)^2}{2\sigma_3^2}}\Biggr]^{I(Z_i = 3)}
+\end{flalign*}
+The observed-data Likelihhod function is:
+\begin{flalign*}
+    &L(\pi_1, \pi_2, \mu_1, \mu_2, \mu_3, \sigma_1, \sigma_2, \sigma_3 | \mathbf{Y})\\
+   =&\prod_{i=1}^{n} \Biggl[ \biggl[\pi_1 \frac{1}{\sqrt{2\pi}\sigma_1}e^{-\frac{(y_i-\mu_1)^2}{2\sigma_1^2}}\biggr] +  \biggl[\pi_2 \frac{1}{\sqrt{2\pi}\sigma_2}e^{-\frac{(y_i-\mu_2)^2}{2\sigma_2^2}}\biggr] + \biggl[(1-\pi_1-\pi_2) \frac{1}{\sqrt{2\pi}\sigma_3}e^{-\frac{(y_i-\mu_3)^2}{2\sigma_3^2}}\biggr] \Biggr]
+\end{flalign*}
+\part{2} The complete-data log-Likelihhod function is:
+\begin{flalign*}
+    l(\pi_1, \pi_2, \mu_1, \mu_2, \mu_3, \sigma_1, \sigma_2, \sigma_3 | \mathbf{Y}, \mathbf{Z}) =\sum_{i=1}^n \Biggl[&I(Z_i = 1) \biggl[\log \pi_1 - \log \sqrt{2\pi} - \frac{1}{2}\log \sigma_1^2 - \frac{(y_i - \mu_1)^2}{2 \sigma_1^2}\biggr]\\
+                                                                                                                    +&I(Z_i = 2) \biggl[\log \pi_2 - \log \sqrt{2\pi} - \frac{1}{2}\log \sigma_2^2 - \frac{(y_i - \mu_2)^2}{2 \sigma_2^2}\biggr]\\
+                                                                                                                    +&I(Z_i = 3) \biggl[\log (1-\pi_1-\pi_2) - \log \sqrt{2\pi} - \frac{1}{2}\log \sigma_3^2 - \frac{(y_i - \mu_3)^2}{2 \sigma_3^2}\biggr]\Biggr]
+\end{flalign*}
+Then we can calculate:
+\begin{flalign*}
+    \frac{\partial l}{\partial \pi_1}\bigg\rvert_{\hat{\pi_1}, \hat{\pi_2}} &= \sum_{i=1}^n \biggl[I(Z_i = 1)\frac{1}{\pi_1} - I(Z_i = 3)\frac{1}{1-\pi_1-\pi_2}\biggr]\bigg\rvert_{\hat{\pi_1}, \hat{\pi_2}} = 0\\
+    \frac{\partial l}{\partial \pi_2}\bigg\rvert_{\hat{\pi_1}, \hat{\pi_2}} &= \sum_{i=1}^n \biggl[I(Z_i = 2)\frac{1}{\pi_2} - I(Z_i = 3)\frac{1}{1-\pi_1-\pi_2}\biggr]\bigg\rvert_{\hat{\pi_1}, \hat{\pi_2}} = 0\\
+    \frac{\partial l}{\partial \mu_1}\bigg\rvert_{\hat{\mu_1}, \hat{\sigma_1^2}} &= \sum_{i=1}^n \biggl[I(Z_i = 1) \frac{y_i - \mu_1}{\sigma_1^2}\biggr]\bigg\rvert_{\hat{\mu_1}, \hat{\sigma_1^2}} = 0\\
+    \frac{\partial l}{\partial \mu_2}\bigg\rvert_{\hat{\mu_2}, \hat{\sigma_2^2}} &= \sum_{i=1}^n \biggl[I(Z_i = 2) \frac{y_i - \mu_2}{\sigma_2^2}\biggr]\bigg\rvert_{\hat{\mu_2}, \hat{\sigma_2^2}} = 0\\
+    \frac{\partial l}{\partial \mu_3}\bigg\rvert_{\hat{\mu_3}, \hat{\sigma_3^2}} &= \sum_{i=1}^n \biggl[I(Z_i = 3) \frac{y_i - \mu_3}{\sigma_3^2}\biggr]\bigg\rvert_{\hat{\mu_3}, \hat{\sigma_3^2}} = 0\\
+    \frac{\partial l}{\partial \sigma_1^2}\bigg\rvert_{\hat{\mu_1}, \hat{\sigma_1^2}} &= \sum_{i=1}^n \biggl[I(Z_i = 1)\biggl(-\frac{1}{2}\frac{1}{\sigma_1^2} + \frac{(y_i - \mu_1)^2}{2(\sigma_1^2)^2}\biggr)\biggr]\bigg\rvert_{\hat{\mu_1}, \hat{\sigma_1^2}} = 0\\
+    \frac{\partial l}{\partial \sigma_2^2}\bigg\rvert_{\hat{\mu_2}, \hat{\sigma_2^2}} &= \sum_{i=1}^n \biggl[I(Z_i = 2)\biggl(-\frac{1}{2}\frac{1}{\sigma_2^2} + \frac{(y_i - \mu_2)^2}{2(\sigma_2^2)^2}\biggr)\biggr]\bigg\rvert_{\hat{\mu_2}, \hat{\sigma_2^2}} = 0\\
+    \frac{\partial l}{\partial \sigma_3^2}\bigg\rvert_{\hat{\mu_3}, \hat{\sigma_3^2}} &= \sum_{i=1}^n \biggl[I(Z_i = 3)\biggl(-\frac{1}{2}\frac{1}{\sigma_3^2} + \frac{(y_i - \mu_3)^2}{2(\sigma_3^2)^2}\biggr)\biggr]\bigg\rvert_{\hat{\mu_3}, \hat{\sigma_3^2}} = 0
+\end{flalign*}
+Hence, we can conclude that:
+\begin{flalign*}
+    \hat{\pi_1} &= \frac{\sum_{i=1}^n I(Z_i = 1)(1 - \hat{\pi_2})}{\sum_{i=1}^n [I(Z_i = 1) + I(Z_i = 3)]}\\
+    \hat{\pi_2} &= \frac{\sum_{i=1}^n I(Z_i = 2)(1 - \hat{\pi_1})}{\sum_{i=1}^n [I(Z_i = 2) + I(Z_i = 3)]}\\
+    \hat{\mu_1} &= \frac{\sum_{i=1}^n I(Z_i = 1) y_i}{\sum_{i=1}^n I(Z_i = 1)}\\
+    \hat{\mu_2} &= \frac{\sum_{i=1}^n I(Z_i = 2) y_i}{\sum_{i=1}^n I(Z_i = 2)}\\
+    \hat{\mu_3} &= \frac{\sum_{i=1}^n I(Z_i = 3) y_i}{\sum_{i=1}^n I(Z_i = 3)}\\
+    \hat{\sigma_1^2} &= \frac{\sum_{i=1}^n I(Z_i = 1) (y_i^2 - \hat{\mu_1^2} + 2\hat{\mu_1}y_i)}{\sum_{i=1}^n I(Z_i = 1)}\\
+    \hat{\sigma_2^2} &= \frac{\sum_{i=1}^n I(Z_i = 2) (y_i^2 - \hat{\mu_2^2} + 2\hat{\mu_2}y_i)}{\sum_{i=1}^n I(Z_i = 2)}\\
+    \hat{\sigma_3^2} &= \frac{\sum_{i=1}^n I(Z_i = 3) (y_i^2 - \hat{\mu_3^2} + 2\hat{\mu_3}y_i)}{\sum_{i=1}^n I(Z_i = 3)}
+\end{flalign*}
+Then given initial guess $\pi_1^{(0)}, \pi_2^{(0)}, \mu_1^{(0)}, \mu_2^{(0)}, \sigma_1^{(0)}, \sigma_2^{(0)}$, 
+we define a $Q$ function by $Q(\Theta; \Theta^{(t)}) = E_{\mathbf{\Theta^{(t)}}} \bigl( l(\mathbf{\Theta} | \mathbf{Y}, \mathbf{Z}) | \mathbf{Y} \bigr)$:
+\begin{flalign*}
+    Q(\Theta; \Theta^{(t)}) &= E_{\pi_1^{(t)}, \pi_2^{(t)}, \mu_1^{(t)}, \mu_2^{(t)}, \mu_3^{(t)}, {\sigma_1^2}^{(t)}, {\sigma_2^2}^{(t)}, {\sigma_3^2}^{(t)}} \bigl( l(\pi_1, \pi_2, \mu_1, \mu_2, \mu_3, \sigma_1, \sigma_2, \sigma_3 | \mathbf{Y}, \mathbf{Z}) | \mathbf{Y} \bigr)\\
+                            &= \sum_{i=1}^n \Biggl[I(Z_i = 1) \biggl[\log \pi_1^{(t)} - \log \sqrt{2\pi} - \frac{1}{2}\log {\sigma_1^2}^{(t)} - \frac{(y_i - \mu_1^{(t)})^2}{2 {\sigma_1^2}^{(t)}}\biggr]\\
+                            &+I(Z_i = 2) \biggl[\log \pi_2^{(t)} - \log \sqrt{2\pi} - \frac{1}{2}\log {\sigma_2^2}^{(t)} - \frac{(y_i - \mu_2^{(t)})^2}{2 {\sigma_2^2}^{(t)}}\biggr]\\
+                            &+I(Z_i = 3) \biggl[\log (1-\pi_1^{(t)}-\pi_2^{(t)}) - \log \sqrt{2\pi} - \frac{1}{2}\log {\sigma_3^2}^{(t)} - \frac{(y_i - \mu_3^{(t)})^2}{2 {\sigma_3^2}^{(t)}}\biggr]\Biggr]
+\end{flalign*}
+
+
 
 \part{3}
 
