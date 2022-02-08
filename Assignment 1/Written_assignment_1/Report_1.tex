@@ -9,8 +9,7 @@
 \newcommand\question[2]{\vspace{.25in}\hrule\textbf{#1: #2}\vspace{.5em}\hrule\vspace{.10in}}
 \renewcommand\part[1]{\vspace{.10in}\textbf{(#1)}}
 \newcommand\algorithm{\vspace{.10in}\textbf{Algorithm: }}
-\newcommand\correctness{\vspace{.10in}\textbf{Correctness: }}
-\newcommand\runtime{\vspace{.10in}\textbf{Running time: }}
+\newcommand\result{\vspace{.10in}\textbf{Result: }}
 \pagestyle{fancyplain}
 \lhead{\textbf{\NAME\ (\ANDREWID)}}
 \chead{\textbf{Assignment\HWNUM}}
@@ -23,29 +22,66 @@
 %Section B==============Put your answers to the questions below here=======================
 
 \question{1}{The Bisection Method (25\%)} 
+For function $f(x) = x^3 + 6x^2 + \pi x - 12$, the derivative is $f'(x) = 3x^2 + 12x + \pi$. The we can calculate that 
+zeros of the derivative are $\frac{-12 - \sqrt{12(12-\pi)}}{6}$ and $\frac{-12 + \sqrt{12(12-\pi)}}{6}$.
 
+$f(\frac{-12 - \sqrt{12(12-\pi)}}{6}) = 7.864841$ and $f(\frac{-12 + \sqrt{12(12-\pi)}}{6}) = -12.43121$
+Hence, the function $f$ has totally 3 zeros.
 
+\algorithm{Bisection Method in the R file.}
 
+\result{zeros -4.837944, -2.259727, and 1.097664.}
 
-\question{2}{Poisson Regression (25\%)}
+\question{2}{Poisson Regression - Newton's Method (25\%)}
 
-\part{1} \algorithm Describe algorithm here
+\part{1} Since $y_i \sim Poisson(\lambda_i)$ and $log(\lambda_i) = \alpha + \beta x_i + \gamma x_i^2$, we can get the Likelihhod function:
 
-\correctness This is an argument  that this algorithm returns the correct answer.
+\begin{align*}
+    L(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y}) = \prod_{i=1}^{n} \frac{\lambda_i^{y_i} e^{-\lambda_i}}{y_i !} = \prod_{i=1}^{n} \frac{e^{(\alpha + \beta x_i + \gamma x_i^2)y_i} e^{-e^{\alpha + \beta x_i + \gamma x_i^2}}}{y_i !}
+\end{align*}
 
-\runtime Describe here, in big-Oh, the running time and your reasoning for it.
+\part{2} The log-Likelihood function is 
+\begin{align*}
+    l(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y}) = \sum_{i=1}^{n} (\alpha + \beta x_i + \gamma x_i^2)y_i - e^{\alpha + \beta x_i + \gamma x_i^2} - \log y_i !  
+\end{align*}
+Then we have:
+\begin{align*}
+    \frac{\partial l(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y})}{\partial \alpha}\bigg\rvert_{\hat{\alpha}} &= \sum_{i=1}^{n} [y_i - e^{\alpha + \beta x_i + \gamma x_i^2}]\bigg\rvert_{\hat{\alpha}} = 0\\
+    \frac{\partial l(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y})}{\partial \beta}\bigg\rvert_{\hat{\beta}} &= \sum_{i=1}^{n} [x_iy_i - x_ie^{\alpha + \beta x_i + \gamma x_i^2}]\bigg\rvert_{\hat{\beta}} = 0\\
+    \frac{\partial l(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y})}{\partial \gamma}\bigg\rvert_{\hat{\gamma}} &= \sum_{i=1}^{n} [x_i^2y_i - x_i^2e^{\alpha + \beta x_i + \gamma x_i^2}]\bigg\rvert_{\hat{\gamma}} = 0\\
+\end{align*}
+Let $\mathbf{F}(\mathbf{x}) = \begin{pmatrix}
+    \frac{\partial l(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y})}{\partial \alpha}\\\frac{\partial l(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y})}{\partial \beta}\\\frac{\partial l(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y})}{\partial \gamma}
+\end{pmatrix}$, then $\mathbf{F'}(\mathbf{x}) = \begin{pmatrix}
+    \frac{\partial^2 l(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y})}{\partial \alpha^2} && \frac{\partial^2 l(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y})}{\partial \beta \partial \alpha} && \frac{\partial^2 l(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y})}{\partial \gamma \partial \alpha}\\
+    \frac{\partial^2 l(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y})}{\partial \alpha \partial \beta} && \frac{\partial^2 l(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y})}{\partial \beta^2} && \frac{\partial^2 l(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y})}{\partial \gamma \partial \beta}\\
+    \frac{\partial^2 l(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y})}{\partial \alpha \partial \gamma} && \frac{\partial^2 l(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y})}{\partial \beta \partial \gamma} && \frac{\partial^2 l(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y})}{\partial \gamma^2}
+\end{pmatrix}$, in which 
+\begin{flalign*}
+    \frac{\partial^2 l(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y})}{\partial \alpha^2} &= \sum_{i=1}^{n} -e^{\alpha + \beta x_i + \gamma x_i^2}\\
+    \frac{\partial^2 l(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y})}{\partial \alpha \partial \beta} &= \frac{\partial^2 l(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y})}{\partial \beta \partial \alpha} = \sum_{i=1}^{n} -x_ie^{\alpha + \beta x_i + \gamma x_i^2}\\
+    \frac{\partial^2 l(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y})}{\partial \alpha \partial \gamma} &= \frac{\partial^2 l(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y})}{\partial \gamma \partial \alpha} = \sum_{i=1}^{n} -x_i^2e^{\alpha + \beta x_i + \gamma x_i^2}\\
+    \frac{\partial^2 l(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y})}{\partial \beta^2} &= \sum_{i=1}^{n} -x_i^2e^{\alpha + \beta x_i + \gamma x_i^2}\\
+    \frac{\partial^2 l(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y})}{\partial \beta \partial \gamma} &= \frac{\partial^2 l(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y})}{\partial \gamma \partial \beta} = \sum_{i=1}^{n} -x_i^3e^{\alpha + \beta x_i + \gamma x_i^2}\\
+    \frac{\partial^2 l(\alpha, \beta, \gamma|\mathbf{x}, \mathbf{y})}{\partial \gamma^2} &= \sum_{i=1}^{n} -x_i^4e^{\alpha + \beta x_i + \gamma x_i^2}
+\end{flalign*}
+Therefore, by Newton's Methhod, given initial guess $\alpha^{(0)}$, $\beta^{(0)}$, and $\gamma^{(0)}$, for each iteration: 
+\begin{align*}
+    \begin{pmatrix} \alpha^{(n)} \\ \beta^{(n)} \\ \gamma^{(n)} \end{pmatrix} = \begin{pmatrix} \alpha^{(n-1)} \\ \beta^{(n-1)} \\ \gamma^{(n-1)} \end{pmatrix} - \mathbf{F'}[(\mathbf{x})]^{-1}\mathbf{F}(\mathbf{x}).
+\end{align*}
+Hence, for the algorithm: $\mathbf{x^{(n)}} = \begin{pmatrix} \alpha^{(n)} \\ \beta^{(n)} \\ \gamma^{(n)} \end{pmatrix}$,
 
-\part{2}
+STEP 1: Solve $\mathbf{F'}(\mathbf{x^{(n)}}) \mathbf{\triangle x^{(n)}} = - \mathbf{F}(\mathbf{x^{(n)}})$;
 
-\part{3}
+STEP 2: Update by $\mathbf{x^{(n+1)}} = \mathbf{x^{(n)}} + \mathbf{\triangle x^{(n)}}$.
 
-\question{3}{Logistic Regression (20\%)}
+\part{3} \algorithm{Newton's Method code in the R file.}
 
-\part{1} \algorithm Describe algorithm here
+\result{}
 
-\correctness This is an argument  that this algorithm returns the correct answer.
+\question{3}{Logistic Regression - Newton's Method (20\%)}
 
-\runtime Describe here, in big-Oh, the running time and your reasoning for it.
+\part{1} 
 
 \part{2}
 
@@ -53,11 +89,7 @@
 
 \question{4}{EM Algorithm (30\%)}
 
-\part{1} \algorithm Describe algorithm here
-
-\correctness This is an argument  that this algorithm returns the correct answer.
-
-\runtime Describe here, in big-Oh, the running time and your reasoning for it.
+\part{1} 
 
 \part{2}
 
