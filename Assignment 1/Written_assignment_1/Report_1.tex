@@ -81,11 +81,46 @@ STEP 2: Update by $\mathbf{x^{(n+1)}} = \mathbf{x^{(n)}} + \mathbf{\triangle x^{
 
 \question{3}{Logistic Regression - Newton's Method (20\%)}
 
-\part{1} 
+\part{1} Since $y_i \sim Bernoulli(p_i)$ and $logit(p_i) = \alpha + \beta x_i$, we can know that $f(y_i, p_i) = p_i^{y_i}(1-p_i)^{1-y_i}$,
+and $p_i = \frac{e^{\alpha + \beta x_i}}{1 + e^{\alpha + \beta x_i}}$. Then we can get the following Likelihood function:
+\begin{flalign*}
+    L(\alpha, \beta | \mathbf{x}, \mathbf{y}) &= \prod_{i=1}^{n} p_i^{y_i}(1-p_i)^{1-y_i}\\
+                                              &= \prod_{i=1}^{n} ({\frac{e^{\alpha + \beta x_i}}{1 + e^{\alpha + \beta x_i}}})^{y_i}(1-{\frac{e^{\alpha + \beta x_i}}{1 + e^{\alpha + \beta x_i}}})^{1-y_i}
+\end{flalign*}
+\part{2} The log-Likelihood function is 
+\begin{flalign*}
+    l(\alpha, \beta | \mathbf{x}, \mathbf{y}) &= \sum_{i=1}^n y_i (\alpha + \beta x_i - \log(1+e^{\alpha + \beta x_i})) + (1 - y_i)\log(\frac{1}{1 + e^{\alpha + \beta x_i}})\\
+                                              &= \sum_{i=1}^n \alpha x_i + \beta x_i y_i - \log (1+e^{\alpha + \beta x_i})
+\end{flalign*}
+Then we have:
+\begin{flalign*}
+    \frac{\partial l(\alpha, \beta|\mathbf{x}, \mathbf{y})}{\partial \alpha}\bigg\rvert_{\hat{\alpha}} &= \sum_{i=1}^{n} [y_i - \frac{e^{\alpha + \beta x_i}}{1 + e^{\alpha + \beta x_i}}] \bigg\rvert_{\hat{\alpha}} = 0\\
+    \frac{\partial l(\alpha, \beta|\mathbf{x}, \mathbf{y})}{\partial \beta}\bigg\rvert_{\hat{\beta}} &= \sum_{i=1}^{n} [x_i y_i - \frac{x_i e^{\alpha + \beta x_i}}{1 + e^{\alpha + \beta x_i}}] \bigg\rvert_{\hat{\beta}} = 0
+\end{flalign*}
+Let $\mathbf{F}(\mathbf{x}) = \begin{pmatrix}
+    \frac{\partial l(\alpha, \beta|\mathbf{x}, \mathbf{y})}{\partial \alpha}\\\frac{\partial l(\alpha, \beta|\mathbf{x}, \mathbf{y})}{\partial \beta}
+\end{pmatrix}$, then $\mathbf{F'}(\mathbf{x}) = \begin{pmatrix}
+    \frac{\partial^2 l(\alpha, \beta|\mathbf{x}, \mathbf{y})}{\partial \alpha^2} && \frac{\partial^2 l(\alpha, \beta|\mathbf{x}, \mathbf{y})}{\partial \beta \partial \alpha} \\
+    \frac{\partial^2 l(\alpha, \beta|\mathbf{x}, \mathbf{y})}{\partial \alpha \partial \beta} && \frac{\partial^2 l(\alpha, \beta|\mathbf{x}, \mathbf{y})}{\partial \beta^2}
+\end{pmatrix}$, in which 
+\begin{flalign*}
+    \frac{\partial^2 l(\alpha, \beta|\mathbf{x}, \mathbf{y})}{\partial \alpha^2} &= -\frac{e^{\alpha + \beta x_i}}{(1+e^{\alpha + \beta x_i})^2}\\
+    \frac{\partial^2 l(\alpha, \beta|\mathbf{x}, \mathbf{y})}{\partial \beta \partial \alpha} &= \frac{\partial^2 l(\alpha, \beta|\mathbf{x}, \mathbf{y})}{\partial \alpha \partial \beta} = -\frac{x_i e^{\alpha + \beta x_i}}{(1+e^{\alpha + \beta x_i})^2}\\
+    \frac{\partial^2 l(\alpha, \beta|\mathbf{x}, \mathbf{y})}{\partial \beta^2} &= -\frac{x_i^2 e^{\alpha + \beta x_i}}{(1+e^{\alpha + \beta x_i})^2}
+\end{flalign*}
+Therefore, by Newton's Methhod, given initial guess $\alpha^{(0)}$ and $\beta^{(0)}$, for each iteration: 
+\begin{align*}
+    \begin{pmatrix} \alpha^{(n)} \\ \beta^{(n)} \end{pmatrix} = \begin{pmatrix} \alpha^{(n-1)} \\ \beta^{(n-1)} \end{pmatrix} - \mathbf{F'}[(\mathbf{x})]^{-1}\mathbf{F}(\mathbf{x}).
+\end{align*}
+Hence, for the algorithm: $\mathbf{x^{(n)}} = \begin{pmatrix} \alpha^{(n)} \\ \beta^{(n)} \end{pmatrix}$,
 
-\part{2}
+STEP 1: Solve $\mathbf{F'}(\mathbf{x^{(n)}}) \mathbf{\triangle x^{(n)}} = - \mathbf{F}(\mathbf{x^{(n)}})$;
 
-\part{3}
+STEP 2: Update by $\mathbf{x^{(n+1)}} = \mathbf{x^{(n)}} + \mathbf{\triangle x^{(n)}}$.
+
+\part{3}\algorithm{Newton's Method code in the R file.}
+
+\result{$\alpha = 1.564284$ and $beta = 1.771093$.}
 
 \question{4}{EM Algorithm (30\%)}
 

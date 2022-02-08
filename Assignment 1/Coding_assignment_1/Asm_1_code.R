@@ -55,9 +55,9 @@ PoisRegData = read.delim("/Users/elainexfff_/Documents/STAT3006/Assignment 1/Cod
 # Newton's Iteration for Poisson Regression
 # Argument: Initial guess alpha_0, beta_0, gamma_0 and error tolerance
 tolerance = 0.00001
-alpha_0 = 10
-beta_0 = 44
-gamma_0 = 50
+alpha_0 = 1
+beta_0 = 1
+gamma_0 = 1
 
 # Create the 'Goal' vector (to be optimized)
 partial_mat <- function(alpha, beta, gamma, reg_data){
@@ -85,7 +85,6 @@ diff_partial_mat <- function(alpha, beta, gamma, reg_data){
   return(jacobian_f)
 }
 
-library(dplyr)
 
 # Define the Poisson Regression Function
 poisreg <- function(alpha_0, beta_0, gamma_0, tolerance, reg_data){
@@ -111,5 +110,64 @@ poisreg(alpha_0, beta_0, gamma_0, tolerance, PoisRegData)
 
 
 
+### Question 3: LOGISTIC REGRESSION--NEWTON'S METHOD
+
+# Read Poisson Regression Data
+LogitRegData = read.delim("/Users/elainexfff_/Documents/STAT3006/Assignment 1/Coding_assignment_1/LogitRegData.txt", 
+                         header = TRUE, sep = " ")
+
+# Newton's Iteration for Logistic Regression
+# Argument: Initial guess alpha_0, beta_0 and error tolerance
+tolerance = 0.00001
+alpha_0 = 1
+beta_0 = 1
+
+# Create the 'Goal' vector (to be optimized)
+partial_mat <- function(alpha, beta, reg_data){
+  x = reg_data['x']
+  y = reg_data['y']
+  partial_alpha = sapply(y - exp(alpha + beta * x)/(1 + exp(alpha + beta * x)), sum)
+  partial_beta = sapply(x * y - x * exp(alpha + beta * x)/(1 + exp(alpha + beta * x)), sum)
+  vec_f = matrix(c(partial_alpha, partial_beta), 
+                 nrow=2, ncol=1, byrow = FALSE)
+  return(vec_f)
+}
+
+#  Calculate the Jacobian matrix of the 'Goal' vector
+diff_partial_mat <- function(alpha, beta, reg_data){
+  x = reg_data['x']
+  y = reg_data['y']
+  pow_0 = sapply(- exp(alpha + beta * x)/(1 + exp(alpha + beta * x))^2, sum)
+  pow_1 = sapply(- x *  exp(alpha + beta * x)/(1 + exp(alpha + beta * x))^2, sum)
+  pow_2 = sapply(- x^2 * exp(alpha + beta * x)/(1 + exp(alpha + beta * x))^2, sum)
+  jacobian_f = matrix(c(pow_0, pow_1, pow_1, pow_2), 
+                      nrow=2, ncol=2, byrow = TRUE)
+  return(jacobian_f)
+}
+
+# Define the Logistic Regression Function
+logitreg <- function(alpha_0, beta_0, tolerance, reg_data){
+  # Construct vector to restore former theta
+  theta_0 <- matrix(c(alpha_0, beta_0), nrow=2, ncol=1, byrow = FALSE)
+  vec_f = partial_mat(alpha_0, beta_0, reg_data)
+  # Check if the error is less than the tolerance
+  if (abs(vec_f[1])<tolerance & abs(vec_f[2])<tolerance){
+    return(theta_0)
+  }
+  # If not, go to the next iteration
+  else{
+    jacobian_f = diff_partial_mat(alpha_0, beta_0, reg_data)
+    delta_x = solve(jacobian_f, -vec_f)
+    alpha = delta_x[1] + alpha_0
+    beta = delta_x[2] + beta_0
+    logitreg(alpha, beta, tolerance, reg_data)
+  }
+}
+
+logitreg(alpha_0, beta_0, tolerance, LogitRegData)
+
+
+
+### Question 4: EM - ALGORITHM
 
 
