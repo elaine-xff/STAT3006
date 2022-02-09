@@ -30,7 +30,7 @@ Hence, the function $f$ has totally 3 zeros.
 
 \algorithm{Bisection Method in the R file.}
 
-\result{zeros -4.837944, -2.259727, and 1.097664.}
+\result{Zeros: -4.837944, -2.259727, and 1.097664.}
 
 \question{2}{Poisson Regression - Newton's Method (25\%)}
 
@@ -124,7 +124,7 @@ STEP 2: Update by $\mathbf{x^{(n+1)}} = \mathbf{x^{(n)}} + \mathbf{\triangle x^{
 
 \algorithm{Newton's Method code in the R file.}
 
-\result{$\alpha = 1.564284$ and $beta = 1.771093$.}
+\result{$\alpha = 1.564284$ and $\beta = 1.771093$.}
 
 \question{4}{EM Algorithm (30\%)}
 
@@ -174,8 +174,8 @@ Then we can calculate:
 \end{flalign*}
 Hence, we can conclude that:
 \begin{flalign}
-    \pi_1^{(t+1)} &= \frac{\sum_{i=1}^n I(Z_i^{(t)} = 1)}{n}\\
-    \pi_2^{(t+1)} &= \frac{\sum_{i=1}^n I(Z_i^{(t)} = 2)}{n}\\
+    \pi_1^{(t+1)} &= \frac{\sum_{i=1}^n I(Z_i^{(t)} = 1)}{\sum_{i=1}^n I(Z_i^{(t)} = 1) + \sum_{i=1}^n I(Z_i^{(t)} = 2) + \sum_{i=1}^n I(Z_i^{(t)} = 3)}\\
+    \pi_2^{(t+1)} &= \frac{\sum_{i=1}^n I(Z_i^{(t)} = 2)}{\sum_{i=1}^n I(Z_i^{(t)} = 1) + \sum_{i=1}^n I(Z_i^{(t)} = 2) + \sum_{i=1}^n I(Z_i^{(t)} = 3)}\\
     \mu_1^{(t+1)} &= \frac{\sum_{i=1}^n I(Z_i^{(t)} = 1) y_i}{\sum_{i=1}^n I(Z_i^{(t)} = 1)}\\
     \mu_2^{(t+1)} &= \frac{\sum_{i=1}^n I(Z_i^{(t)} = 2) y_i}{\sum_{i=1}^n I(Z_i^{(t)} = 2)}\\
     \mu_3^{(t+1)} &= \frac{\sum_{i=1}^n I(Z_i^{(t)} = 3) y_i}{\sum_{i=1}^n I(Z_i^{(t)} = 3)}\\
