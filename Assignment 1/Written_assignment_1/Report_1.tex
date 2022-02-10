@@ -107,9 +107,9 @@ Let $\mathbf{F}(\mathbf{x}) = \begin{pmatrix}
     \frac{\partial^2 l(\alpha, \beta|\mathbf{x}, \mathbf{y})}{\partial \alpha \partial \beta} && \frac{\partial^2 l(\alpha, \beta|\mathbf{x}, \mathbf{y})}{\partial \beta^2}
 \end{pmatrix}$, in which 
 \begin{flalign*}
-    \frac{\partial^2 l(\alpha, \beta|\mathbf{x}, \mathbf{y})}{\partial \alpha^2} &= -\frac{e^{\alpha + \beta x_i}}{(1+e^{\alpha + \beta x_i})^2}\\
-    \frac{\partial^2 l(\alpha, \beta|\mathbf{x}, \mathbf{y})}{\partial \beta \partial \alpha} &= \frac{\partial^2 l(\alpha, \beta|\mathbf{x}, \mathbf{y})}{\partial \alpha \partial \beta} = -\frac{x_i e^{\alpha + \beta x_i}}{(1+e^{\alpha + \beta x_i})^2}\\
-    \frac{\partial^2 l(\alpha, \beta|\mathbf{x}, \mathbf{y})}{\partial \beta^2} &= -\frac{x_i^2 e^{\alpha + \beta x_i}}{(1+e^{\alpha + \beta x_i})^2}
+    \frac{\partial^2 l(\alpha, \beta|\mathbf{x}, \mathbf{y})}{\partial \alpha^2} &= \sum_{i = 1}^n -\frac{e^{\alpha + \beta x_i}}{(1+e^{\alpha + \beta x_i})^2}\\
+    \frac{\partial^2 l(\alpha, \beta|\mathbf{x}, \mathbf{y})}{\partial \beta \partial \alpha} &= \frac{\partial^2 l(\alpha, \beta|\mathbf{x}, \mathbf{y})}{\partial \alpha \partial \beta} = \sum_{i = 1}^n -\frac{x_i e^{\alpha + \beta x_i}}{(1+e^{\alpha + \beta x_i})^2}\\
+    \frac{\partial^2 l(\alpha, \beta|\mathbf{x}, \mathbf{y})}{\partial \beta^2} &= \sum_{i = 1}^n -\frac{x_i^2 e^{\alpha + \beta x_i}}{(1+e^{\alpha + \beta x_i})^2}
 \end{flalign*}
 Therefore, by Newton's Methhod, given initial guess $\alpha^{(0)}$ and $\beta^{(0)}$, for each iteration: 
 \begin{align*}

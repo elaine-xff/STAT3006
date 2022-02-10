@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1644496143 "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.tex" "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.pdf" "Report_1" 1644496143
-  "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.aux" 1644496143 173 1ca9f06c3fb3255a6b856c2a2923991d ""
-  "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.tex" 1644496142 18000 9298af30fe9a97782e1ad5fc1592feb9 ""
+["pdflatex"] 1644496832 "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.tex" "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.pdf" "Report_1" 1644496832
+  "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.aux" 1644496832 173 1ca9f06c3fb3255a6b856c2a2923991d ""
+  "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.tex" 1644496831 18045 a3562fe5843f8503962fca9b548810f6 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -67,12 +67,12 @@
   "/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1616695603 5169178 a2ce6e2d73f603b690db6777d06dbccb ""
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1618821136 2724737 59ee1c8e7f158a84523516f0f37ca650 ""
   "/usr/local/texlive/2021/texmf.cnf" 1616695596 577 4c1911a7228e554c6032256d3cf5567d ""
-  "Report_1.aux" 1644496143 173 1ca9f06c3fb3255a6b856c2a2923991d "pdflatex"
-  "Report_1.tex" 1644496142 18000 9298af30fe9a97782e1ad5fc1592feb9 ""
+  "Report_1.aux" 1644496832 173 1ca9f06c3fb3255a6b856c2a2923991d "pdflatex"
+  "Report_1.tex" 1644496831 18045 a3562fe5843f8503962fca9b548810f6 ""
   "result.JPG" 1644495697 1249470 ae847dd8ccfd69d11bc394059f5f43d0 ""
   (generated)
-  "Report_1.pdf"
+  "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.pdf"
   "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.log"
   "Report_1.aux"
-  "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.pdf"
+  "Report_1.pdf"
   "Report_1.log"
