@@ -178,36 +178,40 @@ train_data = SalaryData['x']
 # Initial guess of parameters pi, mu, and sigma
 pi1_0 = 0.25
 pi2_0 = 0.5
-mu1_0 = 4000
-mu2_0 = 8000
-mu3_0 = 20000
-sigma1_0 = 60
-sigma2_0 = 100
-sigma3_0 = 200
+mu1_0 = 3000
+mu2_0 = 10000
+mu3_0 = 30000
+sigma1_0 = 100
+sigma2_0 = 1000
+sigma3_0 = 10000
 
 # Stopping criterion
-tolerance = 0.001
+tolerance = 0.0001
 
 # E-step
 z_estimation <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, salary_data){
   y = salary_data
   
-  # Q-function
-  estimated_z = 1 + (pi_2/(sqrt(2*pi) * sigma_2) * exp(-(y - mu_2)^2/(2 * sigma_2^2)) + 2 * (1 - pi_1 - pi_2)/(sqrt(2*pi) * sigma_3) * exp(-(y - mu_3)^2/(2 * sigma_3^2)))/( pi_1/(sqrt(2*pi) * sigma_1) * exp(-(y - mu_1)^2/(2 * sigma_1^2)) + pi_2/(sqrt(2*pi) * sigma_2) * exp(-(y - mu_2)^2/(2 * sigma_2^2)) + (1 - pi_1 - pi_2)/(sqrt(2*pi) * sigma_3) * exp(-(y - mu_3)^2/(2 * sigma_3^2)))
+  p_1 = (pi_1/(sqrt(2*pi) * sigma_1)) * exp(-(y - mu_1)^2/(2 * sigma_1^2))
+  p_2 = (pi_2/(sqrt(2*pi) * sigma_2)) * exp(-(y - mu_2)^2/(2 * sigma_2^2)) 
+  p_3 = ((1 - pi_1 - pi_2)/(sqrt(2*pi) * sigma_3)) * exp(-(y - mu_3)^2/(2 * sigma_3^2))
   
-  if(sum(is.na(estimated_z))> 0){
-    estimated_z[is.na(estimated_z)] = 0
-  }
-
-  return(estimated_z)
+  # Q-function
+  estimated_z1 = p_1/(p_1 + p_2 + p_3)
+  estimated_z2 = 2 * p_2/(p_1 + p_2 + p_3)
+  estimated_z3 = 3 * p_3/(p_1 + p_2 + p_3)
+  
+  return(c(estimated_z1, estimated_z2, estimated_z3))
 }
 
 # Check stopping criteria
 stopfunc <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3, tolerance){
 
    if((abs(pi_1 - new_pi_1)<tolerance) && (abs(pi_2 - new_pi_2)<tolerance)){
-     if((abs(mu_1 - new_mu_1)<tolerance) && (abs(mu_2 - new_mu_2)<tolerance) && (abs(mu_3 - new_mu_3)<tolerance)){
-       if((abs(sigma_1 - new_sigma_1)<tolerance) && (abs(sigma_2 - new_sigma_2)<tolerance) && (abs(sigma_3 - new_sigma_3)<tolerance)){
+     if((abs(mu_1 - new_mu_1)<tolerance) && (abs(mu_2 - new_mu_2)<tolerance) 
+        && (abs(mu_3 - new_mu_3)<tolerance)){
+       if((abs(sigma_1 - new_sigma_1)<tolerance) && (abs(sigma_2 - new_sigma_2)<tolerance) 
+          && (abs(sigma_3 - new_sigma_3)<tolerance)){
          return(TRUE)
        }
      }
@@ -222,42 +226,37 @@ maximization <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3
   
   n = length(y) # data size
   z = z_estimation(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, y)
-  
-  # the number of 1, 2, 3 respectively
-  num_1 = sum(z==1)
-  num_2 = sum(z==2)
-  num_3 = sum(z==3)
-  classified_num = num_1 + num_2 + num_3
-  
-  # Indictor for 1, 2, and 3
-  ind_1 = matrix(0, n)
-  ind_2 = matrix(0, n)
-  ind_3 = matrix(0, n)
-  ind_1[z==1] = 1
-  ind_2[z==2] = 1
-  ind_3[z==3] = 1
-  
+  z1 = unlist(z[1])
+  z2 = unlist(z[2])
+  z3 = unlist(z[3])
+
   # Update the parameters
-  new_pi_1 = num_1 / classified_num
-  new_pi_2 = num_2 / classified_num
-  new_mu_1 = ind_1 * y / num_1
-  new_mu_2 = ind_2 * y / num_2
-  new_mu_3 = ind_3 * y / num_3
-  new_sigma_1 = sqrt(ind_1  * (y - new_mu_1)^2 / num_1)
-  new_sigma_2 = sqrt(ind_2  * (y - new_mu_2)^2 / num_2)
-  new_sigma_3 = sqrt(ind_3  * (y - new_mu_3)^2 / num_3)
-  # testing
-  print(new_pi_1)
-  print(new_mu_2)
-  print(new_sigma_3)
+  new_pi_1 = sum(z1) / sum(z1 + z2 + z3)
+  new_pi_2 = sum(z2) / sum(z1 + z2 + z3)
+  new_mu_1 = sum(z1 * y) / sum(z1)
+  new_mu_2 = sum(z2 * y) / sum(z2)
+  new_mu_3 = sum(z3 * y) / sum(z3)
+  new_sigma_1 = sqrt(sum(z1  * (y - new_mu_1)^2) / sum(z1))
+  new_sigma_2 = sqrt(sum(z2  * (y - new_mu_2)^2) / sum(z2))
+  new_sigma_3 = sqrt(sum(z3  * (y - new_mu_3)^2) / sum(z3))
+
   # check if it should stop
   stop_flag = stopfunc(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, 
                        new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, 
                        new_sigma_2, new_sigma_3, tolerance)
   
-  if ((classified_num == n) && stop_flag){
-#    print(z[1:50])
-    return(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3)
+
+  if (stop_flag){
+    # list out the first 50 classification of individuals
+    df <- data.frame (low_income_1 = z1[1:50],
+                      middle_income_2 = z2[1:50],
+                      high_income_3 = z3[1:50],
+                      class = 0
+    )
+    df['class'] = apply(df,1,function(x) which(x==max(x)))
+    print(df)
+    
+    return(c(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3))
   }
   
   maximization(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3, y, tolerance)

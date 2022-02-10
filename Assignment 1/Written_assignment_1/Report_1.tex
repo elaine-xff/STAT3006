@@ -3,6 +3,7 @@
 \usepackage{graphicx}
 \usepackage[margin=1in]{geometry}
 \usepackage{fancyhdr}
+\usepackage{float}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{5pt plus 1pt}
 \setlength{\headheight}{13.6pt}
@@ -152,51 +153,57 @@ Then given initial guess $\pi_1^{(0)}, \pi_2^{(0)}, \mu_1^{(0)}, \mu_2^{(0)}, \m
 we define a $Q$ function by $Q(\Theta; \Theta^{(t)}) = E_{\mathbf{\Theta^{(t)}}} \bigl( l(\mathbf{\Theta} | \mathbf{Y}, \mathbf{Z}) | \mathbf{Y} \bigr)$:
 \begin{flalign*}
     Q(\Theta; \Theta^{(t)}) &= E_{\pi_1^{(t)}, \pi_2^{(t)}, \mu_1^{(t)}, \mu_2^{(t)}, \mu_3^{(t)}, {\sigma_1^2}^{(t)}, {\sigma_2^2}^{(t)}, {\sigma_3^2}^{(t)}} \bigl( l(\pi_1, \pi_2, \mu_1, \mu_2, \mu_3, \sigma_1, \sigma_2, \sigma_3 | \mathbf{Y}, \mathbf{Z}) | \mathbf{Y} \bigr)\\
-                            &= \sum_{i=1}^n \Biggl[I(Z_i^{(t)} = 1) \biggl[\log \pi_1 - \log \sqrt{2\pi} - \frac{1}{2}\log \sigma_1^2 - \frac{(y_i - \mu_1)^2}{2 \sigma_1^2}\biggr]\\
-                            &+ I(Z_i^{(t)} = 2) \biggl[\log \pi_2 - \log \sqrt{2\pi} - \frac{1}{2}\log \sigma_2^2 - \frac{(y_i - \mu_2)^2}{2 \sigma_2^2}\biggr]\\
-                            &+ I(Z_i^{(t)} = 3) \biggl[\log (1-\pi_1-\pi_2) - \log \sqrt{2\pi} - \frac{1}{2}\log \sigma_3^2 - \frac{(y_i - \mu_3)^2}{2 \sigma_3^2}\biggr]\Biggr]
-\end{flalign*} where 
+                            &= \sum_{i=1}^n \Biggl[\widehat{Z_{i1}}^{(t)} \biggl[\log \pi_1 - \log \sqrt{2\pi} - \frac{1}{2}\log \sigma_1^2 - \frac{(y_i - \mu_1)^2}{2 \sigma_1^2}\biggr]\\
+                            &+ \widehat{Z_{i2}}^{(t)} \biggl[\log \pi_2 - \log \sqrt{2\pi} - \frac{1}{2}\log \sigma_2^2 - \frac{(y_i - \mu_2)^2}{2 \sigma_2^2}\biggr]\\
+                            &+ \widehat{Z_{i3}}^{(t)} \biggl[\log (1-\pi_1-\pi_2) - \log \sqrt{2\pi} - \frac{1}{2}\log \sigma_3^2 - \frac{(y_i - \mu_3)^2}{2 \sigma_3^2}\biggr]\Biggr]
+\end{flalign*} where ($\pi_3^{(t)} = 1 -\pi_1^{(t)} - \pi_2^{(t)}$)
 \begin{flalign*}
-    Z_i^{(t)} &= E(Z_i^{(t)} | \Theta^{(t)}) = E(Z_i^{(t)} | \pi_1^{(t)}, \pi_2^{(t)}, \mu_1^{(t)}, \mu_2^{(t)}, \mu_3^{(t)}, {\sigma_1^2}^{(t)}, {\sigma_2^2}^{(t)}, {\sigma_3^2}^{(t)} )\\
-        &= p(Z_i^{(t)}=1 | \Theta^{(t)}) + 2p(Z_i^{(t)}=2 | \Theta^{(t)}) + 3p(Z_i^{(t)}=3 | \Theta^{(t)})\\
-        &= 1 + \frac{\pi_2^{(t)} \frac{1}{\sqrt{2\pi} {\sigma_2}^{(t)}} e^{-\frac{(y_i-\mu_2^{(t)})^2}{2 {\sigma_2^2}^{(t)}}} + 2(1-\pi_1^{(t)}-\pi_2^{(t)}) \frac{1}{\sqrt{2\pi} {\sigma_3}^{(t)}} e^{-\frac{(y_i-\mu_3^{(t)})^2}{2 {\sigma_3^2}^{(t)}}}}{\pi_1^{(t)} \frac{1}{\sqrt{2\pi} {\sigma_1}^{(t)}} e^{-\frac{(y_i-\mu_1^{(t)})^2}{2 {\sigma_1^2}^{(t)}}} + \pi_2^{(t)} \frac{1}{\sqrt{2\pi} {\sigma_2}^{(t)}} e^{-\frac{(y_i-\mu_2^{(t)})^2}{2 {\sigma_2^2}^{(t)}}} + (1-\pi_1^{(t)}-\pi_2^{(t)}) \frac{1}{\sqrt{2\pi} {\sigma_3}^{(t)}} e^{-\frac{(y_i-\mu_3^{(t)})^2}{2 {\sigma_3^2}^{(t)}}}}
+    \widehat{Z_{ik}}^{(t)} &= E(Z_i = k | \Theta^{(t)}) = E(Z_i^{(t)} | \pi_1^{(t)}, \pi_2^{(t)}, \mu_1^{(t)}, \mu_2^{(t)}, \mu_3^{(t)}, {\sigma_1^2}^{(t)}, {\sigma_2^2}^{(t)}, {\sigma_3^2}^{(t)} )\\
+        &= \frac{\pi_k^{(t)} \frac{1}{\sqrt{2\pi} {\sigma_k}^{(t)}} e^{-\frac{(y_i-\mu_k^{(t)})^2}{2 {\sigma_k^2}^{(t)}}}  }{\pi_1^{(t)} \frac{1}{\sqrt{2\pi} {\sigma_1}^{(t)}} e^{-\frac{(y_i-\mu_1^{(t)})^2}{2 {\sigma_1^2}^{(t)}}} + \pi_2^{(t)} \frac{1}{\sqrt{2\pi} {\sigma_2}^{(t)}} e^{-\frac{(y_i-\mu_2^{(t)})^2}{2 {\sigma_2^2}^{(t)}}} + (1-\pi_1^{(t)}-\pi_2^{(t)}) \frac{1}{\sqrt{2\pi} {\sigma_3}^{(t)}} e^{-\frac{(y_i-\mu_3^{(t)})^2}{2 {\sigma_3^2}^{(t)}}}}
 \end{flalign*}
 Then we can calculate:
 \begin{flalign*}
-    \frac{\partial Q}{\partial \pi_1}\bigg\rvert_{\pi_1^{(t+1)}, \pi_2^{(t+1)}} &= \sum_{i=1}^n \biggl[I(Z_i^{(t)} = 1)\frac{1}{\pi_1} - I(Z_i^{(t)} = 3)\frac{1}{1-\pi_1-\pi_2}\biggr]\bigg\rvert_{\pi_1^{(t+1)}, \pi_2^{(t+1)}} = 0\\
-    \frac{\partial Q}{\partial \pi_2}\bigg\rvert_{\pi_1^{(t+1)}, \pi_2^{(t+1)}} &= \sum_{i=1}^n \biggl[I(Z_i^{(t)} = 2)\frac{1}{\pi_2} - I(Z_i^{(t)} = 3)\frac{1}{1-\pi_1-\pi_2}\biggr]\bigg\rvert_{\pi_1^{(t+1)}, \pi_2^{(t+1)}} = 0\\
-    \frac{\partial Q}{\partial \mu_1}\bigg\rvert_{\mu_1^{(t+1)}, {\sigma_1}^{(t+1)}} &= \sum_{i=1}^n \biggl[I(Z_i^{(t)} = 1) \frac{y_i - \mu_1}{\sigma_1^2}\biggr]\bigg\rvert_{\mu_1^{(t+1)}, {\sigma_1}^{(t+1)}} = 0\\
-    \frac{\partial Q}{\partial \mu_2}\bigg\rvert_{\mu_2^{(t+1)}, {\sigma_2}^{(t+1)}} &= \sum_{i=1}^n \biggl[I(Z_i^{(t)} = 2) \frac{y_i - \mu_2}{\sigma_2^2}\biggr]\bigg\rvert_{\mu_2^{(t+1)}, {\sigma_2}^{(t+1)}} = 0\\
-    \frac{\partial Q}{\partial \mu_3}\bigg\rvert_{\mu_3^{(t+1)}, {\sigma_3}^{(t+1)}} &= \sum_{i=1}^n \biggl[I(Z_i^{(t)} = 3) \frac{y_i - \mu_3}{\sigma_3^2}\biggr]\bigg\rvert_{\mu_3^{(t+1)}, {\sigma_3}^{(t+1)}} = 0\\
-    \frac{\partial Q}{\partial \sigma_1^2}\bigg\rvert_{\mu_1^{(t+1)}, {\sigma_1}^{(t+1)}} &= \sum_{i=1}^n \biggl[I(Z_i^{(t)} = 1)\biggl(-\frac{1}{2}\frac{1}{\sigma_1^2} + \frac{(y_i - \mu_1)^2}{2(\sigma_1^2)^2}\biggr)\biggr]\bigg\rvert_{\mu_1^{(t+1)}, {\sigma_1}^{(t+1)}} = 0\\
-    \frac{\partial Q}{\partial \sigma_2^2}\bigg\rvert_{\mu_2^{(t+1)}, {\sigma_2}^{(t+1)}} &= \sum_{i=1}^n \biggl[I(Z_i^{(t)} = 2)\biggl(-\frac{1}{2}\frac{1}{\sigma_2^2} + \frac{(y_i - \mu_2)^2}{2(\sigma_2^2)^2}\biggr)\biggr]\bigg\rvert_{\mu_2^{(t+1)}, {\sigma_2}^{(t+1)}} = 0\\
-    \frac{\partial Q}{\partial \sigma_3^2}\bigg\rvert_{\mu_3^{(t+1)}, {\sigma_3}^{(t+1)}} &= \sum_{i=1}^n \biggl[I(Z_i^{(t)} = 3)\biggl(-\frac{1}{2}\frac{1}{\sigma_3^2} + \frac{(y_i - \mu_3)^2}{2(\sigma_3^2)^2}\biggr)\biggr]\bigg\rvert_{\mu_3^{(t+1)}, {\sigma_3}^{(t+1)}} = 0
+    \frac{\partial Q}{\partial \pi_1}\bigg\rvert_{\pi_1^{(t+1)}, \pi_2^{(t+1)}} &= \sum_{i=1}^n \biggl[\widehat{Z_{i1}}^{(t)}\frac{1}{\pi_1} - \widehat{Z_{i3}}^{(t)}\frac{1}{1-\pi_1-\pi_2}\biggr]\bigg\rvert_{\pi_1^{(t+1)}, \pi_2^{(t+1)}} = 0\\
+    \frac{\partial Q}{\partial \pi_2}\bigg\rvert_{\pi_1^{(t+1)}, \pi_2^{(t+1)}} &= \sum_{i=1}^n \biggl[\widehat{Z_{i2}}^{(t)}\frac{1}{\pi_2} - \widehat{Z_{i3}}^{(t)}\frac{1}{1-\pi_1-\pi_2}\biggr]\bigg\rvert_{\pi_1^{(t+1)}, \pi_2^{(t+1)}} = 0\\
+    \frac{\partial Q}{\partial \mu_1}\bigg\rvert_{\mu_1^{(t+1)}, {\sigma_1}^{(t+1)}} &= \sum_{i=1}^n \biggl[\widehat{Z_{i1}}^{(t)} \frac{y_i - \mu_1}{\sigma_1^2}\biggr]\bigg\rvert_{\mu_1^{(t+1)}, {\sigma_1}^{(t+1)}} = 0\\
+    \frac{\partial Q}{\partial \mu_2}\bigg\rvert_{\mu_2^{(t+1)}, {\sigma_2}^{(t+1)}} &= \sum_{i=1}^n \biggl[\widehat{Z_{i2}}^{(t)} \frac{y_i - \mu_2}{\sigma_2^2}\biggr]\bigg\rvert_{\mu_2^{(t+1)}, {\sigma_2}^{(t+1)}} = 0\\
+    \frac{\partial Q}{\partial \mu_3}\bigg\rvert_{\mu_3^{(t+1)}, {\sigma_3}^{(t+1)}} &= \sum_{i=1}^n \biggl[\widehat{Z_{i3}}^{(t)} \frac{y_i - \mu_3}{\sigma_3^2}\biggr]\bigg\rvert_{\mu_3^{(t+1)}, {\sigma_3}^{(t+1)}} = 0\\
+    \frac{\partial Q}{\partial \sigma_1^2}\bigg\rvert_{\mu_1^{(t+1)}, {\sigma_1}^{(t+1)}} &= \sum_{i=1}^n \biggl[\widehat{Z_{i1}}^{(t)}\biggl(-\frac{1}{2}\frac{1}{\sigma_1^2} + \frac{(y_i - \mu_1)^2}{2(\sigma_1^2)^2}\biggr)\biggr]\bigg\rvert_{\mu_1^{(t+1)}, {\sigma_1}^{(t+1)}} = 0\\
+    \frac{\partial Q}{\partial \sigma_2^2}\bigg\rvert_{\mu_2^{(t+1)}, {\sigma_2}^{(t+1)}} &= \sum_{i=1}^n \biggl[\widehat{Z_{i2}}^{(t)}\biggl(-\frac{1}{2}\frac{1}{\sigma_2^2} + \frac{(y_i - \mu_2)^2}{2(\sigma_2^2)^2}\biggr)\biggr]\bigg\rvert_{\mu_2^{(t+1)}, {\sigma_2}^{(t+1)}} = 0\\
+    \frac{\partial Q}{\partial \sigma_3^2}\bigg\rvert_{\mu_3^{(t+1)}, {\sigma_3}^{(t+1)}} &= \sum_{i=1}^n \biggl[\widehat{Z_{i3}}^{(t)}\biggl(-\frac{1}{2}\frac{1}{\sigma_3^2} + \frac{(y_i - \mu_3)^2}{2(\sigma_3^2)^2}\biggr)\biggr]\bigg\rvert_{\mu_3^{(t+1)}, {\sigma_3}^{(t+1)}} = 0
 \end{flalign*}
-Hence, we can conclude that:
-\begin{flalign}
-    \pi_1^{(t+1)} &= \frac{\sum_{i=1}^n I(Z_i^{(t)} = 1)}{\sum_{i=1}^n I(Z_i^{(t)} = 1) + \sum_{i=1}^n I(Z_i^{(t)} = 2) + \sum_{i=1}^n I(Z_i^{(t)} = 3)}\\
-    \pi_2^{(t+1)} &= \frac{\sum_{i=1}^n I(Z_i^{(t)} = 2)}{\sum_{i=1}^n I(Z_i^{(t)} = 1) + \sum_{i=1}^n I(Z_i^{(t)} = 2) + \sum_{i=1}^n I(Z_i^{(t)} = 3)}\\
-    \mu_1^{(t+1)} &= \frac{\sum_{i=1}^n I(Z_i^{(t)} = 1) y_i}{\sum_{i=1}^n I(Z_i^{(t)} = 1)}\\
-    \mu_2^{(t+1)} &= \frac{\sum_{i=1}^n I(Z_i^{(t)} = 2) y_i}{\sum_{i=1}^n I(Z_i^{(t)} = 2)}\\
-    \mu_3^{(t+1)} &= \frac{\sum_{i=1}^n I(Z_i^{(t)} = 3) y_i}{\sum_{i=1}^n I(Z_i^{(t)} = 3)}\\
-    {\sigma_1^2}^{(t+1)} &= \frac{\sum_{i=1}^n I(Z_i^{(t)} = 1) (y_i - \mu_1^{(t+1)})^2}{\sum_{i=1}^n I(Z_i^{(t)} = 1)}\\
-    {\sigma_2^2}^{(t+1)} &= \frac{\sum_{i=1}^n I(Z_i^{(t)} = 2) (y_i - \mu_2^{(t+1)})^2}{\sum_{i=1}^n I(Z_i^{(t)} = 2)}\\
-    {\sigma_3^2}^{(t+1)} &= \frac{\sum_{i=1}^n I(Z_i^{(t)} = 3) (y_i - \mu_3^{(t+1)})^2}{\sum_{i=1}^n I(Z_i^{(t)} = 3)}
-\end{flalign}
 Then for iteration in $\mathbf{EM}$ $\mathbf{Algorithm}$: 
 
 Given initial guess: $\pi_1^{(0)}, \pi_2^{(0)}, \mu_1^{(0)}, \mu_2^{(0)}, \mu_3^{(0)}, \sigma_1^{(0)}, \sigma_2^{(0)}, \sigma_3^{(0)}$, for $t \geq 0$ and $t \in \mathbb{Z}$:
 
 $\mathbf{E-step}$: Calculate $E(Z_i^{(t)} | \Theta^{(t)})$, where $\Theta^{(t)} = {\pi_1^{(t)}, \pi_2^{(t)}, \mu_1^{(t)}, \mu_2^{(t)}, \mu_3^{(t)}, {\sigma_1^2}^{(t)}, {\sigma_2^2}^{(t)}, {\sigma_3^2}^{(t)}}$.
 
-$\mathbf{M-step}$: Update $\Theta^{(t+1)}$ by equations $(1)$ to $(8)$ that we have obtained before.
+$\mathbf{M-step}$: Update $\Theta^{(t+1)}$ by equations $(1)$ to $(8)$ listed at the next page.
 
+Iterative scheme:
+\begin{flalign}
+    \pi_1^{(t+1)} &= \frac{\sum_{i=1}^n \widehat{Z_{i1}}^{(t)}}{\sum_{i=1}^n \widehat{Z_{i1}}^{(t)} + \sum_{i=1}^n \widehat{Z_{i2}}^{(t)} + \sum_{i=1}^n \widehat{Z_{i3}}^{(t)}}\\
+    \pi_2^{(t+1)} &= \frac{\sum_{i=1}^n \widehat{Z_{i2}}^{(t)}}{\sum_{i=1}^n \widehat{Z_{i1}}^{(t)} + \sum_{i=1}^n \widehat{Z_{i2}}^{(t)} + \sum_{i=1}^n \widehat{Z_{i3}}^{(t)}}\\
+    \mu_1^{(t+1)} &= \frac{\sum_{i=1}^n \widehat{Z_{i1}}^{(t)} y_i}{\sum_{i=1}^n \widehat{Z_{i1}}^{(t)}}\\
+    \mu_2^{(t+1)} &= \frac{\sum_{i=1}^n \widehat{Z_{i2}}^{(t)} y_i}{\sum_{i=1}^n \widehat{Z_{i2}}^{(t)}}\\
+    \mu_3^{(t+1)} &= \frac{\sum_{i=1}^n \widehat{Z_{i3}}^{(t)} y_i}{\sum_{i=1}^n \widehat{Z_{i3}}^{(t)}}\\
+    {\sigma_1^2}^{(t+1)} &= \frac{\sum_{i=1}^n \widehat{Z_{i1}}^{(t)} (y_i - \mu_1^{(t+1)})^2}{\sum_{i=1}^n \widehat{Z_{i1}}^{(t)}}\\
+    {\sigma_2^2}^{(t+1)} &= \frac{\sum_{i=1}^n \widehat{Z_{i2}}^{(t)} (y_i - \mu_2^{(t+1)})^2}{\sum_{i=1}^n \widehat{Z_{i2}}^{(t)}}\\
+    {\sigma_3^2}^{(t+1)} &= \frac{\sum_{i=1}^n \widehat{Z_{i3}}^{(t)} (y_i - \mu_3^{(t+1)})^2}{\sum_{i=1}^n \widehat{Z_{i3}}^{(t)}}
+\end{flalign}
 \part{3}
 
 \algorithm{EM Algorithm code in the R file.}
 
-\result{}
+\result{$\pi_1 = 0.4416, \pi_2 = 0.3450, \mu_1 = 2997.46, \mu_2 = 7969.146. \mu_3 = 29817.81, \sigma_1 = 301.2129, 
+\sigma_2 = 1560.899$ and $\sigma_3 = 8002.694$}
 
 \part{4}
-
+\result{ in the following page:
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{result.JPG}
+    \caption{Classification of first 50 individuals}
+\end{figure}
+}
 \end{document}

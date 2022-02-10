@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1644419637 "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.tex" "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.pdf" "Report_1" 1644419637
-  "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.aux" 1644419637 32 77e0dffd05b653a64f0caf3eb9bb454a ""
-  "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.tex" 1644419636 17632 337eb221ba1ebe4d368c88e8a263b3b3 ""
+["pdflatex"] 1644495984 "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.tex" "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.pdf" "Report_1" 1644495984
+  "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.aux" 1644495984 173 1ca9f06c3fb3255a6b856c2a2923991d ""
+  "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.tex" 1644495983 17999 69192f601a6aa087ff556f22b7bee515 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -53,6 +53,7 @@
   "/usr/local/texlive/2021/texmf-dist/tex/latex/base/size11.clo" 1601675358 8465 2dd6985139dc15bc64ec71e501e76e40 ""
   "/usr/local/texlive/2021/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty" 1579991033 13886 d1306dcf79a944f6988e688c1785f9ce ""
   "/usr/local/texlive/2021/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty" 1612734021 17086 7ed8cbc4d361ec87392817e0dd4f65ec ""
+  "/usr/local/texlive/2021/texmf-dist/tex/latex/float/float.sty" 1137110151 6749 16d2656a1984957e674b149555f1ea1d ""
   "/usr/local/texlive/2021/texmf-dist/tex/latex/geometry/geometry.sty" 1578002852 41601 9cf6c5257b1bc7af01a58859749dd37a ""
   "/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-cfg/graphics.cfg" 1465944070 1224 978390e9c2234eab29404bc21b268d1e ""
   "/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-def/pdftex.def" 1601931164 19103 48d29b6e2a64cb717117ef65f107b404 ""
@@ -66,11 +67,12 @@
   "/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1616695603 5169178 a2ce6e2d73f603b690db6777d06dbccb ""
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1618821136 2724737 59ee1c8e7f158a84523516f0f37ca650 ""
   "/usr/local/texlive/2021/texmf.cnf" 1616695596 577 4c1911a7228e554c6032256d3cf5567d ""
-  "Report_1.aux" 1644419637 32 77e0dffd05b653a64f0caf3eb9bb454a "pdflatex"
-  "Report_1.tex" 1644419636 17632 337eb221ba1ebe4d368c88e8a263b3b3 ""
+  "Report_1.aux" 1644495984 173 1ca9f06c3fb3255a6b856c2a2923991d "pdflatex"
+  "Report_1.tex" 1644495983 17999 69192f601a6aa087ff556f22b7bee515 ""
+  "result.JPG" 1644495697 1249470 ae847dd8ccfd69d11bc394059f5f43d0 ""
   (generated)
-  "Report_1.log"
-  "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.pdf"
   "Report_1.aux"
-  "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.log"
+  "Report_1.log"
   "Report_1.pdf"
+  "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.log"
+  "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.pdf"
