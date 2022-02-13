@@ -155,7 +155,7 @@ we define a $Q$ function by $Q(\Theta; \Theta^{(t)}) = E_{\mathbf{\Theta^{(t)}}}
 \end{flalign*} where ($\pi_3^{(t)} = 1 -\pi_1^{(t)} - \pi_2^{(t)}$)
 \begin{flalign*}
     \widehat{Z_{ik}}^{(t)} &= E(Z_i = k | \Theta^{(t)}) = E(Z_i^{(t)} | \pi_1^{(t)}, \pi_2^{(t)}, \mu_1^{(t)}, \mu_2^{(t)}, \mu_3^{(t)}, {\sigma_1^2}^{(t)}, {\sigma_2^2}^{(t)}, {\sigma_3^2}^{(t)} )\\
-        &= \frac{k\pi_k^{(t)} \frac{1}{\sqrt{2\pi} {\sigma_k}^{(t)}} e^{-\frac{(y_i-\mu_k^{(t)})^2}{2 {\sigma_k^2}^{(t)}}}  }{\pi_1^{(t)} \frac{1}{\sqrt{2\pi} {\sigma_1}^{(t)}} e^{-\frac{(y_i-\mu_1^{(t)})^2}{2 {\sigma_1^2}^{(t)}}} + \pi_2^{(t)} \frac{1}{\sqrt{2\pi} {\sigma_2}^{(t)}} e^{-\frac{(y_i-\mu_2^{(t)})^2}{2 {\sigma_2^2}^{(t)}}} + (1-\pi_1^{(t)}-\pi_2^{(t)}) \frac{1}{\sqrt{2\pi} {\sigma_3}^{(t)}} e^{-\frac{(y_i-\mu_3^{(t)})^2}{2 {\sigma_3^2}^{(t)}}}}
+        &= \frac{\pi_k^{(t)} \frac{1}{\sqrt{2\pi} {\sigma_k}^{(t)}} e^{-\frac{(y_i-\mu_k^{(t)})^2}{2 {\sigma_k^2}^{(t)}}}  }{\pi_1^{(t)} \frac{1}{\sqrt{2\pi} {\sigma_1}^{(t)}} e^{-\frac{(y_i-\mu_1^{(t)})^2}{2 {\sigma_1^2}^{(t)}}} + \pi_2^{(t)} \frac{1}{\sqrt{2\pi} {\sigma_2}^{(t)}} e^{-\frac{(y_i-\mu_2^{(t)})^2}{2 {\sigma_2^2}^{(t)}}} + (1-\pi_1^{(t)}-\pi_2^{(t)}) \frac{1}{\sqrt{2\pi} {\sigma_3}^{(t)}} e^{-\frac{(y_i-\mu_3^{(t)})^2}{2 {\sigma_3^2}^{(t)}}}}
 \end{flalign*}
 Then we can calculate:
 \begin{flalign*}
