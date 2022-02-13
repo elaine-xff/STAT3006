@@ -198,27 +198,21 @@ z_estimation <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3
   
   # Q-function
   estimated_z1 = p_1/(p_1 + p_2 + p_3)
-  estimated_z2 = 2 * p_2/(p_1 + p_2 + p_3)
-  estimated_z3 = 3 * p_3/(p_1 + p_2 + p_3)
+  estimated_z2 = p_2/(p_1 + p_2 + p_3)
+  estimated_z3 = p_3/(p_1 + p_2 + p_3)
   
   return(c(estimated_z1, estimated_z2, estimated_z3))
 }
 
-# Check stopping criteria
-stopfunc <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3, tolerance){
-
-   if((abs(pi_1 - new_pi_1)<tolerance) && (abs(pi_2 - new_pi_2)<tolerance)){
-     if((abs(mu_1 - new_mu_1)<tolerance) && (abs(mu_2 - new_mu_2)<tolerance) 
-        && (abs(mu_3 - new_mu_3)<tolerance)){
-       if((abs(sigma_1 - new_sigma_1)<tolerance) && (abs(sigma_2 - new_sigma_2)<tolerance) 
-          && (abs(sigma_3 - new_sigma_3)<tolerance)){
-         return(TRUE)
-       }
-     }
-   }
+# Compute the observed- data likelihood function
+obs_data_likelihood <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, y){
+  p_1 = (pi_1/(sqrt(2*pi) * sigma_1)) * exp(-(y - mu_1)^2/(2 * sigma_1^2))
+  p_2 = (pi_2/(sqrt(2*pi) * sigma_2)) * exp(-(y - mu_2)^2/(2 * sigma_2^2)) 
+  p_3 = ((1 - pi_1 - pi_2)/(sqrt(2*pi) * sigma_3)) * exp(-(y - mu_3)^2/(2 * sigma_3^2))
   
-  return(FALSE)
+  p = sum(p_1 + p_2 + p_3)
   
+  return(p)
 }
 
 # M-step
@@ -240,13 +234,10 @@ maximization <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3
   new_sigma_2 = sqrt(sum(z2  * (y - new_mu_2)^2) / sum(z2))
   new_sigma_3 = sqrt(sum(z3  * (y - new_mu_3)^2) / sum(z3))
 
-  # check if it should stop
-  stop_flag = stopfunc(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, 
-                       new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, 
-                       new_sigma_2, new_sigma_3, tolerance)
-  
-
-  if (stop_flag){
+  # check if it should stop by comparing the difference of observed-data likelihood function of two adjacent iterations
+  obs_data = obs_data_likelihood(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, y)
+  new_obs_data = obs_data_likelihood(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3, y)
+  if (abs(obs_data - new_obs_data) < tolerance){
     # list out the first 50 classification of individuals
     df <- data.frame (low_income_1 = z1[1:50],
                       middle_income_2 = z2[1:50],

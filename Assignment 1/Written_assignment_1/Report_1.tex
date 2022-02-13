@@ -138,11 +138,7 @@ the $\mathbf{complete-data}$ $\mathbf{Likelihhod}$ $\mathbf{function}$ as:
     &L(\pi_1, \pi_2, \mu_1, \mu_2, \mu_3, \sigma_1, \sigma_2, \sigma_3 | \mathbf{Y}, \mathbf{Z})\\
    =&\prod_{i=1}^{n} \Biggl[\pi_1 \frac{1}{\sqrt{2\pi}\sigma_1}e^{-\frac{(y_i-\mu_1)^2}{2\sigma_1^2}}\Biggr]^{I(Z_i = 1)} \Biggl[\pi_2 \frac{1}{\sqrt{2\pi}\sigma_2}e^{-\frac{(y_i-\mu_2)^2}{2\sigma_2^2}}\Biggr]^{I(Z_i = 2)} \Biggl[(1-\pi_1-\pi_2) \frac{1}{\sqrt{2\pi}\sigma_3}e^{-\frac{(y_i-\mu_3)^2}{2\sigma_3^2}}\Biggr]^{I(Z_i = 3)}
 \end{flalign*}
-The observed-data Likelihhod function is:
-\begin{flalign*}
-    &L(\pi_1, \pi_2, \mu_1, \mu_2, \mu_3, \sigma_1, \sigma_2, \sigma_3 | \mathbf{Y})\\
-   =&\prod_{i=1}^{n} \Biggl[ \biggl[\pi_1 \frac{1}{\sqrt{2\pi}\sigma_1}e^{-\frac{(y_i-\mu_1)^2}{2\sigma_1^2}}\biggr] +  \biggl[\pi_2 \frac{1}{\sqrt{2\pi}\sigma_2}e^{-\frac{(y_i-\mu_2)^2}{2\sigma_2^2}}\biggr] + \biggl[(1-\pi_1-\pi_2) \frac{1}{\sqrt{2\pi}\sigma_3}e^{-\frac{(y_i-\mu_3)^2}{2\sigma_3^2}}\biggr] \Biggr]
-\end{flalign*}
+
 \part{2} The complete-data log-Likelihhod function is:
 \begin{flalign*}
     l(\pi_1, \pi_2, \mu_1, \mu_2, \mu_3, \sigma_1, \sigma_2, \sigma_3 | \mathbf{Y}, \mathbf{Z}) =\sum_{i=1}^n \Biggl[&I(Z_i = 1) \biggl[\log \pi_1 - \log \sqrt{2\pi} - \frac{1}{2}\log \sigma_1^2 - \frac{(y_i - \mu_1)^2}{2 \sigma_1^2}\biggr]\\
@@ -172,6 +168,11 @@ Then we can calculate:
     \frac{\partial Q}{\partial \sigma_2^2}\bigg\rvert_{\mu_2^{(t+1)}, {\sigma_2}^{(t+1)}} &= \sum_{i=1}^n \biggl[\widehat{Z_{i2}}^{(t)}\biggl(-\frac{1}{2}\frac{1}{\sigma_2^2} + \frac{(y_i - \mu_2)^2}{2(\sigma_2^2)^2}\biggr)\biggr]\bigg\rvert_{\mu_2^{(t+1)}, {\sigma_2}^{(t+1)}} = 0\\
     \frac{\partial Q}{\partial \sigma_3^2}\bigg\rvert_{\mu_3^{(t+1)}, {\sigma_3}^{(t+1)}} &= \sum_{i=1}^n \biggl[\widehat{Z_{i3}}^{(t)}\biggl(-\frac{1}{2}\frac{1}{\sigma_3^2} + \frac{(y_i - \mu_3)^2}{2(\sigma_3^2)^2}\biggr)\biggr]\bigg\rvert_{\mu_3^{(t+1)}, {\sigma_3}^{(t+1)}} = 0
 \end{flalign*}
+The observed-data Likelihhod function is:
+\begin{flalign*}
+    &L(\pi_1, \pi_2, \mu_1, \mu_2, \mu_3, \sigma_1, \sigma_2, \sigma_3 | \mathbf{Y})\\
+   =&\prod_{i=1}^{n} \Biggl[ \biggl[\pi_1 \frac{1}{\sqrt{2\pi}\sigma_1}e^{-\frac{(y_i-\mu_1)^2}{2\sigma_1^2}}\biggr] +  \biggl[\pi_2 \frac{1}{\sqrt{2\pi}\sigma_2}e^{-\frac{(y_i-\mu_2)^2}{2\sigma_2^2}}\biggr] + \biggl[(1-\pi_1-\pi_2) \frac{1}{\sqrt{2\pi}\sigma_3}e^{-\frac{(y_i-\mu_3)^2}{2\sigma_3^2}}\biggr] \Biggr]
+\end{flalign*}
 Then for iteration in $\mathbf{EM}$ $\mathbf{Algorithm}$: 
 
 Given initial guess: $\pi_1^{(0)}, \pi_2^{(0)}, \mu_1^{(0)}, \mu_2^{(0)}, \mu_3^{(0)}, \sigma_1^{(0)}, \sigma_2^{(0)}, \sigma_3^{(0)}$, for $t \geq 0$ and $t \in \mathbb{Z}$:
@@ -179,6 +180,8 @@ Given initial guess: $\pi_1^{(0)}, \pi_2^{(0)}, \mu_1^{(0)}, \mu_2^{(0)}, \mu_3^
 $\mathbf{E-step}$: Calculate $E(Z_i^{(t)} | \Theta^{(t)})$, where $\Theta^{(t)} = {\pi_1^{(t)}, \pi_2^{(t)}, \mu_1^{(t)}, \mu_2^{(t)}, \mu_3^{(t)}, {\sigma_1^2}^{(t)}, {\sigma_2^2}^{(t)}, {\sigma_3^2}^{(t)}}$.
 
 $\mathbf{M-step}$: Update $\Theta^{(t+1)}$ by equations $(1)$ to $(8)$ listed at the next page.
+
+$\mathbf{Stopping}$ $\mathbf{criterion}$: $|L(\Theta^{(t)}  | \mathbf{Y})) - L(\Theta^{(T+1)}  | \mathbf{Y}))| < tolerance$
 
 Iterative scheme:
 \begin{flalign}
@@ -195,8 +198,8 @@ Iterative scheme:
 
 \algorithm{EM Algorithm code in the R file.}
 
-\result{$\pi_1 = 0.4416, \pi_2 = 0.3450, \mu_1 = 2997.46, \mu_2 = 7969.146. \mu_3 = 29817.81, \sigma_1 = 301.2129, 
-\sigma_2 = 1560.899$ and $\sigma_3 = 8002.694$}
+\result{$\pi_1 = 0.6464652, \pi_2 = 0.2498821, \mu_1 = 2999.048, \mu_2 = 8004.365, \mu_3 = 29848.78, 
+\sigma_1 = 303.3709, \sigma_2 = 1515.854$ and $\sigma_3 = 7963.118$}
 
 \part{4}
 \result{ in the following page:
