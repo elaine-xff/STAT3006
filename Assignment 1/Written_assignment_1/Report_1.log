@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.4.19)  13 FEB 2022 21:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.4.19)  14 FEB 2022 20:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -248,9 +248,12 @@ Overfull \hbox (31.14964pt too wide) detected at line 147
 <result.JPG, id=32, 1505.625pt x 3238.0975pt>
 File: result.JPG Graphic file (type jpg)
 <use result.JPG>
-Package pdftex.def Info: result.JPG  used on input line 208.
-(pdftex.def)             Requested size: 281.85587pt x 606.15361pt.
- [6] [7 </Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/result.JPG>] (/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.aux) ) 
+Package pdftex.def Info: result.JPG  used on input line 210.
+(pdftex.def)             Requested size: 300.64291pt x 646.57045pt.
+ [6]
+Overfull \vbox (21.86961pt too high) has occurred while \output is active []
+
+ [7 </Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/result.JPG>] (/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.aux) ) 
 Here is how much of TeX's memory you used:
  3153 strings out of 478994
  42930 string characters out of 5858184
@@ -260,7 +263,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  68i,14n,74p,549b,233s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.pdf" (7 pages, 1319960 bytes).
+Output written on "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.pdf" (7 pages, 1319814 bytes).
 PDF statistics:
  85 PDF objects out of 1000 (max. 8388607)
  60 compressed objects within 1 object stream
