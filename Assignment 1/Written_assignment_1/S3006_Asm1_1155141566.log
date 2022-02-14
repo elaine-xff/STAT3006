@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.4.19)  14 FEB 2022 20:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.4.19)  14 FEB 2022 20:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.tex"
-(/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.tex
+**"/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/S3006_Asm1_1155141566.tex"
+(/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/S3006_Asm1_1155141566.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-18> (/usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
@@ -155,8 +155,8 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count269
 \l__pdf_internal_box=\box51
-) (/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.aux)
-\openout1 = `Report_1.aux'.
+) (/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/S3006_Asm1_1155141566.aux)
+\openout1 = `S3006_Asm1_1155141566.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
 LaTeX Font Info:    ... okay on input line 18.
@@ -253,17 +253,17 @@ Package pdftex.def Info: result.JPG  used on input line 210.
  [6]
 Overfull \vbox (21.86961pt too high) has occurred while \output is active []
 
- [7 </Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/result.JPG>] (/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.aux) ) 
+ [7 </Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/result.JPG>] (/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/S3006_Asm1_1155141566.aux) ) 
 Here is how much of TeX's memory you used:
  3153 strings out of 478994
- 42930 string characters out of 5858184
- 370712 words of memory out of 5000000
+ 43060 string characters out of 5858184
+ 370738 words of memory out of 5000000
  20618 multiletter control sequences out of 15000+600000
  409007 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,14n,74p,549b,233s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 68i,14n,74p,562b,233s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.pdf" (7 pages, 1319814 bytes).
+Output written on "/Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/S3006_Asm1_1155141566.pdf" (7 pages, 1319812 bytes).
 PDF statistics:
  85 PDF objects out of 1000 (max. 8388607)
  60 compressed objects within 1 object stream

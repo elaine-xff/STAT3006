@@ -2,8 +2,8 @@ PWD /Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1
 INPUT /usr/local/texlive/2021/texmf.cnf
 INPUT /usr/local/texlive/2021/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.tex
-OUTPUT /Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.log
+INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/S3006_Asm1_1155141566.tex
+OUTPUT /Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/S3006_Asm1_1155141566.log
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
@@ -232,10 +232,10 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-pdftex.de
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.aux
-INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.aux
-INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.aux
-OUTPUT /Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.aux
+INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/S3006_Asm1_1155141566.aux
+INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/S3006_Asm1_1155141566.aux
+INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/S3006_Asm1_1155141566.aux
+OUTPUT /Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/S3006_Asm1_1155141566.aux
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -283,14 +283,14 @@ INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm1
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
-OUTPUT /Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.pdf
+OUTPUT /Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/S3006_Asm1_1155141566.pdf
 INPUT /usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/result.JPG
 INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/result.JPG
 INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/result.JPG
 INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/result.JPG
 INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/result.JPG
-INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/Report_1.aux
+INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 1/Written_assignment_1/S3006_Asm1_1155141566.aux
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb

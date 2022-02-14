@@ -176,14 +176,14 @@ SalaryData = read.delim("/Users/elainexfff_/Documents/STAT3006/Assignment 1/Codi
 train_data = SalaryData['x']
 
 # Initial guess of parameters pi, mu, and sigma
-pi1_0 = 0.25
-pi2_0 = 0.5
+pi1_0 = 0.5
+pi2_0 = 0.25
 mu1_0 = 3000
-mu2_0 = 10000
+mu2_0 = 8000
 mu3_0 = 30000
-sigma1_0 = 100
-sigma2_0 = 1000
-sigma3_0 = 10000
+sigma1_0 = 300
+sigma2_0 = 1500
+sigma3_0 = 8000
 
 # Stopping criterion
 tolerance = 0.0001
