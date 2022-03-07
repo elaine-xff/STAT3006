@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.4.19)  5 MAR 2022 01:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.4.19)  8 MAR 2022 00:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -225,22 +225,35 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-[1{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+LaTeX Font Info:    Trying to load font information for U+msa on input line 26.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 26.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+<figures/q1_plot.png, id=1, 560.0925pt x 285.065pt>
+File: figures/q1_plot.png Graphic file (type png)
+<use figures/q1_plot.png>
+Package pdftex.def Info: figures/q1_plot.png  used on input line 44.
+(pdftex.def)             Requested size: 426.79134pt x 217.23016pt.
+ [1{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
-] (/Users/elainexfff_/Documents/STAT3006/Assignment 2/Written_assignment_2/S3006_Asm2_1155141566.aux) ) 
+ </Users/elainexfff_/Documents/STAT3006/Assignment 2/Written_assignment_2/figures/q1_plot.png>] [2] (/Users/elainexfff_/Documents/STAT3006/Assignment 2/Written_assignment_2/S3006_Asm2_1155141566.aux) ) 
 Here is how much of TeX's memory you used:
- 3098 strings out of 478994
- 42266 string characters out of 5858184
- 337738 words of memory out of 5000000
- 20584 multiletter control sequences out of 15000+600000
- 404038 words of font info for 29 fonts, out of 8000000 for 9000
+ 3155 strings out of 478994
+ 43120 string characters out of 5858184
+ 339738 words of memory out of 5000000
+ 20618 multiletter control sequences out of 15000+600000
+ 409007 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,10n,74p,312b,223s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-Output written on "/Users/elainexfff_/Documents/STAT3006/Assignment 2/Written_assignment_2/S3006_Asm2_1155141566.pdf" (1 page, 29884 bytes).
+ 68i,11n,74p,312b,223s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on "/Users/elainexfff_/Documents/STAT3006/Assignment 2/Written_assignment_2/S3006_Asm2_1155141566.pdf" (2 pages, 101336 bytes).
 PDF statistics:
- 16 PDF objects out of 1000 (max. 8388607)
- 10 compressed objects within 1 object stream
+ 50 PDF objects out of 1000 (max. 8388607)
+ 34 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

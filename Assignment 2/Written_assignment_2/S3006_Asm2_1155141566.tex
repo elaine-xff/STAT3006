@@ -22,24 +22,45 @@
 \newcommand\HWNUM{2}              % the homework number
 %Section B==============Put your answers to the questions below here=======================
 
-\question{1}{(25\%)} 
+\question{1}{Inverse method for Poissson Distribution (25\%)} 
+For discrete Poisson Distribution ($\lambda = 5$),
 
-\question{2}{(25\%)}
+the p.m.f is $P(x|\lambda) = e^{-\lambda} \frac{\lambda^x}{x!}$ and
+the c.d.f is $F(x|\lambda) = \sum_{t \leq x} e^{-\lambda} \frac{\lambda^t}{t!}$.
+
+\algorithm
+Inverse method for the Poisson Distribution:
+
+To generate $X \sim F(x)$:
+
+STEP 1: Generate $U \sim unif[0, 1]$;
+
+STEP 2: Transform $X = F^-(U)$: if $F(x|\lambda) < U \leq F(x+1|\lambda)$, let $X = x+1$.
+
+$\mathbf{Plot:}$
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{figures/q1_plot.png}
+    \caption{Histogram of 5000 samples}
+  \end{figure}
+\question{2}{Accept-Reject method for truncated Gamma Distribution(25\%)}
 
 \part{1} 
 
 \part{2}
 
-\question{3}{(25\%)}
+\question{3}{Importance Sampling for Estimation(25\%)}
 
 \part{1} 
 
 \part{2}
+
 \algorithm
 
 \result
 
-\question{4}{(25\%)}
+\question{4}{Stratified Sampling25\%)}
 
 \part{1} 
 
