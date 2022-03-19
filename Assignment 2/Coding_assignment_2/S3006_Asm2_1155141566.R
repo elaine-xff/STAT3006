@@ -36,7 +36,7 @@ for (i in 1:m){
 acceptance_prob = cnt / m
 
 
-## Question 3: integral estimation
+## Question 3: Integral Estimation
 
 # 1. Use 5000 samples from Q2
 sum_cos = sum(cos(x_vec))
@@ -48,8 +48,11 @@ x = rexp(m, 1) + 5 # generate samples from g(x)
 integral = exp(-5)* sum(cos(x) * x^(-0.5)) /m
 
 
+## Question 4: Stratified Sampling
 
-
+# Read Salary Data
+SalaryData = read.delim("/Users/elainexfff_/Documents/STAT3006/Assignment 2/Coding_assignment_2/salary_data.txt", 
+                        header = TRUE, sep = " ")
 
 
 
