@@ -19,7 +19,8 @@ hist(x_vec, breaks = seq(-0.5, 20.5, by = 0.5), freq = FALSE) # histogram
 
 # Samples from truncated Gamma Distribution
 m = 5000 # sample size
-M = 5^0.5 * exp(-5) / ((1-pgamma(5, shape = 1/2, rate = 1)) * gamma(1/2)) # constant M
+pgam = (1-pgamma(5, shape = 1/2, rate = 1)) * gamma(1/2)
+M = 5^0.5 * exp(-5) / pgam # constant M
 cnt = 0 # acceptance counter
 ratio = function(y){y^(-0.5) / 5^0.5}
 x_vec = NULL
@@ -31,6 +32,26 @@ for (i in 1:m){
     cnt = cnt + 1
   }
 }
-hist(x_vec, breaks=10, freq=FALSE)
+#hist(x_vec, breaks=10, freq=FALSE)
 acceptance_prob = cnt / m
+
+
+## Question 3: integral estimation
+
+# 1. Use 5000 samples from Q2
+sum_cos = sum(cos(x_vec))
+integral = pgam/length(x_vec) * sum_cos
+
+# 2. Use importance sampling
+m = 5000
+x = rexp(m, 1) + 5 # generate samples from g(x)
+integral = exp(-5)* sum(cos(x) * x^(-0.5)) /(m * pgam) 
+
+
+
+
+
+
+
+
 

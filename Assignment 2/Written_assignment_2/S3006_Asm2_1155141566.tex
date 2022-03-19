@@ -89,19 +89,33 @@ Theoretical acceptance probability:
                                &= \frac{1}{M} \int_{- \infty}^{+ \infty} f(y) dy\\
                                &= \frac{1}{M}
 \end{flalign*}
-After computation, $M = 0.184157$.
+After computation, this acceptance probability is 0.184157.
 
-The actual acceptance rate is $0.1854$.
+The actual acceptance rate is $0.1854$, which is a little bit higher than the theoretical value.
 
 \question{3}{Importance Sampling for Estimation (25\%)}
 
 \part{1} 
-
+Using 5000 samples from Q2 ($l$ = length of samples obtained in Q2), the Monte Carlo estimate is
+\begin{flalign*}
+  \int_5^{+ \infty} cos(x)x^{-\frac{1}{2}}e^{-x} dx &= \int_{- \infty}^{+ \infty} cos(x)\frac{x^{-\frac{1}{2}}e^{-x}I(x\geq 5)}{\int_5^{+ \infty} y^{-\frac{1}{2}}e^{-y} dy}dx \times \int_5^{+ \infty} y^{-\frac{1}{2}}e^{-y} dy\\
+                                                    &= \frac{\int_5^{+ \infty} y^{-\frac{1}{2}}e^{-y} dy}{l}\sum_{i=1}^{l} cos(x_i)\\
+                                                    &= 0.001708
+\end{flalign*}
 \part{2}
+Using the same notations in Q2, we define $h(x) = cos(x)$.
+\begin{flalign*}
+  \int_5^{+ \infty} cos(x)x^{-\frac{1}{2}}e^{-x} dx &= \int_{- \infty}^{+ \infty} cos(x)\frac{x^{-\frac{1}{2}}e^{-x}I(x\geq 5)}{\int_5^{+ \infty} y^{-\frac{1}{2}}e^{-y} dy}dx \times \int_5^{+ \infty} y^{-\frac{1}{2}}e^{-y} dy\\
+                                                    &= \int_5^{+ \infty} y^{-\frac{1}{2}}e^{-y} dy \int_{- \infty}^{+ \infty} \frac{h(x)f(x)}{g(x)} dx
+\end{flalign*}
+Note that $\frac{f(x)}{g(x)} \leq M < \infty$, and $E_gh^2(x) = \int_{- \infty}^{+ \infty} g(x)h^2(x) dx \leq \int_{- \infty}^{+ \infty} g(x) dx = 1 < \infty$, we can use the importance sampling as follows:
 
 \algorithm
 
-\result
+STEP 1: Generate $n = 5000$ samples from $g(x)$ by Accept-Reject Method;
+
+STEP 2: Compute the Monte Carlo estimate: 
+\hspace*{3cm} $m(x) = \frac{\sum_{i=1}^{n} \frac{h(x_i)f(x_i)}{g(x_i)} }{n} = \frac{e^{-5}}{n \int_5^{+ \infty} y^{-\frac{1}{2}}e^{-y} dy} \sum_{i=1}^{n} cos(x_i) x_i^{-\frac{1}{2}}$
 
 \question{4}{Stratified Sampling (25\%)}
 
