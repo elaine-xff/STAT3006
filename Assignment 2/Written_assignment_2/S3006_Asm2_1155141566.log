@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.4.19)  8 MAR 2022 00:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.4.19)  19 MAR 2022 20:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -233,27 +233,27 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 26.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<figures/q1_plot.png, id=1, 560.0925pt x 285.065pt>
-File: figures/q1_plot.png Graphic file (type png)
-<use figures/q1_plot.png>
-Package pdftex.def Info: figures/q1_plot.png  used on input line 44.
-(pdftex.def)             Requested size: 426.79134pt x 217.23016pt.
+<figures/q1_plot_new.png, id=1, 420.57124pt x 285.065pt>
+File: figures/q1_plot_new.png Graphic file (type png)
+<use figures/q1_plot_new.png>
+Package pdftex.def Info: figures/q1_plot_new.png  used on input line 44.
+(pdftex.def)             Requested size: 369.88582pt x 250.71443pt.
  [1{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
- </Users/elainexfff_/Documents/STAT3006/Assignment 2/Written_assignment_2/figures/q1_plot.png>] [2] (/Users/elainexfff_/Documents/STAT3006/Assignment 2/Written_assignment_2/S3006_Asm2_1155141566.aux) ) 
+ </Users/elainexfff_/Documents/STAT3006/Assignment 2/Written_assignment_2/figures/q1_plot_new.png>] [2] [3] (/Users/elainexfff_/Documents/STAT3006/Assignment 2/Written_assignment_2/S3006_Asm2_1155141566.aux) ) 
 Here is how much of TeX's memory you used:
  3155 strings out of 478994
- 43120 string characters out of 5858184
- 339738 words of memory out of 5000000
+ 43144 string characters out of 5858184
+ 347738 words of memory out of 5000000
  20618 multiletter control sequences out of 15000+600000
  409007 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,11n,74p,312b,223s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on "/Users/elainexfff_/Documents/STAT3006/Assignment 2/Written_assignment_2/S3006_Asm2_1155141566.pdf" (2 pages, 101336 bytes).
+ 68i,11n,74p,339b,223s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on "/Users/elainexfff_/Documents/STAT3006/Assignment 2/Written_assignment_2/S3006_Asm2_1155141566.pdf" (3 pages, 145504 bytes).
 PDF statistics:
- 50 PDF objects out of 1000 (max. 8388607)
- 34 compressed objects within 1 object stream
+ 69 PDF objects out of 1000 (max. 8388607)
+ 48 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -41,16 +41,59 @@ $\mathbf{Plot:}$
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=15cm]{figures/q1_plot.png}
+    \includegraphics[width=13cm]{figures/q1_plot_new.png}
     \caption{Histogram of 5000 samples}
   \end{figure}
-\question{2}{Accept-Reject method for truncated Gamma Distribution(25\%)}
+\question{2}{Accept-Reject method for truncated Gamma Distribution (25\%)}
+For $X \sim Gamma(\frac{1}{2}, 1)I(x \geq 5)$, $f(x) = \frac{x^{-\frac{1}{2}}e^{-x}I(x\geq 5)}{\int_5^{+ \infty} y^{-\frac{1}{2}}e^{-y} dy}$.
 
-\part{1} 
+We can define a shifted exponential distribution $g(x) = e^{-(x-5)}I(x \geq 5)$ and want to find a constant $M$ such that $f(x) < Mg(x)$ for any $x$.\\
+Then $M = $ sup$ \frac{f(x)}{g(x)} = $ sup$ \frac{\frac{x^{-\frac{1}{2}}e^{-x}I(x\geq 5)}{\int_5^{+ \infty} y^{-\frac{1}{2}}e^{-y} dy}}{e^{-(x-5)}I(x \geq 5)} = \frac{5^{-\frac{1}{2}}e^{-5}}{\int_5^{+ \infty} y^{-\frac{1}{2}}e^{-y} dy}$.
 
-\part{2}
+\algorithm
+Accept-Reject method for truncated Gamma Distribution:
 
-\question{3}{Importance Sampling for Estimation(25\%)}
+To generate $X \sim F(x) = $ c.d.f of $f(x)$:
+
+STEP 1: Generate $Y \sim g(y)$;
+
+STEP 2: Generate $U \sim unif[0, 1]$;
+
+STEP 3: Accept $X = Y$ if $U \leq \frac{f(Y)}{Mg(Y)}$.
+
+$\mathbf{Proof:}$
+
+From the choice of constant $M$, we can know that $Mg(x) \geq f(x)$. The goal of this method is 
+to generate $X \sim F(x) = $ c.d.f of $f(x)$.
+
+For the generating algorithm:
+
+\begin{flalign*}
+  P(X \leq x) &= P(Y \leq x | Y \text{ is accepted})\\
+              &= P(Y \leq x | U \leq \frac{f(Y)}{Mg(Y)})\\
+              &= \frac{P(Y \leq x, U \leq \frac{f(Y)}{Mg(Y)})}{P(U \leq \frac{f(Y)}{Mg(Y)})}\\
+              &= \frac{\int_{- \infty}^x g(y) \int_0^{\frac{f(y)}{Mg(y)}} 1 du dy}{\int_{- \infty}^{+ \infty} g(y) \int_0^{\frac{f(y)}{Mg(y)}} 1 du dy}\\
+              &= \frac{\int_{- \infty}^x g(y) \frac{f(y)}{Mg(y)} dy}{\int_{- \infty}^{+ \infty} g(y) \frac{f(y)}{Mg(y)} dy}\\
+              &= \frac{\int_{- \infty}^x f(y) dy}{\int_{- \infty}^{+ \infty} f(y) dy}\\
+              &= \frac{\int_{- \infty}^x f(y) dy}{1}\\
+              &= F(x)
+\end{flalign*}
+Therefore, this AR method works.
+
+$\mathbf{Comparison:}$
+
+Theoretical acceptance probability:
+
+\begin{flalign*}
+  P(U \leq \frac{f(Y)}{Mg(Y)}) &= \int_{- \infty}^{+ \infty} g(y) \int_0^{\frac{f(y)}{Mg(y)}} 1 du dy\\
+                               &= \frac{1}{M} \int_{- \infty}^{+ \infty} f(y) dy\\
+                               &= \frac{1}{M}
+\end{flalign*}
+After computation, $M = 0.184157$.
+
+The actual acceptance rate is $0.1854$.
+
+\question{3}{Importance Sampling for Estimation (25\%)}
 
 \part{1} 
 
@@ -60,7 +103,7 @@ $\mathbf{Plot:}$
 
 \result
 
-\question{4}{Stratified Sampling25\%)}
+\question{4}{Stratified Sampling (25\%)}
 
 \part{1} 
 
