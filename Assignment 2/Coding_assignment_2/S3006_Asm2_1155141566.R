@@ -45,7 +45,7 @@ integral = pgam/length(x_vec) * sum_cos
 # 2. Use importance sampling
 m = 5000
 x = rexp(m, 1) + 5 # generate samples from g(x)
-integral = exp(-5)* sum(cos(x) * x^(-0.5)) /(m * pgam) 
+integral = exp(-5)* sum(cos(x) * x^(-0.5)) /m
 
 
 
