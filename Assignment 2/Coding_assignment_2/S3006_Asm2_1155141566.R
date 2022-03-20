@@ -54,6 +54,23 @@ integral = exp(-5)* sum(cos(x) * x^(-0.5)) /m
 SalaryData = read.delim("/Users/elainexfff_/Documents/STAT3006/Assignment 2/Coding_assignment_2/salary_data.txt", 
                         header = TRUE, sep = " ")
 
+# (1) Randomly draw 100 samples from SalaryData and compute each sub-population's s.d.
+rdm_salary = SalaryData[sample(nrow(SalaryData), size = 100),]
+x1 = subset(rdm_salary, Age_Indicator == 1, select = c("Salary"))
+sd_x1 = sd(as.numeric(unlist(x1)))
+x2 = subset(rdm_salary, Age_Indicator == 2, select = c("Salary"))
+sd_x2 = sd(as.numeric(unlist(x2)))
+x3 = subset(rdm_salary, Age_Indicator == 3, select = c("Salary"))
+sd_x3 = sd(as.numeric(unlist(x3)))
+
+# (2) haha 
+
+
+
+
+
+
+
 
 
 
