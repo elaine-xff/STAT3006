@@ -72,15 +72,15 @@ mu3 = 5000 / 11000
 component1 = mu1 * sd_x1
 component2 = mu2 * sd_x2
 component3 = mu3 * sd_x3
-n1 = 900 * component1 / (component1 + component2 + component3)
-n2 = 900 * component2 / (component1 + component2 + component3)
-n3 = 900 * component3 / (component1 + component2 + component3)
+n1 = 1000 * component1 / (component1 + component2 + component3)
+n2 = 1000 * component2 / (component1 + component2 + component3)
+n3 = 1000 * component3 / (component1 + component2 + component3)
 
 # (3) approximate the mean salary
 # the sample number for each subpopulation
-n_1 = 79
-n_2 = 289
-n_3 = 532
+n_1 = 95
+n_2 = 315
+n_3 = 590
 salary_1 = subset(SalaryData, Age_Indicator == 1)
 salary_2 = subset(SalaryData, Age_Indicator == 2)
 salary_3 = subset(SalaryData, Age_Indicator == 3)
