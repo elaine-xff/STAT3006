@@ -96,6 +96,7 @@ The actual acceptance rate is $0.1854$, which is a little bit higher than the th
 \question{3}{Importance Sampling for Estimation (25\%)}
 
 \part{1} 
+
 Using 5000 samples from Q2 ($l$ = length of samples obtained in Q2), the Monte Carlo estimate is
 \begin{flalign*}
   \int_5^{+ \infty} cos(x)x^{-\frac{1}{2}}e^{-x} dx &= \int_{- \infty}^{+ \infty} cos(x)\frac{x^{-\frac{1}{2}}e^{-x}I(x\geq 5)}{\int_5^{+ \infty} y^{-\frac{1}{2}}e^{-y} dy}dx \times \int_5^{+ \infty} y^{-\frac{1}{2}}e^{-y} dy\\
@@ -103,6 +104,7 @@ Using 5000 samples from Q2 ($l$ = length of samples obtained in Q2), the Monte C
                                                     &= 0.001708
 \end{flalign*}
 \part{2}
+
 Using the same notations in Q2, we define $h(x) = cos(x)$.
 \begin{flalign*}
   \int_5^{+ \infty} cos(x)x^{-\frac{1}{2}}e^{-x} dx &= \int_{- \infty}^{+ \infty} cos(x)\frac{x^{-\frac{1}{2}}e^{-x}I(x\geq 5)}{\int_5^{+ \infty} y^{-\frac{1}{2}}e^{-y} dy}dx \times \int_5^{+ \infty} y^{-\frac{1}{2}}e^{-y} dy\\
@@ -128,6 +130,7 @@ Therefore,
 \question{4}{Stratified Sampling (25\%)}
 
 \part{1} 
+
 Randomly draw 100 samples from the date set, for each subpopulation:
 
 Standard deviation for age interval 1 is 98.9192658;
@@ -138,8 +141,34 @@ Standard deviation for age interval 3 is 200.7419485.
 
 \part{2}
 
+The target of this sampling is to estimate the mean salary of this country.
 
+Using Stratified Sampling, there're 3 strata in total, which are indicated by 1, 2, and 3 respectively. 
+Define $n_i$ = the sample number of the $i$ strata, $x_{ij}$ = the sampled $j$-th individual in strata $i$, 
+$\mu_i$ = the $i$ strata's proportion in population, and $S_i$ = the strata $i$.
 
+The target is 
+\begin{flalign*}
+  E(\vec{x}) &= \sum_{i=1}^3 p(x_i \in S_i)E(x | x \in S_i) = \sum_{i=1}^3 \mu_i \frac{1}{n_i} \sum_{j=1}^{n_i} x_{ij}.
+\end{flalign*}
+It is supposed that the $n_i$'s can minimize $Var(E(\vec{x}))$.
+\begin{flalign*}
+  Var(E(\vec{x})) &= \sum_{i=1}^3 \mu_i^2 Var(\frac{1}{n_i} \sum_{j=1}^{n_i} x_{ij}) = \sum_{i=1}^3 \mu_i^2 \frac{1}{n_i} Var(x | x \in S_i)
+\end{flalign*}
+Denote $Var(x | x \in S_i)$ by $V_i$, which can be estimated by variance we obtained in the last step.
+Then the minimization problem can be modeled as:
+\begin{flalign*}
+  minimize     \hspace*{2cm}        &\sum_{i=1}^3 \frac{\mu_i^2 V_i}{n_i}   \\
+  subject \hspace*{0.1 cm} to     \hspace*{2cm}    & \sum_{i=1}^3 n_i = 900
+\end{flalign*}
+By Lagrange Multiplier, $n_i = \frac{900\mu_i\sqrt{V_i}}{\sum_{k=1}^3 \mu_k \sqrt{V_k}}$. After computation,
+\begin{flalign*}
+  n_1 &= 78.7 = 79\\
+  n_2 &= 288.9 = 289\\
+  n_3 &= 532.4 = 532.
+\end{flalign*}
 \part{3} 
 
+By randomly drawing $n_i$ samples in strata $i$ for each $i$, the eatimated population mean salary based on these 1000 samples is 4526.778, which
+is a little bit higher than the true mean salary 4307.189 but is very close. The Stratified Sampling can somehow reflec the real mean salary.
 \end{document}

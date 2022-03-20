@@ -63,15 +63,32 @@ sd_x2 = sd(as.numeric(unlist(x2)))
 x3 = subset(rdm_salary, Age_Indicator == 3, select = c("Salary"))
 sd_x3 = sd(as.numeric(unlist(x3)))
 
-# (2) haha 
+# (2) stratified sampling -- sample number for each strata
+# the proportion mu
+mu1 = 1500 / 11000
+mu2 = 4500 / 11000
+mu3 = 5000 / 11000
+# computation
+component1 = mu1 * sd_x1
+component2 = mu2 * sd_x2
+component3 = mu3 * sd_x3
+n1 = 900 * component1 / (component1 + component2 + component3)
+n2 = 900 * component2 / (component1 + component2 + component3)
+n3 = 900 * component3 / (component1 + component2 + component3)
 
+# (3) approximate the mean salary
+# the sample number for each subpopulation
+n_1 = 79
+n_2 = 289
+n_3 = 532
+salary_1 = subset(SalaryData, Age_Indicator == 1)
+salary_2 = subset(SalaryData, Age_Indicator == 2)
+salary_3 = subset(SalaryData, Age_Indicator == 3)
 
-
-
-
-
-
-
-
-
+rdm_salary_1 = salary_1[sample(nrow(salary_1), size = n_1),]
+rdm_salary_2 = salary_2[sample(nrow(salary_2), size = n_2),]
+rdm_salary_3 = salary_3[sample(nrow(salary_3), size = n_3),]
+stratified_sample = rbind(rdm_salary_1, rdm_salary_2, rdm_salary_3)
+# get mean of the salary
+mean(stratified_sample$Salary)
 
