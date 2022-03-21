@@ -20,9 +20,9 @@ hist(x_vec, breaks = seq(-0.5, 20.5, by = 0.5), freq = FALSE) # histogram
 # Samples from truncated Gamma Distribution
 m = 5000 # sample size
 pgam = (1-pgamma(5, shape = 1/2, rate = 1)) * gamma(1/2)
-M = 5^0.5 * exp(-5) / pgam # constant M
+M = 5^(-0.5) * exp(-5) / pgam # constant M
 cnt = 0 # acceptance counter
-ratio = function(y){y^(-0.5) / 5^0.5}
+ratio = function(y){y^(-0.5) / 5^(-0.5)}
 x_vec = NULL
 for (i in 1:m){
   y = rexp(1, 1) + 5
