@@ -12,7 +12,7 @@ for (i in 1:m) {
   x_vec = c(x_vec, min(which(prob_cumsum>=u_vec[i]))-1)
 }
 
-hist(x_vec, breaks = seq(-0.5, 20.5, by = 0.5), freq = FALSE) # histogram
+hist(x_vec, breaks = seq(-0.5, 15.5, by = 0.5), freq = TRUE) # histogram
 
 
 ## Question 2: Accept-Reject method for truncated Gamma Distribution
@@ -55,40 +55,46 @@ SalaryData = read.delim("/Users/elainexfff_/Documents/STAT3006/Assignment 2/Codi
                         header = TRUE, sep = " ")
 
 # (1) Randomly draw 100 samples from SalaryData and compute each sub-population's s.d.
+set.seed(3006)
 rdm_salary = SalaryData[sample(nrow(SalaryData), size = 100),]
-x1 = subset(rdm_salary, Age_Indicator == 1, select = c("Salary"))
-sd_x1 = sd(as.numeric(unlist(x1)))
-x2 = subset(rdm_salary, Age_Indicator == 2, select = c("Salary"))
-sd_x2 = sd(as.numeric(unlist(x2)))
-x3 = subset(rdm_salary, Age_Indicator == 3, select = c("Salary"))
-sd_x3 = sd(as.numeric(unlist(x3)))
+sd=rep(NA,3)
+for(i in 1:3){
+  sd[i]=sd(rdm_salary[rdm_salary$Age_Indicator==i,1])
+}
 
 # (2) stratified sampling -- sample number for each strata
+
 # the proportion mu
 mu1 = 1500 / 11000
 mu2 = 4500 / 11000
 mu3 = 5000 / 11000
-# computation
-component1 = mu1 * sd_x1
-component2 = mu2 * sd_x2
-component3 = mu3 * sd_x3
-n1 = 1000 * component1 / (component1 + component2 + component3)
-n2 = 1000 * component2 / (component1 + component2 + component3)
-n3 = 1000 * component3 / (component1 + component2 + component3)
+mu = c(mu1, mu2, mu3)
+
+n1 = 1000 * mu1 * sd[1] / sum(mu * sd)
+n2 = 1000 * mu2 * sd[2] / sum(mu * sd)
+n3 = 1000 * mu3 * sd[3] / sum(mu * sd)
+(n=c(n1, n2, n3))
 
 # (3) approximate the mean salary
 # the sample number for each subpopulation
-n_1 = 95
-n_2 = 315
-n_3 = 590
+n_1 = 68
+n_2 = 307
+n_3 = 625
 salary_1 = subset(SalaryData, Age_Indicator == 1)
 salary_2 = subset(SalaryData, Age_Indicator == 2)
 salary_3 = subset(SalaryData, Age_Indicator == 3)
 
+set.seed(3006)
 rdm_salary_1 = salary_1[sample(nrow(salary_1), size = n_1),]
 rdm_salary_2 = salary_2[sample(nrow(salary_2), size = n_2),]
 rdm_salary_3 = salary_3[sample(nrow(salary_3), size = n_3),]
 stratified_sample = rbind(rdm_salary_1, rdm_salary_2, rdm_salary_3)
 # get mean of the salary
 mean(stratified_sample$Salary)
+
+
+
+
+
+
 

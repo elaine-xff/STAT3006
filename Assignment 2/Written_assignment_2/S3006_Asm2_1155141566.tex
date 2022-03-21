@@ -41,7 +41,7 @@ $\mathbf{Plot:}$
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=13cm]{figures/q1_plot_new.png}
+    \includegraphics[width=13cm]{figures/q1_plot.png}
     \caption{Histogram of 5000 samples}
   \end{figure}
 \question{2}{Accept-Reject method for truncated Gamma Distribution (25\%)}
@@ -133,11 +133,11 @@ Therefore,
 
 Randomly draw 100 samples from the date set, for each subpopulation:
 
-Standard deviation for age interval 1 is 98.9192658;
+Standard deviation for age interval 1 is 73.9823615320924;
 
-Standard deviation for age interval 2 is 121.0536453;
+Standard deviation for age interval 2 is 111.975202857371;
 
-Standard deviation for age interval 3 is 200.7419485.
+Standard deviation for age interval 3 is 204.753943423479.
 
 \part{2}
 
@@ -161,14 +161,16 @@ Then the minimization problem can be modeled as:
   minimize     \hspace*{2cm}        &\sum_{i=1}^3 \frac{\mu_i^2 V_i}{n_i}   \\
   subject \hspace*{0.1 cm} to     \hspace*{2cm}    & \sum_{i=1}^3 n_i = 1000
 \end{flalign*}
-By Lagrange Multiplier, $n_i = \frac{1000\mu_i\sqrt{V_i}}{\sum_{k=1}^3 \mu_k \sqrt{V_k}}$. After computation,
+By Lagrange Multiplier, $n_i = \frac{1000\mu_i\sqrt{V_i}}{\sum_{k=1}^3 \mu_k \sqrt{V_k}}$. We use standard deviations estimated in part a to compute variance here.
+
+After computation,
 \begin{flalign*}
-  n_1 &= 94.7 = 95\\
-  n_2 &= 314.9 = 315\\
-  n_3 &= 590.1 = 590
+  n_1 &= 68\\
+  n_2 &= 307\\
+  n_3 &= 625
 \end{flalign*}
 \part{3} 
 
-By randomly drawing $n_i$ samples in strata $i$ for each $i$, the eatimated population mean salary based on these 1000 samples is 4504.717, which
+By randomly drawing $n_i$ samples in strata $i$ for each $i$, the eatimated population mean salary based on these 1000 samples is 4607.275, which
 is a little bit higher than the true mean salary 4307.189 but is very close. The Stratified Sampling can somehow reflect the real mean salary.
 \end{document}
