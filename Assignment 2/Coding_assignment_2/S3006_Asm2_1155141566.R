@@ -88,9 +88,9 @@ set.seed(3006)
 rdm_salary_1 = salary_1[sample(nrow(salary_1), size = n_1),]
 rdm_salary_2 = salary_2[sample(nrow(salary_2), size = n_2),]
 rdm_salary_3 = salary_3[sample(nrow(salary_3), size = n_3),]
-stratified_sample = rbind(rdm_salary_1, rdm_salary_2, rdm_salary_3)
+
 # get mean of the salary
-mean(stratified_sample$Salary)
+estimated_mean = mu1 * mean(rdm_salary_1$Salary) + mu2 * mean(rdm_salary_2$Salary) + mu3 * mean(rdm_salary_3$Salary)
 
 
 
