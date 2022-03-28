@@ -40,7 +40,12 @@ B = 1000 # first 1000 iterations are burn-in
 estimated_lambda = mean(lambda_t[(B+1):N])
 
 
+## Question 2: Gibbs Sampler for clustering
 
+rm(list = ls())
+# Read Data
+Q2Data = read.delim("/Users/elainexfff_/Documents/STAT3006/Assignment 3/Coding_assignment_3/Assg3_Q2.txt", 
+                        header = TRUE, sep = " ")
 
 
 
