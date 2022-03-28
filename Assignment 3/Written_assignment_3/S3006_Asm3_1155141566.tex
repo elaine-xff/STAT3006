@@ -23,6 +23,14 @@
 %Section B==============Put your answers to the questions below here=======================
 
 \question{1}{Hybrid Gibbs Sampler to estimate Poisson Distribution $\lambda$ (30\%)} 
+For these Poisson distributed random variables (r.v.s) ($n$ = 500) with mean parameter $\lambda$, 
+unobserved variables are 
+$\lambda, y_1, y_2, \dots, y_{78}$, in which $y's$ denote the r.v.s which are more than or equal to five.
+\begin{flalign*}
+    &Prior: \pi(\lambda) \propto \frac{1}{\lambda};\\
+    &P(X, Y | \lambda) = \prod_{i=1}^{422} \frac{e^{-\lambda} \lambda^{x_i}}{x_i !} \prod_{j=1}^{78} \frac{e^{-\lambda} \lambda^{y_i}}{y_i !} I(y_i \geq 4);\\
+\end{flalign*}
+
 
 
 
