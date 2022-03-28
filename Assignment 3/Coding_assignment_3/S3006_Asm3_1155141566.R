@@ -1,6 +1,7 @@
 ## Question 1: Hybrid Gibbs Sampler to estimate Poisson Distribution \lambda
 
 rm(list = ls())
+
 N = 2000 # iteration number
 lambda_t = rep(NA, N) # the parameter to be inferred
 Y_t = matrix(NA, N, 78) # 78 unobserved variables (y_i >= 5)
@@ -43,6 +44,7 @@ estimated_lambda = mean(lambda_t[(B+1):N])
 ## Question 2: Gibbs Sampler for clustering
 
 rm(list = ls())
+
 # Read Data
 Q2Data = read.delim("/Users/elainexfff_/Documents/STAT3006/Assignment 3/Coding_assignment_3/Assg3_Q2.txt", 
                         header = TRUE, sep = " ")

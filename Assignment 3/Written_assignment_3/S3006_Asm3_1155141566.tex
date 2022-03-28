@@ -28,7 +28,7 @@
 
 For these Poisson distributed random variables (r.v.s) ($n$ = 500) with mean parameter $\lambda$, 
 unobserved variables are 
-$\lambda, y_1, y_2, \dots, y_{78}$, in which $y's$ denote the r.v.s which are more than or equal to five.
+$\lambda, y_1, y_2, \dots, y_{78}$, in which $y's$ denote the r.v.s which are larger than or equal to five.
 \begin{flalign*}
     &\text{Prior}: \pi(\lambda) \propto \frac{1}{\lambda};\\
     &P(X, Y | \lambda) = \prod_{i=1}^{422} \frac{e^{-\lambda} \lambda^{x_i}}{x_i !} \prod_{j=1}^{78} \frac{e^{-\lambda} \lambda^{y_i}}{y_i !} I(y_i \geq 5);\\
@@ -40,17 +40,67 @@ Then we can know that $\lambda | X, Y \propto Gamma(\sum_{i} x_i + \sum_{j} y_j,
 The MH-Step to sample 78 unobserved $y's$ is 
 \begin{flalign*}
     y_j^* &= \begin{cases}
-        y_j^{(t)} - 1, & \text{with prob.} \frac{1}{3}\\
-        y_j^{(t)}, & \text{with prob.} \frac{1}{3}\\
-        y_j^{(t)} + 1, & \text{with prob.} \frac{1}{3}
+        y_j^{(t)} - 1, & \text{with probability } \frac{1}{3};\\
+        y_j^{(t)}, & \text{with probability } \frac{1}{3};\\
+        y_j^{(t)} + 1, & \text{with probability } \frac{1}{3}.
     \end{cases}\\
-    r     &= min \Big\{ \frac{[\lambda^{(t+1)}]^{y_j^*}/y_j^*}{[\lambda^{(t+1)}]^{y_j^{(t)}}/y_j^{(t)}}I(y_j^* \geq 5), 1\Big\}
+    r     &= \min \Big\{ \frac{[\lambda^{(t+1)}]^{y_j^*}/y_j^*}{[\lambda^{(t+1)}]^{y_j^{(t)}}/y_j^{(t)}}I(y_j^* \geq 5), 1\Big\}
 \end{flalign*}
 where $r$ is the accept-reject ratio.
 
 \result $\hat{\lambda} = 1.674$.
 
 \question{2}{Gibbs Sampler for Clustering (30\%)} 
+\derivation
+
+We use $\big\{X_{ij}\big\}_{i = 1, 2, 3, \dots, 1000}^{j = 1, 2, 3}$ to denote the datum of $i$-th sample in $j$-th dimension. 
+Then using the same notation in the question:
+\begin{flalign*}
+    f(X, Z | \Pi, \Theta) &= \prod_{i=1}^{1000} \prod_{k=1}^3 P(Z_i = k | \Pi, \Theta) P(X_{ij}, j=1, 2, 3 | Z_j, \Pi, \Theta)\\
+                          &= \prod_{i=1}^{1000} \prod_{k=1}^3 \Big[ P(Z_i = k | \Pi) \prod_{j=1}^3 P(X_{ij} | Z_j, \Theta) \Big]^{I(Z_j = k)}\\
+                          &= \prod_{i=1}^{1000} \prod_{k=1}^3 \Big[ \pi_k \prod_{j=1}^3 \binom{10j}{X_{ij}} \theta_{jk}^{X_{ij}} (1-\theta_{jk})^{10j - X_{ij}} \Big]^{I(Z_j = k)}
+\end{flalign*}
+Note that given $Z_i = k$, for each sample $i$, $X_{ij} \sim Bino(10j, \theta_{jk})$; $P(\theta_{jk}) \propto 1$; and $(\pi_1, \pi_2, \pi_3) \sim Dirichlet(\alpha_1, \alpha_2, \alpha_3)$,
+we can derive by the following:
+\begin{flalign*}
+    P(\Pi, \Theta, Z | X) &\propto P(\Pi) P(\Theta) P(X, Z | \Pi, \Theta)\\
+                          &\propto \sum_{k=1}^3 \pi_k^{\alpha_k - 1} \sum_{i=1}^{1000} \sum_{k=1}^3 \Big[ \pi_k \sum_{j=1}^3 \binom{10j}{X_{ij}} \theta_{jk}^{X_{ij}} (1-\theta_{jk})^{10j - X_{ij}} \Big]^{I(Z_j = k)}\\
+                          &\propto \sum_{k=1}^3 \pi_k^{\alpha_k - 1} \sum_{i=1}^{1000} \sum_{k=1}^3 \pi_k^{I(Z_i = k)} \sum_{i=1}^{1000} \sum_{k=1}^3 \sum_{j=1}^3 \binom{10j}{X_{ij}}^{I(Z_i = k)} \theta_{jk}^{X_{ij}I(Z_i = k)} [(1-\theta_{jk})^{10j - X_{ij}}]^{I(Z_i = k)}
+\end{flalign*}
+Then for each parameter:
+
+For $\pi$:
+\begin{flalign*}
+    f(\Pi | \Theta, Z) &\propto \sum_{k=1}^3 \pi_k^{\alpha_k - 1} \sum_{i=1}^{1000} \sum_{k=1}^3 \pi_k^{I(Z_i = k)}\\
+                       &\propto \sum_{k=1}^3 \pi_k^{\alpha_k - 1} \sum_{k=1}^3 [\pi_k]^{\sum_{i=1}^{1000} I(Z_i = k)}\\
+                       &\propto \sum_{k=1}^3 \pi_k^{\alpha_k + \sum_{i=1}^{1000} I(Z_i = k) - 1}\\
+    \text{Then it follows that:}&\\
+    \Pi | \Theta, Z \sim &Dirichlet(\alpha_1 + \sum_{i=1}^{1000} I(Z_i = 1), \alpha_2 + \sum_{i=1}^{1000} I(Z_i = 2), \alpha_3 + \sum_{i=1}^{1000} I(Z_i = 3))
+\end{flalign*}
+For $\theta$:
+\begin{flalign*}
+    \theta_{jk} | - &\propto \prod_{i=1}^{1000} \prod_{k=1}^3 \Big[ \prod_{j=1}^3 \binom{10j}{X_{ij}} \theta_{jk}^{X_{ij}} (1-\theta_{jk})^{10j - X_{ij}} \Big]^{I(Z_j = k)}\\
+                    &\propto \prod_{i=1}^{1000} \Big[ \binom{10j}{X_{ij}} \theta_{jk}^{X_{ij}} (1-\theta_{jk})^{10j - X_{ij}} \Big]^{I(Z_j = k)}\\
+    \text{Then it follows that:}&\\
+    \theta_{jk} | - &\sim Bino(10j \sum_{i=1}^{1000} I(Z_i = k), \theta_{jk})
+\end{flalign*}
+For $Z$:
+\begin{flalign*}
+    Z_i | - &\propto \sum_{i=1}^{1000} \sum_{k=1}^3 \pi_k^{I(Z_i = k)} \sum_{i=1}^{1000} \sum_{k=1}^3 \sum_{j=1}^3 \binom{10j}{X_{ij}}^{I(Z_i = k)} \theta_{jk}^{X_{ij}I(Z_i = k)} [(1-\theta_{jk})^{10j - X_{ij}}]^{I(Z_i = k)}\\
+            &\propto \sum_{k=1}^3 \pi_k^{I(Z_i = k)} \sum_{k=1}^3 \sum_{j=1}^3 \binom{10j}{X_{ij}}^{I(Z_i = k)} \theta_{jk}^{X_{ij}I(Z_i = k)} [(1-\theta_{jk})^{10j - X_{ij}}]^{I(Z_i = k)}\\
+            &\propto \Biggl[ \sum_{k=1}^3 \pi_k \Big[  \sum_{j=1}^3 \binom{10j}{X_{ij}} \theta_{jk}^{X_{ij}} (1-\theta_{jk})^{10j - X_{ij}}\Big] \Biggr] ^{I(Z_i = k)}
+\end{flalign*}
+Then for Gibbs Sampler algorithm:
+
+Given $\Pi^{(t)}, \Theta^{(t)}, Z^{(t)}$, we update the parameters by the following:
+\begin{flalign*}
+    \pi_1^{(t+1)}, \pi_2^{(t+1)}, \pi_3^{(t+1)} | - & \sim Dirichlet(\alpha_1 + \sum_{i=1}^{1000} I(Z_i^{(t)} = 1), \alpha_2 + \sum_{i=1}^{1000} I(Z_i^{(t)} = 2), \alpha_3 + \sum_{i=1}^{1000} I(Z_i^{(t)} = 3))\\
+    \theta_{jk}^{(t+1)} & \sim Bino(10j \sum_{i=1}^{1000} I(Z_i^{(t)} = k), \theta_{jk}) \text{  for $j = 1, 2, 3$ and $k = 1, 2, 3$}\\
+    P(Z_i^{(t+1)} = k | -) &= \frac{\pi_k^{(t+1)} \prod_{j=1}^3 \binom{10j}{X_{ij}} \theta_{jk}^{X_{ij}} (1-\theta_{jk})^{10j - X_{ij}} }{\sum_{l=1}^3 \pi_l^{(t+1)} \prod_{j=1}^3 \binom{10j}{X_{ij}} \theta_{jl}^{X_{ij}} (1-\theta_{jl})^{10j - X_{ij}}}
+\end{flalign*}
+
+
+\result
 
 
 
