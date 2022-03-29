@@ -96,7 +96,8 @@ Given $\Pi^{(t)}, \Theta^{(t)}, Z^{(t)}$, we update the parameters by the follow
 \begin{flalign*}
     \pi_1^{(t+1)}, \pi_2^{(t+1)}, \pi_3^{(t+1)} | - & \sim Dirichlet(\alpha_1 + \sum_{i=1}^{1000} I(Z_i^{(t)} = 1), \alpha_2 + \sum_{i=1}^{1000} I(Z_i^{(t)} = 2), \alpha_3 + \sum_{i=1}^{1000} I(Z_i^{(t)} = 3))\\
     \theta_{jk}^{(t+1)} & \sim Bino(10j , \theta_{jk}^{(t)}) \text{  for $j = 1, 2, 3$ and $k = 1, 2, 3$}\\
-    P(Z_i^{(t+1)} = k | -) &= \frac{\pi_k^{(t+1)} \prod_{j=1}^3 \binom{10j}{X_{ij}} (\theta_{jk}^{(t+1)})^{X_{ij}} (1-\theta_{jk}^{(t+1)})^{10j - X_{ij}} }{\sum_{l=1}^3 \pi_l^{(t+1)} \prod_{j=1}^3 \binom{10j}{X_{ij}} (\theta_{jl}^{(t+1)})^{X_{ij}} (1-\theta_{jl}^{(t+1)})^{10j - X_{ij}}}
+    P(Z_i^{(t+1)} = k | -) &= \frac{\pi_k^{(t+1)} \prod_{j=1}^3 \binom{10j}{X_{ij}} (\theta_{jk}^{(t+1)})^{X_{ij}} (1-\theta_{jk}^{(t+1)})^{10j - X_{ij}} }{\sum_{l=1}^3 \pi_l^{(t+1)} \prod_{j=1}^3 \binom{10j}{X_{ij}} (\theta_{jl}^{(t+1)})^{X_{ij}} (1-\theta_{jl}^{(t+1)})^{10j - X_{ij}}}\\
+                           &= \frac{\pi_k^{(t+1)} \prod_{j=1}^3 \theta_{jk}^{(t)}}{\sum_{l=1}^3 \pi_l^{(t+1)} \prod_{j=1}^3 \theta_{jl}^{(t)}}
 \end{flalign*}
 
 
