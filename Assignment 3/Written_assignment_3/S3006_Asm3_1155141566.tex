@@ -64,16 +64,16 @@ Note that given $Z_i = k$, for each sample $i$, $X_{ij} \sim Bino(10j, \theta_{j
 we can derive by the following:
 \begin{flalign*}
     P(\Pi, \Theta, Z | X) &\propto P(\Pi) P(\Theta) P(X, Z | \Pi, \Theta)\\
-                          &\propto \sum_{k=1}^3 \pi_k^{\alpha_k - 1} \sum_{i=1}^{1000} \sum_{k=1}^3 \Big[ \pi_k \sum_{j=1}^3 \binom{10j}{X_{ij}} \theta_{jk}^{X_{ij}} (1-\theta_{jk})^{10j - X_{ij}} \Big]^{I(Z_j = k)}\\
-                          &\propto \sum_{k=1}^3 \pi_k^{\alpha_k - 1} \sum_{i=1}^{1000} \sum_{k=1}^3 \pi_k^{I(Z_i = k)} \sum_{i=1}^{1000} \sum_{k=1}^3 \sum_{j=1}^3 \binom{10j}{X_{ij}}^{I(Z_i = k)} \theta_{jk}^{X_{ij}I(Z_i = k)} [(1-\theta_{jk})^{10j - X_{ij}}]^{I(Z_i = k)}
+                          &\propto \prod_{k=1}^3 \pi_k^{\alpha_k - 1} \prod_{i=1}^{1000} \prod_{k=1}^3 \Big[ \pi_k \prod_{j=1}^3 \binom{10j}{X_{ij}} \theta_{jk}^{X_{ij}} (1-\theta_{jk})^{10j - X_{ij}} \Big]^{I(Z_j = k)}\\
+                          &\propto \prod_{k=1}^3 \pi_k^{\alpha_k - 1} \prod_{i=1}^{1000} \prod_{k=1}^3 \pi_k^{I(Z_i = k)} \prod_{i=1}^{1000} \prod_{k=1}^3 \prod_{j=1}^3 \binom{10j}{X_{ij}}^{I(Z_i = k)} \theta_{jk}^{X_{ij}I(Z_i = k)} [(1-\theta_{jk})^{10j - X_{ij}}]^{I(Z_i = k)}
 \end{flalign*}
 Then for each parameter:
 
 For $\pi$:
 \begin{flalign*}
-    f(\Pi | \Theta, Z) &\propto \sum_{k=1}^3 \pi_k^{\alpha_k - 1} \sum_{i=1}^{1000} \sum_{k=1}^3 \pi_k^{I(Z_i = k)}\\
-                       &\propto \sum_{k=1}^3 \pi_k^{\alpha_k - 1} \sum_{k=1}^3 [\pi_k]^{\sum_{i=1}^{1000} I(Z_i = k)}\\
-                       &\propto \sum_{k=1}^3 \pi_k^{\alpha_k + \sum_{i=1}^{1000} I(Z_i = k) - 1}\\
+    f(\Pi | \Theta, Z) &\propto \prod_{k=1}^3 \pi_k^{\alpha_k - 1} \prod_{i=1}^{1000} \prod_{k=1}^3 \pi_k^{I(Z_i = k)}\\
+                       &\propto \prod_{k=1}^3 \pi_k^{\alpha_k - 1} \prod_{k=1}^3 [\pi_k]^{\sum_{i=1}^{1000} I(Z_i = k)}\\
+                       &\propto \prod_{k=1}^3 \pi_k^{\alpha_k + \sum_{i=1}^{1000} I(Z_i = k) - 1}\\
     \text{Then it follows that:}&\\
     \Pi | \Theta, Z \sim &Dirichlet(\alpha_1 + \sum_{i=1}^{1000} I(Z_i = 1), \alpha_2 + \sum_{i=1}^{1000} I(Z_i = 2), \alpha_3 + \sum_{i=1}^{1000} I(Z_i = 3))
 \end{flalign*}
@@ -86,9 +86,9 @@ For $\theta$:
 \end{flalign*}
 For $Z$:
 \begin{flalign*}
-    Z_i | - &\propto \sum_{i=1}^{1000} \sum_{k=1}^3 \pi_k^{I(Z_i = k)} \sum_{i=1}^{1000} \sum_{k=1}^3 \sum_{j=1}^3 \binom{10j}{X_{ij}}^{I(Z_i = k)} \theta_{jk}^{X_{ij}I(Z_i = k)} [(1-\theta_{jk})^{10j - X_{ij}}]^{I(Z_i = k)}\\
-            &\propto \sum_{k=1}^3 \pi_k^{I(Z_i = k)} \sum_{k=1}^3 \sum_{j=1}^3 \binom{10j}{X_{ij}}^{I(Z_i = k)} \theta_{jk}^{X_{ij}I(Z_i = k)} [(1-\theta_{jk})^{10j - X_{ij}}]^{I(Z_i = k)}\\
-            &\propto \Biggl[ \sum_{k=1}^3 \pi_k \Big[  \sum_{j=1}^3 \binom{10j}{X_{ij}} \theta_{jk}^{X_{ij}} (1-\theta_{jk})^{10j - X_{ij}}\Big] \Biggr] ^{I(Z_i = k)}
+    Z_i | - &\propto \prod_{i=1}^{1000} \prod_{k=1}^3 \pi_k^{I(Z_i = k)} \prod_{i=1}^{1000} \prod_{k=1}^3 \prod_{j=1}^3 \binom{10j}{X_{ij}}^{I(Z_i = k)} \theta_{jk}^{X_{ij}I(Z_i = k)} [(1-\theta_{jk})^{10j - X_{ij}}]^{I(Z_i = k)}\\
+            &\propto \prod_{k=1}^3 \pi_k^{I(Z_i = k)} \prod_{k=1}^3 \prod_{j=1}^3 \binom{10j}{X_{ij}}^{I(Z_i = k)} \theta_{jk}^{X_{ij}I(Z_i = k)} [(1-\theta_{jk})^{10j - X_{ij}}]^{I(Z_i = k)}\\
+            &\propto \Biggl[ \prod_{k=1}^3 \pi_k \Big[  \prod_{j=1}^3 \binom{10j}{X_{ij}} \theta_{jk}^{X_{ij}} (1-\theta_{jk})^{10j - X_{ij}}\Big] \Biggr] ^{I(Z_i = k)}
 \end{flalign*}
 Then for Gibbs Sampler algorithm:
 

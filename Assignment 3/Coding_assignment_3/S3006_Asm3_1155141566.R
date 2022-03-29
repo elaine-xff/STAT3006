@@ -49,6 +49,42 @@ rm(list = ls())
 Q2Data = read.delim("/Users/elainexfff_/Documents/STAT3006/Assignment 3/Coding_assignment_3/Assg3_Q2.txt", 
                         header = TRUE, sep = " ")
 
+#function used to sample Dirichlet distributed r.v.
+rDirichlet <- function(alpha_vec){
+  num <- length(alpha_vec)
+  temp <- NULL
+  for(i in 1:num){
+    temp <- c(temp, rgamma(1, shape = alpha_vec[i], rate = 1))
+  }
+  return(temp/sum(temp))
+} 
+
+
+N = 5000 # iteration number
+pi_t = rep(NA, 1000*3*N) # to store pi_1, pi_2, and pi_3 for each iteration
+theta_t = rep(NA, 3*3*N) # to store theta for each iteration
+z_t = rep(NA, N, 1000) # to store Z for each iteration
+alpha_t = rep(NA, N, 3) # alpha values for Dirichlet Distribution
+
+
+for (i in 1:N) {
+  if(i==1){
+    # initialization
+    alpha_t[1, ] = rep(2, 3)
+    for (j in 1:N) {
+      pi_t[j, , 1] = rDirichlet(alpha_t[1, ])
+    }
+    theta_t[ , , 1] = rep(1, 3, 3)
+    zi_1 = pi_t[ , 1, 1] * 
+    
+  }
+  else{
+    
+  }
+}
+
+
+
 
 
 
