@@ -54,9 +54,9 @@ where $r$ is the accept-reject ratio.
 \derivation
 
 We use $\big\{X_{ij}\big\}_{i = 1, 2, 3, \dots, 1000}^{j = 1, 2, 3}$ to denote the datum of $i$-th sample in $j$-th dimension. 
-Then using the same notation in the question:
+Then using the same notation in the question, the complete-data likelihood function is:
 \begin{flalign*}
-    f(X, Z | \Pi, \Theta) &= \prod_{i=1}^{1000} \prod_{k=1}^3 P(Z_i = k | \Pi, \Theta) P(X_{ij}, j=1, 2, 3 | Z_j, \Pi, \Theta)\\
+    f(X, Z | \Pi, \Theta) &= \prod_{i=1}^{1000} \prod_{k=1}^3 \Big[ P(Z_i = k | \Pi, \Theta) P(X_{ij}, j=1, 2, 3 | Z_j, \Pi, \Theta) \Big]^{I(Z_j = k)}\\
                           &= \prod_{i=1}^{1000} \prod_{k=1}^3 \Big[ P(Z_i = k | \Pi) \prod_{j=1}^3 P(X_{ij} | Z_j, \Theta) \Big]^{I(Z_j = k)}\\
                           &= \prod_{i=1}^{1000} \prod_{k=1}^3 \Big[ \pi_k \prod_{j=1}^3 \binom{10j}{X_{ij}} \theta_{jk}^{X_{ij}} (1-\theta_{jk})^{10j - X_{ij}} \Big]^{I(Z_j = k)}
 \end{flalign*}
@@ -67,8 +67,6 @@ we can derive by the following:
                           &\propto \prod_{k=1}^3 \pi_k^{\alpha_k - 1} \prod_{i=1}^{1000} \prod_{k=1}^3 \Big[ \pi_k \prod_{j=1}^3 \binom{10j}{X_{ij}} \theta_{jk}^{X_{ij}} (1-\theta_{jk})^{10j - X_{ij}} \Big]^{I(Z_j = k)}\\
                           &\propto \prod_{k=1}^3 \pi_k^{\alpha_k - 1} \prod_{i=1}^{1000} \prod_{k=1}^3 \pi_k^{I(Z_i = k)} \prod_{i=1}^{1000} \prod_{k=1}^3 \prod_{j=1}^3 \binom{10j}{X_{ij}}^{I(Z_i = k)} \theta_{jk}^{X_{ij}I(Z_i = k)} [(1-\theta_{jk})^{10j - X_{ij}}]^{I(Z_i = k)}
 \end{flalign*}
-Then for each parameter:
-
 For $\pi$:
 \begin{flalign*}
     f(\Pi | \Theta, Z) &\propto \prod_{k=1}^3 \pi_k^{\alpha_k - 1} \prod_{i=1}^{1000} \prod_{k=1}^3 \pi_k^{I(Z_i = k)}\\
@@ -80,24 +78,25 @@ For $\pi$:
 For $\theta$:
 \begin{flalign*}
     \theta_{jk} | - &\propto \prod_{i=1}^{1000} \prod_{k=1}^3 \Big[ \prod_{j=1}^3 \binom{10j}{X_{ij}} \theta_{jk}^{X_{ij}} (1-\theta_{jk})^{10j - X_{ij}} \Big]^{I(Z_j = k)}\\
-                    &\propto \prod_{i=1}^{1000} \Big[ \binom{10j}{X_{ij}} \theta_{jk}^{X_{ij}} (1-\theta_{jk})^{10j - X_{ij}} \Big]\\
+                    &\propto \prod_{i=1}^{1000} \Big[ \theta_{jk}^{X_{ij}} (1-\theta_{jk})^{10j - X_{ij}} \Big]^{I(Z_j = k)}\\
+                    &\propto \theta_{jk}^{\sum_{i=1}^{1000}X_{ij}I(Z_i=k)} (1-\theta_{jk})^{\sum_{i=1}^{1000} (10j - X_{ij})I(Z_i=k)}\\
     \text{Then it follows that:}&\\
-    \theta_{jk} | - &\sim Bino(10j, \theta_{jk})
+    \theta_{jk} | - &\sim Beta(1 + \sum_{i=1}^{1000}X_{ij}I(Z_i=k), 1 + \sum_{i=1}^{1000} (10j - X_{ij})I(Z_i=k))\\
 \end{flalign*}
 For $Z$:
 \begin{flalign*}
     Z_i | - &\propto \prod_{i=1}^{1000} \prod_{k=1}^3 \pi_k^{I(Z_i = k)} \prod_{i=1}^{1000} \prod_{k=1}^3 \prod_{j=1}^3 \binom{10j}{X_{ij}}^{I(Z_i = k)} \theta_{jk}^{X_{ij}I(Z_i = k)} [(1-\theta_{jk})^{10j - X_{ij}}]^{I(Z_i = k)}\\
             &\propto \prod_{k=1}^3 \pi_k^{I(Z_i = k)} \prod_{k=1}^3 \prod_{j=1}^3 \binom{10j}{X_{ij}}^{I(Z_i = k)} \theta_{jk}^{X_{ij}I(Z_i = k)} [(1-\theta_{jk})^{10j - X_{ij}}]^{I(Z_i = k)}\\
-            &\propto \Biggl[ \prod_{k=1}^3 \pi_k \Big[  \prod_{j=1}^3 \binom{10j}{X_{ij}} \theta_{jk}^{X_{ij}} (1-\theta_{jk})^{10j - X_{ij}}\Big] \Biggr] ^{I(Z_i = k)}
+            &\propto \prod_{k=1}^3 \Biggl[ \pi_k \Big[  \prod_{j=1}^3 \binom{10j}{X_{ij}} \theta_{jk}^{X_{ij}} (1-\theta_{jk})^{10j - X_{ij}}\Big] \Biggr] ^{I(Z_i = k)}
 \end{flalign*}
 Then for Gibbs Sampler algorithm:
 
 Given $\Pi^{(t)}, \Theta^{(t)}, Z^{(t)}$, we update the parameters by the following:
 \begin{flalign*}
     \pi_1^{(t+1)}, \pi_2^{(t+1)}, \pi_3^{(t+1)} | - & \sim Dirichlet(\alpha_1 + \sum_{i=1}^{1000} I(Z_i^{(t)} = 1), \alpha_2 + \sum_{i=1}^{1000} I(Z_i^{(t)} = 2), \alpha_3 + \sum_{i=1}^{1000} I(Z_i^{(t)} = 3))\\
-    \theta_{jk}^{(t+1)} & \sim Bino(10j , \theta_{jk}^{(t)}) \text{  for $j = 1, 2, 3$ and $k = 1, 2, 3$}\\
+    \theta_{jk}^{(t+1)} | - &\propto Beta(1 + \sum_{i=1}^{1000}X_{ij}I(Z_i^{(t)}=k), 1 + \sum_{i=1}^{1000} (10j - X_{ij})I(Z_i^{(t)}=k))\\
     P(Z_i^{(t+1)} = k | -) &= \frac{\pi_k^{(t+1)} \prod_{j=1}^3 \binom{10j}{X_{ij}} (\theta_{jk}^{(t+1)})^{X_{ij}} (1-\theta_{jk}^{(t+1)})^{10j - X_{ij}} }{\sum_{l=1}^3 \pi_l^{(t+1)} \prod_{j=1}^3 \binom{10j}{X_{ij}} (\theta_{jl}^{(t+1)})^{X_{ij}} (1-\theta_{jl}^{(t+1)})^{10j - X_{ij}}}\\
-                           &= \frac{\pi_k^{(t+1)} \prod_{j=1}^3 \theta_{jk}^{(t)}}{\sum_{l=1}^3 \pi_l^{(t+1)} \prod_{j=1}^3 \theta_{jl}^{(t)}}
+                        %    &= \frac{\pi_k^{(t+1)} \prod_{j=1}^3 \theta_{jk}^{(t)}}{\sum_{l=1}^3 \pi_l^{(t+1)} \prod_{j=1}^3 \theta_{jl}^{(t)}}
 \end{flalign*}
 
 

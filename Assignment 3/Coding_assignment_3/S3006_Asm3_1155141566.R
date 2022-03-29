@@ -76,14 +76,15 @@ for (i in 1:N) {
       pi_t[j, , 1] = rDirichlet(alpha_t[1,])
     }
     
-    theta_t[ , , 1] = matrix(1, 3, 3)
+    theta_t[ , , 1] = matrix(1/9, 3, 3)
     
-    zi_1 = pi_t[, 1, 1] * theta_t[1, 1, 1] *  theta_t[2, 1, 1] *  theta_t[3, 1, 1]
-    zi_2 = pi_t[, 2, 1] * theta_t[1, 2, 1] *  theta_t[2, 2, 1] *  theta_t[3, 2, 1]
-    zi_3 = pi_t[, 3, 1] * theta_t[1, 3, 1] *  theta_t[2, 3, 1] *  theta_t[3, 3, 1]
-    prob_1 = zi_1 / (zi_1 + zi_2 + zi_3)
-    prob_2 = zi_2 / (zi_1 + zi_2 + zi_3)
-    prob_3 = zi_3 / (zi_1 + zi_2 + zi_3)
+    binom_k_1 = pi_t[, 1, 1] * dbinom(Q2Data[,1], 10 * 1, theta_t[1,1,1]) * dbinom(Q2Data[,2], 10 * 2, theta_t[2,1,1]) * dbinom(Q2Data[,3], 10 * 3, theta_t[3,1,1])
+    binom_k_2 = pi_t[, 2, 1] * dbinom(Q2Data[,1], 10 * 1, theta_t[1,2,1]) * dbinom(Q2Data[,2], 10 * 2, theta_t[2,2,1]) * dbinom(Q2Data[,3], 10 * 3, theta_t[3,2,1])
+    binom_k_3 = pi_t[, 3, 1] * dbinom(Q2Data[,1], 10 * 1, theta_t[1,3,1]) * dbinom(Q2Data[,2], 10 * 2, theta_t[2,3,1]) * dbinom(Q2Data[,3], 10 * 3, theta_t[3,3,1])
+    
+    prob_1 = binom_k_1 / (binom_k_1 + binom_k_2 + binom_k_3)
+    prob_2 = binom_k_2 / (binom_k_1 + binom_k_2 + binom_k_3)
+    prob_3 = binom_k_3 / (binom_k_1 + binom_k_2 + binom_k_3)
     for (j in 1:1000) {
       z_t[1, j] = sample(1:3, 1, prob = c(prob_1[j], prob_2[j], prob_3[j]), replace = TRUE)
     }
@@ -97,16 +98,23 @@ for (i in 1:N) {
     
     for (j in 1:3) {
       for (k in 1:3) {
-        theta_t[j, k, i] = rbinom(1, 10*j, theta_t[j, k, i-1])
+        sum_x = 0
+        for (z in 1:1000) {
+          if(z_t[i-1, z] == k){
+            sum_x = sum_x + Q2Data[z,j]
+          }
+        }
+        theta_t[j, k, i] = rbeta(1, 1+sum_x, 1+10*j*sum(z_t[i-1, ] == k) - sum_x)
       }
     }
     
-    zi_1 = pi_t[ , 1, i] * theta_t[1, 1, i] *  theta_t[2, 1, i] *  theta_t[3, 1, i]
-    zi_2 = pi_t[ , 2, i] * theta_t[1, 2, i] *  theta_t[2, 2, i] *  theta_t[3, 2, i]
-    zi_3 = pi_t[ , 3, i] * theta_t[1, 3, i] *  theta_t[2, 3, i] *  theta_t[3, 3, i]
-    prob_1 = zi_1 / (zi_1 + zi_2 + zi_3)
-    prob_2 = zi_2 / (zi_1 + zi_2 + zi_3)
-    prob_3 = zi_3 / (zi_1 + zi_2 + zi_3)
+    binom_k_1 = pi_t[, 1, i] * dbinom(Q2Data[,1], 10 * 1, theta_t[1,1,i]) * dbinom(Q2Data[,2], 10 * 2, theta_t[2,1,i]) * dbinom(Q2Data[,3], 10 * 3, theta_t[3,1,i])
+    binom_k_2 = pi_t[, 2, i] * dbinom(Q2Data[,1], 10 * 1, theta_t[1,2,i]) * dbinom(Q2Data[,2], 10 * 2, theta_t[2,2,i]) * dbinom(Q2Data[,3], 10 * 3, theta_t[3,2,i])
+    binom_k_3 = pi_t[, 3, i] * dbinom(Q2Data[,1], 10 * 1, theta_t[1,3,i]) * dbinom(Q2Data[,2], 10 * 2, theta_t[2,3,i]) * dbinom(Q2Data[,3], 10 * 3, theta_t[3,3,i])
+    
+    prob_1 = binom_k_1 / (binom_k_1 + binom_k_2 + binom_k_3)
+    prob_2 = binom_k_2 / (binom_k_1 + binom_k_2 + binom_k_3)
+    prob_3 = binom_k_3 / (binom_k_1 + binom_k_2 + binom_k_3)
     for (j in 1:1000) {
       z_t[i, j] = sample(1:3, 1, prob = c(prob_1[j], prob_2[j], prob_3[j]), replace = TRUE)
     }
@@ -115,17 +123,33 @@ for (i in 1:N) {
 
 }
 
+B = 3000 # burn-in period
+
+collected_pi_t = pi_t[,,(B+1):N]
+#estimated_pi = rowMeans(collected_pi_t, dims = 2)
+estimated_pi = apply(collected_pi_t, c(1,2), mean)
+
+estimated_theta = matrix(NA, 3, 3)
+for (i in 1:3) {
+  for (j in 1:3){
+    estimated_theta[i, j] = mean(theta_t[i, j, (B+1):N])
+  }
+}
+
+estimated_z = matrix(NA, 1000, 1)
+for(j in 1:1000){
+  temp <- table(z_t[(B+1):N, j])
+  ind <- which.max(temp)
+  estimated_z[j] = names(temp)[ind]
+}
 
 
+# plot
+dev.off()
+#par(mfrow = c(100,1))
+plot(theta_t[1,1,], ylim = c(0.75,0.85))
 
+plot(z_t[, 1])
 
-
-
-
-
-
-
-
-
-
+plot(pi_t[,,1])
 
