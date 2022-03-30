@@ -157,5 +157,80 @@ plot(pi_t[,,1])
 
 ## Question 3: Hybrid Gibbs Sampler
 
+rm(list = ls())
+set.seed(3006)
 
+N = 10000 #iteration number
+p_1_t = matrix(NA, N, 4) # prob. for stage 1
+p_2_t = matrix(NA, N, 4) # prob. for stage 2
+y_t = matrix(NA, N, 4) # col 1 for y11, 2 for y12, 3 for y22, 4 for y24
+
+#function used to sample Dirichlet distributed r.v.
+rDirichlet <- function(alpha_vec){
+  num <- length(alpha_vec)
+  temp <- NULL
+  for(i in 1:num){
+    temp <- c(temp, rgamma(1, shape = alpha_vec[i], rate = 1))
+  }
+  return(temp/sum(temp))
+} 
+
+# initialization
+p_1_t[1, ] = rDirichlet(c(2,2,2,2))
+p_2_t[1, ] = rDirichlet(c(2,2,2,2))
+y_t[1, ] = c(100-22-31-20, 20, 20, 100-28-26-20)
+
+# Hybrid Gibbs Sampler
+accept_num = 0
+for (i in 2:N) {
+  # sample p's
+  p_1_t[i, ] = rDirichlet(p_1_t[i-1, ] + c(y_t[i-1, 1], y_t[i-1, 2], 22, 31))
+  p_2_t[i, ] = rDirichlet(p_2_t[i-1, ] + c(28, y_t[i-1, 3], 26, y_t[i-1, 4]))
+  
+  # sample unobserved y's
+  # sample yi2 (i = 1,2)
+  for (j in 2:3) {
+    # get a proposal distribution depends on its last iteration
+    if (y_t[i-1, j] == 15){
+      y_proposal = y_t[i-1, j] + 1
+    }
+    if (y_t[i-1, j] == 32){
+      y_proposal = y_t[i-1, j] - 1
+    }
+    if ( (y_t[i-1, j]>15) & (y_t[i-1, j]<32) ){
+      y_proposal = y_t[i-1, j] + sample(c(-1, 1), 1)
+    }
+    
+    if( j==2 ){
+      p_2 = p_1_t[i, 2]
+    }else{
+      p_2 = p_2_t[i, 2]
+    }
+    
+    r = min ( p_2^(y_proposal)/factorial(y_proposal)/p_2^(y_t[i-1, j])/factorial(y_t[i-1, j]), 1 )
+    
+    if(runif(1) < r){
+      y_t[i, j] = y_proposal # accept proposal
+      accept_num = accept_num + 1
+    }else{
+      y_t[i, j] = y_t[i-1, j] # reject proposal
+    }
+    
+  }
+  
+  y_t[i, 1] = 100 - 22 - 31 - y_t[i, 2]
+  y_t[i, 4] = 100 - 28 - 26 - y_t[i, 3]
+  
+}
+
+accept_ratio = accept_num / (2*N) # to check if the acceptance rate is good enough
+
+
+B = 5000 # burn-in period
+estimated_p_1 = rep(NA, 4)
+estimated_p_2 = rep(NA, 4)
+for (j in 1:4) {
+  estimated_p_1[j] = mean(p_1_t[(B+1):N, j])
+  estimated_p_2[j] = mean(p_2_t[(B+1):N, j])
+}
 

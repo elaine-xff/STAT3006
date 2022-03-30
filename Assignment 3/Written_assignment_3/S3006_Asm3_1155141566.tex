@@ -44,7 +44,7 @@ The MH-Step to sample 78 unobserved $y's$ is
         y_j^{(t)}, & \text{with probability } \frac{1}{3};\\
         y_j^{(t)} + 1, & \text{with probability } \frac{1}{3}.
     \end{cases}\\
-    r     &= \min \Big\{ \frac{[\lambda^{(t+1)}]^{y_j^*}/y_j^*}{[\lambda^{(t+1)}]^{y_j^{(t)}}/y_j^{(t)}}I(y_j^* \geq 5), 1\Big\}
+    r     &= \min \Big\{ \frac{[\lambda^{(t+1)}]^{y_j^*}/y_j^*!}{[\lambda^{(t+1)}]^{y_j^{(t)}}/y_j^{(t)}!}I(y_j^* \geq 5), 1\Big\}
 \end{flalign*}
 where $r$ is the accept-reject ratio.
 
@@ -105,6 +105,33 @@ Given $\Pi^{(t)}, \Theta^{(t)}, Z^{(t)}$, we update the parameters by the follow
 
 
 \question{3}{Hybrid Gibbs Sampler (40\%)} 
+Note that for $i = 1, 2$, $\mathbf{Y}_i = (y_{i1}, y_{i2}, y_{i3}, y_{i4}) \sim multinomial (100, p_1, p_2, p_3, p_4)$, then:
+\begin{flalign*}
+    &\text{Prior}: \pi(\mathbf{p}) \propto Dirichlet(\alpha_1, \alpha_2, \alpha_3, \alpha_4) \propto Dirichlet(2, 2, 2, 2) \propto p_1 p_2 p_3 p_4;\\
+    &P(y_{i1}, y_{i2}, y_{i3}, y_{i4} | p_1, p_2, p_3, p_4) = \frac{100!}{y_{i1}! y_{i2}! y_{i3}! y_{i4}!} p_1^{y_{i1}}p_2^{y_{i2}}p_3^{y_{i3}}p_4^{y_{i4}}\\
+    &P(p_1, p_2, p_3, p_4 | y_{i1}, y_{i2}, y_{i3}, y_{i4}) \propto P(y_{i1}, y_{i2}, y_{i3}, y_{i4} | p_1, p_2, p_3, p_4) f(p_1, p_2, p_3, p_4 | \alpha_1, \alpha_2, \alpha_3, \alpha_4)\\
+    & \hspace*{5cm} \propto \frac{100!}{y_{i1}! y_{i2}! y_{i3}! y_{i4}!} p_1^{y_{i1}+\alpha_1-1}p_2^{y_{i2}+\alpha_2-1}p_3^{y_{i3}+\alpha_3-1}p_4^{y_{i4}+\alpha_4-1}\\
+    & \hspace*{0.5cm} p_1, p_2, p_3, p_4 | y_{i1}, y_{i2}, y_{i3}, y_{i4} \sim Dirichlet(y_{i1}+\alpha_1, y_{i2}+\alpha_2, y_{i3}+\alpha_3, y_{i4}+\alpha_4)\\
+    & \hspace*{3cm} P(y_{i2}| \mathbf{Y}, \mathbf{P} ) \propto \frac{p_2^{y_{i2}}}{y_{i2}!}
+\end{flalign*}
+Then MH-Step to update $y_{i2}$ (for $i= 1, 2$) is
+\begin{flalign*}
+    y_{i2}^{(t+1)} &= \begin{cases}
+        y_{i2}^{(t)} + 1 , &\text{with probability $\frac{1}{2}$}\\
+        y_{i2}^{(t)} - 1 , &\text{with probability $\frac{1}{2}$}\\\end{cases}\\
+    y_{i2}^{(t+1)} &= y_{i2}^{(t)} + 1, \hspace*{0.8cm} \text{if $y_{i2}^{(t)} = 15$}\\
+    y_{i2}^{(t+1)} &= y_{i2}^{(t)} - 1, \hspace*{0.8cm} \text{if $y_{i2}^{(t)} = 32$}\\
+    r        &= \min\Big\{\frac{p_2^{y_{i2}^{(t+1)}}/y_{i2}^{(t+1)}!}{p_2^{y_{i2}^{(t)}}/y_{i2}^{(t)}!},1\Big\}\\
+\end{flalign*}
+where $r$ is the accept-reject ratio.
+Then for another two unobserved variables:
+\begin{flalign*}
+    y_{11}^{(t+1)} &= 100 - y_{13} - y_{14} - y_{12}^{(t+1)} = 100 - 22 - 31 - y_{12}^{(t+1)}\\
+    y_{24}^{(t+1)} &= 100 - y_{21} - y_{23} - y_{22}^{(t+1)} = 100 - 28 - 26 - y_{22}^{(t+1)}\\
+\end{flalign*}
+\result
 
+For Stage 1: $p_1 = 0.27$, $p_2 = 0.199$, $p_3 = 0.22$, and $p_4 = 0.311$.
 
+For Stage 2: $p_1 = 0.281$, $p_2 = 0.2$, $p_3 = 0.259$, and $p_4 = 0.259$.
 \end{document}
