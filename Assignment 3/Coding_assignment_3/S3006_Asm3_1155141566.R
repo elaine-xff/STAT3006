@@ -146,10 +146,16 @@ for(j in 1:1000){
 
 # plot
 dev.off()
-#par(mfrow = c(100,1))
+
 plot(theta_t[1,1,], ylim = c(0.75,0.85))
 
 plot(z_t[, 1])
 
 plot(pi_t[,,1])
+
+
+
+## Question 3: Hybrid Gibbs Sampler
+
+
 
