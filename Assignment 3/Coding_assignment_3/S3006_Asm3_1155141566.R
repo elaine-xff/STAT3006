@@ -177,8 +177,8 @@ rDirichlet <- function(alpha_vec){
 
 # initialization
 p_1_t[1, ] = rDirichlet(c(2,2,2,2))
-p_2_t[1, ] = rDirichlet(c(2,2,2,2))
-y_t[1, ] = c(100-22-31-20, 20, 20, 100-28-26-20)
+p_2_t[1, ] = p_1_t[1, ]
+y_t[1, ] = c(100-22-31-20, 20, 18, 100-28-26-18)
 
 # Hybrid Gibbs Sampler
 accept_num = 0
@@ -207,7 +207,7 @@ for (i in 2:N) {
       p_2 = p_2_t[i, 2]
     }
     
-    r = min ( p_2^(y_proposal)/factorial(y_proposal)/p_2^(y_t[i-1, j])/factorial(y_t[i-1, j]), 1 )
+    r = min ( (p_2^(y_proposal)/factorial(y_proposal))/(p_2^(y_t[i-1, j])/factorial(y_t[i-1, j])), 1 )
     
     if(runif(1) < r){
       y_t[i, j] = y_proposal # accept proposal
@@ -292,7 +292,7 @@ for (i in 2:N) {
     
     p_2 = p_t[i, 2]
     
-    r = min ( p_2^(y_proposal)/factorial(y_proposal)/p_2^(y_t[i-1, j])/factorial(y_t[i-1, j]), 1 )
+    r = min ( (p_2^(y_proposal)/factorial(y_proposal))/(p_2^(y_t[i-1, j])/factorial(y_t[i-1, j])), 1 )
     
     if(runif(1) < r){
       y_t[i, j] = y_proposal # accept proposal
