@@ -101,8 +101,57 @@ Given $\Pi^{(t)}, \Theta^{(t)}, Z^{(t)}$, we update the parameters by the follow
 
 \result
 
+Estimation of $\Pi$:
+
+$\hat{\pi_1} = 0.499$, $\hat{\pi_2} = 0.298$, and $\hat{\pi_3} = 0.203$.
 
 
+Estimation of $\Theta$:
+
+$\theta_{11} = 0.807$, $\theta_{12} = 0.490$, $\theta_{13} = 0.196$, $\theta_{21} = 0.206$,
+$\theta_{22} = 0.804$, $\theta_{23} = 0.515$, $\theta_{31} = 0.502$, $\theta_{32} = 0.196$, and $\theta_{33} = 0.797$.
+
+Estimation of $Z$:
+
+Samples of cluster 1:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{figures/z1.png}
+    \caption{Samples in cluster 1}
+\end{figure}
+Samples of cluster 2:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{figures/z2.png}
+    \caption{Samples in cluster 2}
+\end{figure}
+Samples of cluster 3:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{figures/z3.png}
+    \caption{Samples in cluster 3}
+\end{figure}
+
+Traceplots:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{figures/pi_1 plot.png}
+    \caption{Traceplot of $\pi_1$}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{figures/z_1 plot.png}
+    \caption{Traceplot of $Z_1$}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{figures/theta_11 plot.png}
+    \caption{Traceplot of $\theta_{11}$}
+\end{figure}
+\newpage
 \question{3}{Hybrid Gibbs Sampler (40\%)} 
 Note that for $i = 1, 2$, $\mathbf{Y}_i = (y_{i1}, y_{i2}, y_{i3}, y_{i4}) \sim multinomial (100, p_1, p_2, p_3, p_4)$, then:
 \begin{flalign*}
@@ -130,9 +179,5 @@ Then for another two unobserved variables:
 \end{flalign*}
 \result
 
-% For Stage 1: $p_1 = 0.319$, $p_2 = 0.15$, $p_3 = 0.22$, and $p_4 = 0.311$.
-
-% For Stage 2: $p_1 = 0.282$, $p_2 = 0.15$, $p_3 = 0.26$, and $p_4 = 0.308$.
-
-$p_1 = 0.292$, $p_2 = 0.156$, $p_3 = 0.229$, and $p_4 = 0.323$.
+$p_1 = 0.301$, $p_2 = 0.149$, $p_3 = 0.239$, and $p_4 = 0.311$.
 \end{document}
