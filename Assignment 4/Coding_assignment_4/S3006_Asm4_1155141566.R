@@ -1,4 +1,5 @@
-## Question 1:
+## Question 1: Parallel computing for EM alogorithm
+
 rm(list=ls())
 #install.packages("parallel")
 #install.packages("foreach")
@@ -192,7 +193,8 @@ dbDisconnect(con)
 dbUnloadDriver(drv)
 
 
-## Question 3:
+## Question 3: Parse HTML
+
 rm(list=ls())
 #install.packages("XML")
 #install.packages("httr")
