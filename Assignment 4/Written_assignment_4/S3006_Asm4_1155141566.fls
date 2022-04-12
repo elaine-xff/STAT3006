@@ -256,11 +256,39 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
-INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q2.1.png
-INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q2.1.png
-INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q2.1.png
-INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q2.1.png
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmmi8.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
 OUTPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/S3006_Asm4_1155141566.pdf
+INPUT /usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map
+INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q2.1.png
+INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q2.1.png
+INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q2.1.png
+INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q2.1.png
 INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q2.1.png
 INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q2.2.png
 INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q2.2.png
@@ -272,7 +300,16 @@ INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/fi
 INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q2.3.png
 INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q2.3.png
 INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q2.3.png
-INPUT /usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/S3006_Asm4_1155141566.aux
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb

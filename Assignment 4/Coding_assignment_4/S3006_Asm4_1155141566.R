@@ -1,8 +1,12 @@
 ## Question 1:
+rm(list=ls())
+install.packages("parallel")
+library(parallel)
 
+detectCores()
 
 ## Question 2: Database Access from R
-
+rm(list=ls())
 #install.packages("RMySQL")
 #install.packages("DBI")
 library("RMySQL")
@@ -37,6 +41,28 @@ dbUnloadDriver(drv)
 
 
 ## Question 3:
+rm(list=ls())
+#install.packages("XML")
+#install.packages("httr")
+#install.packages("RCurl")
+library(XML)
+library(httr)
+library(RCurl)
+
+# (a) find all the companies and ticker symbols
+url_complist = "https://www.slickcharts.com/nasdaq100"
+doc_complist = htmlTreeParse(rawToChar(GET(url_complist)$content), useInternalNodes = TRUE)
+
+
+
+
+
+
+
+
+
+
+
 
 
 

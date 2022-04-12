@@ -23,6 +23,35 @@
 %Section B==============Put your answers to the questions below here=======================
 
 \question{1}{Parallel Computing for EM Alogorithm (40\%)} 
+The EM algorithm in the question:
+
+Given initial guess: $\pi_1^{(0)}, \pi_2^{(0)}, \mu_1^{(0)}, \mu_2^{(0)}, \mu_3^{(0)}, \sigma_1^{(0)}, \sigma_2^{(0)}, \sigma_3^{(0)}$, for $t \geq 0$ and $t \in \mathbb{Z}$:
+
+$\mathbf{E-step}$: Calculate $E(Z_i^{(t)} | \Theta^{(t)})$, where $\Theta^{(t)} = {\pi_1^{(t)}, \pi_2^{(t)}, \mu_1^{(t)}, \mu_2^{(t)}, \mu_3^{(t)}, {\sigma_1^2}^{(t)}, {\sigma_2^2}^{(t)}, {\sigma_3^2}^{(t)}}$.
+\begin{flalign*}
+    \widehat{Z_{ik}}^{(t)} &= E(Z_i = k | \Theta^{(t)}) = E(Z_i^{(t)} | \pi_1^{(t)}, \pi_2^{(t)}, \mu_1^{(t)}, \mu_2^{(t)}, \mu_3^{(t)}, {\sigma_1^2}^{(t)}, {\sigma_2^2}^{(t)}, {\sigma_3^2}^{(t)} )\\
+        &= \frac{\pi_k^{(t)} \frac{1}{\sqrt{2\pi} {\sigma_k}^{(t)}} e^{-\frac{(y_i-\mu_k^{(t)})^2}{2 {\sigma_k^2}^{(t)}}}  }{\pi_1^{(t)} \frac{1}{\sqrt{2\pi} {\sigma_1}^{(t)}} e^{-\frac{(y_i-\mu_1^{(t)})^2}{2 {\sigma_1^2}^{(t)}}} + \pi_2^{(t)} \frac{1}{\sqrt{2\pi} {\sigma_2}^{(t)}} e^{-\frac{(y_i-\mu_2^{(t)})^2}{2 {\sigma_2^2}^{(t)}}} + (1-\pi_1^{(t)}-\pi_2^{(t)}) \frac{1}{\sqrt{2\pi} {\sigma_3}^{(t)}} e^{-\frac{(y_i-\mu_3^{(t)})^2}{2 {\sigma_3^2}^{(t)}}}}
+\end{flalign*}
+
+$\mathbf{M-step}$: Update $\Theta^{(t+1)}$ by equations $(1)$ to $(8)$ listed at the next page.
+
+$\mathbf{Stopping}$ $\mathbf{criterion}$: $|L(\Theta^{(t)}  | \mathbf{Y})) - L(\Theta^{(T+1)}  | \mathbf{Y}))| < $ tolerance.
+
+Iterative scheme:
+\begin{flalign}
+    \pi_1^{(t+1)} &= \frac{\sum_{i=1}^n \widehat{Z_{i1}}^{(t)}}{\sum_{i=1}^n \widehat{Z_{i1}}^{(t)} + \sum_{i=1}^n \widehat{Z_{i2}}^{(t)} + \sum_{i=1}^n \widehat{Z_{i3}}^{(t)}}\\
+    \pi_2^{(t+1)} &= \frac{\sum_{i=1}^n \widehat{Z_{i2}}^{(t)}}{\sum_{i=1}^n \widehat{Z_{i1}}^{(t)} + \sum_{i=1}^n \widehat{Z_{i2}}^{(t)} + \sum_{i=1}^n \widehat{Z_{i3}}^{(t)}}\\
+    \mu_1^{(t+1)} &= \frac{\sum_{i=1}^n \widehat{Z_{i1}}^{(t)} y_i}{\sum_{i=1}^n \widehat{Z_{i1}}^{(t)}}\\
+    \mu_2^{(t+1)} &= \frac{\sum_{i=1}^n \widehat{Z_{i2}}^{(t)} y_i}{\sum_{i=1}^n \widehat{Z_{i2}}^{(t)}}\\
+    \mu_3^{(t+1)} &= \frac{\sum_{i=1}^n \widehat{Z_{i3}}^{(t)} y_i}{\sum_{i=1}^n \widehat{Z_{i3}}^{(t)}}\\
+    {\sigma_1^2}^{(t+1)} &= \frac{\sum_{i=1}^n \widehat{Z_{i1}}^{(t)} (y_i - \mu_1^{(t)})^2}{\sum_{i=1}^n \widehat{Z_{i1}}^{(t)}}\\
+    {\sigma_2^2}^{(t+1)} &= \frac{\sum_{i=1}^n \widehat{Z_{i2}}^{(t)} (y_i - \mu_2^{(t)})^2}{\sum_{i=1}^n \widehat{Z_{i2}}^{(t)}}\\
+    {\sigma_3^2}^{(t+1)} &= \frac{\sum_{i=1}^n \widehat{Z_{i3}}^{(t)} (y_i - \mu_3^{(t)})^2}{\sum_{i=1}^n \widehat{Z_{i3}}^{(t)}}
+\end{flalign}
+where $\widehat{Z_{i1}}^{(t)} + \sum_{i=1}^n \widehat{Z_{i2}}^{(t)} + \sum_{i=1}^n \widehat{Z_{i3}}^{(t)} = n$ (the sample size).
+
+In both E-step and M-step, the iterative schemes for each parameter and $Z_i$, $i=1, 2, 3$ are independent. Therefore, we can apply parallel computing 
+in updating all the parameters and $Z$'s.
 
 \question{2}{Database Access from R (30\%)}
 SQL in the pictures following highlighted in blue in the double quotes.
