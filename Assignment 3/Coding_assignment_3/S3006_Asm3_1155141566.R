@@ -15,7 +15,7 @@ accept_num = 0
 set.seed(3006)
 for (i in 2:N) {
   # sample lambda
-  lambda_t[i] = rgamma(1, shape = 422 + sum(Y_t[i-1, ]), rate = 500)
+  lambda_t[i] = rgamma(1, shape = 73*1+136*2+95*3+83*4 + sum(Y_t[i-1, ]), rate = 500)
   
   # sample 78 unobserved variables (MH-Step)
   for (j in 1:78) {
