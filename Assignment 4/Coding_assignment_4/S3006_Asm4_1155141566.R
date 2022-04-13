@@ -123,6 +123,21 @@ maximization <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3
   z3 = unlist(z[3])
   
   # Update the parameters
+  fun1 = function(p, q, r){
+    return(sum(p) / sum(p+q+r))
+  }
+  fun2 = function(x, data){
+    return(sum(x * data) / sum(x))
+  }
+  fun3 = function(x, mu, data){
+    return(sqrt(sum(x  * (data - mu)^2) / sum(x)))
+  }
+  parallelizedfnc = function(z1, z2, z3, mu_1, mu_2, mu_3, y){
+    require(parallel)
+    funs = list()
+  }
+  
+  tasks = list(job1 = function())
   new_pi_1 = sum(z1) / sum(z1 + z2 + z3)
   new_pi_2 = sum(z2) / sum(z1 + z2 + z3)
   new_mu_1 = sum(z1 * y) / sum(z1)
@@ -213,13 +228,18 @@ comp = comp_info[, c(2:3)]
 
 # (b) retrieve Market Cap, Price to Book Value, and Dividend Yield from Y-Charts
 url_marklist = "https://ycharts.com/companies/FB"
-doc_marklist =  htmlTreeParse(rawToChar(GET(url_marklist)$content), useInternalNodes = TRUE)
+destfile = "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Coding_assignment_4/FB.html"
+download.file(url_marklist, destfile)
 
+doc_marklist = htmlTreeParse(destfile, useInternalNodes = TRUE)
 
+mark_link = xpathSApply(doc_marklist, "//table//a/@href")
+mark_value = xpathSApply(doc_marklist, "//table//a", xmlValue)
 
+value_idx_to_survey = c(which(mark_value == "Market Cap"), which(mark_value == "Price to Book Value"), which(mark_value == "Dividend"))
+link_to_use = c(mark_link[value_idx_to_survey])
 
-
-
+#xpathSApply(doc_marklist, "//table[1]//a/", , xmlGetAttr, "href")
 
 
 

@@ -1,0 +1,3810 @@
+
+
+
+
+
+
+<!doctype html>
+<html lang="en" ng-jq ng-strict-di ng-app="stocksQuoteApp">
+    <head>
+        <title>
+        FB Stock Price &amp; Charts | Meta Platforms
+        </title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- This code allows us to correctly display the page on mobile devices -->
+<script defer>
+    var viewport = document.querySelector('meta[name=viewport]');
+    if (viewport) {
+        var minWidth = 700;
+        if (screen.width < minWidth) {
+            document.head.removeChild(viewport);
+            var newViewport = document.createElement('meta');
+            newViewport.setAttribute('name', 'viewport');
+            newViewport.setAttribute('content', 'width=' + minWidth);
+            document.head.appendChild(newViewport);
+        }
+    }
+</script>
+
+
+        
+        <script>
+    if (navigator.userAgent.indexOf('Trident') !== -1 || navigator.userAgent.indexOf('MSIE') !== -1) {
+        window.onload=function() {
+            var ie_banner = document.createElement('div');
+            ie_banner.innerText = 'We are no longer supporting Internet Explorer. We recommend you switch to another supported browser for ' +
+                'more security, speed and the best experience on this site. '
+            ie_banner.setAttribute('style', 'position: fixed; top: 0; left: 0; width: 100%; min-height: 24px; padding: 12px; background-color: #ffece2; text-align: center; font-size: 16px; font-weight: 600; z-index: 9999;');
+            var edge_link = document.createElement('a');
+            edge_link.setAttribute('href', 'https://www.microsoft.com/en-us/edge');
+            edge_link.setAttribute('target', '_blank');
+            edge_link.innerText = 'Click here to download Microsoft Edge.'
+            ie_banner.appendChild(edge_link);
+            document.body.appendChild(ie_banner);
+            document.body.style.paddingTop = '48px';
+        }
+    }
+</script>
+
+
+        
+
+
+<meta charset="utf-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+
+<link rel="manifest" href="/media/images/icons/site.webmanifest">
+<meta name="application-name" content="YCharts">
+<meta name="theme-color" content="#ff0000">
+
+
+<link rel="shortcut icon" href="//static.ycharts.com/images/icons/favicon.637225eac278.ico">
+<link rel="mask-icon" href="//static.ycharts.com/images/icons/safari-pinned-tab.25e890b98a32.svg" color="#0282e8">
+<link rel="icon" type="image/png" sizes="16x16" href="//static.ycharts.com/images/icons/favicon-16x16.29edabc6dd08.png">
+<link rel="icon" type="image/png" sizes="32x32" href="//static.ycharts.com/images/icons/favicon-32x32.eebc3b76e0ed.png">
+<link rel="icon" type="image/png" sizes="48x48" href="//static.ycharts.com/images/icons/android-chrome-48x48.96781c3713c4.png">
+<link rel="icon" type="image/png" sizes="72x72" href="//static.ycharts.com/images/icons/android-chrome-72x72.dc3b7f75ed0e.png">
+<link rel="icon" type="image/png" sizes="144x144" href="//static.ycharts.com/images/icons/android-chrome-144x144.c8193700e6e1.png">
+<link rel="icon" type="image/png" sizes="192x192" href="//static.ycharts.com/images/icons/android-chrome-192x192.d987224b63a8.png">
+<link rel="icon" type="image/png" sizes="256x256" href="//static.ycharts.com/images/icons/android-chrome-256x256.4e5461952683.png">
+<link rel="icon" type="image/png" sizes="384x384" href="//static.ycharts.com/images/icons/android-chrome-384x384.ac6f65a9b14e.png">
+<link rel="icon" type="image/png" sizes="512x512" href="//static.ycharts.com/images/icons/android-chrome-512x512.911c0daf0026.png">
+
+
+<meta name="apple-mobile-web-app-title" content="YCharts">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" sizes="180x180" href="//static.ycharts.com/images/icons/apple-touch-icon.c03e7247c0fe.png">
+<link rel="apple-touch-icon-precomposed" sizes="180x180" href="//static.ycharts.com/images/icons/apple-touch-icon-precomposed.0f654568c824.png">
+
+
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="msapplication-TileImage" content="//static.ycharts.com/images/icons/mstile-144x144.856c9cc77048.png">
+<meta name="msapplication-config" content="/media/images/icons/browserconfig.xml">
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+        
+    <meta name="description" content="In depth view into FB (Meta Platforms) stock including the latest price, news, dividend history, earnings information and financials." />
+
+
+        
+        <link href="//static.ycharts.com/bundles/redesign_core_css.5476e867853fd40b00bd.css" rel="stylesheet" />
+
+        
+        <script>
+            var USER = {"authenticated": false, "daysRemainingInTrial": null, "email": null, "features": ["mutualFundDataUSA", "mutualFundDataCAN"], "firstName": null, "groups": [], "hasUpgraded": false, "isInClientGroup": false, "isStaff": false, "lastName": null, "shareableClientGroups": [], "userId": null};
+            var initAngularConfig = function () {
+                var config = angular.module('config');
+                config.constant('USER', USER);
+            };
+            window.ychartsOnloadFunctions = [
+                initAngularConfig,
+            ];
+        </script>
+
+        
+           
+    <script src="//static.ycharts.com/bundles/manifest.84dfa15edd0f99eb6b17.js" defer></script>
+<script src="//static.ycharts.com/bundles/vendor.833c9516ad0e258a6c0b.js" defer></script>
+<script src="//static.ycharts.com/bundles/angular_js.02390c8e47de884f789b.js" defer></script>
+<script src="//static.ycharts.com/bundles/redesign_core_js.dfc90e559d6255d43d9a.js" defer></script>
+<script src="//static.ycharts.com/bundles/stocks_quote_app.dcedef37740a07de4919.js" defer></script>
+
+
+        
+        
+        <script type="text/javascript" defer src="//static.ycharts.com/js/init_page_load.45f18e53b53b.js"></script>
+
+        
+            <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+            <script>
+                window.googletag = window.googletag || {cmd: []};
+                googletag.cmd.push(function() {
+                    googletag.defineSlot('/1732286/Top_Leaderboard', [728, 90], 'div-gpt-ad-1595530847756-0').addService(googletag.pubads());
+                    googletag.defineSlot('/1732286/top_medium_rectangle/top_medium_rectangle_desktop', [300, 250], 'div-gpt-ad-1589691150646-0').addService(googletag.pubads());
+                    googletag.defineSlot('/1732286/top_medium_rectangle/top_medium_rectangle_mobile', [300, 250], 'div-gpt-ad-1589689511915-0').addService(googletag.pubads());
+                    googletag.pubads().enableSingleRequest();
+                    
+    
+        
+           googletag.pubads().setTargeting('site_section', ['Stocks']);
+        
+    
+
+                    googletag.enableServices();
+                });
+            </script>
+        
+
+        
+        
+
+
+
+
+    </head>
+
+    <body class="">
+        
+        
+        <header id="header-placeholder" class="header">
+            <div class="header-container container user-select-none">
+                <div class="header-logo-wrap">
+                    <a class="header-logo" href="/">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='155px' height='21px' viewBox='-0.195 0 155 21' enable-background='new -0.195 0 155 21' xml:space='preserve'%3E%3Cpolygon fill='%230282E8' points='14.863,0.358 7.823,12.352 7.823,20.428 12.214,20.428 12.214,12.614 19.939,0.358 '/%3E%3Cpolygon fill='%230282E8' points='8.034,5.392 5.044,0.358 -0.195,0.358 5.697,9.646 '/%3E%3Cpath fill='%23FFFFFF' d='M32.348,21c-5.975,0-10.413-4.609-10.413-10.441V10.5c0-5.77,4.354-10.5,10.588-10.5 c3.831,0,6.121,1.278,8.008,3.133l-2.845,3.279c-1.565-1.422-3.16-2.292-5.189-2.292c-3.423,0-5.888,2.843-5.888,6.323V10.5 c0,3.48,2.406,6.382,5.888,6.382c2.32,0,3.742-0.929,5.336-2.377l2.844,2.872C38.587,19.607,36.264,21,32.348,21'/%3E%3Cpolygon fill='%23FFFFFF' points='59.338,20.65 59.338,12.502 51.1,12.502 51.1,20.65 46.633,20.65 46.633,0.35 51.1,0.35 51.1,8.383 59.338,8.383 59.338,0.35 63.805,0.35 63.805,20.65 '/%3E%3Cpath fill='%23FFFFFF' d='M79.625,5.57l-2.694,6.584h5.39L79.625,5.57z M85.772,20.65l-1.854-4.553h-8.585l-1.858,4.553h-4.553 l8.699-20.446h4.119L90.44,20.65H85.772z'/%3E%3Cpath fill='%23FFFFFF' d='M107.926,7.281c0-1.914-1.333-2.901-3.511-2.901h-4.438v5.829h4.523c2.177,0,3.423-1.161,3.423-2.872 L107.926,7.281L107.926,7.281z M107.839,20.65l-4.353-6.496h-3.511v6.496H95.51V0.35h9.28c4.788,0,7.656,2.523,7.656,6.7v0.06 c0,3.276-1.771,5.335-4.352,6.294l4.96,7.25h-5.223V20.65H107.839z'/%3E%3Cpolygon fill='%23FFFFFF' points='128.369,4.467 128.369,20.65 123.903,20.65 123.903,4.467 117.723,4.467 117.723,0.35 134.548,0.35 134.548,4.467 '/%3E%3Cpath fill='%23FFFFFF' d='M146.962,20.941c-3.074,0-6.18-1.073-8.612-3.248l2.642-3.161c1.823,1.509,3.74,2.465,6.062,2.465 c1.828,0,2.932-0.726,2.932-1.915v-0.059c0-1.131-0.696-1.713-4.09-2.582c-4.091-1.043-6.729-2.173-6.729-6.207V6.179 c0-3.682,2.957-6.12,7.103-6.12c2.963,0,5.481,0.927,7.543,2.579l-2.318,3.366c-1.804-1.248-3.567-2-5.277-2 c-1.714,0-2.612,0.782-2.612,1.769v0.059c0,1.333,0.871,1.77,4.379,2.668c4.119,1.074,6.44,2.553,6.44,6.092v0.061 C154.417,18.682,151.344,20.941,146.962,20.941'/%3E%3C/svg%3E">
+                    </a>
+                </div>
+            </div>
+        </header>
+        <yc-top-bar-nav></yc-top-bar-nav>
+
+        
+    <main class="page-content">
+        <div class="page">
+            
+    <div class="page-header-ad">
+        <!-- /1732286/Top_Leaderboard -->
+        <div id='div-gpt-ad-1595530847756-0' style='width: 728px; height: 90px;'>
+            <script>
+            googletag.cmd.push(function() { googletag.display('div-gpt-ad-1595530847756-0'); });
+            </script>
+        </div>
+    </div>
+
+
+
+            
+
+<div class="container">
+    <div class="page-header page-header-complex row">
+        <div class="col">
+            <div class="index-name">
+                
+                    <h1 class="index-name-text">
+                        Meta Platforms Inc (FB)
+                    </h1>
+                
+                
+            </div>
+            
+                <div class="row">
+                    <div class="index-rank col-auto">
+                        <span class="index-rank-value">214.14</span>
+                        <span class="index-change index-change-down">
+                            
+                                <yc-icon
+                                    name="icon-loss">
+                                </yc-icon>
+                                
+                                    <span class="valNeg">-2.32</span> (<span class="valNeg">-1.07%</span>)
+                                
+                            
+                        </span>
+                        <span class="index-info">
+                            USD &nbsp;|&nbsp; 
+                            NASDAQ &nbsp;|&nbsp; 
+                            
+                                Apr 12, 16:00
+                            
+                        </span>
+                    </div>
+                    
+                        <div class="index-rank col">
+                            <span class="index-rank-value index-rank-value-small">214.80</span>
+                            <span class="index-change index-change-up">
+                                
+                                    <yc-icon
+                                        name="icon-gain">
+                                    </yc-icon>
+                                    
+                                        <span class="valPos">+0.66</span> (<span class="valPos">+0.31%</span>)
+                                    
+                                
+                            </span>
+                            <span class="index-info">After-Hours: 20:00</span>
+                      </div>
+                    
+                </div>
+            
+        </div>
+        <yc-security-header-control
+            security='{&quot;detailed_security_type&quot;: &quot;stock&quot;, &quot;display_security_id&quot;: &quot;FB&quot;, &quot;id&quot;: 92843, &quot;security_id&quot;: &quot;FB&quot;, &quot;security_name&quot;: &quot;Meta Platforms Inc&quot;, &quot;security_type&quot;: &quot;company&quot;, &quot;securitylist_security_id&quot;: &quot;C92843&quot;, &quot;sharing&quot;: null, &quot;watchlist_type&quot;: &quot;multi&quot;, &quot;ycharts_url&quot;: &quot;/companies/FB&quot;}'
+            security-url-identifier='FB'
+            show-action-dropdown='True'
+            show-add-to-watchlist='True'
+            show-add-to-watchlist-label='False'
+            show-alerts='True'
+            show-custom-pdf-reports='True'
+            show-notes='True'
+            show-share-button='False'
+            show-sso-integrations='True'
+            switcher-search-type='securities_with_calcs'
+        ></yc-security-header-control>
+    </div>
+</div>
+
+
+            
+                
+                    <div class="page-tabs tabs tabs-long">
+    <div class="container">
+        <ul class="nav nav-tabs user-select-none">
+            
+                <li class="nav-item">
+                    <a class="nav-link active" href="/companies/FB" >Quote</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link " href="/companies/FB/performance/price" >Performance</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link " href="/companies/FB/key_stats/stats" >Key Stats</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link " href="/companies/FB/financials/income_statement/1" >Financials</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link " href="/companies/FB/estimates" >Estimates</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link " href="/companies/FB/news" >News</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link " href="/companies/FB/events/1" >Events</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link " href="/companies/FB/ratings/y_ratings" >Y-Rating</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link " href="/companies/FB/valuation" >Valuation</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link " href="/companies/FB/multichart" >Multichart</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link " href="/companies/FB/chart/" >Fundamental Chart</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link " href="/companies/FB/technical_chart/" target="_blank">Tech Chart</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link " href="/companies/FB/price" >Data</a>
+                </li>
+            
+        </ul>
+        <div class="nav-item-more user-select-none">
+            <span class="nav-link dropdown-toggle" href onclick="dropdownHandler()">More</span>
+        </div>
+    </div>
+</div>
+
+<!--
+We do this in vanilla javascript for performance and SEO reasons. Is very simple and using Angular or any framework is overkill and could effect the SEO performance of this page
+-->
+<script>
+    function dropdownHandler() {
+        let moreButton = document.querySelector('.nav-item-more');
+        moreButton.classList.toggle('active');
+        let tabs = moreButton.closest('.page-tabs');
+        tabs.classList.toggle('show-more');
+    }
+</script>
+
+                
+            
+
+            <div class="container">
+                <div class="page-tabs tab-content">
+                    <div class="tab-pane active">
+                        
+                            
+                            
+    <div class="page-body">
+        <div class="row">
+            <div class="col-md-8">
+                
+
+
+
+    <yc-simple-fund-chart
+        benchmark-id='^SPXTR'
+        chart-tab-url='/companies/FB/chart/'
+        chart-title='Price Chart'
+        format-options='[{&quot;value&quot;: &quot;real&quot;, &quot;calcs&quot;: [&quot;price&quot;, &quot;level&quot;], &quot;label&quot;: &quot;Price&quot;}, {&quot;value&quot;: &quot;indexed&quot;, &quot;calcs&quot;: [&quot;total_return_forward_adjusted_price&quot;], &quot;label&quot;: &quot;Returns&quot;}]'
+        omitted-zoom-options='[]'
+        security-id='FB'
+        show-export-options='false'
+        show-legend='true'
+        user-preference-keys='{&quot;zoom&quot;: &quot;stock_quote_chart_zoom&quot;, &quot;include_benchmark&quot;: &quot;stock_quote_chart_include_benchmark&quot;, &quot;format&quot;: &quot;stock_quote_chart_format&quot;}'>
+        <!-- Placeholder element until Angular loads -->
+        <div class="panel panel-data">
+            <div class="panel-header">
+                <h3 class="panel-title">Price Chart</h3>
+            </div>
+            <div class="panel-content">
+                <div class="chart-cover">
+                    <div class="chart-interactive">
+                        <div class="chart-item">
+                            <div class="chart-options">
+                                <div class="chart-legend legend-off-chart">
+                                    <div class="chart-legend-item">
+                                        <span class="chart-legend-item-title"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chart-wrap">
+                                <div class="chart-canvas"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </yc-simple-fund-chart>
+
+
+                
+
+
+
+
+<div class="panel panel-data">
+    <div class="panel-header">
+        <h3 class="panel-title">
+            Key Stats
+        </h3>
+        <div class="panel-actions">
+            <div class="panel-action">
+                <a class="btn btn-secondary" id="openKeyStats" href="/companies/FB/key_stats/stats">View All Stats</a>
+            </div>
+        </div>
+    </div>
+    <div class="panel-content">
+        <div class="row">
+            
+                <div class="col-6">
+                    <table class="table">
+                        
+                            
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">Price and Performance</th>
+                                    </tr>
+                                </thead>
+                            
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>
+                                            
+                                                <a href="/companies/FB/market_cap">Market Cap</a>
+                                            
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            
+                                                582.88B
+                                            
+                                        </td>
+                                    </tr>
+                                 
+                                    <tr>
+                                        <td>
+                                            
+                                                <a href="/companies/FB/year_high">52 Week High (Daily)</a>
+                                            
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        </td>
+                                    </tr>
+                                 
+                                    <tr>
+                                        <td>
+                                            
+                                                <a href="/companies/FB/year_low">52 Week Low (Daily)</a>
+                                            
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        </td>
+                                    </tr>
+                                 
+                                    <tr>
+                                        <td>
+                                            
+                                                <a href="/companies/FB/all_time_high">All-Time High (Daily)</a>
+                                            
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        </td>
+                                    </tr>
+                                 
+                                    <tr>
+                                        <td>
+                                            
+                                                <a href="/companies/FB/ytd_total_return">Year to Date Total Returns (Daily)</a>
+                                            
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        </td>
+                                    </tr>
+                                 
+                                    <tr>
+                                        <td>
+                                            
+                                                <a href="/companies/FB/one_month_total_return">1 Month Total Returns (Daily)</a>
+                                            
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        </td>
+                                    </tr>
+                                 
+                                    <tr>
+                                        <td>
+                                            
+                                                <a href="/companies/FB/one_year_total_return">1 Year Total Returns (Daily)</a>
+                                            
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            
+                                                -31.26%
+                                            
+                                        </td>
+                                    </tr>
+                                 
+                            </tbody>
+                        
+                            
+                                <tr><td colspan="2"><strong>Valuation</strong></td></tr>
+                            
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>
+                                            
+                                                <a href="/companies/FB/pe_ratio">PE Ratio</a>
+                                            
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            
+                                                15.52
+                                            
+                                        </td>
+                                    </tr>
+                                 
+                                    <tr>
+                                        <td>
+                                            
+                                                <a href="/companies/FB/forward_pe_ratio">PE Ratio (Forward)</a>
+                                            
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        </td>
+                                    </tr>
+                                 
+                                    <tr>
+                                        <td>
+                                            
+                                                <a href="/companies/FB/ps_ratio">PS Ratio</a>
+                                            
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            
+                                                5.187
+                                            
+                                        </td>
+                                    </tr>
+                                 
+                                    <tr>
+                                        <td>
+                                            
+                                                <a href="/companies/FB/price_to_book_value">Price to Book Value</a>
+                                            
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            
+                                                4.668
+                                            
+                                        </td>
+                                    </tr>
+                                 
+                                    <tr>
+                                        <td>
+                                            
+                                                <a href="/companies/FB/ev_ebitda">EV to EBITDA</a>
+                                            
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        </td>
+                                    </tr>
+                                 
+                            </tbody>
+                        
+                    </table>
+                </div>
+            
+                <div class="col-6">
+                    <table class="table">
+                        
+                            
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">Dividend</th>
+                                    </tr>
+                                </thead>
+                            
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>
+                                            
+                                                <a href="/companies/FB/dividend">Dividend</a>
+                                            
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            
+                                                --
+                                            
+                                        </td>
+                                    </tr>
+                                 
+                                    <tr>
+                                        <td>
+                                            
+                                                Dividend Yield (Forward)
+                                            
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        </td>
+                                    </tr>
+                                 
+                            </tbody>
+                        
+                            
+                                <tr><td colspan="2"><strong>Financials</strong></td></tr>
+                            
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>
+                                            
+                                                <a href="/companies/FB/revenues_growth_5y">Revenue (5 Year Growth)</a>
+                                            
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        </td>
+                                    </tr>
+                                 
+                                    <tr>
+                                        <td>
+                                            
+                                                <a href="/companies/FB/revenues_growth">Revenue (Quarterly YoY Growth)</a>
+                                            
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        </td>
+                                    </tr>
+                                 
+                                    <tr>
+                                        <td>
+                                            
+                                                <a href="/companies/FB/eps_growth_5y">EPS Diluted (5 Year Growth)</a>
+                                            
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        </td>
+                                    </tr>
+                                 
+                                    <tr>
+                                        <td>
+                                            
+                                                <a href="/companies/FB/eps_growth">EPS Diluted (Quarterly YoY Growth)</a>
+                                            
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        </td>
+                                    </tr>
+                                 
+                                    <tr>
+                                        <td>
+                                            
+                                                <a href="/companies/FB/debt_equity_ratio">Debt to Equity Ratio</a>
+                                            
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            
+                                                0.00
+                                            
+                                        </td>
+                                    </tr>
+                                 
+                                    <tr>
+                                        <td>
+                                            
+                                                <a href="/companies/FB/return_on_equity">Return on Equity</a>
+                                            
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        </td>
+                                    </tr>
+                                 
+                                    <tr>
+                                        <td>
+                                            
+                                                <a href="/companies/FB/return_on_assets">Return on Assets</a>
+                                            
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        </td>
+                                    </tr>
+                                 
+                            </tbody>
+                        
+                            
+                                <tr><td colspan="2"><strong>Risk</strong></td></tr>
+                            
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>
+                                            
+                                                <a href="/companies/FB/market_beta_60_month">Beta (5Y)</a>
+                                            
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        </td>
+                                    </tr>
+                                 
+                                    <tr>
+                                        <td>
+                                            
+                                                <a href="/companies/FB/max_drawdown_5y">Max Drawdown (5Y)</a>
+                                            
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            
+                                                51.17%
+                                            
+                                        </td>
+                                    </tr>
+                                 
+                            </tbody>
+                        
+                    </table>
+                </div>
+            
+        </div>
+    </div>
+</div>
+
+                <div class="hidden-md">
+                    
+    <div class="panel-ad">
+        <!-- /1732286/top_medium_rectangle/top_medium_rectangle_mobile -->
+        <div id='div-gpt-ad-1589689511915-0' style='width: 300px; height: 250px;'>
+            <script>
+                googletag.cmd.push(function() { googletag.display('div-gpt-ad-1589689511915-0'); });
+            </script>
+        </div>
+    </div>
+
+
+                    
+                        
+
+
+
+<div class="panel panel-data">
+    <div class="panel-header">
+        <h3 class="panel-title">Ratings</h3>
+    </div>
+    <div class="panel-content">
+        <div class="row">
+            <div class="col-6 col-md-12">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td><a href="/companies/FB/ratings/y_ratings">Y-Rating</a></td>
+                        <td class="text-right">
+                            <a href="/store/start_trial_register/rating" class="pro">Upgrade</a>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="/companies/FB/ratings/value">Value Score</a></td>
+                        <td class="text-right">
+                            <a href="/store/start_trial_register/rating" class="pro">Upgrade</a>
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-6 col-md-12">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td><a href="/companies/FB/ratings/fundamental">Fundamental Score</a></td>
+                        <td class="text-right">
+                            <a href="/store/start_trial_register/rating" class="pro">Upgrade</a>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="/companies/FB/ratings/valuations">Valuation (Hist. Mult.)</a></td>
+                        <td class="text-right">
+                            <a href="/store/start_trial_register/rating" class="pro">Upgrade</a>
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+                    
+                </div>
+                <div class="panel panel-data ">
+    <div class="panel-header">
+        <h3 class="panel-title">News</h3>
+        
+            <div class="panel-actions">
+                <div class="panel-action">
+                    <a class="btn btn-secondary" href="/companies/FB/news">View All News</a>
+                </div>
+            </div>
+        
+    </div>
+    <div class="news">
+        <div class="news-header">
+            <div class="news-cell news-title">Headline</div>
+            <div class="news-cell news-source">Wire</div>
+            <div class="news-cell news-date">Time (ET)</div>
+        </div>
+        <div class="news-body">
+            
+
+            
+                <div class="news-row">
+                    <div class="news-cell news-title">
+                        
+                            <a href="https://finance.yahoo.com/news/meta-snap-sued-mother-wisconsin-223430251.html?.tsrc=rss" target="_blank">
+                        
+                        Meta, Snap Sued by Mother of Wisconsin Teen for His Suicide</a>
+                    </div>
+                    <div class="news-cell news-source">Yahoo</div>
+                    <div class="news-cell news-date">04/12 18:34</div>
+                </div>
+            
+                <div class="news-row">
+                    <div class="news-cell news-title">
+                        
+                            <a href="https://finance.yahoo.com/m/63faa641-0e21-3992-a8e7-87f405eeda15/top-tech-stocks-for-april-2022.html?.tsrc=rss" target="_blank">
+                        
+                        Top Tech Stocks for April 2022</a>
+                    </div>
+                    <div class="news-cell news-source">Yahoo</div>
+                    <div class="news-cell news-date">04/12 17:50</div>
+                </div>
+            
+                <div class="news-row">
+                    <div class="news-cell news-title">
+                        
+                            <a href="https://finance.yahoo.com/m/5f695c14-bc91-363c-995e-e994c1f0807e/these-are-the-5-best-stocks.html?.tsrc=rss" target="_blank">
+                        
+                        These Are The 5 Best Stocks To Buy And Watch Now</a>
+                    </div>
+                    <div class="news-cell news-source">Yahoo</div>
+                    <div class="news-cell news-date">04/12 17:17</div>
+                </div>
+            
+                <div class="news-row">
+                    <div class="news-cell news-title">
+                        
+                            <a href="https://finance.yahoo.com/video/meta-charge-47-5-fees-200901910.html?.tsrc=rss" target="_blank">
+                        
+                        Meta to charge up to 47.5% in fees for metaverse sales</a>
+                    </div>
+                    <div class="news-cell news-source">Yahoo</div>
+                    <div class="news-cell news-date">04/12 16:09</div>
+                </div>
+            
+                <div class="news-row">
+                    <div class="news-cell news-title">
+                        
+                            <a href="https://finance.yahoo.com/video/tiktok-worldwide-ad-revenue-soars-194045257.html?.tsrc=rss" target="_blank">
+                        
+                        TikTok worldwide ad revenue soars, surpasses Twitter and Snap combined</a>
+                    </div>
+                    <div class="news-cell news-source">Yahoo</div>
+                    <div class="news-cell news-date">04/12 15:40</div>
+                </div>
+            
+                <div class="news-row">
+                    <div class="news-cell news-title">
+                        
+                            <a href="https://finance.yahoo.com/m/d1ec0223-8d6c-3fb4-9dbb-04a9aa9d2819/money-manager-still-likes.html?.tsrc=rss" target="_blank">
+                        
+                        Money Manager Still Likes Amazon, Other Big Names</a>
+                    </div>
+                    <div class="news-cell news-source">Yahoo</div>
+                    <div class="news-cell news-date">04/12 15:36</div>
+                </div>
+            
+                <div class="news-row">
+                    <div class="news-cell news-title">
+                        
+                            <a href="https://finance.yahoo.com/m/4f4139a8-4c49-31a0-9216-b450485be49e/facebook-is-working-on-a-new.html?.tsrc=rss" target="_blank">
+                        
+                        Facebook Is Working on a New Golden Opportunity</a>
+                    </div>
+                    <div class="news-cell news-source">Yahoo</div>
+                    <div class="news-cell news-date">04/12 15:03</div>
+                </div>
+            
+                <div class="news-row">
+                    <div class="news-cell news-title">
+                        
+                            <a href="https://finance.yahoo.com/m/7c94e6c9-fd5b-31ee-a822-c876fed417a0/facebook-parent-meta%27s-shares.html?.tsrc=rss" target="_blank">
+                        
+                        Facebook parent Meta&#x27;s shares are headed for a seventh straight losing day</a>
+                    </div>
+                    <div class="news-cell news-source">Yahoo</div>
+                    <div class="news-cell news-date">04/12 14:42</div>
+                </div>
+            
+                <div class="news-row">
+                    <div class="news-cell news-title">
+                        
+                            <a href="https://seekingalpha.com/news/3822774-trump-spac-digital-world-acquisition-gains-as-fox-news-joins-truth-social?utm_source=feed_news_all&amp;utm_medium=referral" target="_blank">
+                        
+                        Trump SPAC Digital World Acquisition gains on report Fox News joins Truth Social</a>
+                    </div>
+                    <div class="news-cell news-source">SA Breaking News</div>
+                    <div class="news-cell news-date">04/12 13:08</div>
+                </div>
+            
+                <div class="news-row">
+                    <div class="news-cell news-title">
+                        
+                            <a href="https://finance.yahoo.com/news/microsoft-customers-decry-cloud-contracts-012431162.html?.tsrc=rss" target="_blank">
+                        
+                        Microsoft Customers Decry Cloud Contracts That Sideline Rivals</a>
+                    </div>
+                    <div class="news-cell news-source">Yahoo</div>
+                    <div class="news-cell news-date">04/12 12:35</div>
+                </div>
+            
+        </div>
+    </div>
+</div>
+
+                
+
+<div class="panel panel-data">
+    <div class="panel-header">
+        <h3 class="panel-title">Events</h3>
+        
+            <div class="panel-actions">
+                <div class="panel-action">
+                    <a class="btn btn-secondary" href="/companies/FB/events/1">View All Events</a>
+                </div>
+            </div>
+        
+    </div>
+    <event-tabs events-group="earnings"></event-tabs>
+    <div class="panel-tabs tab-content" id="eventsSubTabs">
+        <div class="tab-pane active">
+            <div class="panel-content">
+                
+                <table class="table">
+                    <thead>
+                        <tr>
+                        
+                            <td class="text-thin colTxtShort">DATE</td>
+                        
+                            <td class="text-thin colTxtShort">TIME</td>
+                        
+                            <td class="text-thin colTxtMed">TYPE</td>
+                        
+                            <td class="text-thin ">PERIOD</td>
+                        
+                            <td class="text-thin text-right colTxtShort">REPORTED<br>EPS</td>
+                        
+                            <td class="text-thin text-right colTxtShort">ESTIMATED<br>EPS</td>
+                        
+                            <td class="text-thin text-right colTxtShort">SURPRISE</td>
+                        
+
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                    
+                        
+                            <tr>
+                            
+                                <td>04/27/2022</td>
+                                <td>--</td>
+                                <td>Results</td>
+                                <td>Q1 2022</td>
+                                <td class="text-right">--</td>
+                                <td class="text-right">2.51</td>
+                                <td class="text-right">--</td>
+                                <td class="visible-lg-table-cell"></td>
+                            
+                            </tr>
+                        
+                            <tr>
+                            
+                                <td>04/27/2022</td>
+                                <td>17:00 EST</td>
+                                <td>Earnings Call</td>
+                                <td>Q1 2022</td>
+                                <td class="text-right">--</td>
+                                <td class="text-right">--</td>
+                                <td class="text-right">--</td>
+                                <td class="visible-lg-table-cell"></td>
+                            
+                            </tr>
+                        
+                            <tr>
+                            
+                                <td>02/02/2022</td>
+                                <td>--</td>
+                                <td>Results</td>
+                                <td>Q4 2021</td>
+                                <td class="text-right">3.67</td>
+                                <td class="text-right">3.82</td>
+                                <td class="text-right">-4.03%</td>
+                                <td class="visible-lg-table-cell"></td>
+                            
+                            </tr>
+                        
+                            <tr>
+                            
+                                <td>02/02/2022</td>
+                                <td>17:00 EST</td>
+                                <td>Earnings Call</td>
+                                <td>Q4 2021</td>
+                                <td class="text-right">--</td>
+                                <td class="text-right">--</td>
+                                <td class="text-right">--</td>
+                                <td class="visible-lg-table-cell"></td>
+                            
+                            </tr>
+                        
+                            <tr>
+                            
+                                <td>10/25/2021</td>
+                                <td>--</td>
+                                <td>Results</td>
+                                <td>Q3 2021</td>
+                                <td class="text-right">3.22</td>
+                                <td class="text-right">3.18</td>
+                                <td class="text-right">1.32%</td>
+                                <td class="visible-lg-table-cell"></td>
+                            
+                            </tr>
+                        
+                            <tr>
+                            
+                                <td>10/25/2021</td>
+                                <td>17:00 EST</td>
+                                <td>Earnings Call</td>
+                                <td>Q3 2021</td>
+                                <td class="text-right">--</td>
+                                <td class="text-right">--</td>
+                                <td class="text-right">--</td>
+                                <td class="visible-lg-table-cell"></td>
+                            
+                            </tr>
+                        
+                            <tr>
+                            
+                                <td>07/28/2021</td>
+                                <td>--</td>
+                                <td>Results</td>
+                                <td>Q2 2021</td>
+                                <td class="text-right">3.61</td>
+                                <td class="text-right">3.06</td>
+                                <td class="text-right">17.94%</td>
+                                <td class="visible-lg-table-cell"></td>
+                            
+                            </tr>
+                        
+                            <tr>
+                            
+                                <td>07/28/2021</td>
+                                <td>17:00 EST</td>
+                                <td>Earnings Call</td>
+                                <td>Q2 2021</td>
+                                <td class="text-right">--</td>
+                                <td class="text-right">--</td>
+                                <td class="text-right">--</td>
+                                <td class="visible-lg-table-cell"></td>
+                            
+                            </tr>
+                        
+                    
+                    </tbody>
+                </table>
+                
+                    <div class="panel-date">*Estimated Date/Time</div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+                
+    <iframe WIDTH="655" HEIGHT="140" SCROLLING="NO" src="https://www.dianomi.com/smartads.epl?id=5943"  style="width: 100%; height: 140px; border-top: none; border-right: none; border-bottom: 1px solid #ccc; border-left: none; margin-bottom: 9px; overflow: hidden;"></iframe>
+
+
+                
+
+
+
+<div class="panel panel-data">
+    <div class="panel-header">
+        <h3 class="panel-title">Earnings</h3>
+        <div class="panel-actions">
+            <yc-period-toggle
+                periodicity="quarterly"
+                periodicity-user-preference="stock_earnings_periodicity">
+            </yc-period-toggle>
+        </div>
+    </div>
+    <div class="panel-content">
+        <div class="row">
+            <div class="col-6">
+                <table class="table">
+                    <tbody>
+                        
+                            <tr>
+                                <td>Next Report Date</td>
+                                <td class="text-right colTxtMed" style="padding-left:0px">04/27/2022</td>
+                            </tr>
+                        
+                        <tr>
+                            <td>
+                                <span class="chart-legend-item-title bullet-1">EPS Estimate</span>
+                            </td>
+                                <td class="text-right colTxtMed">
+                                    <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="chart-legend-item-title bullet-2">Last Actual EPS</span>
+                            </td>
+                                <td class="text-right colTxtMed">
+                                    <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                    <br>
+                    <yc-general-chart
+                        chart-json-data="{&quot;categories&quot;: [&quot;Q1 2021&quot;, &quot;Q2 2021&quot;, &quot;Q3 2021&quot;, &quot;Q4 2021&quot;, &quot;Q1 2022&quot;], &quot;chart_data&quot;: [{&quot;label&quot;: &quot;Quarterly EPS Estimates&quot;, &quot;data&quot;: [2.3417, 3.0610, 3.1780, 3.8242, 2.5103], &quot;data_type&quot;: &quot;figure_money&quot;}, {&quot;label&quot;: &quot;Quarterly Actual EPS&quot;, &quot;data&quot;: [3.3000, 3.6100, 3.2200, 3.6700], &quot;data_type&quot;: &quot;figure_money&quot;}]}"
+                        chart-options="{&quot;chart&quot;: {&quot;height&quot;: 180}, &quot;plotOptions&quot;: {&quot;column&quot;: {&quot;groupPadding&quot;: 0.2692}}, &quot;tooltip&quot;: {&quot;padding&quot;: 75}, &quot;yAxis&quot;: {&quot;x&quot;: 0}}"
+                        configurable-options="{&quot;yAxisWidth&quot;: 48}">
+                        <!-- Placeholder element until Angular loads -->
+                        <div class="chart-wrap">
+                            <div class="chart-axis-y"></div>
+                            <div class="chart-canvas">
+                                <div class="chart-column">
+                                    <div class="loader">
+                                        <div class="loader-message">Loading chart...</div>
+                                        <div class="loader-spinner"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </yc-general-chart>
+                
+            </div>
+            <div class="col-6">
+                <table class="table">
+                    <tbody>
+                    
+                        <tr>
+                            <td>Last Report Date</td>
+                            <td class="text-right colTxtMed">02/02/2022</td>
+                        </tr>
+                    
+                        <tr>
+                            <td>Beat/Miss</td>
+                                <td class="text-right colTxtMed">
+                                    <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                </td>
+                        </tr>
+                        
+                            <tr>
+                                <td>Return Since</td>
+                                    <td class="text-right colTxtMed">
+                                        
+                                            -33.70%
+                                        
+                                    </td>
+                            </tr>
+                            <tr>
+                                <td>Last FQE</td>
+                                <td class="text-right colTxtMed">
+                                    12/31/2021
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Next FQE</td>
+                                <td class="text-right colTxtMed">
+                                    03/31/2022
+                                </td>
+                            </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+                <div class="hidden-md">
+                    
+                        <div class="panel panel-data">
+    <div class="panel-header">
+        <h3 class="panel-title">Profile</h3>
+        <div class="panel-actions">
+            <div class="panel-action">
+                <div class="btn btn-secondary" ng-click="$broadcast('showProfileModal')">Edit</div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-content">
+        <div class="row">
+            <div class="col-6 col-md-12">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td colspan="2">Meta is the world’s largest online social network, with 2.5 billion monthly active users. Users engage with each other in different ways, exchanging messages and sharing news events, photos, and videos. On the video side, the firm is in the process of building a library of premium content and monetizing it via ads or subscription revenue. Meta refers to this as Facebook Watch. The firm’s ecosystem consists mainly of the Facebook app, Instagram, Messenger, WhatsApp, and many features surrounding these products. Users can access Facebook on mobile devices and desktops. Advertising revenue represents more than 90% of the firm’s total revenue, with 50% coming from the U.S. and Canada and 25% from Europe. With gross margins above 80%, Meta operates at a 30%-plus margin.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-6 col-md-12">
+                <table class="table">
+                    <tbody>
+                        
+                            <tr>
+                                <td class="col-6">URL</td>
+                                <td class="col-6"><a class="text-blue" href="https://www.facebook.com" target="_blank">https://www.facebook.com</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">Investor Relations URL</td>
+                                <td class="col-6"><a class="text-blue" href="https://investor.fb.com/" target="_blank">https://investor.fb.com/</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">HQ State/Province</td>
+                                <td class="col-6">California</td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">Sector</td>
+                                <td class="col-6"><a href="/classifications/sectors/communication_services/key_stats" target="_blank">Communication Services</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">Industry</td>
+                                <td class="col-6"><a href="/classifications/industries/internet_content_and_information/overview" target="_blank">Internet Content & Information</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">Equity Style</td>
+                                <td class="col-6">Large Cap/Blend</td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">Next Earnings Release</td>
+                                <td class="col-6">Apr. 27, 2022</td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">Last Earnings Release</td>
+                                <td class="col-6">Feb. 02, 2022</td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">Next Ex-Dividend Date</td>
+                                <td class="col-6">N/A</td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">Last Ex-Dividend Date</td>
+                                <td class="col-6">N/A</td>
+                            </tr>
+                        
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+                    
+                    
+                        
+
+
+<div class="panel panel-data">
+    <div class="panel-header">
+        <h3 class="panel-title">Analyst Coverage</h3>
+    </div>
+    <div class="panel-content">
+        <div class="row">
+            <div class="col-6 col-md-12">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td colspan="2">
+                                <div class="flow">
+                                    <div class="flow-header mb-4">
+                                        <a class="flow-title text-default" href="/companies/FB/price">
+                                            Price (52 Week Range)
+                                        </a>
+                                    </div>
+                                    
+                                        <div class="flow-body">
+                                            <div class="flow-range">
+                                                <div class="flow-label bg-1 text-1" style="left: 14.27%;">
+                                                    <span>
+                                                        
+                                                            $214.14
+                                                        
+                                                    </span>
+                                                </div>
+                                                <div class="flow-axis">
+                                                    <div class="flow-axis-item text-gray-30">
+                                                        <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                                    </div>
+                                                    <div class="flow-axis-item text-gray-30">
+                                                        <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="flow">
+                                    <div class="flow-header mb-4">
+                                        <a class="flow-title text-default" href="/companies/FB/price_target">
+                                            Price Target
+                                        </a>
+                                    </div>
+                                    
+                                        <div class="flow-body">
+                                            <div class="flow-range has-deviation">
+                                                <div class="flow-label bg-1 text-1" style="left: 48.39%;">
+                                                    <span>
+                                                        <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                                    </span>
+                                                </div>
+                                                <div class="flow-axis">
+                                                    <div class="flow-region bg-gradient-1-3"
+                                                         style="left: 27.61%;
+                                                                width: 41.56%;">
+                                                    </div>
+                                                    <div class="flow-axis-item text-gray-30">
+                                                        <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                                    </div>
+                                                    <div class="flow-axis-item text-gray-30">
+                                                        <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="/companies/FB/price_target_std_dev">Price Target Std Dev</a></td>
+                            
+                                <td class="text-right">
+                                    <span class="col">
+                                        <svg class="icon-square text-gradient-1-3" role="img">
+                                            <yc-icon name="icon-square"></yc-icon>
+                                        </svg>
+                                    </span>
+                                    <span class="text-nowrap">
+                                        <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                    </span>
+                                </td>
+                            
+                        </tr>
+                        <tr>
+                            <td><a href="/companies/FB/price_target_upside">Price Target Upside (Daily)</a></td>
+                            <td class="text-right">
+                                <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="/companies/FB/price_target_num_est">Price Target Num Estimates</a></td>
+                            <td class="text-right">
+                                <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="panel-date hidden-md">Source: S&amp;P Global</div>
+            </div>
+            <hr class="visible-md-flex">
+            <div class="col-6 col-md-12">
+                <table class="table">
+                    <tbody>
+                        
+                            <tr>
+                                <td class="col-6">
+                                    <div class="d-flex justify-content-between">
+                                        <a class="chart-legend-item-title bullet-15" href="/companies/FB/buy_recommendations">
+                                            Buy
+                                        </a>
+                                        <span class="text-nowrap">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="col-6">
+                                    <div class="chart-horizontal-bars">
+                                        <div class="chart-bar">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">
+                                    <div class="d-flex justify-content-between">
+                                        <a class="chart-legend-item-title bullet-4" href="/companies/FB/outperform_recommendations">
+                                            Outperform
+                                        </a>
+                                        <span class="text-nowrap">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="col-6">
+                                    <div class="chart-horizontal-bars">
+                                        <div class="chart-bar">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">
+                                    <div class="d-flex justify-content-between">
+                                        <a class="chart-legend-item-title bullet-17" href="/companies/FB/hold_recommendations">
+                                            Hold
+                                        </a>
+                                        <span class="text-nowrap">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="col-6">
+                                    <div class="chart-horizontal-bars">
+                                        <div class="chart-bar">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">
+                                    <div class="d-flex justify-content-between">
+                                        <a class="chart-legend-item-title bullet-2" href="/companies/FB/underperform_recommendations">
+                                            Underperform
+                                        </a>
+                                        <span class="text-nowrap">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="col-6">
+                                    <div class="chart-horizontal-bars">
+                                        <div class="chart-bar">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">
+                                    <div class="d-flex justify-content-between">
+                                        <a class="chart-legend-item-title bullet-16" href="/companies/FB/sell_recommendations">
+                                            Sell
+                                        </a>
+                                        <span class="text-nowrap">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="col-6">
+                                    <div class="chart-horizontal-bars">
+                                        <div class="chart-bar">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        
+                        <tr>
+                            <td colspan="2">
+                                <div class="d-flex justify-content-between">
+                                    <a href="/companies/FB/consensus_recommendation">
+                                        Consensus Recommendation
+                                    </a>
+                                    <div class="text-nowrap">
+                                        <span class="col">
+                                            <svg class="icon-square" role="img">
+                                                <yc-icon name="icon-square" style="color:#9bcc4f"></yc-icon>
+                                            </svg>
+                                        </span>
+                                        <span class="text-nowrap">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="d-flex justify-content-between">
+                                    Consensus Rating
+                                    <div class="text-nowrap">
+                                        <span class="col">
+                                            <svg class="icon-square" role="img">
+                                              <yc-icon name="icon-square" style="color:#9bcc4f"></yc-icon>
+                                            </svg>
+                                        </span>
+                                        <span class="text-nowrap">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="d-flex justify-content-between">
+                                    Analyst Recommendation
+                                    <div class="text-nowrap">
+                                        <span class="text-nowrap">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="panel-date visible-md-block">Source: S&amp;P Global</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                    
+                </div>
+                
+
+<div class="panel panel-data">
+    <div class="panel-header">
+        <h3 class="panel-title">Dividends</h3>
+    </div>
+    <div class="panel-content">
+        <div class="row">
+            <div class="col-6">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <a class="chart-legend-item-title bullet-1" href="/companies/FB/dividend_per_share_ttm">
+                                    Dividend Per Share (TTM)
+                                </a>
+                            </td>
+                            <td class="text-right colTxtMed">--</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="chart-cover">
+                                    
+                                        <div class="chart-interactive empty">
+                                            <div class="chart-item">
+                                                <div class="chart-options"></div>
+                                                <div class="chart-wrap">
+                                                    <div class="chart-canvas">
+                                                        <div class="chart-axis-x">
+                                                            <div class="chart-axis-x-item">2017</div>
+                                                            <div class="chart-axis-x-item">2018</div>
+                                                            <div class="chart-axis-x-item">2019</div>
+                                                            <div class="chart-axis-x-item">2020</div>
+                                                            <div class="chart-axis-x-item">2021</div>
+                                                        </div>
+                                                        <div class="panel-data-empty-message">No data available</div>
+                                                    </div>
+                                                    <div class="chart-axis-y">
+                                                        <div class="chart-axis-y-item">&nbsp;</div>
+                                                        <div class="chart-axis-y-item">6.00%</div>
+                                                        <div class="chart-axis-y-item">4.00%</div>
+                                                        <div class="chart-axis-y-item">2.00%</div>
+                                                        <div class="chart-axis-y-item">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Yield to Market</td>
+                            <td class="text-right colTxtMed">0.00</td>
+                        </tr>
+                        <tr>
+                            <td>Yield to Sector</td>
+                            <td class="text-right colTxtMed">0.00</td>
+                        </tr>
+                        <tr>
+                            <td>Yield to Industry</td>
+                            <td class="text-right colTxtMed">0.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-6">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Last Dividend Amt.</td>
+                            <td class="text-right colTxtMed">--</td>
+                        </tr>
+                        <tr>
+                            <td>Dividend Frequency</td>
+                            <td class="text-right colTxtMed">--</td>
+                        </tr>
+                        <tr>
+                            <td>Last Ex-Dividend Date</td>
+                            <td class="text-right colTxtMed">--</td>
+                        </tr>
+                        <tr>
+                            <td>Yield (TTM)</td>
+                            <td class="text-right colTxtMed">0.00%</td>
+                        </tr>
+                        <tr>
+                            <td>Forward Yield</td>
+                            <td class="text-right colTxtMed">--</td>
+                        </tr>
+                        <tr>
+                            <td>Payout Ratio</td>
+                            <td class="text-right colTxtMed">0.00%</td>
+                        </tr>
+                        <tr>
+                            <td>Cash Payout Ratio</td>
+                            <td class="text-right colTxtMed">0.00%</td>
+                        </tr>
+                        <tr>
+                            <td>Consistent Payer (5Y)</td>
+                            <td class="text-right colTxtMed">
+                                
+                                No
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Consistent Growth (5Y)</td>
+                            <td class="text-right colTxtMed">
+                                
+                                No
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+                <div class="hidden-md">
+                    
+                        
+
+<div class="panel panel-data">
+    <div class="panel-header">
+        <h3 class="panel-title">
+            Risk Info
+            
+                <yc-help-modal name='company_risk_info_module'></yc-help-modal>
+            
+        </h3>
+        <div class="panel-actions">
+            <yc-risk-lookback
+                lookback='5'
+            ></yc-risk-lookback>
+        </div>
+    </div>
+    <div class="panel-content">
+        <div class="row">
+        
+            <div class="col-md-12">
+        
+                <table class="table">
+                    <tbody>
+                        
+                            <tr>
+                                <td>
+                                    <a href="/companies/FB/market_alpha_60_month">
+                                        Alpha (5Y)
+                                    </a>
+                                </td>
+                                <td class="colTxtMed text-right">
+                                    <span>
+                                        
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        
+                                    </span>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td>
+                                    <a href="/companies/FB/market_beta_60_month">
+                                        Beta (5Y)
+                                    </a>
+                                </td>
+                                <td class="colTxtMed text-right">
+                                    <span>
+                                        
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        
+                                    </span>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td>
+                                    <a href="/companies/FB/monthly_standard_deviation_annualized_5y">
+                                        Annualized Standard Deviation of Monthly Returns (5Y Lookback)
+                                    </a>
+                                </td>
+                                <td class="colTxtMed text-right">
+                                    <span>
+                                        
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        
+                                    </span>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td>
+                                    <a href="/companies/FB/historical_sharpe_5y">
+                                        Historical Sharpe Ratio (5Y)
+                                    </a>
+                                </td>
+                                <td class="colTxtMed text-right">
+                                    <span>
+                                        
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        
+                                    </span>
+                                </td>
+                            </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        
+            <div class="col-md-12">
+        
+                <table class="table">
+                    <tbody>
+                        
+                            <tr>
+                                <td>
+                                    <a href="/companies/FB/historical_sortino_5y">
+                                        Historical Sortino (5Y)
+                                    </a>
+                                </td>
+                                <td class="colTxtMed text-right">
+                                    <span>
+                                        
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        
+                                    </span>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td>
+                                    <a href="/companies/FB/max_drawdown_5y">
+                                        Max Drawdown (5Y)
+                                    </a>
+                                </td>
+                                <td class="colTxtMed text-right">
+                                    <span>
+                                        
+                                            
+                                                51.17%
+                                            
+                                        
+                                    </span>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td>
+                                    <a href="/companies/FB/historical_monthly_var_5_5y">
+                                        Monthly Value at Risk (VaR) 5% (5Y Lookback)
+                                    </a>
+                                </td>
+                                <td class="colTxtMed text-right">
+                                    <span>
+                                        
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        
+                                    </span>
+                                </td>
+                            </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+                    
+                    <div class="row">
+                        
+                            
+
+
+
+<div class="col-6 col-md-12">
+    <div class="panel panel-data">
+        <div class="panel-header">
+            <h3 class="panel-title">Ownership</h3>
+        </div>
+        <div class="panel-content">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td><span class="chart-legend-item-title bullet-1">Insider Ownership Percentage</span></td>
+                        <td class="text-right">
+                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+                <div class="chart-cover">
+                    <div class="chart-interactive empty">
+                        <div class="chart-item">
+                            <div class="chart-options"></div>
+                            <div class="chart-wrap">
+                                <div class="chart-canvas">
+                                    <div class="chart-axis-x">
+                                        <div class="chart-axis-x-item">Jul '20</div>
+                                        <div class="chart-axis-x-item">Nov '20</div>
+                                        <div class="chart-axis-x-item">Mar '21</div>
+                                    </div>
+                                    <div class="panel-ad-cta">
+                                        <a href="/store/start_trial_register/metric">Upgrade now.</a>
+                                    </div>
+                                </div>
+                                <div class="chart-axis-y">
+                                    <div class="chart-axis-y-item">&nbsp;</div>
+                                    <div class="chart-axis-y-item">80.00%</div>
+                                    <div class="chart-axis-y-item">40.00%</div>
+                                    <div class="chart-axis-y-item">10.00%</div>
+                                    <div class="chart-axis-y-item">&nbsp;</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+</div>
+
+                        
+                        
+                            
+
+
+
+<div class="col-6 col-md-12">
+    <div class="panel panel-data">
+        <div class="panel-header">
+            <h3 class="panel-title">Short Interest</h3>
+        </div>
+        <div class="panel-content">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>Short Interest</td>
+                        <td class="text-right">
+                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="chart-legend-item-title bullet-1">Percent of Shares Outstanding Short</span></td>
+                        <td class="text-right">
+                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+                <div class="chart-cover">
+                    <div class="chart-interactive empty">
+                        <div class="chart-item">
+                            <div class="chart-options"></div>
+                            <div class="chart-wrap">
+                                <div class="chart-canvas">
+                                    <div class="chart-axis-x">
+                                        <div class="chart-axis-x-item">Jul '20</div>
+                                        <div class="chart-axis-x-item">Nov '20</div>
+                                        <div class="chart-axis-x-item">Mar '21</div>
+                                    </div>
+                                    <div class="panel-ad-cta">
+                                        <a href="/store/start_trial_register/metric">Upgrade now.</a>
+                                    </div>
+                                </div>
+                                <div class="chart-axis-y">
+                                    <div class="chart-axis-y-item">&nbsp;</div>
+                                    <div class="chart-axis-y-item">80.00%</div>
+                                    <div class="chart-axis-y-item">40.00%</div>
+                                    <div class="chart-axis-y-item">10.00%</div>
+                                    <div class="chart-axis-y-item">&nbsp;</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+</div>
+
+                        
+                    </div>
+                </div>
+                
+
+<div class="panel panel-data">
+    <div class="panel-header">
+        <h3 class="panel-title">Total Returns Comparison</h3>
+        <div class="panel-actions">
+            <div class="panel-action">
+                <div class="btn btn-secondary"
+                    ng-click="$broadcast('showComparablesModal')">
+                    Edit comparables
+                </div>
+            </div>
+            <div class="panel-action">
+                <a class="btn btn-secondary" href="/companies/FB/performance/price">
+                    View More Performance
+                </a>
+            </div>
+        </div>
+    </div>
+    <yc-performance-chart
+        calcs="[&quot;total_return_forward_adjusted_price&quot;]"
+        chart-tab-url='/companies/FB/chart/'
+        security-ids='[&quot;FB&quot;, &quot;^SPXTR&quot;, &quot;TWTR&quot;, &quot;MTCH&quot;, &quot;GOOGL&quot;]'
+        user-preference-keys="{&quot;zoom&quot;: &quot;stock_performance_return_chart_zoom&quot;}">
+        <!-- Placeholder element until Angular loads -->
+        <div class="panel-content">
+            <div class="chart-cover chart-tall">
+                <div class="chart-interactive">
+                    <div class="chart-item user-select-none">
+                        <div class="chart-wrap">
+                            <div class="chart-canvas"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </yc-performance-chart>
+</div>
+
+                
+
+
+
+<div class="panel panel-data">
+    <div class="panel-header">
+        <h3 class="panel-title">Annual Total Returns Versus Peers</h3>
+        <div class="panel-actions user-select-none">
+            
+                
+
+<div class="page-header-action align-items-center">
+    <yc-performance-include-benchmark-checkbox
+        user-preference-keys='{&quot;include_benchmark&quot;: &quot;stock_performance_include_benchmark&quot;}'>
+    </yc-performance-include-benchmark-checkbox>
+</div>
+
+            
+            
+            <div class="panel-action">
+                <div class="btn btn-secondary"
+                    ng-click="$broadcast('showComparablesModal')">
+                    Edit comparables
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="panel-content">
+        <div class="chart-vertical-bars">
+            <div class="chart-options"></div>
+            <yc-general-chart-responsive
+                chart-options='{&quot;chart&quot;: {&quot;height&quot;: 160}, &quot;xAxis&quot;: {&quot;alternateGridColor&quot;: &quot;#f2f2f2&quot;, &quot;crosshair&quot;: false, &quot;labels&quot;: {&quot;enabled&quot;: false}, &quot;tickmarkPlacement&quot;: &quot;between&quot;}, &quot;yAxis&quot;: {&quot;labels&quot;: {&quot;x&quot;: -15}}}'
+                configurable-options='{&quot;yAxisWidth&quot;: 161}'
+                chart-url-mobile='/charts/general_data.json?&colors=&endDate=04/12/2022&latestDataCutoff=7&metrics=id:ytd_total_return,include:true,,&partner=&removeLeadingIncompleteYears=true&resampleFrequency=yearly&resampleMethod=last&securities=id:FB,include:true,,id:^SPXTR,include:true,,id:TWTR,include:true,,id:MTCH,include:true,,id:GOOGL,include:true,,id:SNAP,include:true,,&startDate=01/01/2015&xAxis=time&xAxisLabelOverride=2015,2016,2017,2018,2019,2020,2021,YTD,&xAxisLabelStyle=short&yAxisLabelStyle=short'
+                chart-url-desktop='/charts/general_data.json?&colors=&endDate=04/12/2022&latestDataCutoff=7&metrics=id:ytd_total_return,include:true,,&partner=&removeLeadingIncompleteYears=true&resampleFrequency=yearly&resampleMethod=last&securities=id:FB,include:true,,id:^SPXTR,include:true,,id:TWTR,include:true,,id:MTCH,include:true,,id:GOOGL,include:true,,id:SNAP,include:true,,&startDate=01/01/2015&xAxis=time&xAxisLabelOverride=2015,2016,2017,2018,2019,2020,2021,YTD,&xAxisLabelStyle=short&yAxisLabelStyle=short'>
+                <!-- Placeholder element until Angular loads -->
+                <div class="chart-wrap">
+                    <div class="chart-axis-y"></div>
+                    <div class="chart-canvas">
+                        <div class="chart-column">
+                            <div class="loader">
+                                <div class="loader-message">Loading chart...</div>
+                                <div class="loader-spinner"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </yc-general-chart-responsive>
+            <div class="chart-data">
+                <div class="chart-data-header">
+                    <div class="chart-data-title">Name</div>
+                    
+                        
+                            <div class="chart-data-title">
+                                2015
+                                
+                            </div>
+                        
+                    
+                        
+                            <div class="chart-data-title">
+                                2016
+                                
+                            </div>
+                        
+                    
+                        
+                            <div class="chart-data-title">
+                                2017
+                                
+                            </div>
+                        
+                    
+                        
+                            <div class="chart-data-title">
+                                2018
+                                
+                            </div>
+                        
+                    
+                        
+                            <div class="chart-data-title">
+                                2019
+                                
+                            </div>
+                        
+                    
+                        
+                            <div class="chart-data-title">
+                                2020
+                                
+                            </div>
+                        
+                    
+                        
+                            <div class="chart-data-title">
+                                2021
+                                
+                            </div>
+                        
+                    
+                        
+                            <div class="chart-data-title">
+                                YTD
+                                
+                            </div>
+                        
+                    
+                </div>
+                
+                    <div class="chart-data-row">
+                        <div class="chart-data-cell">
+                            <a class="chart-legend-item-title bullet-1" href="/companies/FB">
+                                Meta Platforms Inc
+                            </a>
+                        </div>
+                        
+                            
+                                <div class="chart-data-cell">
+                                    34.15%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    9.93%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    53.38%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    -25.71%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    56.57%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    33.09%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    23.13%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    -36.33%
+                                </div>
+                            
+                        
+                    </div>
+                
+                    <div class="chart-data-row">
+                        <div class="chart-data-cell">
+                            <a class="chart-legend-item-title bullet-2" href="/indices/^SPXTR">
+                                S&amp;P 500 Total Return
+                            </a>
+                        </div>
+                        
+                            
+                                <div class="chart-data-cell">
+                                    1.38%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    11.96%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    21.83%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    -4.38%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    31.49%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    18.40%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    28.71%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    -7.37%
+                                </div>
+                            
+                        
+                    </div>
+                
+                    <div class="chart-data-row">
+                        <div class="chart-data-cell">
+                            <a class="chart-legend-item-title bullet-3" href="/companies/TWTR">
+                                Twitter Inc
+                            </a>
+                        </div>
+                        
+                            
+                                <div class="chart-data-cell">
+                                    -35.49%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    -29.56%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    47.30%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    19.70%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    11.52%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    68.95%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    -20.18%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    2.92%
+                                </div>
+                            
+                        
+                    </div>
+                
+                    <div class="chart-data-row">
+                        <div class="chart-data-cell">
+                            <a class="chart-legend-item-title bullet-4" href="/companies/MTCH">
+                                Match Group Inc
+                            </a>
+                        </div>
+                        
+                            
+                                <div class="chart-data-cell">
+                                    --
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    --
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    --
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    --
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    --
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    91.30%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    -12.53%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    -28.82%
+                                </div>
+                            
+                        
+                    </div>
+                
+                    <div class="chart-data-row">
+                        <div class="chart-data-cell">
+                            <a class="chart-legend-item-title bullet-5" href="/companies/GOOGL">
+                                Alphabet Inc
+                            </a>
+                        </div>
+                        
+                            
+                                <div class="chart-data-cell">
+                                    46.61%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    1.86%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    32.93%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    -0.80%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    28.18%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    30.85%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    65.30%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    -11.83%
+                                </div>
+                            
+                        
+                    </div>
+                
+                    <div class="chart-data-row">
+                        <div class="chart-data-cell">
+                            <a class="chart-legend-item-title bullet-6" href="/companies/SNAP">
+                                Snap Inc
+                            </a>
+                        </div>
+                        
+                            
+                                <div class="chart-data-cell">
+                                    --
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    --
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    --
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    -62.29%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    196.4%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    206.6%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    -6.07%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    -28.62%
+                                </div>
+                            
+                        
+                    </div>
+                
+            </div>
+        </div>
+        
+            <div class="panel-date">As of April 12, 2022.
+                
+            </div>
+        
+    </div>
+</div>
+
+                
+
+<div class="panel panel-data">
+    <div class="panel-header">
+        <h3 class="panel-title">Fundamentals</h3>
+        <div class="panel-actions panel-actions-chart-view">
+            <div class="panel-action">
+                <yc-chart-type-button></yc-chart-type-button>
+            </div>
+        </div>
+    </div>
+    <div class="panel-content">
+        
+            <div class="panel-section">
+                <div class="panel-section-header">
+                    <a class="panel-title" href="/companies/FB/financials/income_statement/1">Income Statement</a>
+                    <div class="panel-actions">
+                        <yc-fundamentals-tabs
+                            default-periodicities="[&#x27;TTM&#x27;, &#x27;QTLY&#x27;, &#x27;TTM&#x27;]"
+                            periodicity-options="[&#x27;TTM&#x27;, &#x27;QTLY&#x27;, &#x27;ANN&#x27;]"
+                            section="Income Statement">
+                        </yc-fundamentals-tabs>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        
+                            <div class="chart-interactive">
+                                <div class="chart-item">
+                                    <div class="chart-options"></div>
+                                    <div class="chart-wrap">
+                                        <div class="chart-canvas">
+                                            
+                                                <yc-fundamental-chart
+                                                    onclick="window.location = '/companies/FB/chart/#/?annotations=&amp;annualizedReturns=false&amp;calcs=id:revenues_ttm,include:true,,id:net_income_ttm,include:true,,&amp;chartType=interactive&amp;correlations=&amp;dateSelection=range&amp;displayDateRange=false&amp;displayTicker=false&amp;endDate=&amp;format=real&amp;legendOnChart=true&amp;maxPoints=&amp;note=&amp;partner=&amp;quoteLegend=true&amp;quotes=&amp;recessions=false&amp;redesign=true&amp;scaleType=linear&amp;securities=id:FB,include:true,,&amp;securityGroup=&amp;securitylistName=&amp;securitylistSecurityId=&amp;source=false&amp;splitType=single&amp;startDate=&amp;title=&amp;units=false&amp;useCustomColors=false&amp;useEstimates=false&amp;zoom=5';"
+                                                    chart-id=''
+                                                    chart-json-data="{&quot;chart_data&quot;: [[{&quot;annotation_line_types&quot;: [], &quot;axis_type&quot;: &quot;mil_figure_money_USD_metric&quot;, &quot;can_annualize&quot;: &quot;false&quot;, &quot;currency_code&quot;: &quot;USD&quot;, &quot;estimates_start_date&quot;: null, &quot;event_types&quot;: [], &quot;format&quot;: &quot;real&quot;, &quot;frequency&quot;: &quot;quarterly&quot;, &quot;last_value&quot;: 117929.0000, &quot;line_format&quot;: {&quot;color&quot;: &quot;#6833C9&quot;, &quot;weight&quot;: &quot;medium&quot;}, &quot;long_label&quot;: &quot;Meta Platforms Inc Revenue (TTM)&quot;, &quot;object_calc&quot;: &quot;revenues_ttm&quot;, &quot;object_id&quot;: &quot;FB&quot;, &quot;object_type&quot;: &quot;company&quot;, &quot;raw_data&quot;: [[1498780800000, 33173.0000], [1506729600000, 36490.0000], [1514678400000, 40653.0000], [1522454400000, 44587.0000], [1530316800000, 48497.0000], [1538265600000, 51896.0000], [1546214400000, 55838.0000], [1553990400000, 58949.0000], [1561852800000, 62604.0000], [1569801600000, 66529.0000], [1577750400000, 70697.0000], [1585612800000, 73357.0000], [1593475200000, 75158.0000], [1601424000000, 78976.0000], [1609372800000, 85966.0000], [1617148800000, 94400.0000], [1625011200000, 104790.0000], [1632960000000, 112330.0000], [1640908800000, 117929.0000]], &quot;securitylist_name&quot;: null, &quot;short_label&quot;: &quot;FB Rev TTM&quot;, &quot;source&quot;: &quot;&quot;, &quot;type&quot;: &quot;mil_figure_money&quot;}, {&quot;annotation_line_types&quot;: [], &quot;axis_type&quot;: &quot;mil_figure_money_USD_metric&quot;, &quot;can_annualize&quot;: &quot;false&quot;, &quot;currency_code&quot;: &quot;USD&quot;, &quot;estimates_start_date&quot;: null, &quot;event_types&quot;: [], &quot;format&quot;: &quot;real&quot;, &quot;frequency&quot;: &quot;quarterly&quot;, &quot;last_value&quot;: 39370.0000, &quot;line_format&quot;: {&quot;color&quot;: &quot;#FFA86F&quot;, &quot;weight&quot;: &quot;medium&quot;}, &quot;long_label&quot;: &quot;Meta Platforms Inc Net Income (TTM)&quot;, &quot;object_calc&quot;: &quot;net_income_ttm&quot;, &quot;object_id&quot;: &quot;FB&quot;, &quot;object_type&quot;: &quot;company&quot;, &quot;raw_data&quot;: [[1498780800000, 13154.0000], [1506729600000, 15234.0000], [1514678400000, 15934.0000], [1522454400000, 17858.0000], [1530316800000, 19070.0000], [1538265600000, 19500.0000], [1546214400000, 22113.0000], [1553990400000, 19554.0000], [1561852800000, 17064.0000], [1569801600000, 18018.0000], [1577750400000, 18485.0000], [1585612800000, 20958.0000], [1593475200000, 23520.0000], [1601424000000, 25275.0000], [1609372800000, 29145.0000], [1617148800000, 33740.0000], [1625011200000, 38956.0000], [1632960000000, 40304.0000], [1640908800000, 39370.0000]], &quot;securitylist_name&quot;: null, &quot;short_label&quot;: &quot;FB NI TTM&quot;, &quot;source&quot;: &quot;&quot;, &quot;type&quot;: &quot;mil_figure_money&quot;}]], &quot;chart_quarterly_date_format&quot;: &quot;month&quot;, &quot;chart_url&quot;: &quot;https://ycharts.com/companies/FB/chart/&quot;, &quot;chart_url_params&quot;: &quot;annotations=&amp;annualizedReturns=false&amp;calcs=id:revenues_ttm,include:true,,id:net_income_ttm,include:true,,&amp;chartType=interactive&amp;correlations=&amp;dateSelection=range&amp;displayDateRange=false&amp;displayTicker=false&amp;endDate=&amp;format=real&amp;legendOnChart=true&amp;maxPoints=&amp;note=&amp;partner=&amp;quoteLegend=true&amp;quotes=&amp;recessions=false&amp;redesign=true&amp;scaleType=linear&amp;securities=id:FB,include:true,,&amp;securityGroup=&amp;securitylistName=&amp;securitylistSecurityId=&amp;source=false&amp;splitType=single&amp;startDate=&amp;title=&amp;units=false&amp;useCustomColors=false&amp;useEstimates=false&amp;zoom=5&quot;, &quot;embed_host&quot;: &quot;https://ycharts.com&quot;, &quot;embed_linkback_name&quot;: &quot;FB Revenue (TTM)&quot;, &quot;embed_linkback_url&quot;: &quot;https://ycharts.com/companies/FB/revenues_ttm&quot;, &quot;end_date&quot;: null, &quot;quotes&quot;: null, &quot;start_date&quot;: &quot;04/12/2017&quot;}"
+                                                    chart-options="{&quot;series&quot;: [{&quot;type&quot;: &quot;line&quot;}], &quot;plotOptions&quot;: {&quot;line&quot;: {&quot;states&quot;: {&quot;hover&quot;: {&quot;enabled&quot;: true}}}}, &quot;tooltip&quot;: {&quot;shared&quot;: false}}"
+                                                    configurable-options="{}">
+                                                </yc-fundamental-chart>
+                                            
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                    </div>
+                    <div class="col-6">
+                        <table class="table">
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>
+                                            <a class="chart-legend-item-title bullet-1"
+                                                href="/companies/FB/revenues_ttm">Revenue (TTM)</a>
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            117.93B
+                                        </td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>
+                                            <a class="chart-legend-item-title bullet-2"
+                                                href="/companies/FB/expenses_ttm">Total Expenses (TTM)</a>
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            71.18B
+                                        </td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>
+                                            <a class="chart-legend-item-title bullet-3"
+                                                href="/companies/FB/net_income_ttm">Net Income (TTM)</a>
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            39.37B
+                                        </td>
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="panel-section">
+                <div class="panel-section-header">
+                    <a class="panel-title" href="/companies/FB/financials/balance_sheet/1">Balance Sheet</a>
+                    <div class="panel-actions">
+                        <yc-fundamentals-tabs
+                            default-periodicities="[&#x27;TTM&#x27;, &#x27;QTLY&#x27;, &#x27;TTM&#x27;]"
+                            periodicity-options="[&#x27;QTLY&#x27;, &#x27;ANN&#x27;]"
+                            section="Balance Sheet">
+                        </yc-fundamentals-tabs>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        
+                            <div class="chart-interactive">
+                                <div class="chart-item">
+                                    <div class="chart-options"></div>
+                                    <div class="chart-wrap">
+                                        <div class="chart-canvas">
+                                            
+                                                <yc-fundamental-chart
+                                                    onclick="window.location = '/companies/FB/chart/#/?annotations=&amp;annualizedReturns=false&amp;calcs=id:assets,include:true,,id:liabilities,include:true,,id:shareholders_equity,include:true,,&amp;chartType=interactive&amp;correlations=&amp;dateSelection=range&amp;displayDateRange=false&amp;displayTicker=false&amp;endDate=&amp;format=real&amp;legendOnChart=true&amp;maxPoints=&amp;note=&amp;partner=&amp;quoteLegend=true&amp;quotes=&amp;recessions=false&amp;redesign=true&amp;scaleType=linear&amp;securities=id:FB,include:true,,&amp;securityGroup=&amp;securitylistName=&amp;securitylistSecurityId=&amp;source=false&amp;splitType=single&amp;startDate=&amp;title=&amp;units=false&amp;useCustomColors=false&amp;useEstimates=false&amp;zoom=2';"
+                                                    chart-id=''
+                                                    chart-json-data="{&quot;chart_data&quot;: [[{&quot;annotation_line_types&quot;: [], &quot;axis_type&quot;: &quot;mil_figure_money_USD_metric&quot;, &quot;can_annualize&quot;: &quot;false&quot;, &quot;currency_code&quot;: &quot;USD&quot;, &quot;estimates_start_date&quot;: null, &quot;event_types&quot;: [], &quot;format&quot;: &quot;real&quot;, &quot;frequency&quot;: &quot;quarterly&quot;, &quot;last_value&quot;: 165987.0000, &quot;line_format&quot;: {&quot;color&quot;: &quot;#6833C9&quot;, &quot;weight&quot;: &quot;medium&quot;}, &quot;long_label&quot;: &quot;Meta Platforms Inc Total Assets (Quarterly)&quot;, &quot;object_calc&quot;: &quot;assets&quot;, &quot;object_id&quot;: &quot;FB&quot;, &quot;object_type&quot;: &quot;company&quot;, &quot;raw_data&quot;: [[1593475200000, 139691.0000], [1601424000000, 146437.0000], [1609372800000, 159316.0000], [1617148800000, 163523.0000], [1625011200000, 170609.0000], [1632960000000, 169585.0000], [1640908800000, 165987.0000]], &quot;securitylist_name&quot;: null, &quot;short_label&quot;: &quot;FB To A Q&quot;, &quot;source&quot;: &quot;&quot;, &quot;type&quot;: &quot;mil_figure_money&quot;}, {&quot;annotation_line_types&quot;: [], &quot;axis_type&quot;: &quot;mil_figure_money_USD_metric&quot;, &quot;can_annualize&quot;: &quot;false&quot;, &quot;currency_code&quot;: &quot;USD&quot;, &quot;estimates_start_date&quot;: null, &quot;event_types&quot;: [], &quot;format&quot;: &quot;real&quot;, &quot;frequency&quot;: &quot;quarterly&quot;, &quot;last_value&quot;: 41108.0000, &quot;line_format&quot;: {&quot;color&quot;: &quot;#FFA86F&quot;, &quot;weight&quot;: &quot;medium&quot;}, &quot;long_label&quot;: &quot;Meta Platforms Inc Total Liabilities (Quarterly)&quot;, &quot;object_calc&quot;: &quot;liabilities&quot;, &quot;object_id&quot;: &quot;FB&quot;, &quot;object_type&quot;: &quot;company&quot;, &quot;raw_data&quot;: [[1593475200000, 29244.0000], [1601424000000, 28706.0000], [1609372800000, 31026.0000], [1617148800000, 29866.0000], [1625011200000, 32382.0000], [1632960000000, 36225.0000], [1640908800000, 41108.0000]], &quot;securitylist_name&quot;: null, &quot;short_label&quot;: &quot;FB Liab Q&quot;, &quot;source&quot;: &quot;&quot;, &quot;type&quot;: &quot;mil_figure_money&quot;}, {&quot;annotation_line_types&quot;: [], &quot;axis_type&quot;: &quot;mil_figure_money_USD_metric&quot;, &quot;can_annualize&quot;: &quot;false&quot;, &quot;currency_code&quot;: &quot;USD&quot;, &quot;estimates_start_date&quot;: null, &quot;event_types&quot;: [], &quot;format&quot;: &quot;real&quot;, &quot;frequency&quot;: &quot;quarterly&quot;, &quot;last_value&quot;: 124879.0000, &quot;line_format&quot;: {&quot;color&quot;: &quot;#568CD8&quot;, &quot;weight&quot;: &quot;medium&quot;}, &quot;long_label&quot;: &quot;Meta Platforms Inc Shareholders Equity (Quarterly)&quot;, &quot;object_calc&quot;: &quot;shareholders_equity&quot;, &quot;object_id&quot;: &quot;FB&quot;, &quot;object_type&quot;: &quot;company&quot;, &quot;raw_data&quot;: [[1593475200000, 110447.0000], [1601424000000, 117731.0000], [1609372800000, 128290.0000], [1617148800000, 133657.0000], [1625011200000, 138227.0000], [1632960000000, 133360.0000], [1640908800000, 124879.0000]], &quot;securitylist_name&quot;: null, &quot;short_label&quot;: &quot;FB S Eq Q&quot;, &quot;source&quot;: &quot;&quot;, &quot;type&quot;: &quot;mil_figure_money&quot;}]], &quot;chart_quarterly_date_format&quot;: &quot;month&quot;, &quot;chart_url&quot;: &quot;https://ycharts.com/companies/FB/chart/&quot;, &quot;chart_url_params&quot;: &quot;annotations=&amp;annualizedReturns=false&amp;calcs=id:assets,include:true,,id:liabilities,include:true,,id:shareholders_equity,include:true,,&amp;chartType=interactive&amp;correlations=&amp;dateSelection=range&amp;displayDateRange=false&amp;displayTicker=false&amp;endDate=&amp;format=real&amp;legendOnChart=true&amp;maxPoints=&amp;note=&amp;partner=&amp;quoteLegend=true&amp;quotes=&amp;recessions=false&amp;redesign=true&amp;scaleType=linear&amp;securities=id:FB,include:true,,&amp;securityGroup=&amp;securitylistName=&amp;securitylistSecurityId=&amp;source=false&amp;splitType=single&amp;startDate=&amp;title=&amp;units=false&amp;useCustomColors=false&amp;useEstimates=false&amp;zoom=2&quot;, &quot;embed_host&quot;: &quot;https://ycharts.com&quot;, &quot;embed_linkback_name&quot;: &quot;FB Total Assets (Quarterly)&quot;, &quot;embed_linkback_url&quot;: &quot;https://ycharts.com/companies/FB/assets&quot;, &quot;end_date&quot;: null, &quot;quotes&quot;: null, &quot;start_date&quot;: &quot;04/09/2020&quot;}"
+                                                    chart-options="{&quot;series&quot;: [{&quot;type&quot;: &quot;line&quot;}], &quot;plotOptions&quot;: {&quot;line&quot;: {&quot;states&quot;: {&quot;hover&quot;: {&quot;enabled&quot;: true}}}}, &quot;tooltip&quot;: {&quot;shared&quot;: false}}"
+                                                    configurable-options="{}">
+                                                </yc-fundamental-chart>
+                                            
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                    </div>
+                    <div class="col-6">
+                        <table class="table">
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>
+                                            <a class="chart-legend-item-title bullet-1"
+                                                href="/companies/FB/assets">Total Assets (Quarterly)</a>
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            165.99B
+                                        </td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>
+                                            <a class="chart-legend-item-title bullet-2"
+                                                href="/companies/FB/liabilities">Total Liabilities (Quarterly)</a>
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            41.11B
+                                        </td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>
+                                            <a class="chart-legend-item-title bullet-3"
+                                                href="/companies/FB/shareholders_equity">Shareholders Equity (Quarterly)</a>
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            124.88B
+                                        </td>
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="panel-section">
+                <div class="panel-section-header">
+                    <a class="panel-title" href="/companies/FB/financials/cash_flow/1">Cash Flow</a>
+                    <div class="panel-actions">
+                        <yc-fundamentals-tabs
+                            default-periodicities="[&#x27;TTM&#x27;, &#x27;QTLY&#x27;, &#x27;TTM&#x27;]"
+                            periodicity-options="[&#x27;TTM&#x27;, &#x27;QTLY&#x27;, &#x27;ANN&#x27;]"
+                            section="Cash Flow">
+                        </yc-fundamentals-tabs>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        
+                            <div class="chart-interactive">
+                                <div class="chart-item">
+                                    <div class="chart-options"></div>
+                                    <div class="chart-wrap">
+                                        <div class="chart-canvas">
+                                            
+                                                <yc-fundamental-chart
+                                                    onclick="window.location = '/companies/FB/chart/#/?annotations=&amp;annualizedReturns=false&amp;calcs=id:cash_operations_ttm,include:true,,id:cash_investing_ttm,include:true,,id:cash_financing_ttm,include:true,,&amp;chartType=interactive&amp;correlations=&amp;dateSelection=range&amp;displayDateRange=false&amp;displayTicker=false&amp;endDate=&amp;format=real&amp;legendOnChart=true&amp;maxPoints=&amp;note=&amp;partner=&amp;quoteLegend=true&amp;quotes=&amp;recessions=false&amp;redesign=true&amp;scaleType=linear&amp;securities=id:FB,include:true,,&amp;securityGroup=&amp;securitylistName=&amp;securitylistSecurityId=&amp;source=false&amp;splitType=single&amp;startDate=&amp;title=&amp;units=false&amp;useCustomColors=false&amp;useEstimates=false&amp;zoom=5';"
+                                                    chart-id=''
+                                                    chart-json-data="{&quot;chart_data&quot;: [[{&quot;annotation_line_types&quot;: [], &quot;axis_type&quot;: &quot;mil_figure_money_USD_metric&quot;, &quot;can_annualize&quot;: &quot;false&quot;, &quot;currency_code&quot;: &quot;USD&quot;, &quot;estimates_start_date&quot;: null, &quot;event_types&quot;: [], &quot;format&quot;: &quot;real&quot;, &quot;frequency&quot;: &quot;quarterly&quot;, &quot;last_value&quot;: 57683.0000, &quot;line_format&quot;: {&quot;color&quot;: &quot;#6833C9&quot;, &quot;weight&quot;: &quot;medium&quot;}, &quot;long_label&quot;: &quot;Meta Platforms Inc Cash from Operations (TTM)&quot;, &quot;object_calc&quot;: &quot;cash_operations_ttm&quot;, &quot;object_id&quot;: &quot;FB&quot;, &quot;object_type&quot;: &quot;company&quot;, &quot;raw_data&quot;: [[1498780800000, 19384.0000], [1506729600000, 21475.0000], [1514678400000, 24216.0000], [1522454400000, 27018.0000], [1530316800000, 27956.0000], [1538265600000, 29327.0000], [1546214400000, 29274.0000], [1553990400000, 30722.0000], [1561852800000, 33040.0000], [1569801600000, 34849.0000], [1577750400000, 36314.0000], [1585612800000, 38007.0000], [1593475200000, 33268.0000], [1601424000000, 33790.0000], [1609372800000, 38747.0000], [1617148800000, 39988.0000], [1625011200000, 49358.0000], [1632960000000, 53619.0000], [1640908800000, 57683.0000]], &quot;securitylist_name&quot;: null, &quot;short_label&quot;: &quot;FB C Op TTM&quot;, &quot;source&quot;: &quot;&quot;, &quot;type&quot;: &quot;mil_figure_money&quot;}, {&quot;annotation_line_types&quot;: [], &quot;axis_type&quot;: &quot;mil_figure_money_USD_metric&quot;, &quot;can_annualize&quot;: &quot;false&quot;, &quot;currency_code&quot;: &quot;USD&quot;, &quot;estimates_start_date&quot;: null, &quot;event_types&quot;: [], &quot;format&quot;: &quot;real&quot;, &quot;frequency&quot;: &quot;quarterly&quot;, &quot;last_value&quot;: -7570.0000, &quot;line_format&quot;: {&quot;color&quot;: &quot;#FFA86F&quot;, &quot;weight&quot;: &quot;medium&quot;}, &quot;long_label&quot;: &quot;Meta Platforms Inc Cash from Investing (TTM)&quot;, &quot;object_calc&quot;: &quot;cash_investing_ttm&quot;, &quot;object_id&quot;: &quot;FB&quot;, &quot;object_type&quot;: &quot;company&quot;, &quot;raw_data&quot;: [[1498780800000, -16531.0000], [1506729600000, -17143.0000], [1514678400000, -20118.0000], [1522454400000, -15485.0000], [1530316800000, -12403.0000], [1538265600000, -12921.0000], [1546214400000, -11603.0000], [1553990400000, -17084.0000], [1561852800000, -18710.0000], [1569801600000, -19513.0000], [1577750400000, -19864.0000], [1585612800000, -17205.0000], [1593475200000, -17373.0000], [1601424000000, -28922.0000], [1609372800000, -30059.0000], [1617148800000, -30824.0000], [1625011200000, -34841.0000], [1632960000000, -18572.0000], [1640908800000, -7570.0000]], &quot;securitylist_name&quot;: null, &quot;short_label&quot;: &quot;FB CFI TTM&quot;, &quot;source&quot;: &quot;&quot;, &quot;type&quot;: &quot;mil_figure_money&quot;}, {&quot;annotation_line_types&quot;: [], &quot;axis_type&quot;: &quot;mil_figure_money_USD_metric&quot;, &quot;can_annualize&quot;: &quot;false&quot;, &quot;currency_code&quot;: &quot;USD&quot;, &quot;estimates_start_date&quot;: null, &quot;event_types&quot;: [], &quot;format&quot;: &quot;real&quot;, &quot;frequency&quot;: &quot;quarterly&quot;, &quot;last_value&quot;: -50728.0000, &quot;line_format&quot;: {&quot;color&quot;: &quot;#568CD8&quot;, &quot;weight&quot;: &quot;medium&quot;}, &quot;long_label&quot;: &quot;Meta Platforms Inc Cash from Financing (TTM)&quot;, &quot;object_calc&quot;: &quot;cash_financing_ttm&quot;, &quot;object_id&quot;: &quot;FB&quot;, &quot;object_type&quot;: &quot;company&quot;, &quot;raw_data&quot;: [[1498780800000, -1865.0000], [1506729600000, -3388.0000], [1514678400000, -5235.0000], [1522454400000, -6846.0000], [1530316800000, -10248.0000], [1538265600000, -13874.0000], [1546214400000, -15572.0000], [1553990400000, -14392.0000], [1561852800000, -11952.0000], [1569801600000, -8814.0000], [1577750400000, -7299.0000], [1585612800000, -7898.0000], [1593475200000, -8219.0000], [1601424000000, -9111.0000], [1609372800000, -10292.0000], [1617148800000, -13455.0000], [1625011200000, -19852.0000], [1632960000000, -32193.0000], [1640908800000, -50728.0000]], &quot;securitylist_name&quot;: null, &quot;short_label&quot;: &quot;FB CFF TTM&quot;, &quot;source&quot;: &quot;&quot;, &quot;type&quot;: &quot;mil_figure_money&quot;}]], &quot;chart_quarterly_date_format&quot;: &quot;month&quot;, &quot;chart_url&quot;: &quot;https://ycharts.com/companies/FB/chart/&quot;, &quot;chart_url_params&quot;: &quot;annotations=&amp;annualizedReturns=false&amp;calcs=id:cash_operations_ttm,include:true,,id:cash_investing_ttm,include:true,,id:cash_financing_ttm,include:true,,&amp;chartType=interactive&amp;correlations=&amp;dateSelection=range&amp;displayDateRange=false&amp;displayTicker=false&amp;endDate=&amp;format=real&amp;legendOnChart=true&amp;maxPoints=&amp;note=&amp;partner=&amp;quoteLegend=true&amp;quotes=&amp;recessions=false&amp;redesign=true&amp;scaleType=linear&amp;securities=id:FB,include:true,,&amp;securityGroup=&amp;securitylistName=&amp;securitylistSecurityId=&amp;source=false&amp;splitType=single&amp;startDate=&amp;title=&amp;units=false&amp;useCustomColors=false&amp;useEstimates=false&amp;zoom=5&quot;, &quot;embed_host&quot;: &quot;https://ycharts.com&quot;, &quot;embed_linkback_name&quot;: &quot;FB Cash from Operations (TTM)&quot;, &quot;embed_linkback_url&quot;: &quot;https://ycharts.com/companies/FB/cash_operations_ttm&quot;, &quot;end_date&quot;: null, &quot;quotes&quot;: null, &quot;start_date&quot;: &quot;04/12/2017&quot;}"
+                                                    chart-options="{&quot;series&quot;: [{&quot;type&quot;: &quot;line&quot;}], &quot;plotOptions&quot;: {&quot;line&quot;: {&quot;states&quot;: {&quot;hover&quot;: {&quot;enabled&quot;: true}}}}, &quot;tooltip&quot;: {&quot;shared&quot;: false}}"
+                                                    configurable-options="{}">
+                                                </yc-fundamental-chart>
+                                            
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                    </div>
+                    <div class="col-6">
+                        <table class="table">
+                            <tbody>
+                                
+                                    <tr>
+                                        <td>
+                                            <a class="chart-legend-item-title bullet-1"
+                                                href="/companies/FB/cash_operations_ttm">Cash from Operations (TTM)</a>
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            57.68B
+                                        </td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>
+                                            <a class="chart-legend-item-title bullet-2"
+                                                href="/companies/FB/cash_investing_ttm">Cash from Investing (TTM)</a>
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            -7.57B
+                                        </td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td>
+                                            <a class="chart-legend-item-title bullet-3"
+                                                href="/companies/FB/cash_financing_ttm">Cash from Financing (TTM)</a>
+                                        </td>
+                                        <td class="text-right colTxtMed">
+                                            -50.73B
+                                        </td>
+                                    </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+</div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="visible-md-block"> 
+                    
+    <div class="panel-ad">
+        <!-- /1732286/top_medium_rectangle/top_medium_rectangle_desktop -->
+        <div id='div-gpt-ad-1589691150646-0' style='width: 300px; height: 250px;'>
+            <script>
+                googletag.cmd.push(function() { googletag.display('div-gpt-ad-1589691150646-0'); });
+            </script>
+        </div>
+    </div>
+
+
+                    
+                        
+
+
+
+<div class="panel panel-data">
+    <div class="panel-header">
+        <h3 class="panel-title">Ratings</h3>
+    </div>
+    <div class="panel-content">
+        <div class="row">
+            <div class="col-6 col-md-12">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td><a href="/companies/FB/ratings/y_ratings">Y-Rating</a></td>
+                        <td class="text-right">
+                            <a href="/store/start_trial_register/rating" class="pro">Upgrade</a>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="/companies/FB/ratings/value">Value Score</a></td>
+                        <td class="text-right">
+                            <a href="/store/start_trial_register/rating" class="pro">Upgrade</a>
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-6 col-md-12">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td><a href="/companies/FB/ratings/fundamental">Fundamental Score</a></td>
+                        <td class="text-right">
+                            <a href="/store/start_trial_register/rating" class="pro">Upgrade</a>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="/companies/FB/ratings/valuations">Valuation (Hist. Mult.)</a></td>
+                        <td class="text-right">
+                            <a href="/store/start_trial_register/rating" class="pro">Upgrade</a>
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+                    
+                    
+                        <div class="panel panel-data">
+    <div class="panel-header">
+        <h3 class="panel-title">Profile</h3>
+        <div class="panel-actions">
+            <div class="panel-action">
+                <div class="btn btn-secondary" ng-click="$broadcast('showProfileModal')">Edit</div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-content">
+        <div class="row">
+            <div class="col-6 col-md-12">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td colspan="2">Meta is the world’s largest online social network, with 2.5 billion monthly active users. Users engage with each other in different ways, exchanging messages and sharing news events, photos, and videos. On the video side, the firm is in the process of building a library of premium content and monetizing it via ads or subscription revenue. Meta refers to this as Facebook Watch. The firm’s ecosystem consists mainly of the Facebook app, Instagram, Messenger, WhatsApp, and many features surrounding these products. Users can access Facebook on mobile devices and desktops. Advertising revenue represents more than 90% of the firm’s total revenue, with 50% coming from the U.S. and Canada and 25% from Europe. With gross margins above 80%, Meta operates at a 30%-plus margin.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-6 col-md-12">
+                <table class="table">
+                    <tbody>
+                        
+                            <tr>
+                                <td class="col-6">URL</td>
+                                <td class="col-6"><a class="text-blue" href="https://www.facebook.com" target="_blank">https://www.facebook.com</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">Investor Relations URL</td>
+                                <td class="col-6"><a class="text-blue" href="https://investor.fb.com/" target="_blank">https://investor.fb.com/</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">HQ State/Province</td>
+                                <td class="col-6">California</td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">Sector</td>
+                                <td class="col-6"><a href="/classifications/sectors/communication_services/key_stats" target="_blank">Communication Services</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">Industry</td>
+                                <td class="col-6"><a href="/classifications/industries/internet_content_and_information/overview" target="_blank">Internet Content & Information</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">Equity Style</td>
+                                <td class="col-6">Large Cap/Blend</td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">Next Earnings Release</td>
+                                <td class="col-6">Apr. 27, 2022</td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">Last Earnings Release</td>
+                                <td class="col-6">Feb. 02, 2022</td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">Next Ex-Dividend Date</td>
+                                <td class="col-6">N/A</td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">Last Ex-Dividend Date</td>
+                                <td class="col-6">N/A</td>
+                            </tr>
+                        
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+                    
+                    
+                        
+
+<div class="panel panel-data">
+    <div class="panel-header">
+        <h3 class="panel-title">
+            Risk Info
+            
+                <yc-help-modal name='company_risk_info_module'></yc-help-modal>
+            
+        </h3>
+        <div class="panel-actions">
+            <yc-risk-lookback
+                lookback='5'
+            ></yc-risk-lookback>
+        </div>
+    </div>
+    <div class="panel-content">
+        <div class="row">
+        
+            <div class="col-md-12">
+        
+                <table class="table">
+                    <tbody>
+                        
+                            <tr>
+                                <td>
+                                    <a href="/companies/FB/market_alpha_60_month">
+                                        Alpha (5Y)
+                                    </a>
+                                </td>
+                                <td class="colTxtMed text-right">
+                                    <span>
+                                        
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        
+                                    </span>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td>
+                                    <a href="/companies/FB/market_beta_60_month">
+                                        Beta (5Y)
+                                    </a>
+                                </td>
+                                <td class="colTxtMed text-right">
+                                    <span>
+                                        
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        
+                                    </span>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td>
+                                    <a href="/companies/FB/monthly_standard_deviation_annualized_5y">
+                                        Annualized Standard Deviation of Monthly Returns (5Y Lookback)
+                                    </a>
+                                </td>
+                                <td class="colTxtMed text-right">
+                                    <span>
+                                        
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        
+                                    </span>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td>
+                                    <a href="/companies/FB/historical_sharpe_5y">
+                                        Historical Sharpe Ratio (5Y)
+                                    </a>
+                                </td>
+                                <td class="colTxtMed text-right">
+                                    <span>
+                                        
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        
+                                    </span>
+                                </td>
+                            </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        
+            <div class="col-md-12">
+        
+                <table class="table">
+                    <tbody>
+                        
+                            <tr>
+                                <td>
+                                    <a href="/companies/FB/historical_sortino_5y">
+                                        Historical Sortino (5Y)
+                                    </a>
+                                </td>
+                                <td class="colTxtMed text-right">
+                                    <span>
+                                        
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        
+                                    </span>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td>
+                                    <a href="/companies/FB/max_drawdown_5y">
+                                        Max Drawdown (5Y)
+                                    </a>
+                                </td>
+                                <td class="colTxtMed text-right">
+                                    <span>
+                                        
+                                            
+                                                51.17%
+                                            
+                                        
+                                    </span>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td>
+                                    <a href="/companies/FB/historical_monthly_var_5_5y">
+                                        Monthly Value at Risk (VaR) 5% (5Y Lookback)
+                                    </a>
+                                </td>
+                                <td class="colTxtMed text-right">
+                                    <span>
+                                        
+                                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                        
+                                    </span>
+                                </td>
+                            </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+                    
+                    <div class="row">
+                        
+                            
+
+
+
+<div class="col-6 col-md-12">
+    <div class="panel panel-data">
+        <div class="panel-header">
+            <h3 class="panel-title">Ownership</h3>
+        </div>
+        <div class="panel-content">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td><span class="chart-legend-item-title bullet-1">Insider Ownership Percentage</span></td>
+                        <td class="text-right">
+                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+                <div class="chart-cover">
+                    <div class="chart-interactive empty">
+                        <div class="chart-item">
+                            <div class="chart-options"></div>
+                            <div class="chart-wrap">
+                                <div class="chart-canvas">
+                                    <div class="chart-axis-x">
+                                        <div class="chart-axis-x-item">Jul '20</div>
+                                        <div class="chart-axis-x-item">Nov '20</div>
+                                        <div class="chart-axis-x-item">Mar '21</div>
+                                    </div>
+                                    <div class="panel-ad-cta">
+                                        <a href="/store/start_trial_register/metric">Upgrade now.</a>
+                                    </div>
+                                </div>
+                                <div class="chart-axis-y">
+                                    <div class="chart-axis-y-item">&nbsp;</div>
+                                    <div class="chart-axis-y-item">80.00%</div>
+                                    <div class="chart-axis-y-item">40.00%</div>
+                                    <div class="chart-axis-y-item">10.00%</div>
+                                    <div class="chart-axis-y-item">&nbsp;</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+</div>
+
+                        
+                        
+                            
+
+
+
+<div class="col-6 col-md-12">
+    <div class="panel panel-data">
+        <div class="panel-header">
+            <h3 class="panel-title">Short Interest</h3>
+        </div>
+        <div class="panel-content">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>Short Interest</td>
+                        <td class="text-right">
+                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="chart-legend-item-title bullet-1">Percent of Shares Outstanding Short</span></td>
+                        <td class="text-right">
+                            <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+                <div class="chart-cover">
+                    <div class="chart-interactive empty">
+                        <div class="chart-item">
+                            <div class="chart-options"></div>
+                            <div class="chart-wrap">
+                                <div class="chart-canvas">
+                                    <div class="chart-axis-x">
+                                        <div class="chart-axis-x-item">Jul '20</div>
+                                        <div class="chart-axis-x-item">Nov '20</div>
+                                        <div class="chart-axis-x-item">Mar '21</div>
+                                    </div>
+                                    <div class="panel-ad-cta">
+                                        <a href="/store/start_trial_register/metric">Upgrade now.</a>
+                                    </div>
+                                </div>
+                                <div class="chart-axis-y">
+                                    <div class="chart-axis-y-item">&nbsp;</div>
+                                    <div class="chart-axis-y-item">80.00%</div>
+                                    <div class="chart-axis-y-item">40.00%</div>
+                                    <div class="chart-axis-y-item">10.00%</div>
+                                    <div class="chart-axis-y-item">&nbsp;</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+</div>
+
+                        
+                    </div>
+                    
+                        
+
+
+<div class="panel panel-data">
+    <div class="panel-header">
+        <h3 class="panel-title">Analyst Coverage</h3>
+    </div>
+    <div class="panel-content">
+        <div class="row">
+            <div class="col-6 col-md-12">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td colspan="2">
+                                <div class="flow">
+                                    <div class="flow-header mb-4">
+                                        <a class="flow-title text-default" href="/companies/FB/price">
+                                            Price (52 Week Range)
+                                        </a>
+                                    </div>
+                                    
+                                        <div class="flow-body">
+                                            <div class="flow-range">
+                                                <div class="flow-label bg-1 text-1" style="left: 14.27%;">
+                                                    <span>
+                                                        
+                                                            $214.14
+                                                        
+                                                    </span>
+                                                </div>
+                                                <div class="flow-axis">
+                                                    <div class="flow-axis-item text-gray-30">
+                                                        <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                                    </div>
+                                                    <div class="flow-axis-item text-gray-30">
+                                                        <a href="/store/start_trial_register/metric" class="pro">Upgrade</a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="flow">
+                                    <div class="flow-header mb-4">
+                                        <a class="flow-title text-default" href="/companies/FB/price_target">
+                                            Price Target
+                                        </a>
+                                    </div>
+                                    
+                                        <div class="flow-body">
+                                            <div class="flow-range has-deviation">
+                                                <div class="flow-label bg-1 text-1" style="left: 48.39%;">
+                                                    <span>
+                                                        <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                                    </span>
+                                                </div>
+                                                <div class="flow-axis">
+                                                    <div class="flow-region bg-gradient-1-3"
+                                                         style="left: 27.61%;
+                                                                width: 41.56%;">
+                                                    </div>
+                                                    <div class="flow-axis-item text-gray-30">
+                                                        <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                                    </div>
+                                                    <div class="flow-axis-item text-gray-30">
+                                                        <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="/companies/FB/price_target_std_dev">Price Target Std Dev</a></td>
+                            
+                                <td class="text-right">
+                                    <span class="col">
+                                        <svg class="icon-square text-gradient-1-3" role="img">
+                                            <yc-icon name="icon-square"></yc-icon>
+                                        </svg>
+                                    </span>
+                                    <span class="text-nowrap">
+                                        <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                    </span>
+                                </td>
+                            
+                        </tr>
+                        <tr>
+                            <td><a href="/companies/FB/price_target_upside">Price Target Upside (Daily)</a></td>
+                            <td class="text-right">
+                                <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="/companies/FB/price_target_num_est">Price Target Num Estimates</a></td>
+                            <td class="text-right">
+                                <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="panel-date hidden-md">Source: S&amp;P Global</div>
+            </div>
+            <hr class="visible-md-flex">
+            <div class="col-6 col-md-12">
+                <table class="table">
+                    <tbody>
+                        
+                            <tr>
+                                <td class="col-6">
+                                    <div class="d-flex justify-content-between">
+                                        <a class="chart-legend-item-title bullet-15" href="/companies/FB/buy_recommendations">
+                                            Buy
+                                        </a>
+                                        <span class="text-nowrap">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="col-6">
+                                    <div class="chart-horizontal-bars">
+                                        <div class="chart-bar">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">
+                                    <div class="d-flex justify-content-between">
+                                        <a class="chart-legend-item-title bullet-4" href="/companies/FB/outperform_recommendations">
+                                            Outperform
+                                        </a>
+                                        <span class="text-nowrap">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="col-6">
+                                    <div class="chart-horizontal-bars">
+                                        <div class="chart-bar">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">
+                                    <div class="d-flex justify-content-between">
+                                        <a class="chart-legend-item-title bullet-17" href="/companies/FB/hold_recommendations">
+                                            Hold
+                                        </a>
+                                        <span class="text-nowrap">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="col-6">
+                                    <div class="chart-horizontal-bars">
+                                        <div class="chart-bar">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">
+                                    <div class="d-flex justify-content-between">
+                                        <a class="chart-legend-item-title bullet-2" href="/companies/FB/underperform_recommendations">
+                                            Underperform
+                                        </a>
+                                        <span class="text-nowrap">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="col-6">
+                                    <div class="chart-horizontal-bars">
+                                        <div class="chart-bar">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">
+                                    <div class="d-flex justify-content-between">
+                                        <a class="chart-legend-item-title bullet-16" href="/companies/FB/sell_recommendations">
+                                            Sell
+                                        </a>
+                                        <span class="text-nowrap">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="col-6">
+                                    <div class="chart-horizontal-bars">
+                                        <div class="chart-bar">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        
+                        <tr>
+                            <td colspan="2">
+                                <div class="d-flex justify-content-between">
+                                    <a href="/companies/FB/consensus_recommendation">
+                                        Consensus Recommendation
+                                    </a>
+                                    <div class="text-nowrap">
+                                        <span class="col">
+                                            <svg class="icon-square" role="img">
+                                                <yc-icon name="icon-square" style="color:#9bcc4f"></yc-icon>
+                                            </svg>
+                                        </span>
+                                        <span class="text-nowrap">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="d-flex justify-content-between">
+                                    Consensus Rating
+                                    <div class="text-nowrap">
+                                        <span class="col">
+                                            <svg class="icon-square" role="img">
+                                              <yc-icon name="icon-square" style="color:#9bcc4f"></yc-icon>
+                                            </svg>
+                                        </span>
+                                        <span class="text-nowrap">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="d-flex justify-content-between">
+                                    Analyst Recommendation
+                                    <div class="text-nowrap">
+                                        <span class="text-nowrap">
+                                            <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
+
+                                        </span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="panel-date visible-md-block">Source: S&amp;P Global</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                    
+                </div>
+                <div class="row">
+                    
+
+<div class="col-6 col-md-12">
+    <div class="panel panel-data">
+        <div class="panel-header">
+            <h3 class="panel-title">Top Fund Holders</h3>
+        </div>
+        <div class="panel-content">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th class="text-right">Dollars Invested</th>
+                        <th class="text-right">%&nbsp;Weight</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr>
+                            <td><a href="/mutual_funds/M:FCNKX" tooltip tooltip-title="Fidelity® Contrafund® K">FCNKX</a></td>
+                            <td class="text-right">8.806B USD</td>
+                            <td class="text-right">7.11%</td>
+                        </tr>
+                    
+                        <tr>
+                            <td><a href="/mutual_funds/M:TRZBX" tooltip tooltip-title="T. Rowe Price Blue Chip Growth Z">TRZBX</a></td>
+                            <td class="text-right">6.786B USD</td>
+                            <td class="text-right">6.64%</td>
+                        </tr>
+                    
+                        <tr>
+                            <td><a href="/mutual_funds/M:CICFX" tooltip tooltip-title="American Funds Invmt Co of Amer 529F">CICFX</a></td>
+                            <td class="text-right">5.314B USD</td>
+                            <td class="text-right">4.23%</td>
+                        </tr>
+                    
+                        <tr>
+                            <td><a href="/mutual_funds/M:CGFFX" tooltip tooltip-title="American Funds Growth Fund of Amer 529F">CGFFX</a></td>
+                            <td class="text-right">11.93B USD</td>
+                            <td class="text-right">4.09%</td>
+                        </tr>
+                    
+                        <tr>
+                            <td><a href="/companies/QQQ" tooltip tooltip-title="Invesco QQQ Trust">QQQ</a></td>
+                            <td class="text-right">6.376B USD</td>
+                            <td class="text-right">3.45%</td>
+                        </tr>
+                    
+                        <tr>
+                            <td><a href="/companies/VUG" tooltip tooltip-title="Vanguard Growth ETF">VUG</a></td>
+                            <td class="text-right">3.972B USD</td>
+                            <td class="text-right">2.45%</td>
+                        </tr>
+                    
+                        <tr>
+                            <td><a href="/mutual_funds/M:VFINX" tooltip tooltip-title="Vanguard 500 Index Investor">VFINX</a></td>
+                            <td class="text-right">10.86B USD</td>
+                            <td class="text-right">1.34%</td>
+                        </tr>
+                    
+                        <tr>
+                            <td><a href="/companies/VOO" tooltip tooltip-title="Vanguard S&amp;P 500 ETF">VOO</a></td>
+                            <td class="text-right">10.86B USD</td>
+                            <td class="text-right">1.34%</td>
+                        </tr>
+                    
+                        <tr>
+                            <td><a href="/companies/IVV" tooltip tooltip-title="iShares Core S&amp;P 500 ETF">IVV</a></td>
+                            <td class="text-right">4.350B USD</td>
+                            <td class="text-right">1.34%</td>
+                        </tr>
+                    
+                        <tr>
+                            <td><a href="/companies/SPY" tooltip tooltip-title="SPDR® S&amp;P 500 ETF Trust">SPY</a></td>
+                            <td class="text-right">5.402B USD</td>
+                            <td class="text-right">1.34%</td>
+                        </tr>
+                    
+                        <tr>
+                            <td><a href="/mutual_funds/M:VTSMX" tooltip tooltip-title="Vanguard Total Stock Mkt Idx Inv">VTSMX</a></td>
+                            <td class="text-right">14.38B USD</td>
+                            <td class="text-right">1.13%</td>
+                        </tr>
+                    
+                        <tr>
+                            <td><a href="/companies/VTI" tooltip tooltip-title="Vanguard Total Stock Market ETF">VTI</a></td>
+                            <td class="text-right">14.38B USD</td>
+                            <td class="text-right">1.13%</td>
+                        </tr>
+                    
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+                    <div class="col-6 col-md-12">
+                        
+
+
+    <div class="panel panel-data">
+        <div class="panel-header">
+            <h3 class="panel-title">Top Portfolio Holders</h3>
+            <div class="panel-actions">
+                <div class="panel-action col-auto text-gray-30">0 of 0</div>
+                <div class="panel-action"><a class="btn btn-secondary disabled" href="#">
+                    <yc-icon name="icon-back"></yc-icon>
+                </a></div>
+                <div class="panel-action"><a class="btn btn-secondary disabled" href="#">
+                    <yc-icon name="icon-collapse"></yc-icon>
+                </a></div>
+            </div>
+        </div>
+        <div class="panel-content">
+            <div class="chart-options">
+                <div class="panel-ad-cta text-center">
+                    <a href="/store/start_trial_register/modelPortfolios">Upgrade now.</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+                </div>
+                <div class="panel panel-data">
+    <div class="panel-header">
+        <h3 class="panel-title">Other Resources</h3>
+    </div>
+    <div class="panel-content">
+        <div class="row">
+            <div class="col-6 col-md-12">
+                <table class="table">
+                    <tbody>
+                        
+                            <tr>
+                                <td class="col-6">Whale Wisdom</td>
+                                <td class="col-6"><a class="text-blue" href=http://whalewisdom.com/stock/fb>13F Filings</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">Seeking Alpha</td>
+                                <td class="col-6"><a class="text-blue" href=http://seekingalpha.com/symbol/FB/transcripts>Call Transcripts</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">Morningstar</td>
+                                <td class="col-6"><a class="text-blue" href=http://insiders.morningstar.com/trading/insider-activity.action?t=FB&amp;amp;region=USA&amp;amp;culture=en-us>Insider Trading</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">Nasdaq</td>
+                                <td class="col-6"><a class="text-blue" href=http://www.nasdaq.com/market-activity/stocks/fb/institutional-holdings>Institutional Ownership</a></td>
+                            </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-6 col-md-12">
+                <table class="table">
+                    <tbody>
+                        
+                            <tr>
+                                <td class="col-6">Nasdaq</td>
+                                <td class="col-6"><a class="text-blue" href=http://www.nasdaq.com/market-activity/stocks/fb/option-chain>Option Chain</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">SEC</td>
+                                <td class="col-6"><a class="text-blue" href=http://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&amp;CIK=1326801&amp;output=>SEC Filings</a></td>
+                            </tr>
+                        
+                            <tr>
+                                <td class="col-6">Stocktwits</td>
+                                <td class="col-6"><a class="text-blue" href=http://stocktwits.com/symbol/FB>FB Tweets</a></td>
+                            </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+                
+
+                
+    <iframe WIDTH="300" HEIGHT="250" SCROLLING="NO" src="https://www.dianomi.com/smartads.epl?id=5942"  style="width: 100%; height: 250px; border: none; overflow: hidden;"></iframe>
+
+
+                
+
+            </div>
+        </div>
+        <yc-comparables-modal
+            benchmark-security-id="^SPXTR"
+            max-comparables="6"
+            result-type="list"
+            search-type="stock"
+            security-id="FB"
+            show-modal-event-name="showComparablesModal"
+            show-restore-defaults="true">
+        </yc-comparables-modal>
+        <yc-edit-profile-modal
+            show-modal-event-name="showProfileModal"
+            info-fields="[{&quot;name&quot;: &quot;url&quot;, &quot;label&quot;: &quot;URL&quot;, &quot;value&quot;: &quot;&lt;a class=\&quot;text-blue\&quot; href=\&quot;https://www.facebook.com\&quot; target=\&quot;_blank\&quot;&gt;https://www.facebook.com&lt;/a&gt;&quot;}, {&quot;name&quot;: &quot;ir_url&quot;, &quot;label&quot;: &quot;Investor Relations URL&quot;, &quot;value&quot;: &quot;&lt;a class=\&quot;text-blue\&quot; href=\&quot;https://investor.fb.com/\&quot; target=\&quot;_blank\&quot;&gt;https://investor.fb.com/&lt;/a&gt;&quot;}, {&quot;name&quot;: &quot;hq_state_province&quot;, &quot;label&quot;: &quot;HQ State/Province&quot;, &quot;value&quot;: &quot;California&quot;}, {&quot;name&quot;: &quot;sector&quot;, &quot;label&quot;: &quot;Sector&quot;, &quot;value&quot;: &quot;&lt;a href=\&quot;/classifications/sectors/communication_services/key_stats\&quot; target=\&quot;_blank\&quot;&gt;Communication Services&lt;/a&gt;&quot;}, {&quot;name&quot;: &quot;industry&quot;, &quot;label&quot;: &quot;Industry&quot;, &quot;value&quot;: &quot;&lt;a href=\&quot;/classifications/industries/internet_content_and_information/overview\&quot; target=\&quot;_blank\&quot;&gt;Internet Content &amp; Information&lt;/a&gt;&quot;}, {&quot;name&quot;: &quot;equity_style&quot;, &quot;label&quot;: &quot;Equity Style&quot;, &quot;value&quot;: &quot;Large Cap/Blend&quot;}, {&quot;name&quot;: &quot;next_earnings_release&quot;, &quot;label&quot;: &quot;Next Earnings Release&quot;, &quot;value&quot;: &quot;Apr. 27, 2022&quot;}, {&quot;name&quot;: &quot;last_earnings_release&quot;, &quot;label&quot;: &quot;Last Earnings Release&quot;, &quot;value&quot;: &quot;Feb. 02, 2022&quot;}, {&quot;name&quot;: &quot;next_ex_dividend_date&quot;, &quot;label&quot;: &quot;Next Ex-Dividend Date&quot;, &quot;value&quot;: &quot;N/A&quot;}, {&quot;name&quot;: &quot;last_ex_dividend_date&quot;, &quot;label&quot;: &quot;Last Ex-Dividend Date&quot;, &quot;value&quot;: &quot;N/A&quot;}]"
+            default-info-fields="[{&quot;name&quot;: &quot;url&quot;, &quot;label&quot;: &quot;URL&quot;, &quot;value&quot;: &quot;&lt;a class=\&quot;text-blue\&quot; href=\&quot;https://www.facebook.com\&quot; target=\&quot;_blank\&quot;&gt;https://www.facebook.com&lt;/a&gt;&quot;}, {&quot;name&quot;: &quot;ir_url&quot;, &quot;label&quot;: &quot;Investor Relations URL&quot;, &quot;value&quot;: &quot;&lt;a class=\&quot;text-blue\&quot; href=\&quot;https://investor.fb.com/\&quot; target=\&quot;_blank\&quot;&gt;https://investor.fb.com/&lt;/a&gt;&quot;}, {&quot;name&quot;: &quot;hq_state_province&quot;, &quot;label&quot;: &quot;HQ State/Province&quot;, &quot;value&quot;: &quot;California&quot;}, {&quot;name&quot;: &quot;sector&quot;, &quot;label&quot;: &quot;Sector&quot;, &quot;value&quot;: &quot;&lt;a href=\&quot;/classifications/sectors/communication_services/key_stats\&quot; target=\&quot;_blank\&quot;&gt;Communication Services&lt;/a&gt;&quot;}, {&quot;name&quot;: &quot;industry&quot;, &quot;label&quot;: &quot;Industry&quot;, &quot;value&quot;: &quot;&lt;a href=\&quot;/classifications/industries/internet_content_and_information/overview\&quot; target=\&quot;_blank\&quot;&gt;Internet Content &amp; Information&lt;/a&gt;&quot;}, {&quot;name&quot;: &quot;equity_style&quot;, &quot;label&quot;: &quot;Equity Style&quot;, &quot;value&quot;: &quot;Large Cap/Blend&quot;}, {&quot;name&quot;: &quot;next_earnings_release&quot;, &quot;label&quot;: &quot;Next Earnings Release&quot;, &quot;value&quot;: &quot;Apr. 27, 2022&quot;}, {&quot;name&quot;: &quot;last_earnings_release&quot;, &quot;label&quot;: &quot;Last Earnings Release&quot;, &quot;value&quot;: &quot;Feb. 02, 2022&quot;}, {&quot;name&quot;: &quot;next_ex_dividend_date&quot;, &quot;label&quot;: &quot;Next Ex-Dividend Date&quot;, &quot;value&quot;: &quot;N/A&quot;}, {&quot;name&quot;: &quot;last_ex_dividend_date&quot;, &quot;label&quot;: &quot;Last Ex-Dividend Date&quot;, &quot;value&quot;: &quot;N/A&quot;}]">
+        </yc-edit-profile-modal>
+    </div>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <yc-quickflows-menu
+        display-security-id="FB"
+        security-id="FB"
+    ></yc-quickflows-menu>
+
+
+        
+            
+        
+
+        
+        <!-- Google Analytics (analytics.js) -->
+<!-- Only track non-staff users unless it is within the admin where we want to track users -->
+<script type="text/javascript">
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-8129500-1', {'cookieDomain': 'auto', 'siteSpeedSampleRate': 10});
+
+    
+
+    ga('set', 'dimension2', 'No');
+    ga('send', 'pageview');
+
+
+</script>
+<!-- End Google Analytics -->
+
+        
+<script type="text/javascript">
+    var _comscore = _comscore || [];
+    _comscore.push({c1: "2", c2: "7941412"});
+    (function () {
+        var s = document.createElement("script"), el = document.getElementsByTagName("script")[0];
+        s.async = true;
+        s.src = (document.location.protocol == "https:" ? "https://sb": "http://b") + ".scorecardresearch.com/beacon.js";
+        el.parentNode.insertBefore(s, el);
+    })();
+</script>
+<noscript>
+    <img src="http://b.scorecardresearch.com/p?c1=2&amp;c2=7941412&amp;cv=2.0&amp;cj=1"/>
+</noscript>
+
+
+        <!-- Start of HubSpot Embed Code -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/1645474.js"></script>
+<script type="text/javascript">
+    <!-- Do not load Hubspot Chat by default -->
+    window.hsConversationsSettings = {loadImmediately: false};
+</script>
+<!-- End of HubSpot Embed Code -->
+
+        <!-- LinkedIn Tracking -->
+<script type="text/javascript">
+    _linkedin_partner_id = "359530";
+    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+    window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+</script>
+<script type="text/javascript">
+    (function () {
+        var s = document.getElementsByTagName("script")[0];
+        var b = document.createElement("script");
+        b.type = "text/javascript";
+        b.async = true;
+        b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+        s.parentNode.insertBefore(b, s);
+    })();
+</script>
+<noscript>
+    <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=359530&fmt=gif"/>
+</noscript>
+<!-- End LinkedIn Tracking -->
+        
+
+
+
+
+
+        
+        
+        
+
+        
+        
+        
+
+        
+            
+
+<!-- Start of HubSpot Chat Code -->
+
+    <script type="text/javascript">
+        
+
+        window.openHubSpotChat = function() {
+            window.HubSpotConversations.widget.load();
+            window.HubSpotConversations.widget.open();
+        };
+
+        function onConversationsAPIReady() {
+            window.HubSpotConversations.widget.load();
+
+            // Check to see if there is a chat in in progress by inspecting if the cookie has been set.
+            // If it is then open the widget the user can continue their chat.
+            if (document.cookie.split(';').some(function (item) { return item.includes('yChatOpen=true')})) {
+                console.log('YCharts Chat: chat in progress.')
+                window.openHubSpotChat();
+            }
+
+            window.HubSpotConversations.on('conversationStarted', function () {
+                console.log('YCharts Chat: starting chat')
+                // When a user starts a conversation we want to set a cookie that informs us
+                // on next page load to keep the chat open on load.
+                // We set the max age to 30 minutes (60 * 30 = 1800) so that the chat stays open
+                // for 30 minutes on page loads or until the chat ends.
+                document.cookie = 'yChatOpen=true; max-age=1800; SameSite=lax; Secure; path=/';
+            });
+
+            window.HubSpotConversations.on('conversationClosed', function () {
+                console.log('YCharts Chat: ending chat')
+                // When a user ends a conversation we want to remove this cookie so we don't
+                // keep popping the chat open on load. We do this by setting the max-age to 0 which
+                // makes it expire.
+                document.cookie = 'yChatOpen=false; max-age=0; SameSite=lax; Secure; path=/';
+            });
+
+        }
+
+        window.hsConversationsOnReady = [onConversationsAPIReady];
+
+    </script>
+
+<!-- End of HubSpot Chat Code -->
+
+        
+    </body>
+</html>
