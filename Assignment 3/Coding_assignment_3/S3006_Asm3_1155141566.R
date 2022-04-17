@@ -187,7 +187,7 @@ y_t[1, ] = c(100-22-31-20, 20, 18, 100-28-26-18)
 accept_num = 0
 for (i in 2:N) {
   # sample p's
-  p_t[i, ] = rDirichlet(p_t[i-1, ] + c((28+y_t[i-1, 1])/2, (y_t[i-1, 2]+y_t[i-1, 3])/2, (22+26)/2, (31+y_t[i-1, 4])/2))
+  p_t[i, ] = rDirichlet(c(30+y_t[i-1, 1], 2+y_t[i-1, 2]+y_t[i-1, 3], 50, 33+y_t[i-1, 4]))
   
   # sample unobserved y's
   # sample yi2 (i = 1,2)
@@ -209,12 +209,22 @@ for (i in 2:N) {
     
     # MH step ratio
     if (j==2){
-      ratio = ( (p_2^y_proposal * p_1^(47-y_proposal)) / (factorial(y_proposal) * factorial(47-y_proposal)) ) / ( (p_2^ y_t[i-1, j] * p_1^(47-y_t[i-1, j])) / (factorial( y_t[i-1, j]) * factorial(47- y_t[i-1, j])) )
+      orig_ratio = ( (p_2^y_proposal * p_1^(47-y_proposal)) / (factorial(y_proposal) * factorial(47-y_proposal)) ) / ( (p_2^ y_t[i-1, j] * p_1^(47-y_t[i-1, j])) / (factorial( y_t[i-1, j]) * factorial(47- y_t[i-1, j])) )
     }
     
     if (j==3){
-      ratio =( (p_2^y_proposal * p_4^(46-y_proposal)) / (factorial(y_proposal) * factorial(46-y_proposal)) ) / ( (p_2^ y_t[i-1, j] * p_4^(46-y_t[i-1, j])) / (factorial( y_t[i-1, j]) * factorial(46- y_t[i-1, j])) )
+      orig_ratio =( (p_2^y_proposal * p_4^(46-y_proposal)) / (factorial(y_proposal) * factorial(46-y_proposal)) ) / ( (p_2^ y_t[i-1, j] * p_4^(46-y_t[i-1, j])) / (factorial( y_t[i-1, j]) * factorial(46- y_t[i-1, j])) )
     }
+    
+    ratio = orig_ratio
+    
+    if ((y_proposal == 32) | (y_proposal=15)){
+      ratio = 2*orig_ratio
+    }
+    if ((y_t[i-1, j] == 32) | (y_t[i-1, j]=15)){
+      ratio = orig_ratio/2
+    }
+    
     
     r = min ( ratio , 1 )
     

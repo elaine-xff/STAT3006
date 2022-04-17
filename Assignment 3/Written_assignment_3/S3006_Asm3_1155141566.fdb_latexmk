@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1650195526 "/Users/elainexfff_/Documents/STAT3006/Assignment 3/Written_assignment_3/S3006_Asm3_1155141566.tex" "/Users/elainexfff_/Documents/STAT3006/Assignment 3/Written_assignment_3/S3006_Asm3_1155141566.pdf" "S3006_Asm3_1155141566" 1650195528
-  "/Users/elainexfff_/Documents/STAT3006/Assignment 3/Written_assignment_3/S3006_Asm3_1155141566.aux" 1650195528 776 b013e5e3106a8f57eacdd691e1dc14f8 ""
-  "/Users/elainexfff_/Documents/STAT3006/Assignment 3/Written_assignment_3/S3006_Asm3_1155141566.tex" 1650195526 10528 0e296d2f7964ba0fd87f29daac557a03 ""
+["pdflatex"] 1650203303 "/Users/elainexfff_/Documents/STAT3006/Assignment 3/Written_assignment_3/S3006_Asm3_1155141566.tex" "/Users/elainexfff_/Documents/STAT3006/Assignment 3/Written_assignment_3/S3006_Asm3_1155141566.pdf" "S3006_Asm3_1155141566" 1650203304
+  "/Users/elainexfff_/Documents/STAT3006/Assignment 3/Written_assignment_3/S3006_Asm3_1155141566.aux" 1650203304 776 b013e5e3106a8f57eacdd691e1dc14f8 ""
+  "/Users/elainexfff_/Documents/STAT3006/Assignment 3/Written_assignment_3/S3006_Asm3_1155141566.tex" 1650203302 10940 250db9402742f5137dc2504f565e74be ""
   "/usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -26,6 +26,7 @@
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm" 1136768653 1116 933a60c408fc0a863a92debe84b2d294 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm" 1136768653 1120 8b7d695260f3cff42e636090a8002094 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1248133631 34811 78b52f49e893bcba91bd7581cdc144c0 ""
+  "/usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb" 1248133631 32166 b0c356b15f19587482a9217ce1d8fa67 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1248133631 30251 6afa5cb1d0204815a708a080681d4674 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "/usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb" 1248133631 37166 8ab3487cbe3ab49ebce74c29ea2418db ""
@@ -68,8 +69,8 @@
   "/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1616695603 5169178 a2ce6e2d73f603b690db6777d06dbccb ""
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1618821136 2724737 59ee1c8e7f158a84523516f0f37ca650 ""
   "/usr/local/texlive/2021/texmf.cnf" 1616695596 577 4c1911a7228e554c6032256d3cf5567d ""
-  "S3006_Asm3_1155141566.aux" 1650195528 776 b013e5e3106a8f57eacdd691e1dc14f8 "pdflatex"
-  "S3006_Asm3_1155141566.tex" 1650195526 10528 0e296d2f7964ba0fd87f29daac557a03 ""
+  "S3006_Asm3_1155141566.aux" 1650203304 776 b013e5e3106a8f57eacdd691e1dc14f8 "pdflatex"
+  "S3006_Asm3_1155141566.tex" 1650203302 10940 250db9402742f5137dc2504f565e74be ""
   "figures/pi_1 plot.png" 1649262582 12466 a67a055b3f91070e7d1d4b94099b08ca ""
   "figures/theta_11 plot.png" 1649262631 14167 a275703e7f86408e54061d5a9f31c12f ""
   "figures/z1.png" 1649263086 744803 e83fffa4a86a7b3d956ecc0ea575fcc6 ""
@@ -77,8 +78,8 @@
   "figures/z3.png" 1649263105 127136 2482e5c94183d17678f66f5e61120240 ""
   "figures/z_1 plot.png" 1649262616 11998 794ba5ba5b797eef31d8cc66af99bde0 ""
   (generated)
+  "S3006_Asm3_1155141566.log"
+  "S3006_Asm3_1155141566.pdf"
   "/Users/elainexfff_/Documents/STAT3006/Assignment 3/Written_assignment_3/S3006_Asm3_1155141566.pdf"
   "/Users/elainexfff_/Documents/STAT3006/Assignment 3/Written_assignment_3/S3006_Asm3_1155141566.log"
-  "S3006_Asm3_1155141566.pdf"
-  "S3006_Asm3_1155141566.log"
   "S3006_Asm3_1155141566.aux"
