@@ -153,10 +153,13 @@ for(j in 1:1000){
 dev.off()
 
 plot(theta_t[, 1], type = "l", main="trace plot of theta11",xlab="iterations",ylab="theta11")
+abline(v=2000,col="red")
 
 plot(z_t[, 1], type = "l", main="trace plot of Z1",xlab="iterations",ylab="Z1")
+abline(v=2000,col="red")
 
 plot(pi_t[ ,1], type = "l", main="trace plot of pi1",xlab="iterations",ylab="pi1")
+abline(v=2000,col="red")
 
 
 
@@ -181,7 +184,7 @@ rDirichlet <- function(alpha_vec){
 
 # initialization
 p_t[1, ] = rDirichlet(c(2,2,2,2))
-y_t[1, ] = c(100-22-31-20, 20, 18, 100-28-26-18)
+y_t[1, ] = c(15, 32, 15, 31)
 
 # Hybrid Gibbs Sampler
 accept_num = 0
@@ -192,14 +195,20 @@ for (i in 2:N) {
   # sample unobserved y's
   # sample yi2 (i = 1,2)
   for (j in 2:3) {
+    if (j==2){
+      c = 32
+    }
+    if (j==3){
+      c = 31
+    }
     # get a proposal distribution depends on its last iteration
     if (y_t[i-1, j] == 15){
       y_proposal = y_t[i-1, j] + 1
     }
-    if (y_t[i-1, j] == 32){
+    if (y_t[i-1, j] == c){
       y_proposal = y_t[i-1, j] - 1
     }
-    if ( (y_t[i-1, j]>15) & (y_t[i-1, j]<32) ){
+    if ( (y_t[i-1, j]>15) & (y_t[i-1, j]<c) ){
       y_proposal = y_t[i-1, j] + sample(c(-1, 1), 1)
     }
     
@@ -218,10 +227,10 @@ for (i in 2:N) {
     
     ratio = orig_ratio
     
-    if ((y_proposal == 32) | (y_proposal=15)){
+    if ((y_proposal == c) | (y_proposal=15)){
       ratio = 2*orig_ratio
     }
-    if ((y_t[i-1, j] == 32) | (y_t[i-1, j]=15)){
+    if ((y_t[i-1, j] == c) | (y_t[i-1, j]=15)){
       ratio = orig_ratio/2
     }
     

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.4.19)  17 APR 2022 21:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.4.19)  17 APR 2022 22:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -244,38 +244,38 @@ Overfull \hbox (3.15771pt too wide) detected at line 100
 []
  []
 
-<figures/z1.png, id=21, 853.1875pt x 346.29375pt>
+<figures/z1.png, id=21, 896.34875pt x 326.21875pt>
 File: figures/z1.png Graphic file (type png)
 <use figures/z1.png>
 Package pdftex.def Info: figures/z1.png  used on input line 120.
-(pdftex.def)             Requested size: 426.79134pt x 173.23099pt.
+(pdftex.def)             Requested size: 426.79134pt x 155.32385pt.
 [3 </Users/elainexfff_/Documents/STAT3006/Assignment 3/Written_assignment_3/figures/z1.png>]
-<figures/z2.png, id=27, 824.07875pt x 273.02pt>
+<figures/z2.png, id=27, 914.41624pt x 245.91875pt>
 File: figures/z2.png Graphic file (type png)
 <use figures/z2.png>
 Package pdftex.def Info: figures/z2.png  used on input line 127.
-(pdftex.def)             Requested size: 398.33858pt x 131.97295pt.
-<figures/z3.png, id=28, 848.16875pt x 155.58125pt>
+(pdftex.def)             Requested size: 398.33858pt x 107.12762pt.
+<figures/z3.png, id=28, 910.40125pt x 145.54375pt>
 File: figures/z3.png Graphic file (type png)
 <use figures/z3.png>
 Package pdftex.def Info: figures/z3.png  used on input line 133.
-(pdftex.def)             Requested size: 426.79134pt x 78.28658pt.
-<figures/pi_1 plot.png, id=29, 495.8525pt x 286.06876pt>
+(pdftex.def)             Requested size: 426.79134pt x 68.23012pt.
+<figures/pi_1 plot.png, id=29, 352.31625pt x 286.06876pt>
 File: figures/pi_1 plot.png Graphic file (type png)
 <use figures/pi_1 plot.png>
 Package pdftex.def Info: figures/pi_1 plot.png  used on input line 141.
-(pdftex.def)             Requested size: 426.79134pt x 246.22821pt.
-<figures/z_1 plot.png, id=30, 495.8525pt x 286.06876pt>
+(pdftex.def)             Requested size: 327.20668pt x 265.6789pt.
+<figures/z_1 plot.png, id=30, 352.31625pt x 286.06876pt>
 File: figures/z_1 plot.png Graphic file (type png)
 <use figures/z_1 plot.png>
 Package pdftex.def Info: figures/z_1 plot.png  used on input line 147.
-(pdftex.def)             Requested size: 426.79134pt x 246.22821pt.
+(pdftex.def)             Requested size: 327.20668pt x 265.6789pt.
  [4 </Users/elainexfff_/Documents/STAT3006/Assignment 3/Written_assignment_3/figures/z2.png> </Users/elainexfff_/Documents/STAT3006/Assignment 3/Written_assignment_3/figures/z3.png> </Users/elainexfff_/Documents/STAT3006/Assignment 3/Written_assignment_3/figures/pi_1 plot.png>]
-<figures/theta_11 plot.png, id=37, 495.8525pt x 286.06876pt>
+<figures/theta_11 plot.png, id=37, 352.31625pt x 286.06876pt>
 File: figures/theta_11 plot.png Graphic file (type png)
 <use figures/theta_11 plot.png>
 Package pdftex.def Info: figures/theta_11 plot.png  used on input line 153.
-(pdftex.def)             Requested size: 426.79134pt x 246.22821pt.
+(pdftex.def)             Requested size: 327.20668pt x 265.6789pt.
  [5 </Users/elainexfff_/Documents/STAT3006/Assignment 3/Written_assignment_3/figures/z_1 plot.png> </Users/elainexfff_/Documents/STAT3006/Assignment 3/Written_assignment_3/figures/theta_11 plot.png>] [6] (/Users/elainexfff_/Documents/STAT3006/Assignment 3/Written_assignment_3/S3006_Asm3_1155141566.aux) ) 
 Here is how much of TeX's memory you used:
  3193 strings out of 478994
@@ -286,7 +286,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  68i,19n,74p,391b,246s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on "/Users/elainexfff_/Documents/STAT3006/Assignment 3/Written_assignment_3/S3006_Asm3_1155141566.pdf" (6 pages, 973666 bytes).
+Output written on "/Users/elainexfff_/Documents/STAT3006/Assignment 3/Written_assignment_3/S3006_Asm3_1155141566.pdf" (6 pages, 582021 bytes).
 PDF statistics:
  88 PDF objects out of 1000 (max. 8388607)
  54 compressed objects within 1 object stream

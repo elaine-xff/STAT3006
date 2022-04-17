@@ -138,19 +138,19 @@ Traceplots:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=15cm]{figures/pi_1 plot.png}
+    \includegraphics[width=11.5cm]{figures/pi_1 plot.png}
     \caption{Traceplot of $\pi_1$}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=15cm]{figures/z_1 plot.png}
+    \includegraphics[width=11.5cm]{figures/z_1 plot.png}
     \caption{Traceplot of $Z_1$}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=15cm]{figures/theta_11 plot.png}
+    \includegraphics[width=11.5cm]{figures/theta_11 plot.png}
     \caption{Traceplot of $\theta_{11}$}
 \end{figure}
 \newpage
@@ -165,16 +165,17 @@ Note that for $i = 1, 2$, $\mathbf{Y}_i = (y_{i1}, y_{i2}, y_{i3}, y_{i4}) \sim 
     & \hspace*{3cm} P(y_{12}| \mathbf{Y}, \mathbf{P} ) \propto \frac{p_2^{y_{12}}}{y_{12}!} \frac{p_1^{y_{11}}}{y_{11}!} = \frac{p_2^{y_{12}}}{y_{12}!} \frac{p_1^{47-y_{12}}}{(47-y_{12})!}\\
     & \hspace*{3cm} P(y_{22}| \mathbf{Y}, \mathbf{P} ) \propto \frac{p_2^{y_{22}}}{y_{22}!} \frac{p_4^{y_{24}}}{y_{24}!} = \frac{p_2^{y_{22}}}{y_{22}!} \frac{p_4^{46-y_{22}}}{(46-y_{22})!}
 \end{flalign*}
-Then MH-Step to update $y_{i2}$ (for $i= 1, 2$) is
+Then MH-Step to update $y_{i2}$ (for $i= 1, 2$) is\\
+ (denote the highest bound of $y_i2$ by $c$, where for $y_{12}$, $c$ = 32, but for $y_{22}$, $c$ = 31):
 \begin{flalign*}
     y_{i2}^{(t+1)} &= \begin{cases}
         y_{i2}^{(t)} + 1 , &\text{with probability $\frac{1}{2}$}\\
         y_{i2}^{(t)} - 1 , &\text{with probability $\frac{1}{2}$}\\\end{cases}\\
     y_{i2}^{(t+1)} &= y_{i2}^{(t)} + 1, \hspace*{0.8cm} \text{if $y_{i2}^{(t)} = 15$}\\
-    y_{i2}^{(t+1)} &= y_{i2}^{(t)} - 1, \hspace*{0.8cm} \text{if $y_{i2}^{(t)} = 32$}\\
+    y_{i2}^{(t+1)} &= y_{i2}^{(t)} - 1, \hspace*{0.8cm} \text{if $y_{i2}^{(t)} = c$}\\
     r              &= \begin{cases}
-        \min\Big\{2 \times \frac{P(y_{i2}^{(t+1)}| \mathbf{Y}, \mathbf{P} )}{P(y_{i2}^{(t)}| \mathbf{Y}, \mathbf{P} )},1\Big\} , &\text{if $y_{i2}^{(t+1)}$ = 32 or 15}\\
-        \min\Big\{\frac{1}{2} \times \frac{P(y_{i2}^{(t+1)}| \mathbf{Y}, \mathbf{P} )}{P(y_{i2}^{(t)}| \mathbf{Y}, \mathbf{P} )},1\Big\} , &\text{if $y_{i2}^{(t)}$ = 32 or 15}\\
+        \min\Big\{2 \times \frac{P(y_{i2}^{(t+1)}| \mathbf{Y}, \mathbf{P} )}{P(y_{i2}^{(t)}| \mathbf{Y}, \mathbf{P} )},1\Big\} , &\text{if $y_{i2}^{(t+1)}$ = $c$ or 15}\\
+        \min\Big\{\frac{1}{2} \times \frac{P(y_{i2}^{(t+1)}| \mathbf{Y}, \mathbf{P} )}{P(y_{i2}^{(t)}| \mathbf{Y}, \mathbf{P} )},1\Big\} , &\text{if $y_{i2}^{(t)}$ = $c$ or 15}\\
         \min\Big\{\frac{P(y_{i2}^{(t+1)}| \mathbf{Y}, \mathbf{P} )}{P(y_{i2}^{(t)}| \mathbf{Y}, \mathbf{P} )},1\Big\} , &\text{otherwise}
     \end{cases}\\
 \end{flalign*}
