@@ -152,11 +152,11 @@ for(j in 1:1000){
 # plot
 dev.off()
 
-plot(theta_t[, 1], type = "l")
+plot(theta_t[, 1], type = "l", main="trace plot of theta11",xlab="iterations",ylab="theta11")
 
-plot(z_t[, 1], type = "l")
+plot(z_t[, 1], type = "l", main="trace plot of Z1",xlab="iterations",ylab="Z1")
 
-plot(pi_t[ ,1], type = "l")
+plot(pi_t[ ,1], type = "l", main="trace plot of pi1",xlab="iterations",ylab="pi1")
 
 
 
