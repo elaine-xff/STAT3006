@@ -72,7 +72,6 @@ set.seed(3006)
 # initialization
 alpha_t[1,] = rep(2, 1*3)
 pi_t[1, ] = rDirichlet(alpha_t[1,])
-#beta_t[1, ] = c(1, 1)
 theta_t[1, ] = rbeta(9, 1, 1)
   
 binom_k_1 = pi_t[1, 1] * dbinom(Q2Data[,1], 10 * 1, theta_t[1,1]) * dbinom(Q2Data[,2], 10 * 2, theta_t[1,4]) * dbinom(Q2Data[,3], 10 * 3, theta_t[1,7])
@@ -205,8 +204,19 @@ for (i in 2:N) {
     }
     
     p_2 = p_t[i, 2]
+    p_1 = p_t[i, 1]
+    p_4 = p_t[i, 4]
     
-    r = min ( (p_2^(y_proposal)/factorial(y_proposal))/(p_2^(y_t[i-1, j])/factorial(y_t[i-1, j])), 1 )
+    # MH step ratio
+    if (j==2){
+      ratio = ( (p_2^y_proposal * p_1^(47-y_proposal)) / (factorial(y_proposal) * factorial(47-y_proposal)) ) / ( (p_2^ y_t[i-1, j] * p_1^(47-y_t[i-1, j])) / (factorial( y_t[i-1, j]) * factorial(47- y_t[i-1, j])) )
+    }
+    
+    if (j==3){
+      ratio =( (p_2^y_proposal * p_4^(46-y_proposal)) / (factorial(y_proposal) * factorial(46-y_proposal)) ) / ( (p_2^ y_t[i-1, j] * p_4^(46-y_t[i-1, j])) / (factorial( y_t[i-1, j]) * factorial(46- y_t[i-1, j])) )
+    }
+    
+    r = min ( ratio , 1 )
     
     if(runif(1) < r){
       y_t[i, j] = y_proposal # accept proposal

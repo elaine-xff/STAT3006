@@ -160,7 +160,8 @@ Note that for $i = 1, 2$, $\mathbf{Y}_i = (y_{i1}, y_{i2}, y_{i3}, y_{i4}) \sim 
     &P(p_1, p_2, p_3, p_4 | y_{i1}, y_{i2}, y_{i3}, y_{i4}) \propto P(y_{i1}, y_{i2}, y_{i3}, y_{i4} | p_1, p_2, p_3, p_4) f(p_1, p_2, p_3, p_4 | \alpha_1, \alpha_2, \alpha_3, \alpha_4)\\
     & \hspace*{5cm} \propto \frac{100!}{y_{i1}! y_{i2}! y_{i3}! y_{i4}!} p_1^{y_{i1}+\alpha_1-1}p_2^{y_{i2}+\alpha_2-1}p_3^{y_{i3}+\alpha_3-1}p_4^{y_{i4}+\alpha_4-1}\\
     & \hspace*{0.5cm} p_1, p_2, p_3, p_4 | y_{i1}, y_{i2}, y_{i3}, y_{i4} \sim Dirichlet(y_{i1}+\alpha_1, y_{i2}+\alpha_2, y_{i3}+\alpha_3, y_{i4}+\alpha_4)\\
-    & \hspace*{3cm} P(y_{i2}| \mathbf{Y}, \mathbf{P} ) \propto \frac{p_2^{y_{i2}}}{y_{i2}!}
+    & \hspace*{3cm} P(y_{12}| \mathbf{Y}, \mathbf{P} ) \propto \frac{p_2^{y_{12}}}{y_{12}!} \frac{p_1^{y_{11}}}{y_{11}!} = \frac{p_2^{y_{12}}}{y_{12}!} \frac{p_1^{47-y_{12}}}{(47-y_{12})!}\\
+    & \hspace*{3cm} P(y_{22}| \mathbf{Y}, \mathbf{P} ) \propto \frac{p_2^{y_{22}}}{y_{22}!} \frac{p_4^{y_{24}}}{y_{24}!} = \frac{p_2^{y_{22}}}{y_{22}!} \frac{p_4^{46-y_{22}}}{(46-y_{22})!}
 \end{flalign*}
 Then MH-Step to update $y_{i2}$ (for $i= 1, 2$) is
 \begin{flalign*}
@@ -169,7 +170,7 @@ Then MH-Step to update $y_{i2}$ (for $i= 1, 2$) is
         y_{i2}^{(t)} - 1 , &\text{with probability $\frac{1}{2}$}\\\end{cases}\\
     y_{i2}^{(t+1)} &= y_{i2}^{(t)} + 1, \hspace*{0.8cm} \text{if $y_{i2}^{(t)} = 15$}\\
     y_{i2}^{(t+1)} &= y_{i2}^{(t)} - 1, \hspace*{0.8cm} \text{if $y_{i2}^{(t)} = 32$}\\
-    r        &= \min\Big\{\frac{p_2^{y_{i2}^{(t+1)}}/y_{i2}^{(t+1)}!}{p_2^{y_{i2}^{(t)}}/y_{i2}^{(t)}!},1\Big\}\\
+    r        &= \min\Big\{\frac{P(y_{i2}^{(t+1)}| \mathbf{Y}, \mathbf{P} )}{P(y_{i2}^{(t)}| \mathbf{Y}, \mathbf{P} )},1\Big\}\\
 \end{flalign*}
 where $r$ is the accept-reject ratio.
 Then for another two unobserved variables:
@@ -179,5 +180,5 @@ Then for another two unobserved variables:
 \end{flalign*}
 \result
 
-$p_1 = 0.301$, $p_2 = 0.149$, $p_3 = 0.239$, and $p_4 = 0.311$.
+$p_1 = 0.267$, $p_2 = 0.211$, $p_3 = 0.241$, and $p_4 = 0.281$.
 \end{document}
