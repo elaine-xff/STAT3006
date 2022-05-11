@@ -92,8 +92,58 @@
 
 
         
-        <link href="//static.ycharts.com/bundles/redesign_core_css.5476e867853fd40b00bd.css" rel="stylesheet" />
+        <link href="//static.ycharts.com/bundles/redesign_core_css.086debfd50654283ef2b.css" rel="stylesheet" />
 
+        
+            
+            
+
+<!-- Start of HubSpot Chat Code -->
+
+    <script type="text/javascript">
+        
+
+        window.openHubSpotChat = function() {
+            window.HubSpotConversations.widget.load();
+            window.HubSpotConversations.widget.open();
+        };
+
+        function onConversationsAPIReady() {
+            window.HubSpotConversations.widget.load();
+
+            // Check to see if there is a chat in progress by inspecting if the cookie has been set.
+            // If it is then open the widget the user can continue their chat.
+            if (document.cookie.split(';').some(function (item) { return item.includes('yChatOpen=true')})) {
+                console.log('YCharts Chat: chat in progress.')
+                window.openHubSpotChat();
+            }
+
+            window.HubSpotConversations.on('conversationStarted', function () {
+                console.log('YCharts Chat: starting chat')
+                // When a user starts a conversation we want to set a cookie that informs us
+                // on next page load to keep the chat open on load.
+                // We set the max age to 30 minutes (60 * 30 = 1800) so that the chat stays open
+                // for 30 minutes on page loads or until the chat ends.
+                document.cookie = 'yChatOpen=true; max-age=1800; SameSite=lax; Secure; path=/';
+            });
+
+            window.HubSpotConversations.on('conversationClosed', function () {
+                console.log('YCharts Chat: ending chat')
+                // When a user ends a conversation we want to remove this cookie so we don't
+                // keep popping the chat open on load. We do this by setting the max-age to 0 which
+                // makes it expire.
+                document.cookie = 'yChatOpen=false; max-age=0; SameSite=lax; Secure; path=/';
+            });
+
+        }
+
+        window.hsConversationsOnReady = [onConversationsAPIReady];
+
+    </script>
+
+<!-- End of HubSpot Chat Code -->
+
+        
         
         <script>
             var USER = {"authenticated": false, "daysRemainingInTrial": null, "email": null, "features": ["mutualFundDataUSA", "mutualFundDataCAN"], "firstName": null, "groups": [], "hasUpgraded": false, "isInClientGroup": false, "isStaff": false, "lastName": null, "shareableClientGroups": [], "userId": null};
@@ -109,10 +159,10 @@
         
            
     <script src="//static.ycharts.com/bundles/manifest.84dfa15edd0f99eb6b17.js" defer></script>
-<script src="//static.ycharts.com/bundles/vendor.833c9516ad0e258a6c0b.js" defer></script>
+<script src="//static.ycharts.com/bundles/vendor.90102e955e3610c3c6db.js" defer></script>
 <script src="//static.ycharts.com/bundles/angular_js.02390c8e47de884f789b.js" defer></script>
-<script src="//static.ycharts.com/bundles/redesign_core_js.dfc90e559d6255d43d9a.js" defer></script>
-<script src="//static.ycharts.com/bundles/stocks_quote_app.dcedef37740a07de4919.js" defer></script>
+<script src="//static.ycharts.com/bundles/redesign_core_js.7b7e7b7a5233caf1f7a0.js" defer></script>
+<script src="//static.ycharts.com/bundles/stocks_quote_app.10ea3fb355f1759a6d82.js" defer></script>
 
 
         
@@ -193,14 +243,14 @@
             
                 <div class="row">
                     <div class="index-rank col-auto">
-                        <span class="index-rank-value">214.14</span>
+                        <span class="index-rank-value">197.50</span>
                         <span class="index-change index-change-down">
                             
                                 <yc-icon
                                     name="icon-loss">
                                 </yc-icon>
                                 
-                                    <span class="valNeg">-2.32</span> (<span class="valNeg">-1.07%</span>)
+                                    <span class="valNeg">-0.15</span> (<span class="valNeg">-0.08%</span>)
                                 
                             
                         </span>
@@ -208,25 +258,10 @@
                             USD &nbsp;|&nbsp; 
                             NASDAQ &nbsp;|&nbsp; 
                             
-                                Apr 12, 16:00
+                                May 11, 10:44
                             
                         </span>
                     </div>
-                    
-                        <div class="index-rank col">
-                            <span class="index-rank-value index-rank-value-small">214.80</span>
-                            <span class="index-change index-change-up">
-                                
-                                    <yc-icon
-                                        name="icon-gain">
-                                    </yc-icon>
-                                    
-                                        <span class="valPos">+0.66</span> (<span class="valPos">+0.31%</span>)
-                                    
-                                
-                            </span>
-                            <span class="index-info">After-Hours: 20:00</span>
-                      </div>
                     
                 </div>
             
@@ -417,7 +452,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                         </td>
                                         <td class="text-right colTxtMed">
                                             
-                                                582.88B
+                                                534.50B
                                             
                                         </td>
                                     </tr>
@@ -490,7 +525,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                         </td>
                                         <td class="text-right colTxtMed">
                                             
-                                                -31.26%
+                                                -35.40%
                                             
                                         </td>
                                     </tr>
@@ -510,7 +545,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                         </td>
                                         <td class="text-right colTxtMed">
                                             
-                                                15.52
+                                                14.94
                                             
                                         </td>
                                     </tr>
@@ -535,7 +570,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                         </td>
                                         <td class="text-right colTxtMed">
                                             
-                                                5.187
+                                                4.657
                                             
                                         </td>
                                     </tr>
@@ -548,7 +583,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                         </td>
                                         <td class="text-right colTxtMed">
                                             
-                                                4.668
+                                                4.338
                                             
                                         </td>
                                     </tr>
@@ -726,7 +761,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                         </td>
                                         <td class="text-right colTxtMed">
                                             
-                                                51.17%
+                                                54.22%
                                             
                                         </td>
                                     </tr>
@@ -833,111 +868,111 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                 <div class="news-row">
                     <div class="news-cell news-title">
                         
-                            <a href="https://finance.yahoo.com/news/meta-snap-sued-mother-wisconsin-223430251.html?.tsrc=rss" target="_blank">
+                            <a href="https://finance.yahoo.com/news/1-russian-backed-separatist-regions-130914158.html?.tsrc=rss" target="_blank">
                         
-                        Meta, Snap Sued by Mother of Wisconsin Teen for His Suicide</a>
+                        UPDATE 1-Russian-backed separatist regions of east Ukraine block Facebook, Instagram</a>
                     </div>
                     <div class="news-cell news-source">Yahoo</div>
-                    <div class="news-cell news-date">04/12 18:34</div>
+                    <div class="news-cell news-date">05/11 09:09</div>
                 </div>
             
                 <div class="news-row">
                     <div class="news-cell news-title">
                         
-                            <a href="https://finance.yahoo.com/m/63faa641-0e21-3992-a8e7-87f405eeda15/top-tech-stocks-for-april-2022.html?.tsrc=rss" target="_blank">
+                            <a href="https://finance.yahoo.com/news/russian-backed-separatist-region-east-113656634.html?.tsrc=rss" target="_blank">
                         
-                        Top Tech Stocks for April 2022</a>
+                        Russian-backed separatist regions of east Ukraine block Facebook, Instagram</a>
                     </div>
                     <div class="news-cell news-source">Yahoo</div>
-                    <div class="news-cell news-date">04/12 17:50</div>
+                    <div class="news-cell news-date">05/11 07:36</div>
                 </div>
             
                 <div class="news-row">
                     <div class="news-cell news-title">
                         
-                            <a href="https://finance.yahoo.com/m/5f695c14-bc91-363c-995e-e994c1f0807e/these-are-the-5-best-stocks.html?.tsrc=rss" target="_blank">
+                            <a href="https://finance.yahoo.com/m/08561c49-1aed-38af-b580-d344931bf917/is-roblox-stock-a-buy-right.html?.tsrc=rss" target="_blank">
                         
-                        These Are The 5 Best Stocks To Buy And Watch Now</a>
+                        Is Roblox Stock A Buy Right Now After First-Quarter Earnings Results?</a>
                     </div>
                     <div class="news-cell news-source">Yahoo</div>
-                    <div class="news-cell news-date">04/12 17:17</div>
+                    <div class="news-cell news-date">05/11 07:22</div>
                 </div>
             
                 <div class="news-row">
                     <div class="news-cell news-title">
                         
-                            <a href="https://finance.yahoo.com/video/meta-charge-47-5-fees-200901910.html?.tsrc=rss" target="_blank">
+                            <a href="https://finance.yahoo.com/m/34754857-72c6-33ce-baeb-c6776c470e61/mark-zuckerberg%27s-metaverse.html?.tsrc=rss" target="_blank">
                         
-                        Meta to charge up to 47.5% in fees for metaverse sales</a>
+                        Mark Zuckerberg&#x27;s Metaverse Vision Is Costing Shareholders Dearly. Can the Stock Survive?</a>
                     </div>
                     <div class="news-cell news-source">Yahoo</div>
-                    <div class="news-cell news-date">04/12 16:09</div>
+                    <div class="news-cell news-date">05/11 06:45</div>
                 </div>
             
                 <div class="news-row">
                     <div class="news-cell news-title">
                         
-                            <a href="https://finance.yahoo.com/video/tiktok-worldwide-ad-revenue-soars-194045257.html?.tsrc=rss" target="_blank">
+                            <a href="https://finance.yahoo.com/news/eu-presents-plan-strengthen-online-101432604.html?.tsrc=rss" target="_blank">
                         
-                        TikTok worldwide ad revenue soars, surpasses Twitter and Snap combined</a>
+                        EU Presents Plan to Strengthen Online Child Sexual Abuse Fight</a>
                     </div>
                     <div class="news-cell news-source">Yahoo</div>
-                    <div class="news-cell news-date">04/12 15:40</div>
+                    <div class="news-cell news-date">05/11 06:14</div>
                 </div>
             
                 <div class="news-row">
                     <div class="news-cell news-title">
                         
-                            <a href="https://finance.yahoo.com/m/d1ec0223-8d6c-3fb4-9dbb-04a9aa9d2819/money-manager-still-likes.html?.tsrc=rss" target="_blank">
+                            <a href="/news/story/PRN-C1430-20220510" target="_blank">
                         
-                        Money Manager Still Likes Amazon, Other Big Names</a>
+                        Liberty and Meta announce expansion of renewables partnership to include 112 MW Deerfield II wind project in Michigan</a>
                     </div>
-                    <div class="news-cell news-source">Yahoo</div>
-                    <div class="news-cell news-date">04/12 15:36</div>
+                    <div class="news-cell news-source">PR Newswire</div>
+                    <div class="news-cell news-date">05/10 17:05</div>
                 </div>
             
                 <div class="news-row">
                     <div class="news-cell news-title">
                         
-                            <a href="https://finance.yahoo.com/m/4f4139a8-4c49-31a0-9216-b450485be49e/facebook-is-working-on-a-new.html?.tsrc=rss" target="_blank">
+                            <a href="https://finance.yahoo.com/m/17aab795-b0f0-3cf2-add8-96358c678561/elon-musk-gets-twitter%E2%80%99s.html?.tsrc=rss" target="_blank">
                         
-                        Facebook Is Working on a New Golden Opportunity</a>
+                        Elon Musk gets Twitter’s Trump ban all wrong</a>
                     </div>
                     <div class="news-cell news-source">Yahoo</div>
-                    <div class="news-cell news-date">04/12 15:03</div>
+                    <div class="news-cell news-date">05/10 16:37</div>
                 </div>
             
                 <div class="news-row">
                     <div class="news-cell news-title">
                         
-                            <a href="https://finance.yahoo.com/m/7c94e6c9-fd5b-31ee-a822-c876fed417a0/facebook-parent-meta%27s-shares.html?.tsrc=rss" target="_blank">
+                            <a href="https://finance.yahoo.com/m/8560a242-d8ec-34eb-979e-386451b2ea1f/strap-on-that-headset..html?.tsrc=rss" target="_blank">
                         
-                        Facebook parent Meta&#x27;s shares are headed for a seventh straight losing day</a>
+                        Strap on that headset. University of Maryland Global Campus to offer classes in the metaverse.</a>
                     </div>
                     <div class="news-cell news-source">Yahoo</div>
-                    <div class="news-cell news-date">04/12 14:42</div>
+                    <div class="news-cell news-date">05/10 15:15</div>
                 </div>
             
                 <div class="news-row">
                     <div class="news-cell news-title">
                         
-                            <a href="https://seekingalpha.com/news/3822774-trump-spac-digital-world-acquisition-gains-as-fox-news-joins-truth-social?utm_source=feed_news_all&amp;utm_medium=referral" target="_blank">
+                            <a href="https://finance.yahoo.com/m/6de2c047-8728-3341-ae47-4946ec10b5b6/how-ceo-pay-compares-to.html?.tsrc=rss" target="_blank">
                         
-                        Trump SPAC Digital World Acquisition gains on report Fox News joins Truth Social</a>
+                        How CEO pay compares to median salaries at Apple, Facebook, Walmart and more</a>
                     </div>
-                    <div class="news-cell news-source">SA Breaking News</div>
-                    <div class="news-cell news-date">04/12 13:08</div>
+                    <div class="news-cell news-source">Yahoo</div>
+                    <div class="news-cell news-date">05/10 14:38</div>
                 </div>
             
                 <div class="news-row">
                     <div class="news-cell news-title">
                         
-                            <a href="https://finance.yahoo.com/news/microsoft-customers-decry-cloud-contracts-012431162.html?.tsrc=rss" target="_blank">
+                            <a href="https://finance.yahoo.com/news/elon-musk-says-reverse-twitters-181620814.html?.tsrc=rss" target="_blank">
                         
-                        Microsoft Customers Decry Cloud Contracts That Sideline Rivals</a>
+                        Elon Musk says he would reverse Twitter&#x27;s ban of former President Trump</a>
                     </div>
                     <div class="news-cell news-source">Yahoo</div>
-                    <div class="news-cell news-date">04/12 12:35</div>
+                    <div class="news-cell news-date">05/10 14:16</div>
                 </div>
             
         </div>
@@ -989,13 +1024,39 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                         
                             <tr>
                             
+                                <td>07/28/2022*</td>
+                                <td>--</td>
+                                <td>Results</td>
+                                <td>Q2 2022</td>
+                                <td class="text-right">--</td>
+                                <td class="text-right">2.68</td>
+                                <td class="text-right">--</td>
+                                <td class="visible-lg-table-cell"></td>
+                            
+                            </tr>
+                        
+                            <tr>
+                            
+                                <td>07/28/2022*</td>
+                                <td>17:00 EST</td>
+                                <td>Earnings Call</td>
+                                <td>Q2 2022</td>
+                                <td class="text-right">--</td>
+                                <td class="text-right">--</td>
+                                <td class="text-right">--</td>
+                                <td class="visible-lg-table-cell"></td>
+                            
+                            </tr>
+                        
+                            <tr>
+                            
                                 <td>04/27/2022</td>
                                 <td>--</td>
                                 <td>Results</td>
                                 <td>Q1 2022</td>
-                                <td class="text-right">--</td>
+                                <td class="text-right">2.72</td>
                                 <td class="text-right">2.51</td>
-                                <td class="text-right">--</td>
+                                <td class="text-right">8.23%</td>
                                 <td class="visible-lg-table-cell"></td>
                             
                             </tr>
@@ -1065,32 +1126,6 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                             
                             </tr>
                         
-                            <tr>
-                            
-                                <td>07/28/2021</td>
-                                <td>--</td>
-                                <td>Results</td>
-                                <td>Q2 2021</td>
-                                <td class="text-right">3.61</td>
-                                <td class="text-right">3.06</td>
-                                <td class="text-right">17.94%</td>
-                                <td class="visible-lg-table-cell"></td>
-                            
-                            </tr>
-                        
-                            <tr>
-                            
-                                <td>07/28/2021</td>
-                                <td>17:00 EST</td>
-                                <td>Earnings Call</td>
-                                <td>Q2 2021</td>
-                                <td class="text-right">--</td>
-                                <td class="text-right">--</td>
-                                <td class="text-right">--</td>
-                                <td class="visible-lg-table-cell"></td>
-                            
-                            </tr>
-                        
                     
                     </tbody>
                 </table>
@@ -1128,7 +1163,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                         
                             <tr>
                                 <td>Next Report Date</td>
-                                <td class="text-right colTxtMed" style="padding-left:0px">04/27/2022</td>
+                                <td class="text-right colTxtMed" style="padding-left:0px">07/28/2022 (est.)</td>
                             </tr>
                         
                         <tr>
@@ -1154,7 +1189,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                 
                     <br>
                     <yc-general-chart
-                        chart-json-data="{&quot;categories&quot;: [&quot;Q1 2021&quot;, &quot;Q2 2021&quot;, &quot;Q3 2021&quot;, &quot;Q4 2021&quot;, &quot;Q1 2022&quot;], &quot;chart_data&quot;: [{&quot;label&quot;: &quot;Quarterly EPS Estimates&quot;, &quot;data&quot;: [2.3417, 3.0610, 3.1780, 3.8242, 2.5103], &quot;data_type&quot;: &quot;figure_money&quot;}, {&quot;label&quot;: &quot;Quarterly Actual EPS&quot;, &quot;data&quot;: [3.3000, 3.6100, 3.2200, 3.6700], &quot;data_type&quot;: &quot;figure_money&quot;}]}"
+                        chart-json-data="{&quot;categories&quot;: [&quot;Q2 2021&quot;, &quot;Q3 2021&quot;, &quot;Q4 2021&quot;, &quot;Q1 2022&quot;, &quot;Q2 2022&quot;], &quot;chart_data&quot;: [{&quot;label&quot;: &quot;Quarterly EPS Estimates&quot;, &quot;data&quot;: [3.0610, 3.1780, 3.8242, 2.5131, 2.6826], &quot;data_type&quot;: &quot;figure_money&quot;}, {&quot;label&quot;: &quot;Quarterly Actual EPS&quot;, &quot;data&quot;: [3.6100, 3.2200, 3.6700, 2.7200], &quot;data_type&quot;: &quot;figure_money&quot;}]}"
                         chart-options="{&quot;chart&quot;: {&quot;height&quot;: 180}, &quot;plotOptions&quot;: {&quot;column&quot;: {&quot;groupPadding&quot;: 0.2692}}, &quot;tooltip&quot;: {&quot;padding&quot;: 75}, &quot;yAxis&quot;: {&quot;x&quot;: 0}}"
                         configurable-options="{&quot;yAxisWidth&quot;: 48}">
                         <!-- Placeholder element until Angular loads -->
@@ -1178,7 +1213,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                     
                         <tr>
                             <td>Last Report Date</td>
-                            <td class="text-right colTxtMed">02/02/2022</td>
+                            <td class="text-right colTxtMed">04/27/2022</td>
                         </tr>
                     
                         <tr>
@@ -1193,20 +1228,20 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                 <td>Return Since</td>
                                     <td class="text-right colTxtMed">
                                         
-                                            -33.70%
+                                            12.98%
                                         
                                     </td>
                             </tr>
                             <tr>
                                 <td>Last FQE</td>
                                 <td class="text-right colTxtMed">
-                                    12/31/2021
+                                    03/31/2022
                                 </td>
                             </tr>
                             <tr>
                                 <td>Next FQE</td>
                                 <td class="text-right colTxtMed">
-                                    03/31/2022
+                                    06/30/2022
                                 </td>
                             </tr>
                         
@@ -1275,12 +1310,12 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                         
                             <tr>
                                 <td class="col-6">Next Earnings Release</td>
-                                <td class="col-6">Apr. 27, 2022</td>
+                                <td class="col-6">Jul. 28, 2022 (est.)</td>
                             </tr>
                         
                             <tr>
                                 <td class="col-6">Last Earnings Release</td>
-                                <td class="col-6">Feb. 02, 2022</td>
+                                <td class="col-6">Apr. 27, 2022</td>
                             </tr>
                         
                             <tr>
@@ -1325,10 +1360,10 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                     
                                         <div class="flow-body">
                                             <div class="flow-range">
-                                                <div class="flow-label bg-1 text-1" style="left: 14.27%;">
+                                                <div class="flow-label bg-1 text-1" style="left: 13.24%;">
                                                     <span>
                                                         
-                                                            $214.14
+                                                            $197.50
                                                         
                                                     </span>
                                                 </div>
@@ -1359,7 +1394,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                     
                                         <div class="flow-body">
                                             <div class="flow-range has-deviation">
-                                                <div class="flow-label bg-1 text-1" style="left: 48.39%;">
+                                                <div class="flow-label bg-1 text-1" style="left: 37.64%;">
                                                     <span>
                                                         <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
 
@@ -1367,8 +1402,8 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                                 </div>
                                                 <div class="flow-axis">
                                                     <div class="flow-region bg-gradient-1-3"
-                                                         style="left: 27.61%;
-                                                                width: 41.56%;">
+                                                         style="left: 18.96%;
+                                                                width: 37.36%;">
                                                     </div>
                                                     <div class="flow-axis-item text-gray-30">
                                                         <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
@@ -1678,7 +1713,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                         </tr>
                         <tr>
                             <td>Yield (TTM)</td>
-                            <td class="text-right colTxtMed">0.00%</td>
+                            <td class="text-right colTxtMed">0%</td>
                         </tr>
                         <tr>
                             <td>Forward Yield</td>
@@ -1838,7 +1873,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                     <span>
                                         
                                             
-                                                51.17%
+                                                54.22%
                                             
                                         
                                     </span>
@@ -1998,7 +2033,8 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
             <div class="panel-action">
                 <div class="btn btn-secondary"
                     ng-click="$broadcast('showComparablesModal')">
-                    Edit comparables
+                    <yc-icon name="icon-edit"></yc-icon>
+                    <span>Edit comparables</span>
                 </div>
             </div>
             <div class="panel-action">
@@ -2011,7 +2047,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
     <yc-performance-chart
         calcs="[&quot;total_return_forward_adjusted_price&quot;]"
         chart-tab-url='/companies/FB/chart/'
-        security-ids='[&quot;FB&quot;, &quot;^SPXTR&quot;, &quot;TWTR&quot;, &quot;MTCH&quot;, &quot;GOOGL&quot;]'
+        security-ids='[&quot;FB&quot;, &quot;^SPXTR&quot;, &quot;TWTR&quot;, &quot;GOOGL&quot;, &quot;SNAP&quot;]'
         user-preference-keys="{&quot;zoom&quot;: &quot;stock_performance_return_chart_zoom&quot;}">
         <!-- Placeholder element until Angular loads -->
         <div class="panel-content">
@@ -2039,18 +2075,18 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
             
                 
 
-<div class="page-header-action align-items-center">
-    <yc-performance-include-benchmark-checkbox
+<yc-performance-include-benchmark-checkbox
+        class="panel-action"
         user-preference-keys='{&quot;include_benchmark&quot;: &quot;stock_performance_include_benchmark&quot;}'>
-    </yc-performance-include-benchmark-checkbox>
-</div>
+</yc-performance-include-benchmark-checkbox>
 
             
             
             <div class="panel-action">
                 <div class="btn btn-secondary"
                     ng-click="$broadcast('showComparablesModal')">
-                    Edit comparables
+                    <yc-icon name="icon-edit"></yc-icon>
+                    <span>Edit comparables</span>
                 </div>
             </div>
             
@@ -2062,8 +2098,8 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
             <yc-general-chart-responsive
                 chart-options='{&quot;chart&quot;: {&quot;height&quot;: 160}, &quot;xAxis&quot;: {&quot;alternateGridColor&quot;: &quot;#f2f2f2&quot;, &quot;crosshair&quot;: false, &quot;labels&quot;: {&quot;enabled&quot;: false}, &quot;tickmarkPlacement&quot;: &quot;between&quot;}, &quot;yAxis&quot;: {&quot;labels&quot;: {&quot;x&quot;: -15}}}'
                 configurable-options='{&quot;yAxisWidth&quot;: 161}'
-                chart-url-mobile='/charts/general_data.json?&colors=&endDate=04/12/2022&latestDataCutoff=7&metrics=id:ytd_total_return,include:true,,&partner=&removeLeadingIncompleteYears=true&resampleFrequency=yearly&resampleMethod=last&securities=id:FB,include:true,,id:^SPXTR,include:true,,id:TWTR,include:true,,id:MTCH,include:true,,id:GOOGL,include:true,,id:SNAP,include:true,,&startDate=01/01/2015&xAxis=time&xAxisLabelOverride=2015,2016,2017,2018,2019,2020,2021,YTD,&xAxisLabelStyle=short&yAxisLabelStyle=short'
-                chart-url-desktop='/charts/general_data.json?&colors=&endDate=04/12/2022&latestDataCutoff=7&metrics=id:ytd_total_return,include:true,,&partner=&removeLeadingIncompleteYears=true&resampleFrequency=yearly&resampleMethod=last&securities=id:FB,include:true,,id:^SPXTR,include:true,,id:TWTR,include:true,,id:MTCH,include:true,,id:GOOGL,include:true,,id:SNAP,include:true,,&startDate=01/01/2015&xAxis=time&xAxisLabelOverride=2015,2016,2017,2018,2019,2020,2021,YTD,&xAxisLabelStyle=short&yAxisLabelStyle=short'>
+                chart-url-mobile='/charts/general_data.json?&colors=&endDate=05/10/2022&latestDataCutoff=7&metrics=id:ytd_total_return,include:true,,&partner=&removeLeadingIncompleteYears=true&resampleFrequency=yearly&resampleMethod=last&securities=id:FB,include:true,,id:^SPXTR,include:true,,id:TWTR,include:true,,id:GOOGL,include:true,,id:SNAP,include:true,,id:PINS,include:true,,&startDate=01/01/2015&xAxis=time&xAxisLabelOverride=2015,2016,2017,2018,2019,2020,2021,YTD,&xAxisLabelStyle=short&yAxisLabelStyle=short'
+                chart-url-desktop='/charts/general_data.json?&colors=&endDate=05/10/2022&latestDataCutoff=7&metrics=id:ytd_total_return,include:true,,&partner=&removeLeadingIncompleteYears=true&resampleFrequency=yearly&resampleMethod=last&securities=id:FB,include:true,,id:^SPXTR,include:true,,id:TWTR,include:true,,id:GOOGL,include:true,,id:SNAP,include:true,,id:PINS,include:true,,&startDate=01/01/2015&xAxis=time&xAxisLabelOverride=2015,2016,2017,2018,2019,2020,2021,YTD,&xAxisLabelStyle=short&yAxisLabelStyle=short'>
                 <!-- Placeholder element until Angular loads -->
                 <div class="chart-wrap">
                     <div class="chart-axis-y"></div>
@@ -2190,7 +2226,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                         
                             
                                 <div class="chart-data-cell">
-                                    -36.33%
+                                    -41.24%
                                 </div>
                             
                         
@@ -2247,7 +2283,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                         
                             
                                 <div class="chart-data-cell">
-                                    -7.37%
+                                    -15.65%
                                 </div>
                             
                         
@@ -2304,7 +2340,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                         
                             
                                 <div class="chart-data-cell">
-                                    2.92%
+                                    9.35%
                                 </div>
                             
                         
@@ -2312,64 +2348,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                 
                     <div class="chart-data-row">
                         <div class="chart-data-cell">
-                            <a class="chart-legend-item-title bullet-4" href="/companies/MTCH">
-                                Match Group Inc
-                            </a>
-                        </div>
-                        
-                            
-                                <div class="chart-data-cell">
-                                    --
-                                </div>
-                            
-                        
-                            
-                                <div class="chart-data-cell">
-                                    --
-                                </div>
-                            
-                        
-                            
-                                <div class="chart-data-cell">
-                                    --
-                                </div>
-                            
-                        
-                            
-                                <div class="chart-data-cell">
-                                    --
-                                </div>
-                            
-                        
-                            
-                                <div class="chart-data-cell">
-                                    --
-                                </div>
-                            
-                        
-                            
-                                <div class="chart-data-cell">
-                                    91.30%
-                                </div>
-                            
-                        
-                            
-                                <div class="chart-data-cell">
-                                    -12.53%
-                                </div>
-                            
-                        
-                            
-                                <div class="chart-data-cell">
-                                    -28.82%
-                                </div>
-                            
-                        
-                    </div>
-                
-                    <div class="chart-data-row">
-                        <div class="chart-data-cell">
-                            <a class="chart-legend-item-title bullet-5" href="/companies/GOOGL">
+                            <a class="chart-legend-item-title bullet-4" href="/companies/GOOGL">
                                 Alphabet Inc
                             </a>
                         </div>
@@ -2418,7 +2397,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                         
                             
                                 <div class="chart-data-cell">
-                                    -11.83%
+                                    -21.03%
                                 </div>
                             
                         
@@ -2426,7 +2405,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                 
                     <div class="chart-data-row">
                         <div class="chart-data-cell">
-                            <a class="chart-legend-item-title bullet-6" href="/companies/SNAP">
+                            <a class="chart-legend-item-title bullet-5" href="/companies/SNAP">
                                 Snap Inc
                             </a>
                         </div>
@@ -2475,7 +2454,64 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                         
                             
                                 <div class="chart-data-cell">
-                                    -28.62%
+                                    -51.33%
+                                </div>
+                            
+                        
+                    </div>
+                
+                    <div class="chart-data-row">
+                        <div class="chart-data-cell">
+                            <a class="chart-legend-item-title bullet-6" href="/companies/PINS">
+                                Pinterest Inc
+                            </a>
+                        </div>
+                        
+                            
+                                <div class="chart-data-cell">
+                                    --
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    --
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    --
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    --
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    --
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    253.5%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    -44.84%
+                                </div>
+                            
+                        
+                            
+                                <div class="chart-data-cell">
+                                    -44.37%
                                 </div>
                             
                         
@@ -2484,7 +2520,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
             </div>
         </div>
         
-            <div class="panel-date">As of April 12, 2022.
+            <div class="panel-date">As of May 10, 2022.
                 
             </div>
         
@@ -2527,7 +2563,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                                 <yc-fundamental-chart
                                                     onclick="window.location = '/companies/FB/chart/#/?annotations=&amp;annualizedReturns=false&amp;calcs=id:revenues_ttm,include:true,,id:net_income_ttm,include:true,,&amp;chartType=interactive&amp;correlations=&amp;dateSelection=range&amp;displayDateRange=false&amp;displayTicker=false&amp;endDate=&amp;format=real&amp;legendOnChart=true&amp;maxPoints=&amp;note=&amp;partner=&amp;quoteLegend=true&amp;quotes=&amp;recessions=false&amp;redesign=true&amp;scaleType=linear&amp;securities=id:FB,include:true,,&amp;securityGroup=&amp;securitylistName=&amp;securitylistSecurityId=&amp;source=false&amp;splitType=single&amp;startDate=&amp;title=&amp;units=false&amp;useCustomColors=false&amp;useEstimates=false&amp;zoom=5';"
                                                     chart-id=''
-                                                    chart-json-data="{&quot;chart_data&quot;: [[{&quot;annotation_line_types&quot;: [], &quot;axis_type&quot;: &quot;mil_figure_money_USD_metric&quot;, &quot;can_annualize&quot;: &quot;false&quot;, &quot;currency_code&quot;: &quot;USD&quot;, &quot;estimates_start_date&quot;: null, &quot;event_types&quot;: [], &quot;format&quot;: &quot;real&quot;, &quot;frequency&quot;: &quot;quarterly&quot;, &quot;last_value&quot;: 117929.0000, &quot;line_format&quot;: {&quot;color&quot;: &quot;#6833C9&quot;, &quot;weight&quot;: &quot;medium&quot;}, &quot;long_label&quot;: &quot;Meta Platforms Inc Revenue (TTM)&quot;, &quot;object_calc&quot;: &quot;revenues_ttm&quot;, &quot;object_id&quot;: &quot;FB&quot;, &quot;object_type&quot;: &quot;company&quot;, &quot;raw_data&quot;: [[1498780800000, 33173.0000], [1506729600000, 36490.0000], [1514678400000, 40653.0000], [1522454400000, 44587.0000], [1530316800000, 48497.0000], [1538265600000, 51896.0000], [1546214400000, 55838.0000], [1553990400000, 58949.0000], [1561852800000, 62604.0000], [1569801600000, 66529.0000], [1577750400000, 70697.0000], [1585612800000, 73357.0000], [1593475200000, 75158.0000], [1601424000000, 78976.0000], [1609372800000, 85966.0000], [1617148800000, 94400.0000], [1625011200000, 104790.0000], [1632960000000, 112330.0000], [1640908800000, 117929.0000]], &quot;securitylist_name&quot;: null, &quot;short_label&quot;: &quot;FB Rev TTM&quot;, &quot;source&quot;: &quot;&quot;, &quot;type&quot;: &quot;mil_figure_money&quot;}, {&quot;annotation_line_types&quot;: [], &quot;axis_type&quot;: &quot;mil_figure_money_USD_metric&quot;, &quot;can_annualize&quot;: &quot;false&quot;, &quot;currency_code&quot;: &quot;USD&quot;, &quot;estimates_start_date&quot;: null, &quot;event_types&quot;: [], &quot;format&quot;: &quot;real&quot;, &quot;frequency&quot;: &quot;quarterly&quot;, &quot;last_value&quot;: 39370.0000, &quot;line_format&quot;: {&quot;color&quot;: &quot;#FFA86F&quot;, &quot;weight&quot;: &quot;medium&quot;}, &quot;long_label&quot;: &quot;Meta Platforms Inc Net Income (TTM)&quot;, &quot;object_calc&quot;: &quot;net_income_ttm&quot;, &quot;object_id&quot;: &quot;FB&quot;, &quot;object_type&quot;: &quot;company&quot;, &quot;raw_data&quot;: [[1498780800000, 13154.0000], [1506729600000, 15234.0000], [1514678400000, 15934.0000], [1522454400000, 17858.0000], [1530316800000, 19070.0000], [1538265600000, 19500.0000], [1546214400000, 22113.0000], [1553990400000, 19554.0000], [1561852800000, 17064.0000], [1569801600000, 18018.0000], [1577750400000, 18485.0000], [1585612800000, 20958.0000], [1593475200000, 23520.0000], [1601424000000, 25275.0000], [1609372800000, 29145.0000], [1617148800000, 33740.0000], [1625011200000, 38956.0000], [1632960000000, 40304.0000], [1640908800000, 39370.0000]], &quot;securitylist_name&quot;: null, &quot;short_label&quot;: &quot;FB NI TTM&quot;, &quot;source&quot;: &quot;&quot;, &quot;type&quot;: &quot;mil_figure_money&quot;}]], &quot;chart_quarterly_date_format&quot;: &quot;month&quot;, &quot;chart_url&quot;: &quot;https://ycharts.com/companies/FB/chart/&quot;, &quot;chart_url_params&quot;: &quot;annotations=&amp;annualizedReturns=false&amp;calcs=id:revenues_ttm,include:true,,id:net_income_ttm,include:true,,&amp;chartType=interactive&amp;correlations=&amp;dateSelection=range&amp;displayDateRange=false&amp;displayTicker=false&amp;endDate=&amp;format=real&amp;legendOnChart=true&amp;maxPoints=&amp;note=&amp;partner=&amp;quoteLegend=true&amp;quotes=&amp;recessions=false&amp;redesign=true&amp;scaleType=linear&amp;securities=id:FB,include:true,,&amp;securityGroup=&amp;securitylistName=&amp;securitylistSecurityId=&amp;source=false&amp;splitType=single&amp;startDate=&amp;title=&amp;units=false&amp;useCustomColors=false&amp;useEstimates=false&amp;zoom=5&quot;, &quot;embed_host&quot;: &quot;https://ycharts.com&quot;, &quot;embed_linkback_name&quot;: &quot;FB Revenue (TTM)&quot;, &quot;embed_linkback_url&quot;: &quot;https://ycharts.com/companies/FB/revenues_ttm&quot;, &quot;end_date&quot;: null, &quot;quotes&quot;: null, &quot;start_date&quot;: &quot;04/12/2017&quot;}"
+                                                    chart-json-data="{&quot;chart_data&quot;: [[{&quot;annotation_line_types&quot;: [], &quot;axis_type&quot;: &quot;mil_figure_money_USD_metric&quot;, &quot;can_annualize&quot;: &quot;false&quot;, &quot;currency_code&quot;: &quot;USD&quot;, &quot;estimates_start_date&quot;: null, &quot;event_types&quot;: [], &quot;format&quot;: &quot;real&quot;, &quot;frequency&quot;: &quot;quarterly&quot;, &quot;last_value&quot;: 119666.0000, &quot;line_format&quot;: {&quot;color&quot;: &quot;#6833C9&quot;, &quot;weight&quot;: &quot;medium&quot;}, &quot;long_label&quot;: &quot;Meta Platforms Inc Revenue (TTM)&quot;, &quot;object_calc&quot;: &quot;revenues_ttm&quot;, &quot;object_id&quot;: &quot;FB&quot;, &quot;object_type&quot;: &quot;company&quot;, &quot;raw_data&quot;: [[1498780800000, 33173.0000], [1506729600000, 36490.0000], [1514678400000, 40653.0000], [1522454400000, 44587.0000], [1530316800000, 48497.0000], [1538265600000, 51896.0000], [1546214400000, 55838.0000], [1553990400000, 58949.0000], [1561852800000, 62604.0000], [1569801600000, 66529.0000], [1577750400000, 70697.0000], [1585612800000, 73357.0000], [1593475200000, 75158.0000], [1601424000000, 78976.0000], [1609372800000, 85966.0000], [1617148800000, 94400.0000], [1625011200000, 104790.0000], [1632960000000, 112330.0000], [1640908800000, 117929.0000], [1648684800000, 119666.0000]], &quot;securitylist_name&quot;: null, &quot;short_label&quot;: &quot;FB Rev TTM&quot;, &quot;source&quot;: &quot;&quot;, &quot;type&quot;: &quot;mil_figure_money&quot;}, {&quot;annotation_line_types&quot;: [], &quot;axis_type&quot;: &quot;mil_figure_money_USD_metric&quot;, &quot;can_annualize&quot;: &quot;false&quot;, &quot;currency_code&quot;: &quot;USD&quot;, &quot;estimates_start_date&quot;: null, &quot;event_types&quot;: [], &quot;format&quot;: &quot;real&quot;, &quot;frequency&quot;: &quot;quarterly&quot;, &quot;last_value&quot;: 37338.0000, &quot;line_format&quot;: {&quot;color&quot;: &quot;#FFA86F&quot;, &quot;weight&quot;: &quot;medium&quot;}, &quot;long_label&quot;: &quot;Meta Platforms Inc Net Income (TTM)&quot;, &quot;object_calc&quot;: &quot;net_income_ttm&quot;, &quot;object_id&quot;: &quot;FB&quot;, &quot;object_type&quot;: &quot;company&quot;, &quot;raw_data&quot;: [[1498780800000, 13154.0000], [1506729600000, 15234.0000], [1514678400000, 15934.0000], [1522454400000, 17858.0000], [1530316800000, 19070.0000], [1538265600000, 19500.0000], [1546214400000, 22113.0000], [1553990400000, 19554.0000], [1561852800000, 17064.0000], [1569801600000, 18018.0000], [1577750400000, 18485.0000], [1585612800000, 20958.0000], [1593475200000, 23520.0000], [1601424000000, 25275.0000], [1609372800000, 29145.0000], [1617148800000, 33740.0000], [1625011200000, 38956.0000], [1632960000000, 40304.0000], [1640908800000, 39370.0000], [1648684800000, 37338.0000]], &quot;securitylist_name&quot;: null, &quot;short_label&quot;: &quot;FB NI TTM&quot;, &quot;source&quot;: &quot;&quot;, &quot;type&quot;: &quot;mil_figure_money&quot;}]], &quot;chart_quarterly_date_format&quot;: &quot;month&quot;, &quot;chart_url&quot;: &quot;https://ycharts.com/companies/FB/chart/&quot;, &quot;chart_url_params&quot;: &quot;annotations=&amp;annualizedReturns=false&amp;calcs=id:revenues_ttm,include:true,,id:net_income_ttm,include:true,,&amp;chartType=interactive&amp;correlations=&amp;dateSelection=range&amp;displayDateRange=false&amp;displayTicker=false&amp;endDate=&amp;format=real&amp;legendOnChart=true&amp;maxPoints=&amp;note=&amp;partner=&amp;quoteLegend=true&amp;quotes=&amp;recessions=false&amp;redesign=true&amp;scaleType=linear&amp;securities=id:FB,include:true,,&amp;securityGroup=&amp;securitylistName=&amp;securitylistSecurityId=&amp;source=false&amp;splitType=single&amp;startDate=&amp;title=&amp;units=false&amp;useCustomColors=false&amp;useEstimates=false&amp;zoom=5&quot;, &quot;embed_host&quot;: &quot;https://ycharts.com&quot;, &quot;embed_linkback_name&quot;: &quot;FB Revenue (TTM)&quot;, &quot;embed_linkback_url&quot;: &quot;https://ycharts.com/companies/FB/revenues_ttm&quot;, &quot;end_date&quot;: null, &quot;quotes&quot;: null, &quot;start_date&quot;: &quot;05/10/2017&quot;}"
                                                     chart-options="{&quot;series&quot;: [{&quot;type&quot;: &quot;line&quot;}], &quot;plotOptions&quot;: {&quot;line&quot;: {&quot;states&quot;: {&quot;hover&quot;: {&quot;enabled&quot;: true}}}}, &quot;tooltip&quot;: {&quot;shared&quot;: false}}"
                                                     configurable-options="{}">
                                                 </yc-fundamental-chart>
@@ -2548,7 +2584,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                                 href="/companies/FB/revenues_ttm">Revenue (TTM)</a>
                                         </td>
                                         <td class="text-right colTxtMed">
-                                            117.93B
+                                            119.67B
                                         </td>
                                     </tr>
                                 
@@ -2558,7 +2594,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                                 href="/companies/FB/expenses_ttm">Total Expenses (TTM)</a>
                                         </td>
                                         <td class="text-right colTxtMed">
-                                            71.18B
+                                            75.77B
                                         </td>
                                     </tr>
                                 
@@ -2568,7 +2604,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                                 href="/companies/FB/net_income_ttm">Net Income (TTM)</a>
                                         </td>
                                         <td class="text-right colTxtMed">
-                                            39.37B
+                                            37.34B
                                         </td>
                                     </tr>
                                 
@@ -2601,7 +2637,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                                 <yc-fundamental-chart
                                                     onclick="window.location = '/companies/FB/chart/#/?annotations=&amp;annualizedReturns=false&amp;calcs=id:assets,include:true,,id:liabilities,include:true,,id:shareholders_equity,include:true,,&amp;chartType=interactive&amp;correlations=&amp;dateSelection=range&amp;displayDateRange=false&amp;displayTicker=false&amp;endDate=&amp;format=real&amp;legendOnChart=true&amp;maxPoints=&amp;note=&amp;partner=&amp;quoteLegend=true&amp;quotes=&amp;recessions=false&amp;redesign=true&amp;scaleType=linear&amp;securities=id:FB,include:true,,&amp;securityGroup=&amp;securitylistName=&amp;securitylistSecurityId=&amp;source=false&amp;splitType=single&amp;startDate=&amp;title=&amp;units=false&amp;useCustomColors=false&amp;useEstimates=false&amp;zoom=2';"
                                                     chart-id=''
-                                                    chart-json-data="{&quot;chart_data&quot;: [[{&quot;annotation_line_types&quot;: [], &quot;axis_type&quot;: &quot;mil_figure_money_USD_metric&quot;, &quot;can_annualize&quot;: &quot;false&quot;, &quot;currency_code&quot;: &quot;USD&quot;, &quot;estimates_start_date&quot;: null, &quot;event_types&quot;: [], &quot;format&quot;: &quot;real&quot;, &quot;frequency&quot;: &quot;quarterly&quot;, &quot;last_value&quot;: 165987.0000, &quot;line_format&quot;: {&quot;color&quot;: &quot;#6833C9&quot;, &quot;weight&quot;: &quot;medium&quot;}, &quot;long_label&quot;: &quot;Meta Platforms Inc Total Assets (Quarterly)&quot;, &quot;object_calc&quot;: &quot;assets&quot;, &quot;object_id&quot;: &quot;FB&quot;, &quot;object_type&quot;: &quot;company&quot;, &quot;raw_data&quot;: [[1593475200000, 139691.0000], [1601424000000, 146437.0000], [1609372800000, 159316.0000], [1617148800000, 163523.0000], [1625011200000, 170609.0000], [1632960000000, 169585.0000], [1640908800000, 165987.0000]], &quot;securitylist_name&quot;: null, &quot;short_label&quot;: &quot;FB To A Q&quot;, &quot;source&quot;: &quot;&quot;, &quot;type&quot;: &quot;mil_figure_money&quot;}, {&quot;annotation_line_types&quot;: [], &quot;axis_type&quot;: &quot;mil_figure_money_USD_metric&quot;, &quot;can_annualize&quot;: &quot;false&quot;, &quot;currency_code&quot;: &quot;USD&quot;, &quot;estimates_start_date&quot;: null, &quot;event_types&quot;: [], &quot;format&quot;: &quot;real&quot;, &quot;frequency&quot;: &quot;quarterly&quot;, &quot;last_value&quot;: 41108.0000, &quot;line_format&quot;: {&quot;color&quot;: &quot;#FFA86F&quot;, &quot;weight&quot;: &quot;medium&quot;}, &quot;long_label&quot;: &quot;Meta Platforms Inc Total Liabilities (Quarterly)&quot;, &quot;object_calc&quot;: &quot;liabilities&quot;, &quot;object_id&quot;: &quot;FB&quot;, &quot;object_type&quot;: &quot;company&quot;, &quot;raw_data&quot;: [[1593475200000, 29244.0000], [1601424000000, 28706.0000], [1609372800000, 31026.0000], [1617148800000, 29866.0000], [1625011200000, 32382.0000], [1632960000000, 36225.0000], [1640908800000, 41108.0000]], &quot;securitylist_name&quot;: null, &quot;short_label&quot;: &quot;FB Liab Q&quot;, &quot;source&quot;: &quot;&quot;, &quot;type&quot;: &quot;mil_figure_money&quot;}, {&quot;annotation_line_types&quot;: [], &quot;axis_type&quot;: &quot;mil_figure_money_USD_metric&quot;, &quot;can_annualize&quot;: &quot;false&quot;, &quot;currency_code&quot;: &quot;USD&quot;, &quot;estimates_start_date&quot;: null, &quot;event_types&quot;: [], &quot;format&quot;: &quot;real&quot;, &quot;frequency&quot;: &quot;quarterly&quot;, &quot;last_value&quot;: 124879.0000, &quot;line_format&quot;: {&quot;color&quot;: &quot;#568CD8&quot;, &quot;weight&quot;: &quot;medium&quot;}, &quot;long_label&quot;: &quot;Meta Platforms Inc Shareholders Equity (Quarterly)&quot;, &quot;object_calc&quot;: &quot;shareholders_equity&quot;, &quot;object_id&quot;: &quot;FB&quot;, &quot;object_type&quot;: &quot;company&quot;, &quot;raw_data&quot;: [[1593475200000, 110447.0000], [1601424000000, 117731.0000], [1609372800000, 128290.0000], [1617148800000, 133657.0000], [1625011200000, 138227.0000], [1632960000000, 133360.0000], [1640908800000, 124879.0000]], &quot;securitylist_name&quot;: null, &quot;short_label&quot;: &quot;FB S Eq Q&quot;, &quot;source&quot;: &quot;&quot;, &quot;type&quot;: &quot;mil_figure_money&quot;}]], &quot;chart_quarterly_date_format&quot;: &quot;month&quot;, &quot;chart_url&quot;: &quot;https://ycharts.com/companies/FB/chart/&quot;, &quot;chart_url_params&quot;: &quot;annotations=&amp;annualizedReturns=false&amp;calcs=id:assets,include:true,,id:liabilities,include:true,,id:shareholders_equity,include:true,,&amp;chartType=interactive&amp;correlations=&amp;dateSelection=range&amp;displayDateRange=false&amp;displayTicker=false&amp;endDate=&amp;format=real&amp;legendOnChart=true&amp;maxPoints=&amp;note=&amp;partner=&amp;quoteLegend=true&amp;quotes=&amp;recessions=false&amp;redesign=true&amp;scaleType=linear&amp;securities=id:FB,include:true,,&amp;securityGroup=&amp;securitylistName=&amp;securitylistSecurityId=&amp;source=false&amp;splitType=single&amp;startDate=&amp;title=&amp;units=false&amp;useCustomColors=false&amp;useEstimates=false&amp;zoom=2&quot;, &quot;embed_host&quot;: &quot;https://ycharts.com&quot;, &quot;embed_linkback_name&quot;: &quot;FB Total Assets (Quarterly)&quot;, &quot;embed_linkback_url&quot;: &quot;https://ycharts.com/companies/FB/assets&quot;, &quot;end_date&quot;: null, &quot;quotes&quot;: null, &quot;start_date&quot;: &quot;04/09/2020&quot;}"
+                                                    chart-json-data="{&quot;chart_data&quot;: [[{&quot;annotation_line_types&quot;: [], &quot;axis_type&quot;: &quot;mil_figure_money_USD_metric&quot;, &quot;can_annualize&quot;: &quot;false&quot;, &quot;currency_code&quot;: &quot;USD&quot;, &quot;estimates_start_date&quot;: null, &quot;event_types&quot;: [], &quot;format&quot;: &quot;real&quot;, &quot;frequency&quot;: &quot;quarterly&quot;, &quot;last_value&quot;: 164218.0000, &quot;line_format&quot;: {&quot;color&quot;: &quot;#6833C9&quot;, &quot;weight&quot;: &quot;medium&quot;}, &quot;long_label&quot;: &quot;Meta Platforms Inc Total Assets (Quarterly)&quot;, &quot;object_calc&quot;: &quot;assets&quot;, &quot;object_id&quot;: &quot;FB&quot;, &quot;object_type&quot;: &quot;company&quot;, &quot;raw_data&quot;: [[1593475200000, 139691.0000], [1601424000000, 146437.0000], [1609372800000, 159316.0000], [1617148800000, 163523.0000], [1625011200000, 170609.0000], [1632960000000, 169585.0000], [1640908800000, 165987.0000], [1648684800000, 164218.0000]], &quot;securitylist_name&quot;: null, &quot;short_label&quot;: &quot;FB To A Q&quot;, &quot;source&quot;: &quot;&quot;, &quot;type&quot;: &quot;mil_figure_money&quot;}, {&quot;annotation_line_types&quot;: [], &quot;axis_type&quot;: &quot;mil_figure_money_USD_metric&quot;, &quot;can_annualize&quot;: &quot;false&quot;, &quot;currency_code&quot;: &quot;USD&quot;, &quot;estimates_start_date&quot;: null, &quot;event_types&quot;: [], &quot;format&quot;: &quot;real&quot;, &quot;frequency&quot;: &quot;quarterly&quot;, &quot;last_value&quot;: 40990.0000, &quot;line_format&quot;: {&quot;color&quot;: &quot;#FFA86F&quot;, &quot;weight&quot;: &quot;medium&quot;}, &quot;long_label&quot;: &quot;Meta Platforms Inc Total Liabilities (Quarterly)&quot;, &quot;object_calc&quot;: &quot;liabilities&quot;, &quot;object_id&quot;: &quot;FB&quot;, &quot;object_type&quot;: &quot;company&quot;, &quot;raw_data&quot;: [[1593475200000, 29244.0000], [1601424000000, 28706.0000], [1609372800000, 31026.0000], [1617148800000, 29866.0000], [1625011200000, 32382.0000], [1632960000000, 36225.0000], [1640908800000, 41108.0000], [1648684800000, 40990.0000]], &quot;securitylist_name&quot;: null, &quot;short_label&quot;: &quot;FB Liab Q&quot;, &quot;source&quot;: &quot;&quot;, &quot;type&quot;: &quot;mil_figure_money&quot;}, {&quot;annotation_line_types&quot;: [], &quot;axis_type&quot;: &quot;mil_figure_money_USD_metric&quot;, &quot;can_annualize&quot;: &quot;false&quot;, &quot;currency_code&quot;: &quot;USD&quot;, &quot;estimates_start_date&quot;: null, &quot;event_types&quot;: [], &quot;format&quot;: &quot;real&quot;, &quot;frequency&quot;: &quot;quarterly&quot;, &quot;last_value&quot;: 123228.0000, &quot;line_format&quot;: {&quot;color&quot;: &quot;#568CD8&quot;, &quot;weight&quot;: &quot;medium&quot;}, &quot;long_label&quot;: &quot;Meta Platforms Inc Shareholders Equity (Quarterly)&quot;, &quot;object_calc&quot;: &quot;shareholders_equity&quot;, &quot;object_id&quot;: &quot;FB&quot;, &quot;object_type&quot;: &quot;company&quot;, &quot;raw_data&quot;: [[1593475200000, 110447.0000], [1601424000000, 117731.0000], [1609372800000, 128290.0000], [1617148800000, 133657.0000], [1625011200000, 138227.0000], [1632960000000, 133360.0000], [1640908800000, 124879.0000], [1648684800000, 123228.0000]], &quot;securitylist_name&quot;: null, &quot;short_label&quot;: &quot;FB S Eq Q&quot;, &quot;source&quot;: &quot;&quot;, &quot;type&quot;: &quot;mil_figure_money&quot;}]], &quot;chart_quarterly_date_format&quot;: &quot;month&quot;, &quot;chart_url&quot;: &quot;https://ycharts.com/companies/FB/chart/&quot;, &quot;chart_url_params&quot;: &quot;annotations=&amp;annualizedReturns=false&amp;calcs=id:assets,include:true,,id:liabilities,include:true,,id:shareholders_equity,include:true,,&amp;chartType=interactive&amp;correlations=&amp;dateSelection=range&amp;displayDateRange=false&amp;displayTicker=false&amp;endDate=&amp;format=real&amp;legendOnChart=true&amp;maxPoints=&amp;note=&amp;partner=&amp;quoteLegend=true&amp;quotes=&amp;recessions=false&amp;redesign=true&amp;scaleType=linear&amp;securities=id:FB,include:true,,&amp;securityGroup=&amp;securitylistName=&amp;securitylistSecurityId=&amp;source=false&amp;splitType=single&amp;startDate=&amp;title=&amp;units=false&amp;useCustomColors=false&amp;useEstimates=false&amp;zoom=2&quot;, &quot;embed_host&quot;: &quot;https://ycharts.com&quot;, &quot;embed_linkback_name&quot;: &quot;FB Total Assets (Quarterly)&quot;, &quot;embed_linkback_url&quot;: &quot;https://ycharts.com/companies/FB/assets&quot;, &quot;end_date&quot;: null, &quot;quotes&quot;: null, &quot;start_date&quot;: &quot;05/08/2020&quot;}"
                                                     chart-options="{&quot;series&quot;: [{&quot;type&quot;: &quot;line&quot;}], &quot;plotOptions&quot;: {&quot;line&quot;: {&quot;states&quot;: {&quot;hover&quot;: {&quot;enabled&quot;: true}}}}, &quot;tooltip&quot;: {&quot;shared&quot;: false}}"
                                                     configurable-options="{}">
                                                 </yc-fundamental-chart>
@@ -2622,7 +2658,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                                 href="/companies/FB/assets">Total Assets (Quarterly)</a>
                                         </td>
                                         <td class="text-right colTxtMed">
-                                            165.99B
+                                            164.22B
                                         </td>
                                     </tr>
                                 
@@ -2632,7 +2668,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                                 href="/companies/FB/liabilities">Total Liabilities (Quarterly)</a>
                                         </td>
                                         <td class="text-right colTxtMed">
-                                            41.11B
+                                            40.99B
                                         </td>
                                     </tr>
                                 
@@ -2642,7 +2678,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                                 href="/companies/FB/shareholders_equity">Shareholders Equity (Quarterly)</a>
                                         </td>
                                         <td class="text-right colTxtMed">
-                                            124.88B
+                                            123.23B
                                         </td>
                                     </tr>
                                 
@@ -2675,7 +2711,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                                 <yc-fundamental-chart
                                                     onclick="window.location = '/companies/FB/chart/#/?annotations=&amp;annualizedReturns=false&amp;calcs=id:cash_operations_ttm,include:true,,id:cash_investing_ttm,include:true,,id:cash_financing_ttm,include:true,,&amp;chartType=interactive&amp;correlations=&amp;dateSelection=range&amp;displayDateRange=false&amp;displayTicker=false&amp;endDate=&amp;format=real&amp;legendOnChart=true&amp;maxPoints=&amp;note=&amp;partner=&amp;quoteLegend=true&amp;quotes=&amp;recessions=false&amp;redesign=true&amp;scaleType=linear&amp;securities=id:FB,include:true,,&amp;securityGroup=&amp;securitylistName=&amp;securitylistSecurityId=&amp;source=false&amp;splitType=single&amp;startDate=&amp;title=&amp;units=false&amp;useCustomColors=false&amp;useEstimates=false&amp;zoom=5';"
                                                     chart-id=''
-                                                    chart-json-data="{&quot;chart_data&quot;: [[{&quot;annotation_line_types&quot;: [], &quot;axis_type&quot;: &quot;mil_figure_money_USD_metric&quot;, &quot;can_annualize&quot;: &quot;false&quot;, &quot;currency_code&quot;: &quot;USD&quot;, &quot;estimates_start_date&quot;: null, &quot;event_types&quot;: [], &quot;format&quot;: &quot;real&quot;, &quot;frequency&quot;: &quot;quarterly&quot;, &quot;last_value&quot;: 57683.0000, &quot;line_format&quot;: {&quot;color&quot;: &quot;#6833C9&quot;, &quot;weight&quot;: &quot;medium&quot;}, &quot;long_label&quot;: &quot;Meta Platforms Inc Cash from Operations (TTM)&quot;, &quot;object_calc&quot;: &quot;cash_operations_ttm&quot;, &quot;object_id&quot;: &quot;FB&quot;, &quot;object_type&quot;: &quot;company&quot;, &quot;raw_data&quot;: [[1498780800000, 19384.0000], [1506729600000, 21475.0000], [1514678400000, 24216.0000], [1522454400000, 27018.0000], [1530316800000, 27956.0000], [1538265600000, 29327.0000], [1546214400000, 29274.0000], [1553990400000, 30722.0000], [1561852800000, 33040.0000], [1569801600000, 34849.0000], [1577750400000, 36314.0000], [1585612800000, 38007.0000], [1593475200000, 33268.0000], [1601424000000, 33790.0000], [1609372800000, 38747.0000], [1617148800000, 39988.0000], [1625011200000, 49358.0000], [1632960000000, 53619.0000], [1640908800000, 57683.0000]], &quot;securitylist_name&quot;: null, &quot;short_label&quot;: &quot;FB C Op TTM&quot;, &quot;source&quot;: &quot;&quot;, &quot;type&quot;: &quot;mil_figure_money&quot;}, {&quot;annotation_line_types&quot;: [], &quot;axis_type&quot;: &quot;mil_figure_money_USD_metric&quot;, &quot;can_annualize&quot;: &quot;false&quot;, &quot;currency_code&quot;: &quot;USD&quot;, &quot;estimates_start_date&quot;: null, &quot;event_types&quot;: [], &quot;format&quot;: &quot;real&quot;, &quot;frequency&quot;: &quot;quarterly&quot;, &quot;last_value&quot;: -7570.0000, &quot;line_format&quot;: {&quot;color&quot;: &quot;#FFA86F&quot;, &quot;weight&quot;: &quot;medium&quot;}, &quot;long_label&quot;: &quot;Meta Platforms Inc Cash from Investing (TTM)&quot;, &quot;object_calc&quot;: &quot;cash_investing_ttm&quot;, &quot;object_id&quot;: &quot;FB&quot;, &quot;object_type&quot;: &quot;company&quot;, &quot;raw_data&quot;: [[1498780800000, -16531.0000], [1506729600000, -17143.0000], [1514678400000, -20118.0000], [1522454400000, -15485.0000], [1530316800000, -12403.0000], [1538265600000, -12921.0000], [1546214400000, -11603.0000], [1553990400000, -17084.0000], [1561852800000, -18710.0000], [1569801600000, -19513.0000], [1577750400000, -19864.0000], [1585612800000, -17205.0000], [1593475200000, -17373.0000], [1601424000000, -28922.0000], [1609372800000, -30059.0000], [1617148800000, -30824.0000], [1625011200000, -34841.0000], [1632960000000, -18572.0000], [1640908800000, -7570.0000]], &quot;securitylist_name&quot;: null, &quot;short_label&quot;: &quot;FB CFI TTM&quot;, &quot;source&quot;: &quot;&quot;, &quot;type&quot;: &quot;mil_figure_money&quot;}, {&quot;annotation_line_types&quot;: [], &quot;axis_type&quot;: &quot;mil_figure_money_USD_metric&quot;, &quot;can_annualize&quot;: &quot;false&quot;, &quot;currency_code&quot;: &quot;USD&quot;, &quot;estimates_start_date&quot;: null, &quot;event_types&quot;: [], &quot;format&quot;: &quot;real&quot;, &quot;frequency&quot;: &quot;quarterly&quot;, &quot;last_value&quot;: -50728.0000, &quot;line_format&quot;: {&quot;color&quot;: &quot;#568CD8&quot;, &quot;weight&quot;: &quot;medium&quot;}, &quot;long_label&quot;: &quot;Meta Platforms Inc Cash from Financing (TTM)&quot;, &quot;object_calc&quot;: &quot;cash_financing_ttm&quot;, &quot;object_id&quot;: &quot;FB&quot;, &quot;object_type&quot;: &quot;company&quot;, &quot;raw_data&quot;: [[1498780800000, -1865.0000], [1506729600000, -3388.0000], [1514678400000, -5235.0000], [1522454400000, -6846.0000], [1530316800000, -10248.0000], [1538265600000, -13874.0000], [1546214400000, -15572.0000], [1553990400000, -14392.0000], [1561852800000, -11952.0000], [1569801600000, -8814.0000], [1577750400000, -7299.0000], [1585612800000, -7898.0000], [1593475200000, -8219.0000], [1601424000000, -9111.0000], [1609372800000, -10292.0000], [1617148800000, -13455.0000], [1625011200000, -19852.0000], [1632960000000, -32193.0000], [1640908800000, -50728.0000]], &quot;securitylist_name&quot;: null, &quot;short_label&quot;: &quot;FB CFF TTM&quot;, &quot;source&quot;: &quot;&quot;, &quot;type&quot;: &quot;mil_figure_money&quot;}]], &quot;chart_quarterly_date_format&quot;: &quot;month&quot;, &quot;chart_url&quot;: &quot;https://ycharts.com/companies/FB/chart/&quot;, &quot;chart_url_params&quot;: &quot;annotations=&amp;annualizedReturns=false&amp;calcs=id:cash_operations_ttm,include:true,,id:cash_investing_ttm,include:true,,id:cash_financing_ttm,include:true,,&amp;chartType=interactive&amp;correlations=&amp;dateSelection=range&amp;displayDateRange=false&amp;displayTicker=false&amp;endDate=&amp;format=real&amp;legendOnChart=true&amp;maxPoints=&amp;note=&amp;partner=&amp;quoteLegend=true&amp;quotes=&amp;recessions=false&amp;redesign=true&amp;scaleType=linear&amp;securities=id:FB,include:true,,&amp;securityGroup=&amp;securitylistName=&amp;securitylistSecurityId=&amp;source=false&amp;splitType=single&amp;startDate=&amp;title=&amp;units=false&amp;useCustomColors=false&amp;useEstimates=false&amp;zoom=5&quot;, &quot;embed_host&quot;: &quot;https://ycharts.com&quot;, &quot;embed_linkback_name&quot;: &quot;FB Cash from Operations (TTM)&quot;, &quot;embed_linkback_url&quot;: &quot;https://ycharts.com/companies/FB/cash_operations_ttm&quot;, &quot;end_date&quot;: null, &quot;quotes&quot;: null, &quot;start_date&quot;: &quot;04/12/2017&quot;}"
+                                                    chart-json-data="{&quot;chart_data&quot;: [[{&quot;annotation_line_types&quot;: [], &quot;axis_type&quot;: &quot;mil_figure_money_USD_metric&quot;, &quot;can_annualize&quot;: &quot;false&quot;, &quot;currency_code&quot;: &quot;USD&quot;, &quot;estimates_start_date&quot;: null, &quot;event_types&quot;: [], &quot;format&quot;: &quot;real&quot;, &quot;frequency&quot;: &quot;quarterly&quot;, &quot;last_value&quot;: 59517.0000, &quot;line_format&quot;: {&quot;color&quot;: &quot;#6833C9&quot;, &quot;weight&quot;: &quot;medium&quot;}, &quot;long_label&quot;: &quot;Meta Platforms Inc Cash from Operations (TTM)&quot;, &quot;object_calc&quot;: &quot;cash_operations_ttm&quot;, &quot;object_id&quot;: &quot;FB&quot;, &quot;object_type&quot;: &quot;company&quot;, &quot;raw_data&quot;: [[1498780800000, 19384.0000], [1506729600000, 21475.0000], [1514678400000, 24216.0000], [1522454400000, 27018.0000], [1530316800000, 27956.0000], [1538265600000, 29327.0000], [1546214400000, 29274.0000], [1553990400000, 30722.0000], [1561852800000, 33040.0000], [1569801600000, 34849.0000], [1577750400000, 36314.0000], [1585612800000, 38007.0000], [1593475200000, 33268.0000], [1601424000000, 33790.0000], [1609372800000, 38747.0000], [1617148800000, 39988.0000], [1625011200000, 49358.0000], [1632960000000, 53619.0000], [1640908800000, 57683.0000], [1648684800000, 59517.0000]], &quot;securitylist_name&quot;: null, &quot;short_label&quot;: &quot;FB C Op TTM&quot;, &quot;source&quot;: &quot;&quot;, &quot;type&quot;: &quot;mil_figure_money&quot;}, {&quot;annotation_line_types&quot;: [], &quot;axis_type&quot;: &quot;mil_figure_money_USD_metric&quot;, &quot;can_annualize&quot;: &quot;false&quot;, &quot;currency_code&quot;: &quot;USD&quot;, &quot;estimates_start_date&quot;: null, &quot;event_types&quot;: [], &quot;format&quot;: &quot;real&quot;, &quot;frequency&quot;: &quot;quarterly&quot;, &quot;last_value&quot;: -7475.0000, &quot;line_format&quot;: {&quot;color&quot;: &quot;#FFA86F&quot;, &quot;weight&quot;: &quot;medium&quot;}, &quot;long_label&quot;: &quot;Meta Platforms Inc Cash from Investing (TTM)&quot;, &quot;object_calc&quot;: &quot;cash_investing_ttm&quot;, &quot;object_id&quot;: &quot;FB&quot;, &quot;object_type&quot;: &quot;company&quot;, &quot;raw_data&quot;: [[1498780800000, -16531.0000], [1506729600000, -17143.0000], [1514678400000, -20118.0000], [1522454400000, -15485.0000], [1530316800000, -12403.0000], [1538265600000, -12921.0000], [1546214400000, -11603.0000], [1553990400000, -17084.0000], [1561852800000, -18710.0000], [1569801600000, -19513.0000], [1577750400000, -19864.0000], [1585612800000, -17205.0000], [1593475200000, -17373.0000], [1601424000000, -28922.0000], [1609372800000, -30059.0000], [1617148800000, -30824.0000], [1625011200000, -34841.0000], [1632960000000, -18572.0000], [1640908800000, -7570.0000], [1648684800000, -7475.0000]], &quot;securitylist_name&quot;: null, &quot;short_label&quot;: &quot;FB CFI TTM&quot;, &quot;source&quot;: &quot;&quot;, &quot;type&quot;: &quot;mil_figure_money&quot;}, {&quot;annotation_line_types&quot;: [], &quot;axis_type&quot;: &quot;mil_figure_money_USD_metric&quot;, &quot;can_annualize&quot;: &quot;false&quot;, &quot;currency_code&quot;: &quot;USD&quot;, &quot;estimates_start_date&quot;: null, &quot;event_types&quot;: [], &quot;format&quot;: &quot;real&quot;, &quot;frequency&quot;: &quot;quarterly&quot;, &quot;last_value&quot;: -56203.0000, &quot;line_format&quot;: {&quot;color&quot;: &quot;#568CD8&quot;, &quot;weight&quot;: &quot;medium&quot;}, &quot;long_label&quot;: &quot;Meta Platforms Inc Cash from Financing (TTM)&quot;, &quot;object_calc&quot;: &quot;cash_financing_ttm&quot;, &quot;object_id&quot;: &quot;FB&quot;, &quot;object_type&quot;: &quot;company&quot;, &quot;raw_data&quot;: [[1498780800000, -1865.0000], [1506729600000, -3388.0000], [1514678400000, -5235.0000], [1522454400000, -6846.0000], [1530316800000, -10248.0000], [1538265600000, -13874.0000], [1546214400000, -15572.0000], [1553990400000, -14392.0000], [1561852800000, -11952.0000], [1569801600000, -8814.0000], [1577750400000, -7299.0000], [1585612800000, -7898.0000], [1593475200000, -8219.0000], [1601424000000, -9111.0000], [1609372800000, -10292.0000], [1617148800000, -13455.0000], [1625011200000, -19852.0000], [1632960000000, -32193.0000], [1640908800000, -50728.0000], [1648684800000, -56203.0000]], &quot;securitylist_name&quot;: null, &quot;short_label&quot;: &quot;FB CFF TTM&quot;, &quot;source&quot;: &quot;&quot;, &quot;type&quot;: &quot;mil_figure_money&quot;}]], &quot;chart_quarterly_date_format&quot;: &quot;month&quot;, &quot;chart_url&quot;: &quot;https://ycharts.com/companies/FB/chart/&quot;, &quot;chart_url_params&quot;: &quot;annotations=&amp;annualizedReturns=false&amp;calcs=id:cash_operations_ttm,include:true,,id:cash_investing_ttm,include:true,,id:cash_financing_ttm,include:true,,&amp;chartType=interactive&amp;correlations=&amp;dateSelection=range&amp;displayDateRange=false&amp;displayTicker=false&amp;endDate=&amp;format=real&amp;legendOnChart=true&amp;maxPoints=&amp;note=&amp;partner=&amp;quoteLegend=true&amp;quotes=&amp;recessions=false&amp;redesign=true&amp;scaleType=linear&amp;securities=id:FB,include:true,,&amp;securityGroup=&amp;securitylistName=&amp;securitylistSecurityId=&amp;source=false&amp;splitType=single&amp;startDate=&amp;title=&amp;units=false&amp;useCustomColors=false&amp;useEstimates=false&amp;zoom=5&quot;, &quot;embed_host&quot;: &quot;https://ycharts.com&quot;, &quot;embed_linkback_name&quot;: &quot;FB Cash from Operations (TTM)&quot;, &quot;embed_linkback_url&quot;: &quot;https://ycharts.com/companies/FB/cash_operations_ttm&quot;, &quot;end_date&quot;: null, &quot;quotes&quot;: null, &quot;start_date&quot;: &quot;05/10/2017&quot;}"
                                                     chart-options="{&quot;series&quot;: [{&quot;type&quot;: &quot;line&quot;}], &quot;plotOptions&quot;: {&quot;line&quot;: {&quot;states&quot;: {&quot;hover&quot;: {&quot;enabled&quot;: true}}}}, &quot;tooltip&quot;: {&quot;shared&quot;: false}}"
                                                     configurable-options="{}">
                                                 </yc-fundamental-chart>
@@ -2696,7 +2732,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                                 href="/companies/FB/cash_operations_ttm">Cash from Operations (TTM)</a>
                                         </td>
                                         <td class="text-right colTxtMed">
-                                            57.68B
+                                            59.52B
                                         </td>
                                     </tr>
                                 
@@ -2706,7 +2742,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                                 href="/companies/FB/cash_investing_ttm">Cash from Investing (TTM)</a>
                                         </td>
                                         <td class="text-right colTxtMed">
-                                            -7.57B
+                                            -7.475B
                                         </td>
                                     </tr>
                                 
@@ -2716,7 +2752,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                                 href="/companies/FB/cash_financing_ttm">Cash from Financing (TTM)</a>
                                         </td>
                                         <td class="text-right colTxtMed">
-                                            -50.73B
+                                            -56.20B
                                         </td>
                                     </tr>
                                 
@@ -2856,12 +2892,12 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                         
                             <tr>
                                 <td class="col-6">Next Earnings Release</td>
-                                <td class="col-6">Apr. 27, 2022</td>
+                                <td class="col-6">Jul. 28, 2022 (est.)</td>
                             </tr>
                         
                             <tr>
                                 <td class="col-6">Last Earnings Release</td>
-                                <td class="col-6">Feb. 02, 2022</td>
+                                <td class="col-6">Apr. 27, 2022</td>
                             </tr>
                         
                             <tr>
@@ -3006,7 +3042,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                     <span>
                                         
                                             
-                                                51.17%
+                                                54.22%
                                             
                                         
                                     </span>
@@ -3180,10 +3216,10 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                     
                                         <div class="flow-body">
                                             <div class="flow-range">
-                                                <div class="flow-label bg-1 text-1" style="left: 14.27%;">
+                                                <div class="flow-label bg-1 text-1" style="left: 13.24%;">
                                                     <span>
                                                         
-                                                            $214.14
+                                                            $197.50
                                                         
                                                     </span>
                                                 </div>
@@ -3214,7 +3250,7 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                     
                                         <div class="flow-body">
                                             <div class="flow-range has-deviation">
-                                                <div class="flow-label bg-1 text-1" style="left: 48.39%;">
+                                                <div class="flow-label bg-1 text-1" style="left: 37.64%;">
                                                     <span>
                                                         <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
 
@@ -3222,8 +3258,8 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                                                 </div>
                                                 <div class="flow-axis">
                                                     <div class="flow-region bg-gradient-1-3"
-                                                         style="left: 27.61%;
-                                                                width: 41.56%;">
+                                                         style="left: 18.96%;
+                                                                width: 37.36%;">
                                                     </div>
                                                     <div class="flow-axis-item text-gray-30">
                                                         <a href="/store/start_trial_register/analystMetric" class="pro">Upgrade</a>
@@ -3471,74 +3507,74 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                     
                         <tr>
                             <td><a href="/mutual_funds/M:FCNKX" tooltip tooltip-title="Fidelity® Contrafund® K">FCNKX</a></td>
-                            <td class="text-right">8.806B USD</td>
-                            <td class="text-right">7.11%</td>
-                        </tr>
-                    
-                        <tr>
-                            <td><a href="/mutual_funds/M:TRZBX" tooltip tooltip-title="T. Rowe Price Blue Chip Growth Z">TRZBX</a></td>
-                            <td class="text-right">6.786B USD</td>
-                            <td class="text-right">6.64%</td>
+                            <td class="text-right">9.279B USD</td>
+                            <td class="text-right">7.34%</td>
                         </tr>
                     
                         <tr>
                             <td><a href="/mutual_funds/M:CICFX" tooltip tooltip-title="American Funds Invmt Co of Amer 529F">CICFX</a></td>
-                            <td class="text-right">5.314B USD</td>
-                            <td class="text-right">4.23%</td>
-                        </tr>
-                    
-                        <tr>
-                            <td><a href="/mutual_funds/M:CGFFX" tooltip tooltip-title="American Funds Growth Fund of Amer 529F">CGFFX</a></td>
-                            <td class="text-right">11.93B USD</td>
-                            <td class="text-right">4.09%</td>
+                            <td class="text-right">4.395B USD</td>
+                            <td class="text-right">3.67%</td>
                         </tr>
                     
                         <tr>
                             <td><a href="/companies/QQQ" tooltip tooltip-title="Invesco QQQ Trust">QQQ</a></td>
-                            <td class="text-right">6.376B USD</td>
-                            <td class="text-right">3.45%</td>
+                            <td class="text-right">5.978B USD</td>
+                            <td class="text-right">3.60%</td>
+                        </tr>
+                    
+                        <tr>
+                            <td><a href="/mutual_funds/M:CGFFX" tooltip tooltip-title="American Funds Growth Fund of Amer 529F">CGFFX</a></td>
+                            <td class="text-right">7.987B USD</td>
+                            <td class="text-right">3.07%</td>
                         </tr>
                     
                         <tr>
                             <td><a href="/companies/VUG" tooltip tooltip-title="Vanguard Growth ETF">VUG</a></td>
-                            <td class="text-right">3.972B USD</td>
-                            <td class="text-right">2.45%</td>
+                            <td class="text-right">4.095B USD</td>
+                            <td class="text-right">2.41%</td>
                         </tr>
                     
                         <tr>
-                            <td><a href="/mutual_funds/M:VFINX" tooltip tooltip-title="Vanguard 500 Index Investor">VFINX</a></td>
-                            <td class="text-right">10.86B USD</td>
-                            <td class="text-right">1.34%</td>
-                        </tr>
-                    
-                        <tr>
-                            <td><a href="/companies/VOO" tooltip tooltip-title="Vanguard S&amp;P 500 ETF">VOO</a></td>
-                            <td class="text-right">10.86B USD</td>
+                            <td><a href="/companies/SPY" tooltip tooltip-title="SPDR® S&amp;P 500 ETF Trust">SPY</a></td>
+                            <td class="text-right">4.774B USD</td>
                             <td class="text-right">1.34%</td>
                         </tr>
                     
                         <tr>
                             <td><a href="/companies/IVV" tooltip tooltip-title="iShares Core S&amp;P 500 ETF">IVV</a></td>
-                            <td class="text-right">4.350B USD</td>
+                            <td class="text-right">3.789B USD</td>
                             <td class="text-right">1.34%</td>
                         </tr>
                     
                         <tr>
-                            <td><a href="/companies/SPY" tooltip tooltip-title="SPDR® S&amp;P 500 ETF Trust">SPY</a></td>
-                            <td class="text-right">5.402B USD</td>
+                            <td><a href="/mutual_funds/M:FXAIX" tooltip tooltip-title="Fidelity® 500 Index">FXAIX</a></td>
+                            <td class="text-right">5.334B USD</td>
+                            <td class="text-right">1.34%</td>
+                        </tr>
+                    
+                        <tr>
+                            <td><a href="/mutual_funds/M:VFINX" tooltip tooltip-title="Vanguard 500 Index Investor">VFINX</a></td>
+                            <td class="text-right">11.23B USD</td>
+                            <td class="text-right">1.34%</td>
+                        </tr>
+                    
+                        <tr>
+                            <td><a href="/companies/VOO" tooltip tooltip-title="Vanguard S&amp;P 500 ETF">VOO</a></td>
+                            <td class="text-right">11.23B USD</td>
                             <td class="text-right">1.34%</td>
                         </tr>
                     
                         <tr>
                             <td><a href="/mutual_funds/M:VTSMX" tooltip tooltip-title="Vanguard Total Stock Mkt Idx Inv">VTSMX</a></td>
-                            <td class="text-right">14.38B USD</td>
-                            <td class="text-right">1.13%</td>
+                            <td class="text-right">14.82B USD</td>
+                            <td class="text-right">1.12%</td>
                         </tr>
                     
                         <tr>
                             <td><a href="/companies/VTI" tooltip tooltip-title="Vanguard Total Stock Market ETF">VTI</a></td>
-                            <td class="text-right">14.38B USD</td>
-                            <td class="text-right">1.13%</td>
+                            <td class="text-right">14.82B USD</td>
+                            <td class="text-right">1.12%</td>
                         </tr>
                     
                     
@@ -3589,22 +3625,22 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                         
                             <tr>
                                 <td class="col-6">Whale Wisdom</td>
-                                <td class="col-6"><a class="text-blue" href=http://whalewisdom.com/stock/fb>13F Filings</a></td>
+                                <td class="col-6"><a class="text-blue" target="_blank" href=http://whalewisdom.com/stock/fb>13F Filings</a></td>
                             </tr>
                         
                             <tr>
                                 <td class="col-6">Seeking Alpha</td>
-                                <td class="col-6"><a class="text-blue" href=http://seekingalpha.com/symbol/FB/transcripts>Call Transcripts</a></td>
+                                <td class="col-6"><a class="text-blue" target="_blank" href=http://seekingalpha.com/symbol/FB/transcripts>Call Transcripts</a></td>
                             </tr>
                         
                             <tr>
                                 <td class="col-6">Morningstar</td>
-                                <td class="col-6"><a class="text-blue" href=http://insiders.morningstar.com/trading/insider-activity.action?t=FB&amp;amp;region=USA&amp;amp;culture=en-us>Insider Trading</a></td>
+                                <td class="col-6"><a class="text-blue" target="_blank" href=http://insiders.morningstar.com/trading/insider-activity.action?t=FB&amp;amp;region=USA&amp;amp;culture=en-us>Insider Trading</a></td>
                             </tr>
                         
                             <tr>
                                 <td class="col-6">Nasdaq</td>
-                                <td class="col-6"><a class="text-blue" href=http://www.nasdaq.com/market-activity/stocks/fb/institutional-holdings>Institutional Ownership</a></td>
+                                <td class="col-6"><a class="text-blue" target="_blank" href=http://www.nasdaq.com/market-activity/stocks/fb/institutional-holdings>Institutional Ownership</a></td>
                             </tr>
                         
                     </tbody>
@@ -3616,17 +3652,17 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
                         
                             <tr>
                                 <td class="col-6">Nasdaq</td>
-                                <td class="col-6"><a class="text-blue" href=http://www.nasdaq.com/market-activity/stocks/fb/option-chain>Option Chain</a></td>
+                                <td class="col-6"><a class="text-blue" target="_blank" href=http://www.nasdaq.com/market-activity/stocks/fb/option-chain>Option Chain</a></td>
                             </tr>
                         
                             <tr>
                                 <td class="col-6">SEC</td>
-                                <td class="col-6"><a class="text-blue" href=http://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&amp;CIK=1326801&amp;output=>SEC Filings</a></td>
+                                <td class="col-6"><a class="text-blue" target="_blank" href=http://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&amp;CIK=1326801&amp;output=>SEC Filings</a></td>
                             </tr>
                         
                             <tr>
-                                <td class="col-6">Stocktwits</td>
-                                <td class="col-6"><a class="text-blue" href=http://stocktwits.com/symbol/FB>FB Tweets</a></td>
+                                <td class="col-6">Twitter</td>
+                                <td class="col-6"><a class="text-blue" target="_blank" href=https://twitter.com/search?q=%24FB>FB Tweets</a></td>
                             </tr>
                         
                     </tbody>
@@ -3657,8 +3693,8 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
         </yc-comparables-modal>
         <yc-edit-profile-modal
             show-modal-event-name="showProfileModal"
-            info-fields="[{&quot;name&quot;: &quot;url&quot;, &quot;label&quot;: &quot;URL&quot;, &quot;value&quot;: &quot;&lt;a class=\&quot;text-blue\&quot; href=\&quot;https://www.facebook.com\&quot; target=\&quot;_blank\&quot;&gt;https://www.facebook.com&lt;/a&gt;&quot;}, {&quot;name&quot;: &quot;ir_url&quot;, &quot;label&quot;: &quot;Investor Relations URL&quot;, &quot;value&quot;: &quot;&lt;a class=\&quot;text-blue\&quot; href=\&quot;https://investor.fb.com/\&quot; target=\&quot;_blank\&quot;&gt;https://investor.fb.com/&lt;/a&gt;&quot;}, {&quot;name&quot;: &quot;hq_state_province&quot;, &quot;label&quot;: &quot;HQ State/Province&quot;, &quot;value&quot;: &quot;California&quot;}, {&quot;name&quot;: &quot;sector&quot;, &quot;label&quot;: &quot;Sector&quot;, &quot;value&quot;: &quot;&lt;a href=\&quot;/classifications/sectors/communication_services/key_stats\&quot; target=\&quot;_blank\&quot;&gt;Communication Services&lt;/a&gt;&quot;}, {&quot;name&quot;: &quot;industry&quot;, &quot;label&quot;: &quot;Industry&quot;, &quot;value&quot;: &quot;&lt;a href=\&quot;/classifications/industries/internet_content_and_information/overview\&quot; target=\&quot;_blank\&quot;&gt;Internet Content &amp; Information&lt;/a&gt;&quot;}, {&quot;name&quot;: &quot;equity_style&quot;, &quot;label&quot;: &quot;Equity Style&quot;, &quot;value&quot;: &quot;Large Cap/Blend&quot;}, {&quot;name&quot;: &quot;next_earnings_release&quot;, &quot;label&quot;: &quot;Next Earnings Release&quot;, &quot;value&quot;: &quot;Apr. 27, 2022&quot;}, {&quot;name&quot;: &quot;last_earnings_release&quot;, &quot;label&quot;: &quot;Last Earnings Release&quot;, &quot;value&quot;: &quot;Feb. 02, 2022&quot;}, {&quot;name&quot;: &quot;next_ex_dividend_date&quot;, &quot;label&quot;: &quot;Next Ex-Dividend Date&quot;, &quot;value&quot;: &quot;N/A&quot;}, {&quot;name&quot;: &quot;last_ex_dividend_date&quot;, &quot;label&quot;: &quot;Last Ex-Dividend Date&quot;, &quot;value&quot;: &quot;N/A&quot;}]"
-            default-info-fields="[{&quot;name&quot;: &quot;url&quot;, &quot;label&quot;: &quot;URL&quot;, &quot;value&quot;: &quot;&lt;a class=\&quot;text-blue\&quot; href=\&quot;https://www.facebook.com\&quot; target=\&quot;_blank\&quot;&gt;https://www.facebook.com&lt;/a&gt;&quot;}, {&quot;name&quot;: &quot;ir_url&quot;, &quot;label&quot;: &quot;Investor Relations URL&quot;, &quot;value&quot;: &quot;&lt;a class=\&quot;text-blue\&quot; href=\&quot;https://investor.fb.com/\&quot; target=\&quot;_blank\&quot;&gt;https://investor.fb.com/&lt;/a&gt;&quot;}, {&quot;name&quot;: &quot;hq_state_province&quot;, &quot;label&quot;: &quot;HQ State/Province&quot;, &quot;value&quot;: &quot;California&quot;}, {&quot;name&quot;: &quot;sector&quot;, &quot;label&quot;: &quot;Sector&quot;, &quot;value&quot;: &quot;&lt;a href=\&quot;/classifications/sectors/communication_services/key_stats\&quot; target=\&quot;_blank\&quot;&gt;Communication Services&lt;/a&gt;&quot;}, {&quot;name&quot;: &quot;industry&quot;, &quot;label&quot;: &quot;Industry&quot;, &quot;value&quot;: &quot;&lt;a href=\&quot;/classifications/industries/internet_content_and_information/overview\&quot; target=\&quot;_blank\&quot;&gt;Internet Content &amp; Information&lt;/a&gt;&quot;}, {&quot;name&quot;: &quot;equity_style&quot;, &quot;label&quot;: &quot;Equity Style&quot;, &quot;value&quot;: &quot;Large Cap/Blend&quot;}, {&quot;name&quot;: &quot;next_earnings_release&quot;, &quot;label&quot;: &quot;Next Earnings Release&quot;, &quot;value&quot;: &quot;Apr. 27, 2022&quot;}, {&quot;name&quot;: &quot;last_earnings_release&quot;, &quot;label&quot;: &quot;Last Earnings Release&quot;, &quot;value&quot;: &quot;Feb. 02, 2022&quot;}, {&quot;name&quot;: &quot;next_ex_dividend_date&quot;, &quot;label&quot;: &quot;Next Ex-Dividend Date&quot;, &quot;value&quot;: &quot;N/A&quot;}, {&quot;name&quot;: &quot;last_ex_dividend_date&quot;, &quot;label&quot;: &quot;Last Ex-Dividend Date&quot;, &quot;value&quot;: &quot;N/A&quot;}]">
+            info-fields="[{&quot;name&quot;: &quot;url&quot;, &quot;label&quot;: &quot;URL&quot;, &quot;value&quot;: &quot;&lt;a class=\&quot;text-blue\&quot; href=\&quot;https://www.facebook.com\&quot; target=\&quot;_blank\&quot;&gt;https://www.facebook.com&lt;/a&gt;&quot;}, {&quot;name&quot;: &quot;ir_url&quot;, &quot;label&quot;: &quot;Investor Relations URL&quot;, &quot;value&quot;: &quot;&lt;a class=\&quot;text-blue\&quot; href=\&quot;https://investor.fb.com/\&quot; target=\&quot;_blank\&quot;&gt;https://investor.fb.com/&lt;/a&gt;&quot;}, {&quot;name&quot;: &quot;hq_state_province&quot;, &quot;label&quot;: &quot;HQ State/Province&quot;, &quot;value&quot;: &quot;California&quot;}, {&quot;name&quot;: &quot;sector&quot;, &quot;label&quot;: &quot;Sector&quot;, &quot;value&quot;: &quot;&lt;a href=\&quot;/classifications/sectors/communication_services/key_stats\&quot; target=\&quot;_blank\&quot;&gt;Communication Services&lt;/a&gt;&quot;}, {&quot;name&quot;: &quot;industry&quot;, &quot;label&quot;: &quot;Industry&quot;, &quot;value&quot;: &quot;&lt;a href=\&quot;/classifications/industries/internet_content_and_information/overview\&quot; target=\&quot;_blank\&quot;&gt;Internet Content &amp; Information&lt;/a&gt;&quot;}, {&quot;name&quot;: &quot;equity_style&quot;, &quot;label&quot;: &quot;Equity Style&quot;, &quot;value&quot;: &quot;Large Cap/Blend&quot;}, {&quot;name&quot;: &quot;next_earnings_release&quot;, &quot;label&quot;: &quot;Next Earnings Release&quot;, &quot;value&quot;: &quot;Jul. 28, 2022 (est.)&quot;}, {&quot;name&quot;: &quot;last_earnings_release&quot;, &quot;label&quot;: &quot;Last Earnings Release&quot;, &quot;value&quot;: &quot;Apr. 27, 2022&quot;}, {&quot;name&quot;: &quot;next_ex_dividend_date&quot;, &quot;label&quot;: &quot;Next Ex-Dividend Date&quot;, &quot;value&quot;: &quot;N/A&quot;}, {&quot;name&quot;: &quot;last_ex_dividend_date&quot;, &quot;label&quot;: &quot;Last Ex-Dividend Date&quot;, &quot;value&quot;: &quot;N/A&quot;}]"
+            default-info-fields="[{&quot;name&quot;: &quot;url&quot;, &quot;label&quot;: &quot;URL&quot;, &quot;value&quot;: &quot;&lt;a class=\&quot;text-blue\&quot; href=\&quot;https://www.facebook.com\&quot; target=\&quot;_blank\&quot;&gt;https://www.facebook.com&lt;/a&gt;&quot;}, {&quot;name&quot;: &quot;ir_url&quot;, &quot;label&quot;: &quot;Investor Relations URL&quot;, &quot;value&quot;: &quot;&lt;a class=\&quot;text-blue\&quot; href=\&quot;https://investor.fb.com/\&quot; target=\&quot;_blank\&quot;&gt;https://investor.fb.com/&lt;/a&gt;&quot;}, {&quot;name&quot;: &quot;hq_state_province&quot;, &quot;label&quot;: &quot;HQ State/Province&quot;, &quot;value&quot;: &quot;California&quot;}, {&quot;name&quot;: &quot;sector&quot;, &quot;label&quot;: &quot;Sector&quot;, &quot;value&quot;: &quot;&lt;a href=\&quot;/classifications/sectors/communication_services/key_stats\&quot; target=\&quot;_blank\&quot;&gt;Communication Services&lt;/a&gt;&quot;}, {&quot;name&quot;: &quot;industry&quot;, &quot;label&quot;: &quot;Industry&quot;, &quot;value&quot;: &quot;&lt;a href=\&quot;/classifications/industries/internet_content_and_information/overview\&quot; target=\&quot;_blank\&quot;&gt;Internet Content &amp; Information&lt;/a&gt;&quot;}, {&quot;name&quot;: &quot;equity_style&quot;, &quot;label&quot;: &quot;Equity Style&quot;, &quot;value&quot;: &quot;Large Cap/Blend&quot;}, {&quot;name&quot;: &quot;next_earnings_release&quot;, &quot;label&quot;: &quot;Next Earnings Release&quot;, &quot;value&quot;: &quot;Jul. 28, 2022 (est.)&quot;}, {&quot;name&quot;: &quot;last_earnings_release&quot;, &quot;label&quot;: &quot;Last Earnings Release&quot;, &quot;value&quot;: &quot;Apr. 27, 2022&quot;}, {&quot;name&quot;: &quot;next_ex_dividend_date&quot;, &quot;label&quot;: &quot;Next Ex-Dividend Date&quot;, &quot;value&quot;: &quot;N/A&quot;}, {&quot;name&quot;: &quot;last_ex_dividend_date&quot;, &quot;label&quot;: &quot;Last Ex-Dividend Date&quot;, &quot;value&quot;: &quot;N/A&quot;}]">
         </yc-edit-profile-modal>
     </div>
 
@@ -3679,25 +3715,51 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
         
 
         
-        <!-- Google Analytics (analytics.js) -->
-<!-- Only track non-staff users unless it is within the admin where we want to track users -->
-<script type="text/javascript">
-
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-8129500-1', {'cookieDomain': 'auto', 'siteSpeedSampleRate': 10});
-
-    
-
-    ga('set', 'dimension2', 'No');
-    ga('send', 'pageview');
-
-
+        <!-- Facebook/Meta Pixel Code -->
+<script>
+    !function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+            n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = '2.0';
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '827940241018894');
+    fbq('track', 'PageView');
 </script>
-<!-- End Google Analytics -->
+<noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=827940241018894&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Facebook/Meta Pixel Code -->
+        
+    <!-- Global Site Tag (gtag.js) - Google Analytics & Google Ads -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-8129500-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+
+      gtag('js', new Date());
+
+      gtag('config', 'AW-1009522200');
+
+      gtag('config', 'UA-8129500-1', {
+          'dimension1': 'No',
+          'dimension2': 'No',
+      });
+    </script>
+    <!-- End Global Site Tag -->
 
         
 <script type="text/javascript">
@@ -3751,60 +3813,6 @@ We do this in vanilla javascript for performance and SEO reasons. Is very simple
 
         
         
-        
-
-        
-        
-        
-
-        
-            
-
-<!-- Start of HubSpot Chat Code -->
-
-    <script type="text/javascript">
-        
-
-        window.openHubSpotChat = function() {
-            window.HubSpotConversations.widget.load();
-            window.HubSpotConversations.widget.open();
-        };
-
-        function onConversationsAPIReady() {
-            window.HubSpotConversations.widget.load();
-
-            // Check to see if there is a chat in in progress by inspecting if the cookie has been set.
-            // If it is then open the widget the user can continue their chat.
-            if (document.cookie.split(';').some(function (item) { return item.includes('yChatOpen=true')})) {
-                console.log('YCharts Chat: chat in progress.')
-                window.openHubSpotChat();
-            }
-
-            window.HubSpotConversations.on('conversationStarted', function () {
-                console.log('YCharts Chat: starting chat')
-                // When a user starts a conversation we want to set a cookie that informs us
-                // on next page load to keep the chat open on load.
-                // We set the max age to 30 minutes (60 * 30 = 1800) so that the chat stays open
-                // for 30 minutes on page loads or until the chat ends.
-                document.cookie = 'yChatOpen=true; max-age=1800; SameSite=lax; Secure; path=/';
-            });
-
-            window.HubSpotConversations.on('conversationClosed', function () {
-                console.log('YCharts Chat: ending chat')
-                // When a user ends a conversation we want to remove this cookie so we don't
-                // keep popping the chat open on load. We do this by setting the max-age to 0 which
-                // makes it expire.
-                document.cookie = 'yChatOpen=false; max-age=0; SameSite=lax; Secure; path=/';
-            });
-
-        }
-
-        window.hsConversationsOnReady = [onConversationsAPIReady];
-
-    </script>
-
-<!-- End of HubSpot Chat Code -->
-
         
     </body>
 </html>

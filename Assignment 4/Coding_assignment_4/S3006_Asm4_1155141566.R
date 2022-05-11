@@ -227,19 +227,45 @@ comp_info = readHTMLTable(doc_complist, which = 1)
 comp = comp_info[, c(2:3)]
 
 # (b) retrieve Market Cap, Price to Book Value, and Dividend Yield from Y-Charts
-url_marklist = "https://ycharts.com/companies/FB"
-destfile = "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Coding_assignment_4/FB.html"
-download.file(url_marklist, destfile)
+#url_marklist = "https://ycharts.com/companies/FB"
+#destfile = "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Coding_assignment_4/FB.html"
+#download.file(url_marklist, destfile)
+#doc_marklist = htmlTreeParse(destfile, useInternalNodes = TRUE)
 
-doc_marklist = htmlTreeParse(destfile, useInternalNodes = TRUE)
+url_marketcap = "https://ycharts.com/companies/FB/market_cap"
+destfile_mc = "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Coding_assignment_4/FB_market_cap.html"
+download.file(url_marketcap, destfile_mc)
+doc_marketcap = htmlTreeParse(destfile_mc, useInternalNodes = TRUE)
+marketcap_table = readHTMLTable(doc_marketcap, which = 3)
+colnames(marketcap_table) = c("Company", "MarketCap")
+temp1 = merge(comp, marketcap_table, by=c("Company"), all.x = TRUE)
+  
+url_pricetbv = "https://ycharts.com/companies/FB/price_to_book_value"
+destfile_pricetbv = "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Coding_assignment_4/FB_price_to_book_value.html"
+download.file(url_pricetbv, destfile_pricetbv)
+doc_pricetbv = htmlTreeParse(destfile_pricetbv, useInternalNodes = TRUE)
+pricetbv_table = readHTMLTable(doc_pricetbv, which = 3)
+colnames(pricetbv_table) = c("Company", "PriceToBookValue")
+temp2 = merge(temp1, pricetbv_table, by=c("Company"), all.x = TRUE)
 
-mark_link = xpathSApply(doc_marklist, "//table//a/@href")
-mark_value = xpathSApply(doc_marklist, "//table//a", xmlValue)
+url_dy = "https://ycharts.com/companies/FB/dividend_yield"
+destfile_dy = "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Coding_assignment_4/FB_dividend_yield.html"
+download.file(url_dy, destfile_dy)
+doc_dy = htmlTreeParse(destfile_dy, useInternalNodes = TRUE)
+dy_table = readHTMLTable(doc_dy, which = 3)
+colnames(dy_table) = c("Company", "DividendYield")
+whole_table = merge(temp2, dy_table, by=c("Company"), all.x = TRUE)
 
-value_idx_to_survey = c(which(mark_value == "Market Cap"), which(mark_value == "Price to Book Value"), which(mark_value == "Dividend"))
-link_to_use = c(mark_link[value_idx_to_survey])
+#install.packages("gridExtra")
+library("gridExtra")
+pdf("Q3b_data.pdf")       # Export PDF
+grid.table(whole_table)
+dev.off()
 
-#xpathSApply(doc_marklist, "//table[1]//a/", , xmlGetAttr, "href")
+
+
+
+
 
 
 

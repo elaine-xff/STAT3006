@@ -1,0 +1,1237 @@
+
+
+
+
+
+
+<!doctype html>
+<html lang="en" ng-jq ng-strict-di ng-app="companiesDataApp">
+    <head>
+        <title>
+        Meta Platforms Dividend Yield
+        </title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- This code allows us to correctly display the page on mobile devices -->
+<script defer>
+    var viewport = document.querySelector('meta[name=viewport]');
+    if (viewport) {
+        var minWidth = 700;
+        if (screen.width < minWidth) {
+            document.head.removeChild(viewport);
+            var newViewport = document.createElement('meta');
+            newViewport.setAttribute('name', 'viewport');
+            newViewport.setAttribute('content', 'width=' + minWidth);
+            document.head.appendChild(newViewport);
+        }
+    }
+</script>
+
+
+        
+        <script>
+    if (navigator.userAgent.indexOf('Trident') !== -1 || navigator.userAgent.indexOf('MSIE') !== -1) {
+        window.onload=function() {
+            var ie_banner = document.createElement('div');
+            ie_banner.innerText = 'We are no longer supporting Internet Explorer. We recommend you switch to another supported browser for ' +
+                'more security, speed and the best experience on this site. '
+            ie_banner.setAttribute('style', 'position: fixed; top: 0; left: 0; width: 100%; min-height: 24px; padding: 12px; background-color: #ffece2; text-align: center; font-size: 16px; font-weight: 600; z-index: 9999;');
+            var edge_link = document.createElement('a');
+            edge_link.setAttribute('href', 'https://www.microsoft.com/en-us/edge');
+            edge_link.setAttribute('target', '_blank');
+            edge_link.innerText = 'Click here to download Microsoft Edge.'
+            ie_banner.appendChild(edge_link);
+            document.body.appendChild(ie_banner);
+            document.body.style.paddingTop = '48px';
+        }
+    }
+</script>
+
+
+        
+
+
+<meta charset="utf-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+
+<link rel="manifest" href="/media/images/icons/site.webmanifest">
+<meta name="application-name" content="YCharts">
+<meta name="theme-color" content="#ff0000">
+
+
+<link rel="shortcut icon" href="//static.ycharts.com/images/icons/favicon.637225eac278.ico">
+<link rel="mask-icon" href="//static.ycharts.com/images/icons/safari-pinned-tab.25e890b98a32.svg" color="#0282e8">
+<link rel="icon" type="image/png" sizes="16x16" href="//static.ycharts.com/images/icons/favicon-16x16.29edabc6dd08.png">
+<link rel="icon" type="image/png" sizes="32x32" href="//static.ycharts.com/images/icons/favicon-32x32.eebc3b76e0ed.png">
+<link rel="icon" type="image/png" sizes="48x48" href="//static.ycharts.com/images/icons/android-chrome-48x48.96781c3713c4.png">
+<link rel="icon" type="image/png" sizes="72x72" href="//static.ycharts.com/images/icons/android-chrome-72x72.dc3b7f75ed0e.png">
+<link rel="icon" type="image/png" sizes="144x144" href="//static.ycharts.com/images/icons/android-chrome-144x144.c8193700e6e1.png">
+<link rel="icon" type="image/png" sizes="192x192" href="//static.ycharts.com/images/icons/android-chrome-192x192.d987224b63a8.png">
+<link rel="icon" type="image/png" sizes="256x256" href="//static.ycharts.com/images/icons/android-chrome-256x256.4e5461952683.png">
+<link rel="icon" type="image/png" sizes="384x384" href="//static.ycharts.com/images/icons/android-chrome-384x384.ac6f65a9b14e.png">
+<link rel="icon" type="image/png" sizes="512x512" href="//static.ycharts.com/images/icons/android-chrome-512x512.911c0daf0026.png">
+
+
+<meta name="apple-mobile-web-app-title" content="YCharts">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" sizes="180x180" href="//static.ycharts.com/images/icons/apple-touch-icon.c03e7247c0fe.png">
+<link rel="apple-touch-icon-precomposed" sizes="180x180" href="//static.ycharts.com/images/icons/apple-touch-icon-precomposed.0f654568c824.png">
+
+
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="msapplication-TileImage" content="//static.ycharts.com/images/icons/mstile-144x144.856c9cc77048.png">
+<meta name="msapplication-config" content="/media/images/icons/browserconfig.xml">
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+        
+    <meta name="description" content="In depth view into Meta Platforms Dividend Yield including historical data from 2012, charts and stats." />
+
+
+        
+        <link href="//static.ycharts.com/bundles/redesign_core_css.086debfd50654283ef2b.css" rel="stylesheet" />
+
+        
+            
+            
+
+<!-- Start of HubSpot Chat Code -->
+
+    <script type="text/javascript">
+        
+
+        window.openHubSpotChat = function() {
+            window.HubSpotConversations.widget.load();
+            window.HubSpotConversations.widget.open();
+        };
+
+        function onConversationsAPIReady() {
+            window.HubSpotConversations.widget.load();
+
+            // Check to see if there is a chat in progress by inspecting if the cookie has been set.
+            // If it is then open the widget the user can continue their chat.
+            if (document.cookie.split(';').some(function (item) { return item.includes('yChatOpen=true')})) {
+                console.log('YCharts Chat: chat in progress.')
+                window.openHubSpotChat();
+            }
+
+            window.HubSpotConversations.on('conversationStarted', function () {
+                console.log('YCharts Chat: starting chat')
+                // When a user starts a conversation we want to set a cookie that informs us
+                // on next page load to keep the chat open on load.
+                // We set the max age to 30 minutes (60 * 30 = 1800) so that the chat stays open
+                // for 30 minutes on page loads or until the chat ends.
+                document.cookie = 'yChatOpen=true; max-age=1800; SameSite=lax; Secure; path=/';
+            });
+
+            window.HubSpotConversations.on('conversationClosed', function () {
+                console.log('YCharts Chat: ending chat')
+                // When a user ends a conversation we want to remove this cookie so we don't
+                // keep popping the chat open on load. We do this by setting the max-age to 0 which
+                // makes it expire.
+                document.cookie = 'yChatOpen=false; max-age=0; SameSite=lax; Secure; path=/';
+            });
+
+        }
+
+        window.hsConversationsOnReady = [onConversationsAPIReady];
+
+    </script>
+
+<!-- End of HubSpot Chat Code -->
+
+        
+        
+        <script>
+            var USER = {"authenticated": false, "daysRemainingInTrial": null, "email": null, "features": ["mutualFundDataUSA", "mutualFundDataCAN"], "firstName": null, "groups": [], "hasUpgraded": false, "isInClientGroup": false, "isStaff": false, "lastName": null, "shareableClientGroups": [], "userId": null};
+            var initAngularConfig = function () {
+                var config = angular.module('config');
+                config.constant('USER', USER);
+            };
+            window.ychartsOnloadFunctions = [
+                initAngularConfig,
+            ];
+        </script>
+
+        
+        
+    <script src="//static.ycharts.com/bundles/manifest.84dfa15edd0f99eb6b17.js" defer></script>
+<script src="//static.ycharts.com/bundles/vendor.90102e955e3610c3c6db.js" defer></script>
+<script src="//static.ycharts.com/bundles/angular_js.02390c8e47de884f789b.js" defer></script>
+<script src="//static.ycharts.com/bundles/redesign_core_js.7b7e7b7a5233caf1f7a0.js" defer></script>
+<script src="//static.ycharts.com/bundles/companies_data_app.e0ae0e8c4cd9fe8f6729.js" defer></script>
+
+
+        
+        
+        <script type="text/javascript" defer src="//static.ycharts.com/js/init_page_load.45f18e53b53b.js"></script>
+
+        
+            <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+            <script>
+                window.googletag = window.googletag || {cmd: []};
+                googletag.cmd.push(function() {
+                    googletag.defineSlot('/1732286/Top_Leaderboard', [728, 90], 'div-gpt-ad-1595530847756-0').addService(googletag.pubads());
+                    googletag.defineSlot('/1732286/top_medium_rectangle/top_medium_rectangle_desktop', [300, 250], 'div-gpt-ad-1589691150646-0').addService(googletag.pubads());
+                    googletag.defineSlot('/1732286/top_medium_rectangle/top_medium_rectangle_mobile', [300, 250], 'div-gpt-ad-1589689511915-0').addService(googletag.pubads());
+                    googletag.pubads().enableSingleRequest();
+                    
+    
+        
+           googletag.pubads().setTargeting('site_section', ['Stocks']);
+        
+    
+
+                    googletag.enableServices();
+                });
+            </script>
+        
+
+        
+        
+
+
+
+
+    </head>
+
+    <body class="">
+        
+        
+        <header id="header-placeholder" class="header">
+            <div class="header-container container user-select-none">
+                <div class="header-logo-wrap">
+                    <a class="header-logo" href="/">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='155px' height='21px' viewBox='-0.195 0 155 21' enable-background='new -0.195 0 155 21' xml:space='preserve'%3E%3Cpolygon fill='%230282E8' points='14.863,0.358 7.823,12.352 7.823,20.428 12.214,20.428 12.214,12.614 19.939,0.358 '/%3E%3Cpolygon fill='%230282E8' points='8.034,5.392 5.044,0.358 -0.195,0.358 5.697,9.646 '/%3E%3Cpath fill='%23FFFFFF' d='M32.348,21c-5.975,0-10.413-4.609-10.413-10.441V10.5c0-5.77,4.354-10.5,10.588-10.5 c3.831,0,6.121,1.278,8.008,3.133l-2.845,3.279c-1.565-1.422-3.16-2.292-5.189-2.292c-3.423,0-5.888,2.843-5.888,6.323V10.5 c0,3.48,2.406,6.382,5.888,6.382c2.32,0,3.742-0.929,5.336-2.377l2.844,2.872C38.587,19.607,36.264,21,32.348,21'/%3E%3Cpolygon fill='%23FFFFFF' points='59.338,20.65 59.338,12.502 51.1,12.502 51.1,20.65 46.633,20.65 46.633,0.35 51.1,0.35 51.1,8.383 59.338,8.383 59.338,0.35 63.805,0.35 63.805,20.65 '/%3E%3Cpath fill='%23FFFFFF' d='M79.625,5.57l-2.694,6.584h5.39L79.625,5.57z M85.772,20.65l-1.854-4.553h-8.585l-1.858,4.553h-4.553 l8.699-20.446h4.119L90.44,20.65H85.772z'/%3E%3Cpath fill='%23FFFFFF' d='M107.926,7.281c0-1.914-1.333-2.901-3.511-2.901h-4.438v5.829h4.523c2.177,0,3.423-1.161,3.423-2.872 L107.926,7.281L107.926,7.281z M107.839,20.65l-4.353-6.496h-3.511v6.496H95.51V0.35h9.28c4.788,0,7.656,2.523,7.656,6.7v0.06 c0,3.276-1.771,5.335-4.352,6.294l4.96,7.25h-5.223V20.65H107.839z'/%3E%3Cpolygon fill='%23FFFFFF' points='128.369,4.467 128.369,20.65 123.903,20.65 123.903,4.467 117.723,4.467 117.723,0.35 134.548,0.35 134.548,4.467 '/%3E%3Cpath fill='%23FFFFFF' d='M146.962,20.941c-3.074,0-6.18-1.073-8.612-3.248l2.642-3.161c1.823,1.509,3.74,2.465,6.062,2.465 c1.828,0,2.932-0.726,2.932-1.915v-0.059c0-1.131-0.696-1.713-4.09-2.582c-4.091-1.043-6.729-2.173-6.729-6.207V6.179 c0-3.682,2.957-6.12,7.103-6.12c2.963,0,5.481,0.927,7.543,2.579l-2.318,3.366c-1.804-1.248-3.567-2-5.277-2 c-1.714,0-2.612,0.782-2.612,1.769v0.059c0,1.333,0.871,1.77,4.379,2.668c4.119,1.074,6.44,2.553,6.44,6.092v0.061 C154.417,18.682,151.344,20.941,146.962,20.941'/%3E%3C/svg%3E">
+                    </a>
+                </div>
+            </div>
+        </header>
+        <yc-top-bar-nav></yc-top-bar-nav>
+
+        
+    <main class="page-content">
+        <div class="page">
+            
+    <div class="page-header-ad">
+        <!-- /1732286/Top_Leaderboard -->
+        <div id='div-gpt-ad-1595530847756-0' style='width: 728px; height: 90px;'>
+            <script>
+            googletag.cmd.push(function() { googletag.display('div-gpt-ad-1595530847756-0'); });
+            </script>
+        </div>
+    </div>
+
+
+
+            
+
+<div class="container">
+    <div class="page-header page-header-complex row">
+        <div class="col">
+            <div class="index-name">
+                
+                    <h2 class="index-name-text">
+                        Meta Platforms Inc (FB)
+                    </h2>
+                
+                
+            </div>
+            
+                <div class="row">
+                    <div class="index-rank col-auto">
+                        <span class="index-rank-value">195.00</span>
+                        <span class="index-change index-change-down">
+                            
+                                <yc-icon
+                                    name="icon-loss">
+                                </yc-icon>
+                                
+                                    <span class="valNeg">-2.65</span> (<span class="valNeg">-1.34%</span>)
+                                
+                            
+                        </span>
+                        <span class="index-info">
+                            USD &nbsp;|&nbsp; 
+                            NASDAQ &nbsp;|&nbsp; 
+                            
+                                May 11, 11:15
+                            
+                        </span>
+                    </div>
+                    
+                </div>
+            
+        </div>
+        <yc-security-header-control
+            security='{&quot;detailed_security_type&quot;: &quot;stock&quot;, &quot;display_security_id&quot;: &quot;FB&quot;, &quot;id&quot;: 92843, &quot;security_id&quot;: &quot;FB&quot;, &quot;security_name&quot;: &quot;Meta Platforms Inc&quot;, &quot;security_type&quot;: &quot;company&quot;, &quot;securitylist_security_id&quot;: &quot;C92843&quot;, &quot;sharing&quot;: null, &quot;watchlist_type&quot;: &quot;multi&quot;, &quot;ycharts_url&quot;: &quot;/companies/FB&quot;}'
+            security-url-identifier='FB'
+            show-action-dropdown='True'
+            show-add-to-watchlist='True'
+            show-add-to-watchlist-label='False'
+            show-alerts='True'
+            show-custom-pdf-reports='True'
+            show-notes='True'
+            show-share-button='False'
+            show-sso-integrations='True'
+            switcher-search-type='securities_with_calcs'
+        ></yc-security-header-control>
+    </div>
+</div>
+
+
+            
+                
+                    <div class="page-tabs tabs tabs-long">
+    <div class="container">
+        <ul class="nav nav-tabs user-select-none">
+            
+                <li class="nav-item">
+                    <a class="nav-link " href="/companies/FB" >Quote</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link " href="/companies/FB/performance/price" >Performance</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link " href="/companies/FB/key_stats/stats" >Key Stats</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link " href="/companies/FB/financials/income_statement/1" >Financials</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link " href="/companies/FB/estimates" >Estimates</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link " href="/companies/FB/news" >News</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link " href="/companies/FB/events/1" >Events</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link " href="/companies/FB/ratings/y_ratings" >Y-Rating</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link " href="/companies/FB/valuation" >Valuation</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link " href="/companies/FB/multichart" >Multichart</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link " href="/companies/FB/chart/" >Fundamental Chart</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link " href="/companies/FB/technical_chart/" target="_blank">Tech Chart</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link active" href="/companies/FB/price" >Data</a>
+                </li>
+            
+        </ul>
+        <div class="nav-item-more user-select-none">
+            <span class="nav-link dropdown-toggle" href onclick="dropdownHandler()">More</span>
+        </div>
+    </div>
+</div>
+
+<!--
+We do this in vanilla javascript for performance and SEO reasons. Is very simple and using Angular or any framework is overkill and could effect the SEO performance of this page
+-->
+<script>
+    function dropdownHandler() {
+        let moreButton = document.querySelector('.nav-item-more');
+        moreButton.classList.toggle('active');
+        let tabs = moreButton.closest('.page-tabs');
+        tabs.classList.toggle('show-more');
+    }
+</script>
+
+                
+            
+
+            <div class="container">
+                <div class="page-tabs tab-content">
+                    <div class="tab-pane active">
+                        
+                            
+                            
+    <div class="page-body">
+        <div class="page-header">
+            <div class="page-title">
+                <h1 class="page-name">Meta Platforms Dividend Yield: <span class="page-name-date">0% for May 11, 2022</span></h1>
+            </div>
+        </div>
+
+        <div class="page-controls">
+            <div class="row">
+                <div class="col-md-8">
+                    <yc-metric-autocompleter
+    base-data-url="/companies/FB/__metric__"
+    security="{&#x27;detailed_security_type&#x27;: &#x27;stock&#x27;, &#x27;display_security_id&#x27;: &#x27;FB&#x27;, &#x27;id&#x27;: 92843, &#x27;security_id&#x27;: &#x27;FB&#x27;, &#x27;security_name&#x27;: &#x27;Meta Platforms Inc&#x27;, &#x27;security_type&#x27;: &#x27;company&#x27;, &#x27;securitylist_security_id&#x27;: &#x27;C92843&#x27;, &#x27;sharing&#x27;: None, &#x27;watchlist_type&#x27;: &#x27;multi&#x27;, &#x27;ycharts_url&#x27;: &#x27;/companies/FB&#x27;}">
+</yc-metric-autocompleter>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                
+
+
+
+    <yc-simple-fund-chart
+        chart-tab-url='/companies/FB/chart/'
+        chart-title='Dividend Yield Chart'
+        format-options='[{&quot;value&quot;: &quot;real&quot;, &quot;calcs&quot;: [&quot;dividend_yield&quot;], &quot;label&quot;: &quot;dividend_yield&quot;}]'
+        omitted-zoom-options='[]'
+        security-id='FB'
+        show-export-options='true'
+        show-legend='false'
+        user-preference-keys='{&quot;zoom&quot;: &quot;stock_quote_chart_zoom&quot;}'>
+        <!-- Placeholder element until Angular loads -->
+        <div class="panel panel-data">
+            <div class="panel-header">
+                <h3 class="panel-title">Dividend Yield Chart</h3>
+            </div>
+            <div class="panel-content">
+                <div class="chart-cover">
+                    <div class="chart-interactive">
+                        <div class="chart-item">
+                            <div class="chart-options">
+                                <div class="chart-legend legend-off-chart">
+                                    <div class="chart-legend-item">
+                                        <span class="chart-legend-item-title"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chart-wrap">
+                                <div class="chart-canvas"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </yc-simple-fund-chart>
+
+                
+
+<div class="panel panel-data">
+    <div class="panel-header">
+        <h3 class="panel-title">Historical Dividend Yield Data</h3>
+    </div>
+    <div class="panel-content">
+        
+            
+                <div class="chart-options">
+                    <div class="panel-ad-cta">
+                        View and export this data back to 2012.
+                        <a href="/store/start_trial_register/histData">Upgrade now.</a>
+                    </div>
+                </div>
+                
+
+<div class="row">
+    <div class="col-6">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th class="text-right">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                    <tr>
+                        <td>May 10, 2022</td>
+                        <td class="text-right">
+                            
+                                0.00%
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>May 09, 2022</td>
+                        <td class="text-right">
+                            
+                                0.00%
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>May 06, 2022</td>
+                        <td class="text-right">
+                            
+                                0.00%
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>May 05, 2022</td>
+                        <td class="text-right">
+                            
+                                0.00%
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>May 04, 2022</td>
+                        <td class="text-right">
+                            
+                                0.00%
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>May 03, 2022</td>
+                        <td class="text-right">
+                            
+                                0.00%
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>May 02, 2022</td>
+                        <td class="text-right">
+                            
+                                0.00%
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>April 29, 2022</td>
+                        <td class="text-right">
+                            
+                                0.00%
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>April 28, 2022</td>
+                        <td class="text-right">
+                            
+                                0.00%
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>April 27, 2022</td>
+                        <td class="text-right">
+                            
+                                0.00%
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>April 26, 2022</td>
+                        <td class="text-right">
+                            
+                                0.00%
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>April 25, 2022</td>
+                        <td class="text-right">
+                            
+                                0.00%
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>April 22, 2022</td>
+                        <td class="text-right">
+                            
+                                0.00%
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>April 21, 2022</td>
+                        <td class="text-right">
+                            
+                                0.00%
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>April 20, 2022</td>
+                        <td class="text-right">
+                            
+                                0.00%
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>April 19, 2022</td>
+                        <td class="text-right">
+                            
+                                0.00%
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>April 18, 2022</td>
+                        <td class="text-right">
+                            
+                                0.00%
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>April 14, 2022</td>
+                        <td class="text-right">
+                            
+                                0.00%
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>April 13, 2022</td>
+                        <td class="text-right">
+                            
+                                0.00%
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>April 12, 2022</td>
+                        <td class="text-right">
+                            
+                                0.00%
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>April 11, 2022</td>
+                        <td class="text-right">
+                            
+                                0.00%
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>April 08, 2022</td>
+                        <td class="text-right">
+                            
+                                0.00%
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>April 07, 2022</td>
+                        <td class="text-right">
+                            
+                                0.00%
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>April 06, 2022</td>
+                        <td class="text-right">
+                            
+                                0.00%
+                            
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>April 05, 2022</td>
+                        <td class="text-right">
+                            
+                                0.00%
+                            
+                        </td>
+                    </tr>
+                
+            </tbody>
+        </table>
+    </div>
+
+    
+        <div class="col-6">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th class="text-right">Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr>
+                            <td>April 04, 2022</td>
+                            <td class="text-right">
+                                
+                                    0.00%
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>April 01, 2022</td>
+                            <td class="text-right">
+                                
+                                    0.00%
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>March 31, 2022</td>
+                            <td class="text-right">
+                                
+                                    0.00%
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>March 30, 2022</td>
+                            <td class="text-right">
+                                
+                                    0.00%
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>March 29, 2022</td>
+                            <td class="text-right">
+                                
+                                    0.00%
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>March 28, 2022</td>
+                            <td class="text-right">
+                                
+                                    0.00%
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>March 25, 2022</td>
+                            <td class="text-right">
+                                
+                                    0.00%
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>March 24, 2022</td>
+                            <td class="text-right">
+                                
+                                    0.00%
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>March 23, 2022</td>
+                            <td class="text-right">
+                                
+                                    0.00%
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>March 22, 2022</td>
+                            <td class="text-right">
+                                
+                                    0.00%
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>March 21, 2022</td>
+                            <td class="text-right">
+                                
+                                    0.00%
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>March 18, 2022</td>
+                            <td class="text-right">
+                                
+                                    0.00%
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>March 17, 2022</td>
+                            <td class="text-right">
+                                
+                                    0.00%
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>March 16, 2022</td>
+                            <td class="text-right">
+                                
+                                    0.00%
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>March 15, 2022</td>
+                            <td class="text-right">
+                                
+                                    0.00%
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>March 14, 2022</td>
+                            <td class="text-right">
+                                
+                                    0.00%
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>March 11, 2022</td>
+                            <td class="text-right">
+                                
+                                    0.00%
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>March 10, 2022</td>
+                            <td class="text-right">
+                                
+                                    0.00%
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>March 09, 2022</td>
+                            <td class="text-right">
+                                
+                                    0.00%
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>March 08, 2022</td>
+                            <td class="text-right">
+                                
+                                    0.00%
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>March 07, 2022</td>
+                            <td class="text-right">
+                                
+                                    0.00%
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>March 04, 2022</td>
+                            <td class="text-right">
+                                
+                                    0.00%
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>March 03, 2022</td>
+                            <td class="text-right">
+                                
+                                    0.00%
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>March 02, 2022</td>
+                            <td class="text-right">
+                                
+                                    0.00%
+                                
+                            </td>
+                        </tr>
+                    
+                        <tr>
+                            <td>March 01, 2022</td>
+                            <td class="text-right">
+                                
+                                    0.00%
+                                
+                            </td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    
+</div>
+
+            
+        
+    </div>
+</div>
+
+                
+    <iframe WIDTH="655" HEIGHT="140" SCROLLING="NO" src="https://www.dianomi.com/smartads.epl?id=5943"  style="width: 100%; height: 140px; border-top: none; border-right: none; border-bottom: 1px solid #ccc; border-left: none; margin-bottom: 9px; overflow: hidden;"></iframe>
+
+
+            </div>
+            <div class="col-md-4">
+                
+    <div class="panel-ad">
+        <!-- /1732286/top_medium_rectangle/top_medium_rectangle_desktop -->
+        <div id='div-gpt-ad-1589691150646-0' style='width: 300px; height: 250px;'>
+            <script>
+                googletag.cmd.push(function() { googletag.display('div-gpt-ad-1589691150646-0'); });
+            </script>
+        </div>
+    </div>
+
+
+                
+    <div class="panel panel-data">
+        <div class="panel-header">
+            <h3 class="panel-title">Dividend Yield Definition</h3>
+        </div>
+        <div class="panel-content">
+            <p>The dividend yield measures the ratio of dividends paid / share price. Companies with a higher dividend yield tend to have a business model that allows them to pay out more dividends from net income like real estate and consumer defensive stocks. Companies that pay dividends tend to have consistent positive net income.</p>
+            <p><a class="text-blue" href="/glossary/terms/dividend_yield">Read full definition.</a></p>
+        </div>
+    </div>
+
+
+                
+
+
+<div class="panel panel-data flex-auto">
+    <div class="panel-header">
+        <h3 class="panel-title">Dividend Yield Range, Past 5 Years</h3>
+    </div>
+    <div class="panel-content">
+        <div class="key-stats key-stats-small">
+            <div class="key-stat-wrap">
+                <div class="key-stat">
+                    <div class="key-stat-title">
+                        
+                            --
+                        
+                    </div>
+                    Minimum
+                    
+                        <div class="text-uppercase key-stats-date ">May 11 2017</div>
+                    
+                </div>
+            </div>
+            <div class="key-stat-wrap">
+                <div class="key-stat">
+                    <div class="key-stat-title">
+                        
+                            --
+                        
+                    </div>
+                    Maximum
+                    
+                        <div class="text-uppercase key-stats-date">May 11 2017</div>
+                    
+                </div>
+            </div>
+            <div class="key-stat-wrap">
+                <div class="key-stat">
+                    <div class="key-stat-title">
+                        
+                            --
+                        
+                    </div>
+                    Average
+                </div>
+            </div>
+            <div class="key-stat-wrap">
+                <div class="key-stat">
+                    <div class="key-stat-title">
+                        
+                            --
+                        
+                    </div>
+                    Median
+                    
+                        <div class="text-uppercase key-stats-date">May 11 2017</div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                
+
+
+
+    <div class="panel panel-data flex-auto">
+        <div class="panel-header">
+            <h3 class="panel-title">Dividend Yield Benchmarks</h3>
+        </div>
+        <div class="panel-content">
+            <table class="table">
+                <tbody>
+                
+                <tr>
+                    <td><a href="/companies/TWTR/dividend_yield">Twitter Inc</a></td>
+                    <td class="colTxtShort text-right">
+                        
+                            
+                                0%
+                            
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><a href="/companies/GOOGL/dividend_yield">Alphabet Inc</a></td>
+                    <td class="colTxtShort text-right">
+                        
+                            
+                                0%
+                            
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><a href="/companies/SNAP/dividend_yield">Snap Inc</a></td>
+                    <td class="colTxtShort text-right">
+                        
+                            
+                                0%
+                            
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><a href="/companies/PINS/dividend_yield">Pinterest Inc</a></td>
+                    <td class="colTxtShort text-right">
+                        
+                            
+                                0%
+                            
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><a href="/companies/NFLX/dividend_yield">Netflix Inc</a></td>
+                    <td class="colTxtShort text-right">
+                        
+                            
+                                0%
+                            
+                        
+                    </td>
+                </tr>
+                
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+                
+
+
+
+
+                
+
+                
+    <iframe WIDTH="300" HEIGHT="250" SCROLLING="NO" src="https://www.dianomi.com/smartads.epl?id=5942"  style="width: 100%; height: 250px; border: none; overflow: hidden;"></iframe>
+
+
+                
+
+            </div>
+        </div>
+
+        
+
+    </div>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <yc-quickflows-menu
+        display-security-id="FB"
+        security-id="FB"
+    ></yc-quickflows-menu>
+
+
+        
+            
+        
+
+        
+        <!-- Facebook/Meta Pixel Code -->
+<script>
+    !function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+            n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = '2.0';
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '827940241018894');
+    fbq('track', 'PageView');
+</script>
+<noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=827940241018894&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Facebook/Meta Pixel Code -->
+        
+    <!-- Global Site Tag (gtag.js) - Google Analytics & Google Ads -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-8129500-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+
+      gtag('js', new Date());
+
+      gtag('config', 'AW-1009522200');
+
+      gtag('config', 'UA-8129500-1', {
+          'dimension1': 'No',
+          'dimension2': 'No',
+      });
+    </script>
+    <!-- End Global Site Tag -->
+
+        
+<script type="text/javascript">
+    var _comscore = _comscore || [];
+    _comscore.push({c1: "2", c2: "7941412"});
+    (function () {
+        var s = document.createElement("script"), el = document.getElementsByTagName("script")[0];
+        s.async = true;
+        s.src = (document.location.protocol == "https:" ? "https://sb": "http://b") + ".scorecardresearch.com/beacon.js";
+        el.parentNode.insertBefore(s, el);
+    })();
+</script>
+<noscript>
+    <img src="http://b.scorecardresearch.com/p?c1=2&amp;c2=7941412&amp;cv=2.0&amp;cj=1"/>
+</noscript>
+
+
+        <!-- Start of HubSpot Embed Code -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/1645474.js"></script>
+<script type="text/javascript">
+    <!-- Do not load Hubspot Chat by default -->
+    window.hsConversationsSettings = {loadImmediately: false};
+</script>
+<!-- End of HubSpot Embed Code -->
+
+        <!-- LinkedIn Tracking -->
+<script type="text/javascript">
+    _linkedin_partner_id = "359530";
+    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+    window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+</script>
+<script type="text/javascript">
+    (function () {
+        var s = document.getElementsByTagName("script")[0];
+        var b = document.createElement("script");
+        b.type = "text/javascript";
+        b.async = true;
+        b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+        s.parentNode.insertBefore(b, s);
+    })();
+</script>
+<noscript>
+    <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=359530&fmt=gif"/>
+</noscript>
+<!-- End LinkedIn Tracking -->
+        
+
+
+
+
+
+        
+        
+        
+    </body>
+</html>
