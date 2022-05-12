@@ -26,28 +26,19 @@ sigma3_0 = 8000
 # Stopping criterion
 tolerance = 0.0001
 
-gp1 <- function(pi_1, mu_1, sigma_1, y){
+group <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, salary_data, i){
+  y=salary_data[i,1]
+
   p_1 = (pi_1/(sqrt(2*pi) * sigma_1)) * exp(-(y - mu_1)^2/(2 * sigma_1^2))
-  p_1_y = p_1 * y
-  p_1_y2 = p_1 * (y-mu_1)^2
-  
-  return(c(p_1, p_1_y, p_1_y2))
-}
-
-gp2 <- function(pi_2, mu_2, sigma_2, y){
   p_2 = (pi_2/(sqrt(2*pi) * sigma_2)) * exp(-(y - mu_2)^2/(2 * sigma_2^2))
-  p_2_y = p_2 * y
-  p_2_y2 = p_2 * (y-mu_2)^2
+  p_3 = ((1 - pi_1 - pi_2)/(sqrt(2*pi) * sigma_3)) * exp(-(y - mu_3)^2/(2 * sigma_3^2))
+  p = c(p_1, p_2, p_3)
   
-  return(c(p_2, p_2_y, p_2_y2))
+  return(c(p, y*p, p*y^2))
 }
 
-gp3 <- function(pi_1, pi_2, mu_3, sigma_3, y){
-  p_3 = ((1 - pi_1 - pi_2)/(sqrt(2*pi) * sigma_3)) * exp(-(y - mu_3)^2/(2 * sigma_3^2))
-  p_3_y = p_3 * y
-  p_3_y2 = p_3 * (y-mu_3)^2
-  
-  return(c(p_3, p_3_y, p_3_y2))
+update_parameter <-function(summed_col, n, i){
+  return(c(summed_col[i]/n, summed_col[i+3]/summed_col[i], sqrt(summed_col[i+6] / summed_col[i])))
 }
 
 obs_data_likelihood <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, y){
@@ -56,111 +47,102 @@ obs_data_likelihood <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, 
   p_3 = ((1 - pi_1 - pi_2)/(sqrt(2*pi) * sigma_3)) * exp(-(y - mu_3)^2/(2 * sigma_3^2))
   
   p = sum(p_1 + p_2 + p_3)
-  
   return(p)
 }
 # original version
 maximization <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, salary_data, tolerance){
   
-  n = length(salary_data) # data size
+  n = nrow(salary_data) # data size
   
   # E-step and pre-computation of intermediate parameters
-  gp1_l <- function(x) {gp1(pi_1, mu_1, sigma_1, x)}
-  gp1_missing = lapply(X = salary_data, FUN = gp1_l)
-  gp1_data = do.call(rbind, gp1_missing)
-  
-  gp2_l <- function(x) {gp2(pi_2, mu_2, sigma_2, x)}
-  gp2_missing = lapply(X = salary_data, FUN = gp2_l)
-  gp2_data = do.call(rbind, gp2_missing)
-  
-  gp3_l <- function(x) {gp3(pi_1, pi_2, mu_3, sigma_3, x)}
-  gp3_missing = lapply(X = salary_data, FUN = gp3_l)
-  gp3_data = do.call(rbind, gp3_missing)
-  
-  denominator = gp1_data[,1] + gp2_data[,1] + gp3_data[,1]
-  
-  group_1 = gp1_data/denominator
-  group_2 = gp2_data/denominator
-  group_3 = gp3_data/denominator
+  group_l <- function(x){group(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, salary_data, x)}
+  group_missing = lapply(X = 1:n, FUN = group_l)
+  grouped_data = do.call(rbind, group_missing)
+#  print(head(grouped_data, 10)) #test
+  denominator = c(grouped_data[,1]+grouped_data[,2]+grouped_data[,3])
+#  print(head(denominator, 10)) #test
+  group_data = grouped_data / denominator
+#  group_data = t(t(grouped_data)/denominator)
+#  print(head(group_data, 10)) #test
   
   # M-step
-  new_pi_1 = sum(group_1[,1]) / n
-  new_mu_1 = sum(group_1[,2]) / sum(group_1[,1])
-  new_sigma_1 = sqrt(sum(group_1[,3]) / sum(group_1[,1]))
+  summed_col = colSums(group_data)
   
-  new_pi_2 = sum(group_2[,1]) / n
-  new_mu_2 = sum(group_2[,2]) / sum(group_2[,1])
-  new_sigma_2 = sqrt(sum(group_2[,3]) / sum(group_2[,1]))
+  update_parameter_l <- function(x){update_parameter(summed_col, n, x)}
+  updated_out = lapply(X = 1:3, FUN = update_parameter_l)
+  param_out = do.call(rbind, updated_out)
+
+  new_pi_1 = param_out[1,1]
+  new_mu_1 = param_out[1,2]
+  new_sigma_1 = param_out[1,3]
   
-  new_mu_3 = sum(group_3[,2]) / sum(group_3[,1])
-  new_sigma_3 = sqrt(sum(group_3[,3]) / sum(group_3[,1]))
+  new_pi_2 = param_out[2,1]
+  new_mu_2 = param_out[2,2]
+  new_sigma_2 = param_out[2,3]
   
+  new_mu_3 = param_out[3,2]
+  new_sigma_3 = param_out[3,3]
   # check if it should stop by comparing the difference of observed-data likelihood function of two adjacent iterations
-  y=salary_data
-  obs_data = obs_data_likelihood(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, y)
-  new_obs_data = obs_data_likelihood(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3, y)
+  obs_data = sum(denominator)
+  new_obs_data = obs_data_likelihood(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3, salary_data)
   if (abs(obs_data - new_obs_data) < tolerance){
+    print(obs_data)
+    print(new_obs_data)
     return(c(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3))
   }
-  
-  maximization(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3, y, tolerance)
+
+  maximization(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3, salary_data, tolerance)
 }
+#maximization(pi1_0, pi2_0, mu1_0, mu2_0, mu3_0, sigma1_0, sigma2_0, sigma3_0, train_data, tolerance)
+
 # parallel computing version
 maximization_l <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, salary_data, tolerance){
   
-  n = length(salary_data) # data size
+  n = nrow(salary_data) # data size
   
   # E-step and pre-computation of intermediate parameters
-  gp1_l <- function(x) {gp1(pi_1, mu_1, sigma_1, x)}
-  gp1_missing = mclapply(X = salary_data, FUN = gp1_l, mc.cores = num_core)
-  gp1_data = do.call(rbind, gp1_missing)
-  
-  gp2_l <- function(x) {gp2(pi_2, mu_2, sigma_2, x)}
-  gp2_missing = mclapply(X = salary_data, FUN = gp2_l, mc.cores = num_core)
-  gp2_data = do.call(rbind, gp2_missing)
-  
-  gp3_l <- function(x) {gp3(pi_1, pi_2, mu_3, sigma_3, x)}
-  gp3_missing = mclapply(X = salary_data, FUN = gp3_l, mc.cores = num_core)
-  gp3_data = do.call(rbind, gp3_missing)
-  
-  denominator = gp1_data[,1] + gp2_data[,1] + gp3_data[,1]
-  
-  group_1 = gp1_data/denominator
-  group_2 = gp2_data/denominator
-  group_3 = gp3_data/denominator
-  
+  group_l <- function(x){group(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, salary_data, x)}
+  group_missing = mclapply(X = 1:n, FUN = group_l, mc.cores = num_core)
+  grouped_data = do.call(rbind, group_missing)
+
+  denominator = c(grouped_data[,1]+grouped_data[,2]+grouped_data[,3])
+  group_data = grouped_data / denominator
+
   # M-step
-  new_pi_1 = sum(group_1[,1]) / n
-  new_mu_1 = sum(group_1[,2]) / sum(group_1[,1])
-  new_sigma_1 = sqrt(sum(group_1[,3]) / sum(group_1[,1]))
+  summed_col = colSums(group_data)
+  update_parameter_l <- function(x){update_parameter(summed_col, n, x)}
+  updated_out = mclapply(X = 1:3, FUN = update_parameter_l, mc.cores = 3)
+  param_out = do.call(rbind, updated_out)
   
-  new_pi_2 = sum(group_2[,1]) / n
-  new_mu_2 = sum(group_2[,2]) / sum(group_2[,1])
-  new_sigma_2 = sqrt(sum(group_2[,3]) / sum(group_2[,1]))
+  new_pi_1 = param_out[1,1]
+  new_mu_1 = param_out[1,2]
+  new_sigma_1 = param_out[1,3]
   
-  new_mu_3 = sum(group_3[,2]) / sum(group_3[,1])
-  new_sigma_3 = sqrt(sum(group_3[,3]) / sum(group_3[,1]))
+  new_pi_2 = param_out[2,1]
+  new_mu_2 = param_out[2,2]
+  new_sigma_2 = param_out[2,3]
+  
+  new_mu_3 = param_out[3,2]
+  new_sigma_3 = param_out[3,3]
   
   # check if it should stop by comparing the difference of observed-data likelihood function of two adjacent iterations
-  y=salary_data
-  obs_data = obs_data_likelihood(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, y)
-  new_obs_data = obs_data_likelihood(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3, y)
+  obs_data = sum(denominator)
+  new_obs_data = obs_data_likelihood(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3, salary_data)
   if (abs(obs_data - new_obs_data) < tolerance){
     return(c(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3))
   }
   
-  maximization_l(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3, y, tolerance)
+  maximization_l(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3, salary_data, tolerance)
 }
+
+# original version
+system.time(maximization(pi1_0, pi2_0, mu1_0, mu2_0, mu3_0, sigma1_0, sigma2_0, sigma3_0, train_data, tolerance))
+
 # parallel version
 num_core = detectCores() # 8
 cl = makeCluster(num_core, type = "FORK")
 system.time(maximization_l(pi1_0, pi2_0, mu1_0, mu2_0, mu3_0, sigma1_0, sigma2_0, sigma3_0, train_data, tolerance))
 stopCluster(cl)  
-
-# original version
-system.time(maximization(pi1_0, pi2_0, mu1_0, mu2_0, mu3_0, sigma1_0, sigma2_0, sigma3_0, train_data, tolerance))
-
-
 
 
 
