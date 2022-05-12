@@ -1,5 +1,4 @@
 ## Question 1: Parallel computing for EM alogorithm
-
 rm(list=ls())
 #install.packages("parallel")
 #install.packages("foreach")
@@ -27,23 +26,30 @@ sigma3_0 = 8000
 # Stopping criterion
 tolerance = 0.0001
 
-# E-step
-z_estimation <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, salary_data){
-  y = salary_data
-  
+gp1 <- function(pi_1, mu_1, sigma_1, y){
   p_1 = (pi_1/(sqrt(2*pi) * sigma_1)) * exp(-(y - mu_1)^2/(2 * sigma_1^2))
-  p_2 = (pi_2/(sqrt(2*pi) * sigma_2)) * exp(-(y - mu_2)^2/(2 * sigma_2^2)) 
-  p_3 = ((1 - pi_1 - pi_2)/(sqrt(2*pi) * sigma_3)) * exp(-(y - mu_3)^2/(2 * sigma_3^2))
+  p_1_y = p_1 * y
+  p_1_y2 = p_1 * (y-mu_1)^2
   
-  # Q-function
-  estimated_z1 = p_1/(p_1 + p_2 + p_3)
-  estimated_z2 = p_2/(p_1 + p_2 + p_3)
-  estimated_z3 = p_3/(p_1 + p_2 + p_3)
-  
-  return(c(estimated_z1, estimated_z2, estimated_z3))
+  return(c(p_1, p_1_y, p_1_y2))
 }
 
-# Compute the observed- data likelihood function
+gp2 <- function(pi_2, mu_2, sigma_2, y){
+  p_2 = (pi_2/(sqrt(2*pi) * sigma_2)) * exp(-(y - mu_2)^2/(2 * sigma_2^2))
+  p_2_y = p_2 * y
+  p_2_y2 = p_2 * (y-mu_2)^2
+  
+  return(c(p_2, p_2_y, p_2_y2))
+}
+
+gp3 <- function(pi_1, pi_2, mu_3, sigma_3, y){
+  p_3 = ((1 - pi_1 - pi_2)/(sqrt(2*pi) * sigma_3)) * exp(-(y - mu_3)^2/(2 * sigma_3^2))
+  p_3_y = p_3 * y
+  p_3_y2 = p_3 * (y-mu_3)^2
+  
+  return(c(p_3, p_3_y, p_3_y2))
+}
+
 obs_data_likelihood <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, y){
   p_1 = (pi_1/(sqrt(2*pi) * sigma_1)) * exp(-(y - mu_1)^2/(2 * sigma_1^2))
   p_2 = (pi_2/(sqrt(2*pi) * sigma_2)) * exp(-(y - mu_2)^2/(2 * sigma_2^2)) 
@@ -53,124 +59,111 @@ obs_data_likelihood <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, 
   
   return(p)
 }
-
-
-### original code version
-# M-step
-maximization <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, y, tolerance){
+# original version
+maximization <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, salary_data, tolerance){
   
-  n = length(y) # data size
-  z = z_estimation(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, y)
-  z1 = unlist(z[1])
-  z2 = unlist(z[2])
-  z3 = unlist(z[3])
+  n = length(salary_data) # data size
   
-  # Update the parameters
-  new_pi_1 = sum(z1) / sum(z1 + z2 + z3)
-  new_pi_2 = sum(z2) / sum(z1 + z2 + z3)
-  new_mu_1 = sum(z1 * y) / sum(z1)
-  new_mu_2 = sum(z2 * y) / sum(z2)
-  new_mu_3 = sum(z3 * y) / sum(z3)
-  new_sigma_1 = sqrt(sum(z1  * (y - mu_1)^2) / sum(z1))
-  new_sigma_2 = sqrt(sum(z2  * (y - mu_2)^2) / sum(z2))
-  new_sigma_3 = sqrt(sum(z3  * (y - mu_3)^2) / sum(z3))
+  # E-step and pre-computation of intermediate parameters
+  gp1_l <- function(x) {gp1(pi_1, mu_1, sigma_1, x)}
+  gp1_missing = lapply(X = salary_data, FUN = gp1_l)
+  gp1_data = do.call(rbind, gp1_missing)
+  
+  gp2_l <- function(x) {gp2(pi_2, mu_2, sigma_2, x)}
+  gp2_missing = lapply(X = salary_data, FUN = gp2_l)
+  gp2_data = do.call(rbind, gp2_missing)
+  
+  gp3_l <- function(x) {gp3(pi_1, pi_2, mu_3, sigma_3, x)}
+  gp3_missing = lapply(X = salary_data, FUN = gp3_l)
+  gp3_data = do.call(rbind, gp3_missing)
+  
+  denominator = gp1_data[,1] + gp2_data[,1] + gp3_data[,1]
+  
+  group_1 = gp1_data/denominator
+  group_2 = gp2_data/denominator
+  group_3 = gp3_data/denominator
+  
+  # M-step
+  new_pi_1 = sum(group_1[,1]) / n
+  new_mu_1 = sum(group_1[,2]) / sum(group_1[,1])
+  new_sigma_1 = sqrt(sum(group_1[,3]) / sum(group_1[,1]))
+  
+  new_pi_2 = sum(group_2[,1]) / n
+  new_mu_2 = sum(group_2[,2]) / sum(group_2[,1])
+  new_sigma_2 = sqrt(sum(group_2[,3]) / sum(group_2[,1]))
+  
+  new_mu_3 = sum(group_3[,2]) / sum(group_3[,1])
+  new_sigma_3 = sqrt(sum(group_3[,3]) / sum(group_3[,1]))
   
   # check if it should stop by comparing the difference of observed-data likelihood function of two adjacent iterations
+  y=salary_data
   obs_data = obs_data_likelihood(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, y)
   new_obs_data = obs_data_likelihood(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3, y)
   if (abs(obs_data - new_obs_data) < tolerance){
-    # list out the first 50 classification of individuals
-    df <- data.frame (low_income_1 = z1[1:50],
-                      middle_income_2 = z2[1:50],
-                      high_income_3 = z3[1:50],
-                      class = 0
-    )
-    df['class'] = apply(df,1,function(x) which(x==max(x)))
-    
     return(c(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3))
   }
   
   maximization(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3, y, tolerance)
 }
+# parallel computing version
+maximization_l <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, salary_data, tolerance){
+  
+  n = length(salary_data) # data size
+  
+  # E-step and pre-computation of intermediate parameters
+  gp1_l <- function(x) {gp1(pi_1, mu_1, sigma_1, x)}
+  gp1_missing = mclapply(X = salary_data, FUN = gp1_l, mc.cores = num_core)
+  gp1_data = do.call(rbind, gp1_missing)
+  
+  gp2_l <- function(x) {gp2(pi_2, mu_2, sigma_2, x)}
+  gp2_missing = mclapply(X = salary_data, FUN = gp2_l, mc.cores = num_core)
+  gp2_data = do.call(rbind, gp2_missing)
+  
+  gp3_l <- function(x) {gp3(pi_1, pi_2, mu_3, sigma_3, x)}
+  gp3_missing = mclapply(X = salary_data, FUN = gp3_l, mc.cores = num_core)
+  gp3_data = do.call(rbind, gp3_missing)
+  
+  denominator = gp1_data[,1] + gp2_data[,1] + gp3_data[,1]
+  
+  group_1 = gp1_data/denominator
+  group_2 = gp2_data/denominator
+  group_3 = gp3_data/denominator
+  
+  # M-step
+  new_pi_1 = sum(group_1[,1]) / n
+  new_mu_1 = sum(group_1[,2]) / sum(group_1[,1])
+  new_sigma_1 = sqrt(sum(group_1[,3]) / sum(group_1[,1]))
+  
+  new_pi_2 = sum(group_2[,1]) / n
+  new_mu_2 = sum(group_2[,2]) / sum(group_2[,1])
+  new_sigma_2 = sqrt(sum(group_2[,3]) / sum(group_2[,1]))
+  
+  new_mu_3 = sum(group_3[,2]) / sum(group_3[,1])
+  new_sigma_3 = sqrt(sum(group_3[,3]) / sum(group_3[,1]))
+  
+  # check if it should stop by comparing the difference of observed-data likelihood function of two adjacent iterations
+  y=salary_data
+  obs_data = obs_data_likelihood(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, y)
+  new_obs_data = obs_data_likelihood(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3, y)
+  if (abs(obs_data - new_obs_data) < tolerance){
+    return(c(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3))
+  }
+  
+  maximization_l(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3, y, tolerance)
+}
+# parallel version
+num_core = detectCores() # 8
+cl = makeCluster(num_core, type = "FORK")
+system.time(maximization_l(pi1_0, pi2_0, mu1_0, mu2_0, mu3_0, sigma1_0, sigma2_0, sigma3_0, train_data, tolerance))
+stopCluster(cl)  
 
+# original version
 system.time(maximization(pi1_0, pi2_0, mu1_0, mu2_0, mu3_0, sigma1_0, sigma2_0, sigma3_0, train_data, tolerance))
 
 
-### parallel computing version
-# E-step
-z_estimation <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, salary_data){
-  y = salary_data
-  
-  p_1 = (pi_1/(sqrt(2*pi) * sigma_1)) * exp(-(y - mu_1)^2/(2 * sigma_1^2))
-  p_2 = (pi_2/(sqrt(2*pi) * sigma_2)) * exp(-(y - mu_2)^2/(2 * sigma_2^2)) 
-  p_3 = ((1 - pi_1 - pi_2)/(sqrt(2*pi) * sigma_3)) * exp(-(y - mu_3)^2/(2 * sigma_3^2))
-  
-  # Q-function
-  estimated_z1 = p_1/(p_1 + p_2 + p_3)
-  estimated_z2 = p_2/(p_1 + p_2 + p_3)
-  estimated_z3 = p_3/(p_1 + p_2 + p_3)
-  
-  return(c(estimated_z1, estimated_z2, estimated_z3))
-}
-
-# M-step
-maximization <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, y, tolerance){
-  
-  n = length(y) # data size
-  z = z_estimation(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, y)
-  z1 = unlist(z[1])
-  z2 = unlist(z[2])
-  z3 = unlist(z[3])
-  
-  # Update the parameters
-  fun1 = function(p, q, r){
-    return(sum(p) / sum(p+q+r))
-  }
-  fun2 = function(x, data){
-    return(sum(x * data) / sum(x))
-  }
-  fun3 = function(x, mu, data){
-    return(sqrt(sum(x  * (data - mu)^2) / sum(x)))
-  }
-  parallelizedfnc = function(z1, z2, z3, mu_1, mu_2, mu_3, y){
-    require(parallel)
-    funs = list()
-  }
-  
-  tasks = list(job1 = function())
-  new_pi_1 = sum(z1) / sum(z1 + z2 + z3)
-  new_pi_2 = sum(z2) / sum(z1 + z2 + z3)
-  new_mu_1 = sum(z1 * y) / sum(z1)
-  new_mu_2 = sum(z2 * y) / sum(z2)
-  new_mu_3 = sum(z3 * y) / sum(z3)
-  new_sigma_1 = sqrt(sum(z1  * (y - mu_1)^2) / sum(z1))
-  new_sigma_2 = sqrt(sum(z2  * (y - mu_2)^2) / sum(z2))
-  new_sigma_3 = sqrt(sum(z3  * (y - mu_3)^2) / sum(z3))
-  
-  # check if it should stop by comparing the difference of observed-data likelihood function of two adjacent iterations
-  obs_data = obs_data_likelihood(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, y)
-  new_obs_data = obs_data_likelihood(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3, y)
-  if (abs(obs_data - new_obs_data) < tolerance){
-    # list out the first 50 classification of individuals
-    df <- data.frame (low_income_1 = z1[1:50],
-                      middle_income_2 = z2[1:50],
-                      high_income_3 = z3[1:50],
-                      class = 0
-    )
-    df['class'] = apply(df,1,function(x) which(x==max(x)))
-    
-    return(c(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3))
-  }
-  
-  maximization(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3, y, tolerance)
-}
-
-num_core = detectCores() # 8
-cl = makeCluster(num_core, type = "FORK")
 
 
 
-stopCluster(cl)
 
 
 ## Question 2: Database Access from R
