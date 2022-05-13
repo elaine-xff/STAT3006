@@ -285,6 +285,11 @@ INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
 OUTPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/S3006_Asm4_1155141566.pdf
 INPUT /usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map
+INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q1.png
+INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q1.png
+INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q1.png
+INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q1.png
+INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q1.png
 INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q2.1.png
 INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q2.1.png
 INPUT /Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q2.1.png

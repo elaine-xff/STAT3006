@@ -91,7 +91,7 @@ maximization_l <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma
   
   # E-step and pre-computation of intermediate parameters
   group_l <- function(x){group(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, salary_data, x)}
-  group_missing = mclapply(X = 1:n, FUN = group_l, mc.cores = num_core/4)
+  group_missing = parLapply(cl, 1:n, group_l)
   grouped_data = do.call(rbind, group_missing)
 
   denominator = c(grouped_data[,1]+grouped_data[,2]+grouped_data[,3])
@@ -100,8 +100,8 @@ maximization_l <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma
   # M-step
   summed_col = colSums(group_data)
   update_parameter_l <- function(x){update_parameter(summed_col, n, x)}
-  updated_out = lapply(X = 1:3, FUN = update_parameter_l)
-#  updated_out = mclapply(X = 1:3, FUN = update_parameter_l, mc.cores = )
+  updated_out = parLapply(cl, 1:3, update_parameter_l)
+#  updated_out = lapply(X = 1:3, FUN = update_parameter_l)
   param_out = do.call(rbind, updated_out)
   
   new_pi_1 = param_out[1,1]
@@ -130,7 +130,7 @@ system.time(maximization(pi1_0, pi2_0, mu1_0, mu2_0, mu3_0, sigma1_0, sigma2_0, 
 
 # parallel version
 num_core = detectCores()
-cl = makeCluster(num_core/2, type = "FORK")
+cl = makeCluster(num_core, type = "FORK")
 system.time(maximization_l(pi1_0, pi2_0, mu1_0, mu2_0, mu3_0, sigma1_0, sigma2_0, sigma3_0, train_data, tolerance))
 stopCluster(cl)
 
@@ -174,7 +174,6 @@ dbUnloadDriver(drv)
 
 
 ## Question 3: Parse HTML
-
 rm(list=ls())
 #install.packages("XML")
 #install.packages("httr")

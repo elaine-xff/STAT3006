@@ -33,7 +33,7 @@ $\mathbf{E-step}$: Calculate $E(Z_i^{(t)} | \Theta^{(t)})$, where $\Theta^{(t)} 
         &= \frac{\pi_k^{(t)} \frac{1}{\sqrt{2\pi} {\sigma_k}^{(t)}} e^{-\frac{(y_i-\mu_k^{(t)})^2}{2 {\sigma_k^2}^{(t)}}}  }{\pi_1^{(t)} \frac{1}{\sqrt{2\pi} {\sigma_1}^{(t)}} e^{-\frac{(y_i-\mu_1^{(t)})^2}{2 {\sigma_1^2}^{(t)}}} + \pi_2^{(t)} \frac{1}{\sqrt{2\pi} {\sigma_2}^{(t)}} e^{-\frac{(y_i-\mu_2^{(t)})^2}{2 {\sigma_2^2}^{(t)}}} + (1-\pi_1^{(t)}-\pi_2^{(t)}) \frac{1}{\sqrt{2\pi} {\sigma_3}^{(t)}} e^{-\frac{(y_i-\mu_3^{(t)})^2}{2 {\sigma_3^2}^{(t)}}}}
 \end{flalign*}
 
-$\mathbf{M-step}$: Update $\Theta^{(t+1)}$ by equations $(1)$ to $(8)$ listed at the next page.
+$\mathbf{M-step}$: Update $\Theta^{(t+1)}$ by equations $(1)$ to $(8)$.
 
 $\mathbf{Stopping}$ $\mathbf{criterion}$: $|L(\Theta^{(t)}  | \mathbf{Y})) - L(\Theta^{(T+1)}  | \mathbf{Y}))| < $ tolerance.
 
@@ -54,34 +54,42 @@ in updating all the parameters and $Z$'s.
 
 The detailed process is as follows: given $\Theta^{(t)}$,
 
-1. E-step: Compute conditional expectation values to be stored in an $n \times 3$ matrix, in which the computation tasks are distributed in columns.\\
+1. E-step: Compute conditional expectation values to be stored in an $n \times 3$ matrix, in which the computation tasks are distributed in rows in parallel.\\
 2. M-step: \\
 When computing the above matrix, to pre-compute some intermediate parameters such as $\widehat{Z_{i1}}^{(t)} y_i$ and $\widehat{Z_{i1}}^{(t)} y_i^2$, which are collected in other $n \times 3$ matrices.\\
-The master gather all values computed before and then distribute tasks about updating 8 parameters in load balance scheme or if \# of cores $>$ \# of parameters, we can just distribute tasks to ($n =$ \# of parameters) cores.
+The master gather all values computed before and then distribute tasks about updating 8 parameters in parallel.\\
 The master gather the updated parameters $\Theta^{(t+1)}$ and then go to the next loop.
-
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/Q1.png}
+    \caption{Original VS Parallel Computing Time}
+\end{figure}
+From the computation, we ca know that parallel computing is much faster than the original version. 
+\newpage
 \question{2}{Database Access from R (30\%)}
 SQL in the pictures following highlighted in blue in the double quotes.
 
 (a) The 'Book' Table:
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{figures/Q2.1.png}
+    \includegraphics[width=0.45\textwidth]{figures/Q2.1.png}
     \caption{'Book' Tbale}
 \end{figure}
+
 (b) 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{figures/Q2.2.png}
+    \includegraphics[width=0.75\textwidth]{figures/Q2.2.png}
     \caption{Students who borrowed natural science books}
 \end{figure}
 (c)
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{figures/Q2.3.png}
+    \includegraphics[width=0.75\textwidth]{figures/Q2.3.png}
     \caption{Students who borrowed book 8 for more than 30 days}
 \end{figure}
 
+\newpage
 \question{3}{Parse HTML (30\%)}
 (a) The result is stored in variable 'comp' in R code.
 
