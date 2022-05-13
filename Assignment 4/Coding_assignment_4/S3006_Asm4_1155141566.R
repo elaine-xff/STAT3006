@@ -171,8 +171,6 @@ dbDisconnect(con)
 dbUnloadDriver(drv)
 
 
-
-
 ## Question 3: Parse HTML
 rm(list=ls())
 #install.packages("XML")
@@ -191,40 +189,29 @@ comp_info = readHTMLTable(doc_complist, which = 1)
 comp = comp_info[, c(2:3)]
 
 # (b) retrieve Market Cap, Price to Book Value, and Dividend Yield from Y-Charts
-#url_marklist = "https://ycharts.com/companies/FB"
-#destfile = "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Coding_assignment_4/FB.html"
-#download.file(url_marklist, destfile)
-#doc_marklist = htmlTreeParse(destfile, useInternalNodes = TRUE)
+comp$url = paste0("https://ycharts.com/companies/", comp$Symbol)
 
-url_marketcap = "https://ycharts.com/companies/FB/market_cap"
-destfile_mc = "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Coding_assignment_4/FB_market_cap.html"
-download.file(url_marketcap, destfile_mc)
-doc_marketcap = htmlTreeParse(destfile_mc, useInternalNodes = TRUE)
-marketcap_table = readHTMLTable(doc_marketcap, which = 3)
-colnames(marketcap_table) = c("Company", "MarketCap")
-temp1 = merge(comp, marketcap_table, by=c("Company"), all.x = TRUE)
-  
-url_pricetbv = "https://ycharts.com/companies/FB/price_to_book_value"
-destfile_pricetbv = "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Coding_assignment_4/FB_price_to_book_value.html"
-download.file(url_pricetbv, destfile_pricetbv)
-doc_pricetbv = htmlTreeParse(destfile_pricetbv, useInternalNodes = TRUE)
-pricetbv_table = readHTMLTable(doc_pricetbv, which = 3)
-colnames(pricetbv_table) = c("Company", "PriceToBookValue")
-temp2 = merge(temp1, pricetbv_table, by=c("Company"), all.x = TRUE)
+# download the .html files to local disk
+n = nrows(comp)
+for (i in 1:n) {
+  url_testlist = comp[i, 'url']
+  destfile = paste0("/Users/elainexfff_/Documents/STAT3006/Assignment 4/Coding_assignment_4/", comp[i, 'Symbol'], ".html")
+  download.file(url_testlist, destfile)
+}
 
-url_dy = "https://ycharts.com/companies/FB/dividend_yield"
-destfile_dy = "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Coding_assignment_4/FB_dividend_yield.html"
-download.file(url_dy, destfile_dy)
-doc_dy = htmlTreeParse(destfile_dy, useInternalNodes = TRUE)
-dy_table = readHTMLTable(doc_dy, which = 3)
-colnames(dy_table) = c("Company", "DividendYield")
-whole_table = merge(temp2, dy_table, by=c("Company"), all.x = TRUE)
+file_address = paste0("/Users/elainexfff_/Documents/STAT3006/Assignment 4/Coding_assignment_4/", comp[, 'Symbol'], ".html")
 
-#install.packages("gridExtra")
-library("gridExtra")
-pdf("Q3b_data.pdf")       # Export PDF
-grid.table(whole_table)
-dev.off()
+doc_test = htmlTreeParse(file_address[1], useInternalNodes = TRUE)
+table_1 = readHTMLTable(doc_test, which = 1)
+table_2 = readHTMLTable(doc_test, which = 2)
+table_3 = readHTMLTable(doc_test, which = 3)
+table_4 = readHTMLTable(doc_test, which = 4)
+table_5 = readHTMLTable(doc_test, which = 5)
+
+url_marklist = "https://ycharts.com/companies/FB"
+destfile = "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Coding_assignment_4/FB.html"
+download.file(url_marklist, destfile)
+doc_marklist = htmlTreeParse(destfile, useInternalNodes = TRUE)
 
 
 
