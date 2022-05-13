@@ -100,7 +100,8 @@ maximization_l <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma
   # M-step
   summed_col = colSums(group_data)
   update_parameter_l <- function(x){update_parameter(summed_col, n, x)}
-  updated_out = mclapply(X = 1:3, FUN = update_parameter_l, mc.cores = 3)
+  updated_out = lapply(X = 1:3, FUN = update_parameter_l)
+#  updated_out = mclapply(X = 1:3, FUN = update_parameter_l, mc.cores = 3)
   param_out = do.call(rbind, updated_out)
   
   new_pi_1 = param_out[1,1]
@@ -128,8 +129,8 @@ maximization_l <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma
 system.time(maximization(pi1_0, pi2_0, mu1_0, mu2_0, mu3_0, sigma1_0, sigma2_0, sigma3_0, train_data, tolerance))
 
 # parallel version
-num_core = detectCores() # 8
-cl = makeCluster(num_core, type = "FORK")
+num_core = detectCores()
+cl = makeCluster(num_core/2, type = "FORK")
 system.time(maximization_l(pi1_0, pi2_0, mu1_0, mu2_0, mu3_0, sigma1_0, sigma2_0, sigma3_0, train_data, tolerance))
 stopCluster(cl)  
 
