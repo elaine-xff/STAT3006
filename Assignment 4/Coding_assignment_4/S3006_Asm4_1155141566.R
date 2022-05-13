@@ -1,12 +1,6 @@
 ## Question 1: Parallel computing for EM alogorithm
 rm(list=ls())
-#install.packages("parallel")
-#install.packages("foreach")
-#install.packages("doParallel")
 library(parallel)
-library(iterators)
-library(foreach)
-library(doParallel)
 
 # Read Salary Data
 SalaryData = read.delim("/Users/elainexfff_/Documents/STAT3006/Assignment 1/Coding_assignment_1/SalaryData.txt", 
@@ -34,7 +28,7 @@ group <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, salar
   p_3 = ((1 - pi_1 - pi_2)/(sqrt(2*pi) * sigma_3)) * exp(-(y - mu_3)^2/(2 * sigma_3^2))
   p = c(p_1, p_2, p_3)
   
-  return(c(p, y*p, p*y^2))
+  return(c(p, y*p, p_1*(y-mu_1)^2, p_2*(y-mu_2)^2, p_3*(y-mu_3)^2))
 }
 
 update_parameter <-function(summed_col, n, i){
@@ -58,12 +52,10 @@ maximization <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3
   group_l <- function(x){group(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, salary_data, x)}
   group_missing = lapply(X = 1:n, FUN = group_l)
   grouped_data = do.call(rbind, group_missing)
-#  print(head(grouped_data, 10)) #test
+
   denominator = c(grouped_data[,1]+grouped_data[,2]+grouped_data[,3])
-#  print(head(denominator, 10)) #test
   group_data = grouped_data / denominator
-#  group_data = t(t(grouped_data)/denominator)
-#  print(head(group_data, 10)) #test
+
   
   # M-step
   summed_col = colSums(group_data)
@@ -86,14 +78,11 @@ maximization <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3
   obs_data = sum(denominator)
   new_obs_data = obs_data_likelihood(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3, salary_data)
   if (abs(obs_data - new_obs_data) < tolerance){
-    print(obs_data)
-    print(new_obs_data)
     return(c(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3))
   }
 
   maximization(new_pi_1, new_pi_2, new_mu_1, new_mu_2, new_mu_3, new_sigma_1, new_sigma_2, new_sigma_3, salary_data, tolerance)
 }
-#maximization(pi1_0, pi2_0, mu1_0, mu2_0, mu3_0, sigma1_0, sigma2_0, sigma3_0, train_data, tolerance)
 
 # parallel computing version
 maximization_l <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, salary_data, tolerance){
@@ -102,7 +91,7 @@ maximization_l <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma
   
   # E-step and pre-computation of intermediate parameters
   group_l <- function(x){group(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma_3, salary_data, x)}
-  group_missing = mclapply(X = 1:n, FUN = group_l, mc.cores = num_core)
+  group_missing = mclapply(X = 1:n, FUN = group_l, mc.cores = num_core/4)
   grouped_data = do.call(rbind, group_missing)
 
   denominator = c(grouped_data[,1]+grouped_data[,2]+grouped_data[,3])
