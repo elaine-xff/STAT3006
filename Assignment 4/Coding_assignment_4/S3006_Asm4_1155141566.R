@@ -192,6 +192,9 @@ comp = comp_info[, c(2:3)]
 # (b) retrieve Market Cap, Price to Book Value, and Dividend Yield from Y-Charts
 comp$url = paste0("https://ycharts.com/companies/", comp$Symbol)
 
+empty_cols = c("MarketCap", "PriceToBookValue", "DividendYield")
+comp[, empty_cols] = NA
+
 n = nrow(comp)
 root = "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Coding_assignment_4/"
 file_address = paste0(root, comp[, 'Symbol'], ".html")
@@ -202,35 +205,57 @@ for (i in 1:n) {
   if(!file.exists(destfile)){
     download.file(url_testlist, destfile)
   }
-#  doc_file = htmlTreeParse(destfile, useInternalNodes = TRUE)
-#  market_cap = xpathSApply(doc_file,)
+  doc_file = htmlTreeParse(destfile, useInternalNodes = TRUE)
+  
+  market_temp = xpathSApply(doc_file, "//div[1]/table/tbody[1]/tr[1]/td[2]/text()", xmlValue)[1]
+  if (!is.na(market_temp)){
+    market_cap_temp = gsub("\n", "", market_temp) # delete '\n' in the string
+    market_cap = gsub(" ","",market_cap_temp) # delete the white-space
+    comp[i, 'MarketCap'] = market_cap
+  }
+  
+  price_temp = xpathSApply(doc_file, "//div[1]/table/tbody[2]/tr[4]/td[2]/text()", xmlValue)
+  if (!is.na(price_temp)){
+    price_value_temp = gsub("\n", "", price_temp) # delete '\n' in the string
+    price_to_book_value = gsub(" ", "", price_value_temp) # delete the white-space
+    comp[i, 'PriceToBookValue'] = price_to_book_value
+  }
+  
+  dividend_temp = xpathSApply(doc_file, "//div[2]/table/tbody[1]/tr[1]/td[2]/text()", xmlValue)[1]
+  if (!is.na(dividend_temp)){
+    dividned_yield_temp = gsub("\n", "", dividend_temp) # delete '\n' in the string
+    dividend_yield = gsub(" ","",dividned_yield_temp) # delete the white-space
+    comp[i, 'DividendYield'] = dividend_yield
+  }
 }
 
-doc_test = htmlTreeParse(file_address[1], useInternalNodes = TRUE)
+col_to_export = c("Company", "Symbol", "MarketCap", "PriceToBookValue", "DividendYield")
+data_to_export = comp[, col_to_export]
 
-# get market cap
-# /html/body/main/div/div[3]/div/div/div/div/div[1]/div[1]/div[2]/div/div[1]/table/tbody[1]/tr[1]/td[2]/text()
-market_temp = xpathSApply(doc_test, "//table/tbody[1]/tr[1]/td[2]/text()", xmlValue)[1]
-market_cap_temp = gsub("\n", "", market_temp) # delete '\n' in the string
-market_cap = gsub(" ","",market_cap_temp) # delete the white-space
+# export the table out
+library(gridExtra)
+png("Q3b_data.png", height = 50*nrow(data_to_export), width = 200*ncol(data_to_export))
+grid.table(data_to_export)
+dev.off()
 
-#get price to book value
-# /html/body/main/div/div[3]/div/div/div/div/div[1]/div[1]/div[2]/div/div[1]/table/tbody[3]/tr[4]/td[2]/text()
-price_to_book_value = xpathSApply(doc_test, "//table/tbody[3]/tr[4]/td[2]/text()", xmlValue)
-
-# get dividend yield
-# /html/body/main/div/div[3]/div/div/div/div/div[1]/div[1]/div[2]/div/div[2]/table/tbody[1]/tr[2]/td[2]/text()
-dividend_yield = xpathSApply(doc_test, "//div[2]/table/tbody[1]/tr[2]/td[2]/text()", xmlValue)
-
-
-
-
-#url_marklist = "https://ycharts.com/companies/FB"
-#destfile = "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Coding_assignment_4/FB.html"
-#download.file(url_marklist, destfile)
-#doc_marklist = htmlTreeParse(destfile, useInternalNodes = TRUE)
-
-
+# (c) list the yop 3 companies with the highest Market Cap
+mc_cols = c("Company", "Symbol", "MarketCap")
+mc_df = comp[, mc_cols]
+mc_df[, 'converted_mv'] = NA
+unit_1 = 'B'
+unit_2 = 'T'
+for (i in 1:n) {
+  target = mc_df[i, 'MarketCap']
+  if (grepl(unit_2, target, fixed = TRUE)){
+    mc_df[i, 'converted_mv'] = 1000 * as.numeric(gsub("T", "", target))
+  }
+  if (grepl(unit_1, target, fixed = TRUE)){
+    mc_df[i, 'converted_mv'] = as.numeric(gsub("B", "", target))
+  }
+}
+highest_three = head(mc_df[, 'converted_mv'], 3)
+row_ind = which(mc_df$converted_mv == highest_three)
+print(mc_df[row_ind,])
 
 
 
