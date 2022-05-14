@@ -139,7 +139,6 @@ stopCluster(cl)
 ## Question 2: Database Access from R
 rm(list=ls())
 #install.packages("RMySQL")
-#install.packages("DBI")
 library("RMySQL")
 
 drv=dbDriver("MySQL")
@@ -179,6 +178,8 @@ rm(list=ls())
 library(XML)
 library(httr)
 library(RCurl)
+#install.packages("DBI")
+
 
 # (a) find all the companies and ticker symbols
 url_complist = "https://www.slickcharts.com/nasdaq100"
@@ -191,31 +192,43 @@ comp = comp_info[, c(2:3)]
 # (b) retrieve Market Cap, Price to Book Value, and Dividend Yield from Y-Charts
 comp$url = paste0("https://ycharts.com/companies/", comp$Symbol)
 
-# download the .html files to local disk
-n = nrows(comp)
+n = nrow(comp)
+root = "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Coding_assignment_4/"
+file_address = paste0(root, comp[, 'Symbol'], ".html")
 for (i in 1:n) {
   url_testlist = comp[i, 'url']
-  destfile = paste0("/Users/elainexfff_/Documents/STAT3006/Assignment 4/Coding_assignment_4/", comp[i, 'Symbol'], ".html")
-  download.file(url_testlist, destfile)
+  destfile = file_address[i]
+  # download the .html files to local disk if there's no target file
+  if(!file.exists(destfile)){
+    download.file(url_testlist, destfile)
+  }
+#  doc_file = htmlTreeParse(destfile, useInternalNodes = TRUE)
+#  market_cap = xpathSApply(doc_file,)
 }
 
-file_address = paste0("/Users/elainexfff_/Documents/STAT3006/Assignment 4/Coding_assignment_4/", comp[, 'Symbol'], ".html")
-
 doc_test = htmlTreeParse(file_address[1], useInternalNodes = TRUE)
-table_1 = readHTMLTable(doc_test, which = 1)
-table_2 = readHTMLTable(doc_test, which = 2)
-table_3 = readHTMLTable(doc_test, which = 3)
-table_4 = readHTMLTable(doc_test, which = 4)
-table_5 = readHTMLTable(doc_test, which = 5)
 
-url_marklist = "https://ycharts.com/companies/FB"
-destfile = "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Coding_assignment_4/FB.html"
-download.file(url_marklist, destfile)
-doc_marklist = htmlTreeParse(destfile, useInternalNodes = TRUE)
+# get market cap
+# /html/body/main/div/div[3]/div/div/div/div/div[1]/div[1]/div[2]/div/div[1]/table/tbody[1]/tr[1]/td[2]/text()
+market_temp = xpathSApply(doc_test, "//table/tbody[1]/tr[1]/td[2]/text()", xmlValue)[1]
+market_cap_temp = gsub("\n", "", market_temp) # delete '\n' in the string
+market_cap = gsub(" ","",market_cap_temp) # delete the white-space
+
+#get price to book value
+# /html/body/main/div/div[3]/div/div/div/div/div[1]/div[1]/div[2]/div/div[1]/table/tbody[3]/tr[4]/td[2]/text()
+price_to_book_value = xpathSApply(doc_test, "//table/tbody[3]/tr[4]/td[2]/text()", xmlValue)
+
+# get dividend yield
+# /html/body/main/div/div[3]/div/div/div/div/div[1]/div[1]/div[2]/div/div[2]/table/tbody[1]/tr[2]/td[2]/text()
+dividend_yield = xpathSApply(doc_test, "//div[2]/table/tbody[1]/tr[2]/td[2]/text()", xmlValue)
 
 
 
 
+#url_marklist = "https://ycharts.com/companies/FB"
+#destfile = "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Coding_assignment_4/FB.html"
+#download.file(url_marklist, destfile)
+#doc_marklist = htmlTreeParse(destfile, useInternalNodes = TRUE)
 
 
 
