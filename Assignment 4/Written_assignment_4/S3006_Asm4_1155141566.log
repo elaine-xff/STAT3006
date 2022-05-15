@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.4.19)  15 MAY 2022 17:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.4.19)  15 MAY 2022 21:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -264,25 +264,41 @@ Package pdftex.def Info: figures/Q3c.png  used on input line 100.
 <figures/Q3b_data.jpg, id=29, 679.53876pt x 2104.86375pt>
 File: figures/Q3b_data.jpg Graphic file (type jpg)
 <use figures/Q3b_data.jpg>
-Package pdftex.def Info: figures/Q3b_data.jpg  used on input line 106.
+Package pdftex.def Info: figures/Q3b_data.jpg  used on input line 108.
 (pdftex.def)             Requested size: 206.69334pt x 640.23212pt.
+<figures/AAPL.png, id=30, 1428.33624pt x 833.1125pt>
+File: figures/AAPL.png Graphic file (type png)
+<use figures/AAPL.png>
+Package pdftex.def Info: figures/AAPL.png  used on input line 113.
+(pdftex.def)             Requested size: 281.85587pt x 164.3949pt.
  [3 </Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q2.2.png> </Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q2.3.png> </Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q3c.png>]
 Overfull \vbox (15.53128pt too high) has occurred while \output is active []
 
- [4 </Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q3b_data.jpg>] (/Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/S3006_Asm4_1155141566.aux) ) 
+ [4 </Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/Q3b_data.jpg>]
+<figures/MSFT.png, id=40, 1438.37375pt x 832.10875pt>
+File: figures/MSFT.png Graphic file (type png)
+<use figures/MSFT.png>
+Package pdftex.def Info: figures/MSFT.png  used on input line 118.
+(pdftex.def)             Requested size: 281.85587pt x 163.05411pt.
+<figures/AMZN.png, id=41, 1434.35875pt x 834.11626pt>
+File: figures/AMZN.png Graphic file (type png)
+<use figures/AMZN.png>
+Package pdftex.def Info: figures/AMZN.png  used on input line 123.
+(pdftex.def)             Requested size: 281.85587pt x 163.90569pt.
+ [5 </Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/AAPL.png> </Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/MSFT.png> </Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/figures/AMZN.png>] (/Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/S3006_Asm4_1155141566.aux) ) 
 Here is how much of TeX's memory you used:
- 3186 strings out of 478994
- 43647 string characters out of 5858184
+ 3204 strings out of 478994
+ 43968 string characters out of 5858184
  354738 words of memory out of 5000000
- 20643 multiletter control sequences out of 15000+600000
+ 20658 multiletter control sequences out of 15000+600000
  409007 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,11n,74p,562b,223s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 68i,11n,74p,562b,248s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/S3006_Asm4_1155141566.pdf" (4 pages, 821503 bytes).
+Output written on "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/S3006_Asm4_1155141566.pdf" (5 pages, 1968804 bytes).
 PDF statistics:
- 77 PDF objects out of 1000 (max. 8388607)
- 47 compressed objects within 1 object stream
+ 86 PDF objects out of 1000 (max. 8388607)
+ 49 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

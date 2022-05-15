@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1652607032 "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/S3006_Asm4_1155141566.tex" "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/S3006_Asm4_1155141566.pdf" "S3006_Asm4_1155141566" 1652607084
-  "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/S3006_Asm4_1155141566.aux" 1652607033 913 11e7e8e603fc84bfeaeffc9811b27510 ""
-  "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/S3006_Asm4_1155141566.tex" 1652607083 5664 092011e8af286f2811f1824c1997e158 ""
+["pdflatex"] 1652620764 "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/S3006_Asm4_1155141566.tex" "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/S3006_Asm4_1155141566.pdf" "S3006_Asm4_1155141566" 1652620766
+  "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/S3006_Asm4_1155141566.aux" 1652620766 1302 092a707bf79ec2a7ab743cbf0f22357d ""
+  "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/S3006_Asm4_1155141566.tex" 1652620764 6161 065f64560f223f03b0bef01dbe9e61e6 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -65,8 +65,11 @@
   "/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1616695603 5169178 a2ce6e2d73f603b690db6777d06dbccb ""
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1618821136 2724737 59ee1c8e7f158a84523516f0f37ca650 ""
   "/usr/local/texlive/2021/texmf.cnf" 1616695596 577 4c1911a7228e554c6032256d3cf5567d ""
-  "S3006_Asm4_1155141566.aux" 1652607033 913 11e7e8e603fc84bfeaeffc9811b27510 "pdflatex"
-  "S3006_Asm4_1155141566.tex" 1652607083 5664 092011e8af286f2811f1824c1997e158 ""
+  "S3006_Asm4_1155141566.aux" 1652620766 1302 092a707bf79ec2a7ab743cbf0f22357d "pdflatex"
+  "S3006_Asm4_1155141566.tex" 1652620764 6161 065f64560f223f03b0bef01dbe9e61e6 ""
+  "figures/AAPL.png" 1652620523 638644 f96a4239b0f5d82acb4b0dfc46d63cf9 ""
+  "figures/AMZN.png" 1652620574 613010 a86a00976d29ee5427d95bd60d7e261a ""
+  "figures/MSFT.png" 1652620547 627319 23cd873203f93560387c0fc5e05b6b76 ""
   "figures/Q1.png" 1652454574 194893 ca82d2be55a7b17326b3b64fe16f9257 ""
   "figures/Q2.1.png" 1649690497 52892 d9a937a1578997ccdac9b817e9cf76f4 ""
   "figures/Q2.2.png" 1649690522 57554 109c68724351db4ca99f24b2262a02f1 ""
@@ -75,7 +78,7 @@
   "figures/Q3c.png" 1652526362 36830 f136ef775199ce8cbfbf931ab63a1562 ""
   (generated)
   "S3006_Asm4_1155141566.log"
+  "S3006_Asm4_1155141566.aux"
   "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/S3006_Asm4_1155141566.pdf"
   "/Users/elainexfff_/Documents/STAT3006/Assignment 4/Written_assignment_4/S3006_Asm4_1155141566.log"
-  "S3006_Asm4_1155141566.aux"
   "S3006_Asm4_1155141566.pdf"
