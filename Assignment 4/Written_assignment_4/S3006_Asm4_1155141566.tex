@@ -57,8 +57,7 @@ The detailed process is as follows: given $\Theta^{(t)}$,
 1. E-step: Compute conditional expectation values to be stored in an $n \times 3$ matrix, in which the computation tasks are distributed in rows in parallel.\\
 2. M-step: \\
 When computing the above matrix, to pre-compute some intermediate parameters such as $\widehat{Z_{i1}}^{(t)} y_i$ and $\widehat{Z_{i1}}^{(t)} y_i^2$, which are collected in other $n \times 3$ matrices.\\
-The master gather all values computed before and then distribute tasks about updating 8 parameters in parallel.\\
-The master gather the updated parameters $\Theta^{(t+1)}$ and then go to the next loop.
+The master gather all values computed before and update parameters $\Theta^{(t+1)}$ without parallel computing and then go to the next loop.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/Q1.png}

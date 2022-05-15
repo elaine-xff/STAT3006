@@ -100,8 +100,8 @@ maximization_l <- function(pi_1, pi_2, mu_1, mu_2, mu_3, sigma_1, sigma_2, sigma
   # M-step
   summed_col = colSums(group_data)
   update_parameter_l <- function(x){update_parameter(summed_col, n, x)}
-  updated_out = parLapply(cl, 1:3, update_parameter_l)
-#  updated_out = lapply(X = 1:3, FUN = update_parameter_l)
+#  updated_out = parLapply(cl, 1:3, update_parameter_l)
+  updated_out = lapply(X = 1:3, FUN = update_parameter_l)
   param_out = do.call(rbind, updated_out)
   
   new_pi_1 = param_out[1,1]
